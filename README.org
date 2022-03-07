@@ -1,0 +1,38 @@
+#+TITLE: dotfiles
+#+AUTHOR: evf
+
+* How to use
+
+You can use [[https://www.gnu.org/software/stow/][GNU Stow]] to easily place the dotfiles in your home dir.
+For example, in order to install the i3wm dotfiles:
+
+#+BEGIN_SRC bash
+cd ~
+git clone https://github.com/eliseuv/dotfiles.git
+cd dotfiles
+stow i3/
+#+END_SRC
+
+Or if the repo was cloned to somewhere other than ~$HOME~:
+
+#+BEGIN_SRC bash
+stow -d dotfiles/i3/ -t ~/
+#+END_SRC
+
+* Packages
+
+On an Arch based distro you can install all the packages needed by executing:
+
+#+BEGIN_SRC bash
+pacman -S --needed - < pkglist.txt
+#+END_SRC
+
+For installing foreign packages you can use your favorite AUR helper, for example:
+
+#+BEGIN_SRC bash
+paru -S --needed - < foreignpkglist.txt
+#+END_SRC
+
+* Chemacs and DOOM Emacs
+
+In order to use Chemacs2, clone DOOM Emacs repo to `~/.emacs.doom` dir.

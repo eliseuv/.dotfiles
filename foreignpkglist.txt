@@ -1,0 +1,17 @@
+anaconda
+brave-bin
+cmake-format
+freezer-bin
+haskell-brittany
+julia-bin
+neovide
+nerd-fonts-mononoki
+openrazer-meta
+otf-fira-code-symbol
+paru
+polybar
+task-spooler
+ttf-alegreya
+xorg-font-utils
+ytfzf
+zotero

@@ -1,0 +1,6 @@
+[Unit]
+Description=Copy list of installed packages
+
+[Service]
+Type=simple
+ExecStart=/bin/sh -c 'cp -v /etc/pkglist.txt /home/evf/.dotfiles/pkglist.txt ; cp -v /etc/foreignpkglist.txt /home/evf/.dotfiles/foreignpkglist.txt' 

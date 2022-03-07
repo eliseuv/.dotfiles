@@ -1,0 +1,101 @@
+!================
+!==   URxvt    ==
+!================
+
+! Font to Fira Code Retina, 16px
+URxvt.font: xft:Fira Code Retina:style=Retina:pixelsize=12
+
+! Set Bold Font to Fira Code Bold, 16px
+URxvt.boldFont: xft:Fira Code:style=Bold:pixelsize:12
+
+! Set Italics Font to Fira Code Light, 16px
+URxvt.italicFont: xft:Fira Code:style=Light:pixelsize:12
+
+! no scrollbar
+URxvt.scrollBar: false
+
+! color config (terminal.sexy)
+
+URxvt.depth:        32
+
+!! ! special
+! URxvt.foreground:   #bfd5dd
+! URxvt.background:   [70]#080b0c
+! URxvt.cursorColor:  #bfd5dd
+!
+!! ! black
+! URxvt.color0:       #101415
+! URxvt.color8:       #b6a9dd
+!
+!! ! red
+! URxvt.color1:       #181d1f
+! URxvt.color9:       #f4d4e4
+!
+!! ! green
+! URxvt.color2:       #282f31
+! URxvt.color10:      #79d3ea
+!
+!! ! yellow
+! URxvt.color3:       #3d474b
+! URxvt.color11:      #e397c0
+!
+!! ! blue
+! URxvt.color4:       #58666b
+! URxvt.color12:      #dfdaf2
+!
+!! ! magenta
+! URxvt.color5:       #798b91
+! URxvt.color13:      #beca81
+!
+!! ! cyan
+! URxvt.color6:       #9fb6be
+! URxvt.color14:      #83e7c0
+!
+!! ! white
+! URxvt.color7:       #d7e5e9
+! URxvt.color15:      #e19b73
+
+! special
+URxvt.foreground:   #f8f8f8
+URxvt.background:   [70]#171717
+URxvt.cursorColor:  #f8f8f8
+
+! black
+URxvt.color0:       #171717
+URxvt.color8:       #38252c
+
+! red
+URxvt.color1:       #d81765
+URxvt.color9:       #ff0000
+
+! green
+URxvt.color2:       #97d01a
+URxvt.color10:      #76b639
+
+! yellow
+URxvt.color3:       #ffa800
+URxvt.color11:      #e1a126
+
+! blue
+URxvt.color4:       #16b1fb
+URxvt.color12:      #289cd5
+
+! magenta
+URxvt.color5:       #ff2491
+URxvt.color13:      #ff2491
+
+! cyan
+URxvt.color6:       #0fdcb6
+URxvt.color14:      #0a9b81
+
+! white
+URxvt.color7:       #ebebeb
+URxvt.color15:      #f8f8f8
+
+!===============
+!==   SXIV    ==
+!===============
+
+! Background color
+Sxiv.background:    #000000
+Sxiv.foreground:    #ffffff

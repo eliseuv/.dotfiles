@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Dual screen setup
+[[ -f $HOME/.config/X11/dualscreen ]] && . $HOME/.config/X11/dualscreen
+
+# Hide mouse cursor
+unclutter &
+
+# Turn NumLock on
+numlockx on
+
+# Swap Esc and Caps Lock
+setxkbmap -option caps:swapescape

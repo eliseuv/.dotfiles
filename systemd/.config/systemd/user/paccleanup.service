@@ -1,0 +1,6 @@
+[Unit]
+Description=Pacman remove orphaned packages and clean cache
+
+[Service]
+Type=simple
+ExecStart=/home/evf/scripts/paccleanup
