@@ -187,10 +187,17 @@ config.bind(',cS', 'config-source')
 # Hint yank
 config.bind(',y', 'hint all yank')
 
+# Yank link org-mode format [[{link}][{title}]]
+config.bind('ym', 'yank inline [[{url}][{title}]]')
+
 # Open links on mpv
 config.bind(',p', 'hint links spawn mpv {hint-url}')
 config.bind(',P', 'spawn mpv {url}')
 config.bind(';P', 'hint --rapid links spawn mpv {hint-url}')
+
+# Open webpage on internet archive
+config.bind(',a', 'hint links fill :open -t https://web.archive.org/web/{hint-url}')
+config.bind(',A', 'open https://web.archive.org/web/{url}')
 
 # Download image in page
 config.bind(',d', 'hint --rapid images download')

@@ -228,6 +228,12 @@ ytmp3() {
 # Julia threads
 export JULIA_NUM_THREADS=auto
 
+# Julia default editor for the @edit macro
+export JULIA_EDITOR=nvim
+
+# Julia with precompiles OhMyREPL
+alias jl='julia --sysimage=/home/evf/.julia/config/sysimages/revise-omr-sysimage.so'
+
 # Update Julia packages
 alias julia-update='julia -e "using Pkg; Pkg.update()"'
 
