@@ -272,7 +272,7 @@ colors:
 
   # Normal colors
   normal:
-    black:   '#1d1f21'
+    black:   '#33161a'
     red:     '#e64c4c'
     green:   '#67bc67'
     yellow:  '#f0f065'
@@ -283,7 +283,7 @@ colors:
 
   # Bright colors
   bright:
-    black:   '#1a1a1a'
+    black:   '#451e23'
     red:     '#ff0000'
     green:   '#00ff00'
     yellow:  '#ffff00'
@@ -425,7 +425,7 @@ cursor:
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
 shell:
-  program: /bin/bash
+  program: /usr/bin/zsh
   args:
     - --login
 

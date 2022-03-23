@@ -62,14 +62,6 @@ gpgconf --launch gpg-agent
 # Swap Esc and Caps Lock
 setxkbmap -option caps:swapescape
 
-###################
-# FOREIGN SCRIPTS #
-###################
-
-# Use fzf keybindings
-. /usr/share/fzf/key-bindings.bash
-. /usr/share/fzf/completion.bash
-
 ###########
 # ALIASES #
 ###########
@@ -122,6 +114,9 @@ alias ht='htop -d5 -sPERCENT_CPU'
 #alias gt='gotop -p -r 500ms'
 alias bt='btop'
 
+# udiskie
+alias udm='udiskie-umount --force --detach'
+
 # n^3 file manager
 alias nn="(export VISUAL='nvim'; nnn)"
 
@@ -158,24 +153,6 @@ pcsv() {
     sed 's/,,/, ,/g;s/,,/, ,/g' "$1" | column -s, -t | less -#2 -N -S
 }
 
-# Change to parent path with completion
-function _dcBackwardsPathCompletion() {
-    # Note: must be used with complete -o nospace
-    # $1=cmd $2=cur $3=pre
-    local cwd="${2:-$PWD}"
-    local upd="${cwd%/*}"
-    if [[ $cwd == '/' ]]; then
-        return
-    elif [[ $upd == '' ]]; then
-        COMPREPLY=('/')
-    else
-        COMPREPLY=("$upd")
-    fi
-}
-
-function dc () { cd ${1:-..}; }
-complete -o nospace -F _dcBackwardsPathCompletion dc 
-
 # ex - archive extractor
 # usage: ex <file>
 ex() {
@@ -199,7 +176,7 @@ ex() {
     fi
 }
 
-function copyfrom() {
+copyfrom() {
     rsync -Pahv "$1" .
 }
 
