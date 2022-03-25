@@ -10,6 +10,7 @@ bat
 binutils
 bison
 bitwarden
+bridge-utils
 btop
 bzip2
 cabal-install
@@ -28,6 +29,7 @@ diffutils
 discord
 dmenu
 dmidecode
+dnsmasq
 e2fsprogs
 emacs
 exa
@@ -58,7 +60,6 @@ gzip
 haskell-language-server
 hlint
 hoogle
-htop
 i3-gaps
 i3status
 id3v2
@@ -75,6 +76,7 @@ kakoune
 less
 lib32-nvidia-utils
 libcurl-gnutls
+libguestfs
 liblqr
 libmpdclient
 libraqm
@@ -82,7 +84,7 @@ libtool
 libxss
 licenses
 lightdm
-lightdm-gtk-greeter
+lightdm-slick-greeter
 linux
 linux-firmware
 lldb
@@ -117,6 +119,8 @@ nss-mdns
 ntfs-3g
 numlockx
 nvidia
+nvtop
+openbsd-netcat
 openssh
 openssl-1.0
 p7zip
@@ -127,6 +131,7 @@ pass
 patch
 pciutils
 pcmanfm
+pdfjs
 perl
 perl-file-mimeinfo
 picom
@@ -142,6 +147,7 @@ pyright
 python-adblock
 python2
 qbittorrent
+qemu
 qutebrowser
 racket-minimal
 reflector
@@ -161,6 +167,7 @@ shadow
 shellcheck
 shfmt
 speedcrunch
+sshfs
 starship
 stow
 sudo
@@ -193,7 +200,10 @@ unrar
 unzip
 usbutils
 util-linux
-virtualbox
+vde2
+vi
+virt-manager
+virt-viewer
 wget
 which
 x11-ssh-askpass
@@ -214,3 +224,5 @@ zathura
 zathura-djvu
 zathura-pdf-mupdf
 zathura-ps
+zsh
+zsh-completions

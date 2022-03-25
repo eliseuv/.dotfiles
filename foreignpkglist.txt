@@ -4,7 +4,7 @@ cmake-format
 freezer-bin
 haskell-brittany
 julia-bin
-neovide
+lightdm-settings
 nerd-fonts-mononoki
 openrazer-meta
 otf-fira-code-symbol
@@ -13,5 +13,4 @@ polybar
 task-spooler
 ttf-alegreya
 xorg-font-utils
-ytfzf
 zotero

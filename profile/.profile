@@ -22,13 +22,13 @@ reset="\e[0m"
 ############
 
 # Path
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/opt/cuda/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.local/share/gem/ruby/3.0.0/bin:~/.emacs.doom/bin:~/.scripts
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/opt/cuda/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.local/share/gem/ruby/3.0.0/bin:~/.local/bin:~/.emacs.doom/bin:~/.scripts
 
 # Terminal emulator
 export TERM='rxvt-unicode-256color'
 
 # Text editors
-export EDITOR='nvim'                    # NeoVim as terminal editor
+export EDITOR='lvim'                    # LunarVim as terminal editor
 export VISUAL='emacsclient -c -a emacs' # Emacs as GUI editor
 
 # PDF Reader
@@ -98,7 +98,7 @@ alias grep='grep --color'
 alias b='bat'
 
 # NeoVim
-alias v='nvim'
+alias v='lvim'
 
 # Kakoune
 alias k='kak'
@@ -113,6 +113,9 @@ alias watch='watch -tc -n 1'
 alias ht='htop -d5 -sPERCENT_CPU'
 #alias gt='gotop -p -r 500ms'
 alias bt='btop'
+
+# stow: never fold
+alias stow='stow --no-folding'
 
 # udiskie
 alias udm='udiskie-umount --force --detach'
