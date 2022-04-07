@@ -179,12 +179,13 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
-# Colors (Tomorrow Night)
+# Colors
 colors:
+
   # Default colors
   primary:
     background: '#150015'
-    foreground: '#c5c8c6'
+    foreground: '#c5c8c6' 
 
     # Bright and dim foreground colors
     #
@@ -270,27 +271,57 @@ colors:
   #  text: CellBackground
   #  background: CellForeground
 
+  ################
+  # Custom Theme #
+  ################
+
+  # Normal colors
+  # normal:
+  #   black:   '#33161a'
+  #   red:     '#e64c4c'
+  #   green:   '#67bc67'
+  #   yellow:  '#f0f065'
+  #   blue:    '#5aa5e7'
+  #   magenta: '#cb67e9'
+  #   cyan:    '#5ee8f6'
+  #   white:   '#d8dad8'
+
+  # # Bright colors
+  # bright:
+  #   black:   '#451e23'
+  #   red:     '#ff0000'
+  #   green:   '#00ff00'
+  #   yellow:  '#ffff00'
+  #   blue:    '#2299ff'
+  #   magenta: '#ff3399'
+  #   cyan:    '#00ffff'
+  #   white:   '#ffffff'
+
+  #################
+  # Dracula Theme #
+  #################
+
   # Normal colors
   normal:
     black:   '#33161a'
-    red:     '#e64c4c'
-    green:   '#67bc67'
-    yellow:  '#f0f065'
-    blue:    '#5aa5e7'
-    magenta: '#cb67e9'
-    cyan:    '#5ee8f6'
-    white:   '#d8dad8'
+    red:     '#ff5555'
+    green:   '#50fa7b'
+    yellow:  '#f1fa8c'
+    blue:    '#caa9fa'
+    magenta: '#ff79c6'
+    cyan:    '#8be9fd'
+    white:   '#bfbfbf'
 
   # Bright colors
   bright:
-    black:   '#451e23'
-    red:     '#ff0000'
-    green:   '#00ff00'
-    yellow:  '#ffff00'
-    blue:    '#2299ff'
-    magenta: '#ff3399'
-    cyan:    '#00ffff'
-    white:   '#ffffff'
+    black:   '#575b70'
+    red:     '#ff6e67'
+    green:   '#5af78e'
+    yellow:  '#f4f99d'
+    blue:    '#caa9fa'
+    magenta: '#ff92d0'
+    cyan:    '#9aedfe'
+    white:   '#e6e6e6'
 
   # Dim colors
   #

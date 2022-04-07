@@ -31,10 +31,19 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
 setopt autocd nomatch
 unsetopt beep extendedglob notify
 bindkey -v
 # End of lines configured by zsh-newuser-install
+
+###############
+# Custom keys #
+###############
+
+# Use `home` and `end` keys as expected
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
 
 ###########
 # Profile #

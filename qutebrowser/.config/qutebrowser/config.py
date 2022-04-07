@@ -125,6 +125,15 @@ config.set('content.javascript.enabled', True, 'devtools://*')
 config.set('content.javascript.enabled', True, 'chrome://*/*')
 config.set('content.javascript.enabled', True, 'qute://*/*')
 
+# Default editor
+c.editor.command = ["alacritty",
+                    "-e",
+                    "lvim",
+                    "-f",
+                    "{file}",
+                    "-c",
+                    "normal {line}G{column0}l"]
+
 # Disable video autoplay
 c.content.autoplay = False
 
@@ -183,6 +192,10 @@ c.aliases = {   'w': 'session-save',
 
 # Read this config.py file
 config.bind(',cS', 'config-source')
+config.bind(',cE', 'config-edit')
+
+# Open in editor
+config.bind(',E', 'edit-url')
 
 # Hint yank
 config.bind(',y', 'hint all yank')

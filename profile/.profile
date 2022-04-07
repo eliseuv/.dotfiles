@@ -25,7 +25,8 @@ reset="\e[0m"
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/opt/cuda/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.local/share/gem/ruby/3.0.0/bin:~/.local/bin:~/.emacs.doom/bin:~/.scripts
 
 # Terminal emulator
-export TERM='rxvt-unicode-256color'
+#export TERM='rxvt-unicode-256color'
+export TERM='alacritty'
 
 # Text editors
 export EDITOR='lvim'                    # LunarVim as terminal editor
@@ -33,10 +34,13 @@ export VISUAL='emacsclient -c -a emacs' # Emacs as GUI editor
 
 # PDF Reader
 export READER='zathura'
+
+# Bat
 export BAT_THEME='Dracula'
 
-# WebBrowser
+# Web browser
 export BROWSER='qutebrowser'
+export BROWSERCLI='w3m'
 
 # Set manpager
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
@@ -69,6 +73,9 @@ setxkbmap -option caps:swapescape
 # Clear screen
 alias c='clear'
 
+# Show history
+alias h='history -i'
+
 # Changing 'ls' to 'exa'
 alias l='exa --color=always --group-directories-first'
 alias la='exa -a --color=always --group-directories-first'
@@ -88,6 +95,10 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 
+# Use rsync for copying files
+alias rs='rsync -Pazvh'
+alias rsm='rsync -Pazvh --remove-source-files'
+
 # Reset fail lock after failed authentication attempts
 alias failreset='faillock --user $USER --reset'
 
@@ -102,6 +113,9 @@ alias v='lvim'
 
 # Kakoune
 alias k='kak'
+
+# Newsboat
+alias nb='newsboat'
 
 # Pulse Mixer
 alias pm='pulsemixer'
@@ -124,7 +138,7 @@ alias udm='udiskie-umount --force --detach'
 alias nn="(export VISUAL='nvim'; nnn)"
 
 # scrot
-alias scrot='scrot ~/Storage/Images/screenshots/%b%d::%H%M%S.png'
+alias scrot='scrot ~/Storage/Images/screenshots/%Y-%m-%d_%H:%M:%S.png'
 
 # Weather
 alias wttr='curl wttr.in/?0Fq'
@@ -177,10 +191,6 @@ ex() {
     else
         echo "'$1' is not a valid file"
     fi
-}
-
-copyfrom() {
-    rsync -Pahv "$1" .
 }
 
 # using ripgrep combined with preview

@@ -6,7 +6,19 @@ filled in as strings with either
 a global executable or a path to
 an executable
 ]]
--- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
+
+-- options
+vim.opt.backup = true
+vim.opt.clipboard = "unnamedplus"
+vim.fileencoding = "utf-8"
+vim.opt.hlsearch = true -- highlight all matches on previous search pattern
+vim.opt.title = true -- set the title of window to the value of the titlestring
+vim.opt.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
+vim.opt.undodir = vim.fn.stdpath "cache" .. "/undo"
+vim.opt.undofile = true -- enable persistent undo
+vim.opt.updatetime = 300 -- faster completion
+vim.opt.spell = true
+vim.opt.spelllang = "en"
 
 -- general
 lvim.log.level = "warn"
@@ -70,10 +82,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "lua",
   "python",
   "typescript",
-  "tsx",
-  "css",
   "rust",
-  "java",
   "yaml",
 }
 

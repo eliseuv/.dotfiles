@@ -18,6 +18,7 @@ calibre
 chromium
 clang
 cmake
+cmatrix
 coreutils
 cryptsetup
 ctags
@@ -73,6 +74,7 @@ jq
 jsoncpp
 kak-lsp
 kakoune
+ledger
 less
 lib32-nvidia-utils
 libcurl-gnutls
@@ -143,6 +145,7 @@ psmisc
 pulseaudio
 pulseaudio-alsa
 pulsemixer
+pv
 pyright
 python-adblock
 python2
@@ -193,6 +196,7 @@ ttf-cascadia-code
 ttf-dejavu
 ttf-fira-code
 ttf-font-awesome
+ttf-nerd-fonts-symbols
 udiskie
 ueberzug
 unclutter
@@ -204,6 +208,7 @@ vde2
 vi
 virt-manager
 virt-viewer
+w3m
 wget
 which
 x11-ssh-askpass
