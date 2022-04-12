@@ -32,7 +32,7 @@ dmenu
 dmidecode
 dnsmasq
 e2fsprogs
-emacs
+emacs-nativecomp
 exa
 fakeroot
 fd
@@ -171,6 +171,7 @@ shellcheck
 shfmt
 speedcrunch
 sshfs
+stack
 starship
 stow
 sudo

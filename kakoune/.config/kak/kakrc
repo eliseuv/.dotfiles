@@ -6,3 +6,6 @@ hook global WinSetOption filetype=(rust|python|julia|c|cpp) %{
 
 # LSP user mode
 map global user l %{: enter-user-mode lsp<ret>} -docstring "LSP mode"
+
+# Colorscheme
+colorscheme dracula

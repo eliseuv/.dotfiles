@@ -1,37 +1,38 @@
+#!/bin/bash
+
 # Profile with environment variables and aliases
 
 ##########
 # COLORS #
 ##########
 
-# Ansi color code variables
-red="\e[0;91m"
-blue="\e[0;94m"
-expand_bg="\e[K"
-blue_bg="\e[0;104m${expand_bg}"
-red_bg="\e[0;101m${expand_bg}"
-green_bg="\e[0;102m${expand_bg}"
-green="\e[0;92m"
-white="\e[0;97m"
-bold="\e[1m"
-uline="\e[4m"
-reset="\e[0m"
+# ANSI color code variables
+RED="\e[0;91m"
+BLUE="\e[0;94m"
+EXPAND_BG="\E[K"
+BLUE_BG="\e[0;104m${EXPAND_BG}"
+RED_BG="\e[0;101m${EXPAND_BG}"
+GREEN_BG="\e[0;102m${EXPAND_BG}"
+GREEN="\e[0;92m"
+WHITE="\e[0;97m"
+BOLD="\e[1m"
+ULINE="\e[4m"
+RESET="\e[0m"
 
 ############
 # ENV VARS #
 ############
 
 # Path
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/opt/cuda/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.local/share/gem/ruby/3.0.0/bin:~/.local/bin:~/.emacs.doom/bin:~/.scripts
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/opt/cuda/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.local/share/gem/ruby/3.0.0/bin:~/.local/bin:~/.emacs.doom/bin:~/.scripts:$PATH
 
 # Terminal emulator
 #export TERM='rxvt-unicode-256color'
 export TERM='alacritty'
 
 # Text editors
-export EDITOR='lvim'                    # LunarVim as terminal editor
-export VISUAL='emacsclient -c -a emacs' # Emacs as GUI editor
-
+export EDITOR='lvim'
+export VISUAL='emacsclient -c -a emacs'
 # PDF Reader
 export READER='zathura'
 
@@ -50,6 +51,9 @@ export RUST_BACKTRACE=1
 
 # n^3 file manager options
 export NNN_OPTS="dEox"
+
+# fzf dracula colortheme
+export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
 
 #######
 # GPG #
@@ -132,7 +136,7 @@ alias bt='btop'
 alias stow='stow --no-folding'
 
 # udiskie
-alias udm='udiskie-umount --force --detach'
+alias ud-umount='udiskie-umount --force --detach'
 
 # n^3 file manager
 alias nn="(export VISUAL='nvim'; nnn)"
@@ -221,7 +225,7 @@ export JULIA_NUM_THREADS=auto
 # Julia default editor for the @edit macro
 export JULIA_EDITOR=nvim
 
-# Julia with precompiles OhMyREPL
+# Julia with precompiled Revise.jl and OhMyREPL
 alias jl='julia --sysimage=/home/evf/.julia/config/sysimages/revise-omr-sysimage.so'
 
 # Update Julia packages
@@ -234,37 +238,48 @@ alias julia-cleanup='julia -e "using Pkg; Pkg.gc()"'
 # ANACONDA #
 ############
 
+# Conda directories
+export CONDA_BASE_DIR="/opt/anaconda/"
+export CONDA_ENVS_DIR="$HOME/.conda/envs"
+
 # Activate an environment
-alias conda-activate='source /opt/anaconda/bin/activate'
+alias conda-activate="source $CONDA_BASE_DIR/bin/activate"
+
+# Activate an env (with fzf)
+condaenv() {
+  ENVS_LIST=("base")
+  ENVS_LIST+=$(ls $CONDA_ENVS_DIR)
+  conda-activate $(printf "%s\n" ${ENVS_LIST[@]} | fzf)
+}
 
 # List explicitly installed packages
 alias conda-list='conda env export --from-history'
 
 condaupdate() {
-    printf "${blue}Updating base env...${reset}\n"
+    printf "${BLUE}Updating base env...${RESET}\n"
     conda-activate base
     sudo conda upgrade --all --yes
     conda deactivate
-    envs=`ls ~/.conda/envs`
-    for env in ${envs[@]}
+    ENVS=`ls $CONDA_ENVS_DIR`
+    for ENV in ${ENVS[@]}
     do
-        printf "${blue}Updating $env env...${reset}\n"
-        conda-activate $env
+        printf "${BLUE}Updating $ENV env...${RESET}\n"
+        conda-activate $ENV
         conda upgrade --all --yes
         conda deactivate
     done
 }
 
 condacleanup() {
-    printf "${blue}Cleaning up base env...${reset}\n"
+    printf "${BLUE}Cleaning up base env...${RESET}\n"
     conda-activate base
     sudo conda clean --all --yes
     conda deactivate
-    envs=`ls ~/.conda/envs`
-    for env in ${envs[@]}
+    ENVS=`ls $CONDA_ENVS_DIR`
+    for ENV in ${ENVS[@]}
     do
-        printf "\n${blue}Cleaning up $env env...${reset}\n"
-        conda-activate $env
+        printf "\n${BLUE}Cleaning up $ENV env...${RESET}\n"
+        conda-activate $ENV
         conda clean --all --yes
         conda deactivate
     done
@@ -303,41 +318,47 @@ alias parsua='paru -Sua --noconfirm'
 
 # Pacman cleanup
 paccleanup() {
-    printf "\n${green}Pacman cleanup...${reset}\n"
-    printf "\n${blue}Pacman cache cleanup...${reset}\n"
+    printf "\n${BLUE}Pacman cache cleanup...${RESET}\n"
     paccache -rk1
     paccache -ruk0
-    printf "\n${blue}Paru AUR cache cleanup...${reset}\n"
+    printf "\n${BLUE}Paru AUR cache cleanup...${RESET}\n"
     paru -Scca --noconfirm
-    printf "\n${blue}Removing orphaned packages...${reset}\n"
+    printf "\n${BLUE}Removing orphaned packages...${RESET}\n"
     pacman -Qdtq | xargs -ro sudo pacman -Rns --noconfirm
 }
 
 # Upgrade system
 update() {
-    printf "\n${green}Updating system...${reset}\n\n"
+    printf "\n${GREEN}Updating system...${RESET}\n\n"
     parsyu
-    printf "\n${green}Updating Rust...${reset}\n\n"
+    printf "\n${GREEN}Updating Rust...${RESET}\n\n"
     rustup update --no-self-update
-    printf "\n${green}Updating Julia...${reset}\n\n"
+    printf "\n${GREEN}Updating Julia...${RESET}\n\n"
     julia-update
-    printf "\n${green}Updating Anaconda...${reset}\n\n"
-    condaupdate
-    printf "\n${green}Updating DOOM Emacs...${reset}\n\n"
+    printf "\n${GREEN}Updating Anaconda...${RESET}\n\n"
+    conda-update
+    printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
     doom --yes upgrade
     printf "\n"
 }
 
 # Cleanup
 cleanup() {
+    printf "\n${GREEN}System cleanup...${RESET}\n"
     paccleanup
-    printf "\n${green}Julia cleanup...${reset}\n\n"
+    printf "\n${GREEN}Julia cleanup...${RESET}\n\n"
     julia-cleanup
-    printf "\n${green}Anaconda cleanup...${reset}\n\n"
-    condacleanup
-    printf "\n${green}DOOM purge...${reset}\n\n"
+    printf "\n${GREEN}Anaconda cleanup...${RESET}\n\n"
+    conda-cleanup
+    printf "\n${GREEN}DOOM purge...${RESET}\n\n"
     doom purge
 }
 
+customcheck() {
+  #printf "\n${GREEN}Custom check...${RESET}\n"
+  #printf "\n${BLUE}Checking if Emacs with native compilation is available...${RESET}\n"
+  #pacman -Si emacs-nativecomp
+}
+
 # Update and cleanup
-alias up='update;cleanup'
+alias up='update;cleanup;customcheck'

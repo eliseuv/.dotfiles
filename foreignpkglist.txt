@@ -2,7 +2,6 @@ anaconda
 brave-bin
 cmake-format
 freezer-bin
-haskell-brittany
 julia-bin
 lightdm-settings
 nerd-fonts-mononoki
@@ -13,4 +12,4 @@ polybar
 task-spooler
 ttf-alegreya
 xorg-font-utils
-zotero
+zotero-bin

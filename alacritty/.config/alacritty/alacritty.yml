@@ -1,5 +1,4 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
-
 # Import additional configuration files
 #
 # Imports are loaded in order, skipping all missing files, with the importing
@@ -179,13 +178,21 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
+
+#################
+# Dracula Theme #
+#################
+
+import:
+  - ~/.config/alacritty/dracula.yml
+
 # Colors
-colors:
+# colors:
 
   # Default colors
-  primary:
-    background: '#150015'
-    foreground: '#c5c8c6' 
+  # primary:
+    # background: '#150015'
+    # foreground: '#c5c8c6' 
 
     # Bright and dim foreground colors
     #
@@ -297,31 +304,27 @@ colors:
   #   cyan:    '#00ffff'
   #   white:   '#ffffff'
 
-  #################
-  # Dracula Theme #
-  #################
+  # # Normal colors
+  # normal:
+  #   black:   '#33161a'
+  #   red:     '#ff5555'
+  #   green:   '#50fa7b'
+  #   yellow:  '#f1fa8c'
+  #   blue:    '#caa9fa'
+  #   magenta: '#ff79c6'
+  #   cyan:    '#8be9fd'
+  #   white:   '#bfbfbf'
 
-  # Normal colors
-  normal:
-    black:   '#33161a'
-    red:     '#ff5555'
-    green:   '#50fa7b'
-    yellow:  '#f1fa8c'
-    blue:    '#caa9fa'
-    magenta: '#ff79c6'
-    cyan:    '#8be9fd'
-    white:   '#bfbfbf'
-
-  # Bright colors
-  bright:
-    black:   '#575b70'
-    red:     '#ff6e67'
-    green:   '#5af78e'
-    yellow:  '#f4f99d'
-    blue:    '#caa9fa'
-    magenta: '#ff92d0'
-    cyan:    '#9aedfe'
-    white:   '#e6e6e6'
+  # # Bright colors
+  # bright:
+  #   black:   '#575b70'
+  #   red:     '#ff6e67'
+  #   green:   '#5af78e'
+  #   yellow:  '#f4f99d'
+  #   blue:    '#caa9fa'
+  #   magenta: '#ff92d0'
+  #   cyan:    '#9aedfe'
+  #   white:   '#e6e6e6'
 
   # Dim colors
   #
