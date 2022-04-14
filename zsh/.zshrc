@@ -122,6 +122,9 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# Completions
+fpath+=~/.zfunc
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -133,28 +136,24 @@ unsetopt beep extendedglob notify
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
-
-###########
-# Profile #
-###########
-
+# Profile
 source ~/.profile
 
-###################
-# fzf completions #
-###################
-
+# fzf completions
 . /usr/share/fzf/key-bindings.zsh
 . /usr/share/fzf/completion.zsh
 
-###################
-# Starship prompt #
-###################
+# Open in editor
+autoload -z edit-command-line
+vim-command-line () {
+  local VISUAL='vim'
+  edit-command-line
+}
+zle -N vim-command-line
+bindkey "^x^e" vim-command-line
 
+# Starship prompt
 #eval "$(starship init zsh)"
 
-###################
-# Startup command #
-###################
-
+# Startup command
 neofetch

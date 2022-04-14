@@ -62,7 +62,7 @@ Here we tell ~PackageCompiler~ to generate a custom sysimage containing the func
 #+BEGIN_SRC julia
 using PackageCompiler
 
-PackageCompiler.create_sysimage(["Revise", "OhMyREPL", "Symbolics"]; sysimage_path="revise-omr-sysimage.so",
+PackageCompiler.create_sysimage(["Revise", "OhMyREPL", "Symbolics"]; sysimage_path="revise-omr_sysimage.so",
                                 precompile_statements_file="revise-omr_precompile.jl")
 #+END_SRC
 
@@ -78,7 +78,7 @@ In order to start Julia with your custom sysimage, use the flag ~julia --sysimag
 Alternatively, you can create an alias inside your ~~/.bashrc~ or ~~/.profile~ to call Julia with the sysimage you just created:
 
 #+BEGIN_SRC bash
-alias jl='julia --sysimage=/home/USER/.julia/config/revise-omr-sysimage.so'
+alias jl='julia --sysimage=/home/USER/.julia/config/revise-omr_sysimage.so'
 #+END_SRC
 
 Now you can use ~julia script.jl~ for running your scripts without loading any unecessary packages and use ~jl~ to invoke a much richer REPL.

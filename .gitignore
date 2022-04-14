@@ -1,3 +1,5 @@
 *.db
 /.local
+
+# Vim backups
 *~

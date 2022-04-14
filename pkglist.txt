@@ -183,6 +183,7 @@ systemd
 systemd-sysvcompat
 tar
 telegram-desktop
+testdisk
 texinfo
 texlab
 texlive-bibtexextra

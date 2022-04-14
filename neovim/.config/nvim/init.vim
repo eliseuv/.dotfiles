@@ -1,3 +1,11 @@
+" Install vim plugged
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Start vim plugged
 call plug#begin('~/.config/nvim/plugged')
 
 " Intllisense
@@ -16,9 +24,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Color Theme
-Plug 'tomasiser/vim-code-dark'
+"Plug 'tomasiser/vim-code-dark'
 "Plug 'TroyFletcher/vim-colors-synthwave'
-"Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'dracula/vim', { 'as': 'dracula' }
 "Plug 'arcticicestudio/nord-vim'
 "Plug 'skurob/robpur-vim'
 
@@ -27,7 +35,7 @@ Plug 'lervag/vimtex'
 call plug#end()
 
 " Theme
-colorscheme codedark
+colorscheme dracula
 set background=dark
 let g:airline_theme = 'kolor'
 

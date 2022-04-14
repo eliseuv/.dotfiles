@@ -226,7 +226,7 @@ export JULIA_NUM_THREADS=auto
 export JULIA_EDITOR=nvim
 
 # Julia with precompiled Revise.jl and OhMyREPL
-alias jl='julia --sysimage=/home/evf/.julia/config/sysimages/revise-omr-sysimage.so'
+alias jl='julia --sysimage=/home/evf/.julia/config/sysimages/revise-omr_sysimage.so'
 
 # Update Julia packages
 alias julia-update='julia -e "using Pkg; Pkg.update()"'
@@ -349,7 +349,7 @@ cleanup() {
     printf "\n${GREEN}Julia cleanup...${RESET}\n\n"
     julia-cleanup
     printf "\n${GREEN}Anaconda cleanup...${RESET}\n\n"
-    conda-cleanup
+    condacleanup
     printf "\n${GREEN}DOOM purge...${RESET}\n\n"
     doom purge
 }

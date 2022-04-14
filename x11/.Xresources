@@ -2,7 +2,7 @@
 ! special
 ! *.foreground: #F8F8F2
 ! *.background: #282A36
-*.background: [90]#150015
+*.background: #150015
 *.foreground: #c5c8c6
 *.cursorColor:  #f8f8f8
 ! black
@@ -47,6 +47,9 @@ URxvt.italicFont: xft:Fira Code:style=Light:pixelsize:12
 URxvt.scrollBar: false
 
 URxvt.depth:        32
+
+! Make urxvt background transparent
+URxvt.background: [90]#150015
 
 !===============
 !==   SXIV    ==
