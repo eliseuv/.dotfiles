@@ -1,9 +1,9 @@
-anaconda
 brave-bin
 cmake-format
 freezer-bin
 julia-bin
 lightdm-settings
+miniconda3
 nerd-fonts-mononoki
 openrazer-meta
 otf-fira-code-symbol
