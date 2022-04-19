@@ -3,12 +3,12 @@
 
 * Using Chemacs2 to manage multiple Emacs profiles
 
-Clone [[https://github.com/plexus/chemacs2][Chemacs2]] to ~~/.emacs.d~ and [[https://github.com/hlissner/doom-emacs][DOOM Emacs]] to ~~/.emacs.doom~.
+Clone [[https://github.com/plexus/chemacs2][Chemacs2]] to =~/.emacs.d= and [[https://github.com/hlissner/doom-emacs][DOOM Emacs]] to =~/.emacs.doom=.
 
-+ Emacs main dir (Chemacs2): ~~/.emacs.d~
-+ Personal config: ~~/.emacs.default~
-+ DOOM Emacs: ~~/.emacs.doom~
-+ DOOM Emacs config: ~~/.doom.d~
++ Emacs main dir (Chemacs2): =~/.emacs.d=
++ Personal config: =~/.emacs.default=
++ DOOM Emacs: =~/.emacs.doom=
++ DOOM Emacs config: =~/.doom.d=
 
 Profiles definition: [[file:.emacs-profiles.el]]
 Default profile selection: [[file:.emacs-profile]]
