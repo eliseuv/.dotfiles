@@ -11,6 +11,7 @@ Clone [[https://github.com/plexus/chemacs2][Chemacs2]] to =~/.emacs.d= and [[htt
 + DOOM Emacs config: =~/.doom.d=
 
 Profiles definition: [[file:.emacs-profiles.el]]
+
 Default profile selection: [[file:.emacs-profile]]
 
 Start with a given profile:
