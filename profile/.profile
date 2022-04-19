@@ -19,12 +19,41 @@ BOLD="\e[1m"
 ULINE="\e[4m"
 RESET="\e[0m"
 
+########
+# PATH #
+########
+
+# Append to PATH if not already there
+pathappend() {
+  for ARG in "$@"
+  do
+    if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
+        PATH="${PATH:+"$PATH:"}$ARG"
+    fi
+  done
+}
+
+# System binaries
+pathappend /bin /usr/bin /usr/local/bin /usr/local/sbin
+
+# CUDA
+pathappend /opt/cuda/bin /opt/cuda/nsight_compute /opt/cuda/nsight_systems/bin
+
+# Perl
+pathappend /usr/bin/core_perl /usr/bin/site_perl /usr/bin/vendor_perl
+
+# Ruby
+pathappend ~/.local/share/gem/ruby/3.0.0/bin
+
+# DOOM Emacs
+pathappend ~/.emacs.doom/bin
+
+# Custom scripts
+pathappend ~/.local/bin ~/.scripts
+
 ############
 # ENV VARS #
 ############
-
-# Path
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/opt/cuda/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.local/share/gem/ruby/3.0.0/bin:~/.local/bin:~/.emacs.doom/bin:~/.scripts:$PATH
 
 # Terminal emulator
 #export TERM='rxvt-unicode-256color'
@@ -234,12 +263,14 @@ alias julia-update='julia -e "using Pkg; Pkg.update()"'
 # Julia package manager garbage collection
 alias julia-cleanup='julia -e "using Pkg; Pkg.gc()"'
 
-############
-# ANACONDA #
-############
+#############
+# MINICONDA #
+#############
+
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
 
 # Conda directories
-export CONDA_BASE_DIR="/opt/anaconda/"
+export CONDA_BASE_DIR="/opt/miniconda3"
 export CONDA_ENVS_DIR="$HOME/.conda/envs"
 
 # Activate an environment
@@ -355,9 +386,10 @@ cleanup() {
 }
 
 customcheck() {
-  #printf "\n${GREEN}Custom check...${RESET}\n"
-  #printf "\n${BLUE}Checking if Emacs with native compilation is available...${RESET}\n"
-  #pacman -Si emacs-nativecomp
+  nop
+  # printf "\n${GREEN}Custom check...${RESET}\n"
+  # printf "\n${BLUE}Checking if Emacs with native compilation is available...${RESET}\n"
+  # pacman -Si emacs-nativecomp
 }
 
 # Update and cleanup

@@ -129,13 +129,14 @@ zstyle ':completion:*' preserve-prefix '//[^/]##/'
 zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
 zstyle ':completion:*' verbose true
 zstyle :compinstall filename '/home/evf/.zshrc'
-
-autoload -Uz compinit
-compinit
 # End of lines added by compinstall
 
 # Completions
+autoload -Uz compinit
 fpath+=~/.zfunc
+# Anaconda completions: https://github.com/esc/conda-zsh-completion
+fpath+=~/.repos/conda-zsh-completion
+compinit
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -167,5 +168,6 @@ bindkey "^x^e" vim-command-line
 # Starship prompt
 #eval "$(starship init zsh)"
 
+# Powerlevel10k prompt
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
