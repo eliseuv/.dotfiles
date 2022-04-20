@@ -1,15 +1,26 @@
-" Install vim plugged
+" Install Vim Plug
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" Start vim plugged
-call plug#begin('~/.config/nvim/plugged')
+" Call Vim Plug
+call plug#begin('~/.vim/plugged')
 
-" Intllisense
+if !has('nvim')
+   " Vim sensible defaults
+   Plug 'tpope/vim-sensible'
+endif
+
+" LSP support
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'prabirshrestha/vim-lsp'
+"Plug 'mattn/vim-lsp-settings'
+
+" Autocomplete
+"Plug 'prabirshrestha/asyncomplete.vim'
+"Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
 " Statusbar
 Plug 'vim-airline/vim-airline'
@@ -19,29 +30,34 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 
 " File tree
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': 'NERDTreeToggle' }
 
 " Color Theme
-"Plug 'tomasiser/vim-code-dark'
+Plug 'tomasiser/vim-code-dark'
 "Plug 'TroyFletcher/vim-colors-synthwave'
-Plug 'dracula/vim', { 'as': 'dracula' }
+"Plug 'dracula/vim', { 'as': 'dracula' }
 "Plug 'arcticicestudio/nord-vim'
 "Plug 'skurob/robpur-vim'
 
+" VimTeX
 Plug 'lervag/vimtex'
 
 call plug#end()
 
 " Theme
-colorscheme dracula
+colorscheme codedark
 set background=dark
-let g:airline_theme = 'kolor'
+"let g:airline_theme = 'kolor'
+let g:airline_theme = 'codedark'
 
 " Syntax highlighting
 syntax enable
 syntax on
+
+" CoC extensions
+let g:coc_global_extensions = [ 'coc-marketplace', 'coc-calc', 'coc-clangd', 'coc-fzf-preview', 'coc-git', 'coc-json', 'coc-julia', 'coc-highlight', 'coc-lists', 'coc-prettier', 'coc-pyright', 'coc-rust-analyzer', 'coc-snippets', 'coc-sumneko-lua', 'coc-sh']
 
 " Case sensitivity
 set ignorecase

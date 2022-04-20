@@ -60,7 +60,7 @@ pathappend ~/.local/bin ~/.scripts
 export TERM='alacritty'
 
 # Text editors
-export EDITOR='lvim'
+export EDITOR='nvim'
 export VISUAL='emacsclient -c -a emacs'
 # PDF Reader
 export READER='zathura'
@@ -142,7 +142,8 @@ alias grep='grep --color'
 alias b='bat'
 
 # NeoVim
-alias v='lvim'
+alias v='nvim'
+alias lv='lvim'
 
 # Kakoune
 alias k='kak'
