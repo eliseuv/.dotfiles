@@ -37,7 +37,7 @@ pathappend() {
 pathappend /bin /usr/bin /usr/local/bin /usr/local/sbin
 
 # CUDA
-pathappend /opt/cuda/bin /opt/cuda/nsight_compute /opt/cuda/nsight_systems/bin
+#pathappend /opt/cuda/bin /opt/cuda/nsight_compute /opt/cuda/nsight_systems/bin
 
 # Perl
 pathappend /usr/bin/core_perl /usr/bin/site_perl /usr/bin/vendor_perl
@@ -267,20 +267,18 @@ alias julia-cleanup='julia -e "using Pkg; Pkg.gc()"'
 # MINICONDA #
 #############
 
+# Conda profile
 [ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
 
 # Conda directories
 export CONDA_BASE_DIR="/opt/miniconda3"
 export CONDA_ENVS_DIR="$HOME/.conda/envs"
 
-# Activate an environment
-alias conda-activate="source $CONDA_BASE_DIR/bin/activate"
-
 # Activate an env (with fzf)
 condaenv() {
   ENVS_LIST=("base")
   ENVS_LIST+=$(ls $CONDA_ENVS_DIR)
-  conda-activate $(printf "%s\n" ${ENVS_LIST[@]} | fzf)
+  conda activate $(printf "%s\n" ${ENVS_LIST[@]} | fzf)
 }
 
 # List explicitly installed packages
@@ -288,14 +286,14 @@ alias conda-list='conda env export --from-history'
 
 condaupdate() {
     printf "${BLUE}Updating base env...${RESET}\n"
-    conda-activate base
-    sudo conda upgrade --all --yes
+    conda activate base
+    sudo conda update --all --yes
     conda deactivate
     ENVS=`ls $CONDA_ENVS_DIR`
     for ENV in ${ENVS[@]}
     do
         printf "${BLUE}Updating $ENV env...${RESET}\n"
-        conda-activate $ENV
+        conda activate $ENV
         conda upgrade --all --yes
         conda deactivate
     done
@@ -303,14 +301,14 @@ condaupdate() {
 
 condacleanup() {
     printf "${BLUE}Cleaning up base env...${RESET}\n"
-    conda-activate base
+    conda activate base
     sudo conda clean --all --yes
     conda deactivate
     ENVS=`ls $CONDA_ENVS_DIR`
     for ENV in ${ENVS[@]}
     do
         printf "\n${BLUE}Cleaning up $ENV env...${RESET}\n"
-        conda-activate $ENV
+        conda activate $ENV
         conda clean --all --yes
         conda deactivate
     done
@@ -367,7 +365,7 @@ update() {
     printf "\n${GREEN}Updating Julia...${RESET}\n\n"
     julia-update
     printf "\n${GREEN}Updating Anaconda...${RESET}\n\n"
-    conda-update
+    condaupdate
     printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
     doom --yes upgrade
     printf "\n"
@@ -386,7 +384,8 @@ cleanup() {
 }
 
 customcheck() {
-  nop
+  printf "\n${GREEN}No custom checks${RESET}\n"
+
   # printf "\n${GREEN}Custom check...${RESET}\n"
   # printf "\n${BLUE}Checking if Emacs with native compilation is available...${RESET}\n"
   # pacman -Si emacs-nativecomp
