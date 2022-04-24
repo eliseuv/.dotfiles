@@ -1,10 +1,10 @@
 using InteractiveUtils
 
-# Use LunarVim as editor
-ENV["JULIA_EDITOR"] = "lvim"
+# Use neovim as editor
+ENV["JULIA_EDITOR"] = "nvim"
 
 InteractiveUtils.define_editor(
-    r"lvim", wait=true) do cmd, path, line
+    r"nvim", wait=true) do cmd, path, line
     `$cmd +$line $path`
 end
 

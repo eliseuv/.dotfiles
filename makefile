@@ -8,13 +8,13 @@ all: install
 install:
 	for dir in `find . -maxdepth 1 -type d -not -path . -not -path '*/\.*'`; do \
 		printf "\nInstalling $$dir\n" ; \
-		$(STOW) --no `basename $$dir`; \
+		$(STOW) `basename $$dir`; \
 	done
 
 remove:
 	for dir in `find . -maxdepth 1 -type d -not -path . -not -path '*/\.*'`; do \
 		printf "\nRemoving $$dir\n" ; \
-		$(STOW) --delete --no `basename $$dir`; \
+		$(STOW) --delete `basename $$dir`; \
 	done
 
 force-remove:

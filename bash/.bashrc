@@ -43,3 +43,5 @@ eval "$(starship init bash)"
 
 # Open at start
 neofetch
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
