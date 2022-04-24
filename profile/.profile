@@ -130,7 +130,7 @@ alias rm='rm -i'
 
 # Use rsync for copying files
 alias rs='rsync -Pazvh'
-alias rsm='rsync -Pazvh --remove-source-files'
+alias rsrm='rsync -Pazvh --remove-source-files'
 
 # Reset fail lock after failed authentication attempts
 alias failreset='faillock --user $USER --reset'

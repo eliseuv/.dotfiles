@@ -324,14 +324,14 @@
 #def_key "m"
 #  move_sort_order_up
 #
-def_key "m"
-  move_selected_items_up
+#def_key "ctrl-k"
+#  move_selected_items_up
 #
 #def_key "n"
 #  move_sort_order_down
 #
-def_key "n"
-  move_selected_items_down
+#def_key "ctrl-j"
+#  move_selected_items_down
 #
 #def_key "M"
 #  move_selected_items_to
@@ -428,6 +428,16 @@ def_key "h"
     previous_column
 def_key "l"
     next_column
+
+def_key "ctrl-k"
+  move_selected_items_up
+def_key "ctrl-j"
+  move_selected_items_down
+
+def_key "left"
+  seek_backward
+def_key "right"
+  seek_forward
 
 def_key "."
     show_lyrics
