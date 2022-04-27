@@ -7,6 +7,7 @@ autoconf
 automake
 bash
 bat
+bc
 binutils
 bison
 bitwarden
@@ -19,6 +20,7 @@ chromium
 clang
 cmake
 cmatrix
+colordiff
 coreutils
 cryptsetup
 ctags
@@ -59,6 +61,7 @@ groff
 gvim
 gzip
 haskell-language-server
+hledger
 hlint
 hoogle
 i3-gaps
@@ -72,8 +75,6 @@ iputils
 jfsutils
 jq
 jsoncpp
-kak-lsp
-kakoune
 ledger
 less
 lib32-nvidia-utils
@@ -148,6 +149,7 @@ pulsemixer
 pv
 pyright
 python-adblock
+python-pdftotext
 python2
 qbittorrent
 qemu

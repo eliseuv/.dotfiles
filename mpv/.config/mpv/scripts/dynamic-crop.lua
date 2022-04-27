@@ -16,7 +16,7 @@ List of available parameters (For default values, see <options>)：
 mode: [0-4] 0 disable, 1 on-demand, 2 one-shot, 3 dynamic-manual, 4 dynamic-auto
     Mode 1 and 3 requires using the shortcut to start, 2 and 4 have an automatic start.
 Shortcut "C" (shift+c) to control the script.
-The first press maintains the cropping and disables the script, a second pressure eliminates the cropping 
+The first press maintains the cropping and disables the script, a second pressure eliminates the cropping
 and a third pressure is necessary to restart the script.
     Mode = 1-2, single cropping on demand, stays active until a valid cropping is apply.
     Mode = 3-4, start / stop dynamic cropping.
@@ -40,7 +40,7 @@ require "mp.options"
 
 local options = {
     -- behavior
-    mode = 4, -- [0-4] more details above.
+    mode = 0, -- [0-4] more details above.
     start_delay = 0, -- delay in seconds used to skip intro (usefull with mode 2)
     prevent_change_timer = 0, -- seconds
     prevent_change_mode = 2, -- [0-2], disable with 'prevent_change_timer = 0'

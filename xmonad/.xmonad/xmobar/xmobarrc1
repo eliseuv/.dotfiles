@@ -11,7 +11,7 @@ Config {
                          , "xft:FontAwesome:pixelsize=13"
                          ]
        , bgColor = "#282c34"
-       , fgColor = "#ff6c6b"
+       , fgColor = "#bcbcbc"
        , position = Static { xpos = 2560 , ypos = 0, width = 1080, height = 24 }
        , iconRoot = "/home/evf/.xmonad/xpm/"  -- default: "."
 
@@ -33,5 +33,5 @@ Config {
         -- Layout
         , sepChar =     "%"     -- delineator between plugin names and straight text
         , alignSep =    "}{"    -- separator between left-right alignment
-        , template = " <icon=haskell_20.xpm/> <fc=#666666> | </fc> %UnsafeStdinReader% }{ <fc=#46d9ff> %date%  </fc> "
+        , template = " <icon=arch-logo_16.xpm/> <fc=#666666> | </fc> %UnsafeStdinReader% }{ <fc=#46d9ff> %date%  </fc> "
 }

@@ -167,7 +167,7 @@ alias bt='btop'
 alias stow='stow --no-folding'
 
 # udiskie
-alias ud-umount='udiskie-umount --force --detach'
+alias ud-umount='udiskie-umount --detach'
 
 # n^3 file manager
 alias nn="(export VISUAL='nvim'; nnn)"

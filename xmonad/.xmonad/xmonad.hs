@@ -478,7 +478,7 @@ myKeys =
     ("M-S-<Backspace> e", io exitSuccess), -- Exits xmonad
     ("M-S-<Backspace> s", spawn "systemctl poweroff"), -- Shutdown
     ("M-S-<Backspace> r", spawn "systemctl reboot"), -- Reboot
-    ("M-S-s", spawn "scrot ~/Storage/Images/screenshots/%Y-%m-%d_%H:%M:%S.png -s"), -- Print screen
+    ("M-S-s", spawn "scrot ~/Storage/Images/screenshots/%Y-%m-%d_%H-%M-%S.png -s"), -- Print screen
 
     -- Run Prompt
     -- , ("M-S-<Return>", spawn "dmenu_run -i -p \"Run: \"") -- Dmenu
