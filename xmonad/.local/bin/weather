@@ -49,6 +49,9 @@ COLD_TEMP=15
 # Display the weather description. yes/no
 DISPLAY_LABEL="yes"
 
+# Little bodge to adjust spacing
+SPC="<fc=#000000> </fc>"
+
 # Color Settings
 COLOR_CLOUD="#606060"
 COLOR_THUNDER="#d3b987"
@@ -65,7 +68,7 @@ COLOR_COLD="#b3deef"
 COLOR_HOT="#f43753"
 COLOR_NORMAL_TEMP="#FFFFFF"
 
-COLOR_TEXT=""
+COLOR_TEXT="#bcbcbc"
 if [ "$COLOR_TEXT" != "" ]; then
     COLOR_TEXT_BEGIN="<fc=$COLOR_TEXT>"
     COLOR_TEXT_END="</fc>"
@@ -215,7 +218,7 @@ function setIcons {
     else
         TEMP_COLOR=$COLOR_NORMAL_TEMP
     fi
-    TEMP="<fc=$TEMP_COLOR> $(makeIcon )</fc>$COLOR_TEXT_BEGIN$TEMP $(makeIcon $TEMP_ICON) $COLOR_TEXT_END"
+    TEMP="<fc=$TEMP_COLOR> $(makeIcon )</fc>$COLOR_TEXT_BEGIN$TEMP $(makeIcon $TEMP_ICON)$COLOR_TEXT_END"
 
     # Wind
     WIND=""
@@ -252,13 +255,13 @@ function setIcons {
                 fi
             fi
         fi
+        WIND="$SPC $WIND"
     fi
 }
 
 # Output in compact form
 function outputCompact {
-    OUTPUT=" <fc=$ICON_COLOR> $(makeIcon $ICON)</fc>$ERR_MSG$COLOR_TEXT_BEGIN $DESCRIPTION $COLOR_TEXT_END $TEMP $WIND"
-    echo "$OUTPUT"
+    echo "$SPC <fc=$ICON_COLOR> $(makeIcon $ICON)</fc> $ERR_MSG $COLOR_TEXT_BEGIN $DESCRIPTION $COLOR_TEXT_END $SPC $TEMP$SPC$WIND $SPC"
 }
 
 getData

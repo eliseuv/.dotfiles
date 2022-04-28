@@ -3,11 +3,12 @@ Config
        -- Appearance
        font    = "xft:Ubuntu:weight=bold:pixelsize=11:antialias=true:hinting=true",
        additionalFonts = [
-                           "xft:Fira Code Nerd Font:pixelsize=11:antialias=true:hinting=true"
+                           "xft:Fira Code Nerd Font:pixelsize=14:antialias=true:hinting=true"   -- Nerd fonts icons
+                         , "xft:Fira Code Nerd Font:pixelsize=17:antialias=true:hinting=true"   -- Slightly larger icons
                          ]
        , bgColor = "#242730"
        , fgColor = "#666666"
-       , position = Static { xpos = 0 , ypos = 0, width = 2560, height = 24 }
+       , position = Static { xpos = 0 , ypos = 0, width = 2560, height = 26 }
        , iconRoot = "/home/evf/.xmonad/xpm/" -- default: "."
 
        -- Behaviour
@@ -19,24 +20,24 @@ Config
        -- Commands
        , commands = [
                       -- Time and date
-                      Run Date " <fn=1> \xf133 </fn> %Y-%m-%d (%H:%M) " "date" 60
+                      Run Date "<fn=1>\xf64f </fn>%Y-%m-%d %H:%M" "date" 60
                       -- Network up and down
-                    , Run Network "enp4s0" ["-t", " <fn=1>\xf0ab </fn> <rx> kb <fn=1> \xf0aa </fn> <tx> kb "] 10
+                    , Run Network "enp4s0" ["-t", "<fn=1>\xf6d9 </fn><rx> kb <fn=1> \xfa51 </fn><tx> kb"] 10
                       -- Cpu usage in percent
-                    , Run Cpu ["-t", " <fn=1> \xf108 </fn> cpu <total>% ","-H","50","--high","red"] 10
+                    , Run Cpu ["-t", "<fn=1>\xf85a </fn><total>% ","-H","50","--high","red"] 10
                       -- Ram used number and percent
-                    , Run Memory ["-t", " <fn=1> \xf233 </fn> ram <used>M/<total>M "] 10
+                    , Run Memory ["-t", "<fn=1>\xf233 </fn> <used>M / <total>M"] 10
                       -- Disk space free
                     , Run DiskU [
-                                  ("/", " <fn=1> \xf0c7 </fn> root <usedp>%  -")
-                                , ("/home", " home <usedp>%  -")
-                                , ("/run/media/evf/Storage", " storage <usedp>% ")
+                                  ("/", "<fn=1>\xe216 </fn><usedp>% <fn=1> - </fn>")
+                                , ("/home", "<fn=1>\xf7db </fn><usedp>% <fn=1> - </fn>")
+                                , ("/run/media/evf/Storage", "<fn=1>\xf0a0 </fn><usedp>%")
                                 ]
                                 ["-L", "20", "-H", "50", "-m", "1", "-p", "3"] 60
                       -- Runs custom script to check for pacman updates.
                     , Run Com "sh" ["-c", "echo $(mycheckupdates)"] "updates" 600
                       -- Weather
-                    , Run Com "sh" ["-c", "echo $(weather)"] "weather" 1800
+                    , Run Com "sh" ["-c", "echo $(weather)"] "weather" 900
                       -- user@hostname
                     , Run Com "sh" ["-c", "echo $(whoami)@$(hostname)"] "user" 0
                       -- Runs a standard shell command 'uname -r' to get kernel version
@@ -49,5 +50,5 @@ Config
         -- Layout
         , sepChar =     "%"     -- delineator between plugin names and straight text
         , alignSep =    "}{"    -- separator between left-right alignment
-        , template = " <icon=arch-logo_16.xpm/> | %UnsafeStdinReader% }{ <fc=#b3afc2> %user% </fc> | <fc=#b3afc2> <fn=1> </fn> %uname% </fc> | <fc=#ff6c6b> %cpu% </fc> | <fc=#ecbe7b> %memory% </fc> | <fc=#51afef> %disku% </fc> | <fc=#98be65> %enp4s0% </fc> | <fc=#bcbcbc> %updates% </fc> | <fc=#bcbcbc> %weather% </fc> | <fc=#46d9ff> %date% </fc> "
+        , template = " <fc=#1793d0> <fn=2> </fn> </fc> %UnsafeStdinReader% }{ <fc=#b3afc2>%user%</fc> <fn=1> | </fn> <fc=#b3afc2><fn=1> </fn>%uname%</fc> <fn=1> | </fn> <fc=#ff6c6b>%cpu%</fc> <fn=1> | </fn> <fc=#ecbe7b>%memory%</fc> <fn=1> | </fn> <fc=#51afef>%disku%</fc> <fn=1> | </fn> <fc=#98be65>%enp4s0%</fc> <fn=1> | </fn> <fc=#bcbcbc>%updates%</fc> <fn=1> | </fn> %weather% <fn=1> | </fn> <fc=#46d9ff>%date% </fc> "
 }

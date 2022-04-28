@@ -407,7 +407,7 @@ myLayoutHook =
 -- myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
 myWorkspaces =
   [ " dev ", -- 0
-    " sys ", -- 1
+    " sh ", -- 1
     " www ", -- 2
     " mus ", -- 3
     " vid ", -- 4
