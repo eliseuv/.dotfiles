@@ -1,34 +1,27 @@
--- http://projects.haskell.org/xmobar/
--- install xmobar with these flags: --flags="with_alsa" --flags="with_mpd" --flags="with_xft" OR --flags="all_extensions"
--- you can find weather location codes here: http://weather.noaa.gov/index.html
-
-Config {
-
+Config
+{
        -- Appearance
        font    = "xft:Ubuntu:weight=bold:pixelsize=11:antialias=true:hinting=true",
        additionalFonts = [
-                           "xft:Mononoki Nerd Font:pixelsize=11:antialias=true:hinting=true"
-                         , "xft:FontAwesome:pixelsize=13"
+                           "xft:Fira Code Nerd Font:pixelsize=11:antialias=true:hinting=true"
                          ]
-       , bgColor = "#282c34"
-       , fgColor = "#bcbcbc"
+       , bgColor = "#242730"
+       , fgColor = "#666666"
        , position = Static { xpos = 0 , ypos = 0, width = 2560, height = 24 }
        , iconRoot = "/home/evf/.xmonad/xpm/" -- default: "."
 
        -- Behaviour
        , lowerOnStart = True    -- send to bottom of window stack on start
-       , hideOnStart = False   -- start with window unmapped (hidden)
-       , allDesktops = True    -- show on all desktops
-       , persistent =   True    -- enable/disable hiding (True = disabled)
+       , hideOnStart  = False   -- start with window unmapped (hidden)
+       , allDesktops  = True    -- show on all desktops
+       , persistent   = True    -- enable/disable hiding (True = disabled)
 
        -- Commands
        , commands = [
                       -- Time and date
                       Run Date " <fn=1> \xf133 </fn> %Y-%m-%d (%H:%M) " "date" 60
-                      -- Weather
-                    , Run Weather "SBPA" ["-t","<tempC> C","-L","20","-H","27","--normal","#bcbcbc","--high","#e06666","--low","#6fa8dc"] 900
                       -- Network up and down
-                    , Run Network "enp4s0" ["-t", " <fn=1> \xf0ab </fn> <rx> kb <fn=1> \xf0aa </fn> <tx> kb "] 10
+                    , Run Network "enp4s0" ["-t", " <fn=1>\xf0ab </fn> <rx> kb <fn=1> \xf0aa </fn> <tx> kb "] 10
                       -- Cpu usage in percent
                     , Run Cpu ["-t", " <fn=1> \xf108 </fn> cpu <total>% ","-H","50","--high","red"] 10
                       -- Ram used number and percent
@@ -41,17 +34,20 @@ Config {
                                 ]
                                 ["-L", "20", "-H", "50", "-m", "1", "-p", "3"] 60
                       -- Runs custom script to check for pacman updates.
-                    , Run Com "sh" ["-c", " echo $(mycheckupdates) "] "mycheckupdates" 600
-                    , Run Com "sh" ["-c", " echo $(whoami)@$(hostname) "] "user" 0
+                    , Run Com "sh" ["-c", "echo $(mycheckupdates)"] "updates" 600
+                      -- Weather
+                    , Run Com "sh" ["-c", "echo $(weather)"] "weather" 1800
+                      -- user@hostname
+                    , Run Com "sh" ["-c", "echo $(whoami)@$(hostname)"] "user" 0
                       -- Runs a standard shell command 'uname -r' to get kernel version
                     , Run Com "uname" ["-r"] "" 3600
                       -- Prints out the left side items such as workspaces, layout, etc.
-                      -- The workspaces are 'clickable' in my configs.
+                      -- The workspaces are 'clickable'.
                     , Run UnsafeStdinReader
                     ]
 
         -- Layout
         , sepChar =     "%"     -- delineator between plugin names and straight text
         , alignSep =    "}{"    -- separator between left-right alignment
-        , template = " <icon=arch-logo_16.xpm/> <fc=#666666> | </fc> %UnsafeStdinReader% }{ <fc=#b3afc2> %user% <fc=#666666> | </fc> <fn=1>  </fn> %uname% </fc> <fc=#666666> | </fc> <fc=#ff6c6b> %cpu% </fc> <fc=#666666> | </fc> <fc=#ecbe7b> %memory% </fc> <fc=#666666> | </fc> <fc=#51afef> %disku% </fc> <fc=#666666> | </fc> <fc=#98be65> %enp4s0% </fc> <fc=#666666> | </fc> <fc=#bcbcbc> %mycheckupdates% </fc> <fc=#666666> | </fc> <fc=#bcbcbc> %SBPA% </fc> <fc=#666666> | </fc> <fc=#46d9ff> %date% </fc> "
+        , template = " <icon=arch-logo_16.xpm/> | %UnsafeStdinReader% }{ <fc=#b3afc2> %user% </fc> | <fc=#b3afc2> <fn=1> </fn> %uname% </fc> | <fc=#ff6c6b> %cpu% </fc> | <fc=#ecbe7b> %memory% </fc> | <fc=#51afef> %disku% </fc> | <fc=#98be65> %enp4s0% </fc> | <fc=#bcbcbc> %updates% </fc> | <fc=#bcbcbc> %weather% </fc> | <fc=#46d9ff> %date% </fc> "
 }

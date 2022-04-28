@@ -155,7 +155,7 @@ myNormColor :: String
 myNormColor = "#282c34" -- Border color of normal windows
 
 myFocusColor :: String
-myFocusColor = "#660022" -- Border color of focused windows
+myFocusColor = "#52266c" -- Border color of focused windows
 
 altMask :: KeyMask
 altMask = mod1Mask -- Setting this for use in xprompts
@@ -178,11 +178,11 @@ myStartupHook :: X ()
 myStartupHook = do
   spawn ("feh --bg-scale --no-xinerama " ++ myWallpaperPath) -- Set wallpaper
   spawnOnce "picom --experimental-backends -b --config ~/.config/picom/picom.conf &" -- Compositor
-  --spawnOnce "urxvtd -q -o -f &"               -- urxvt daemon for better performance
   --spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 0 --transparent true --alpha 0 --tint 0x282c34  --height 22 &" -- Tray
   --spawnOnce "nm-applet &"                     -- NetworkManager in tray
   --spawnOnce "volumeicon &"                    -- Volume controls in tray
   --spawnOnce "conky -c $HOME/.config/conky/xmonad.conkyrc" -- Conky system monitor
+  --spawnOnce "urxvtd -q -o -f &"               -- urxvt daemon for better performance
   --spawnOnce "/usr/bin/emacs --daemon &"       -- emacs daemon for the emacsclient
   setWMName "LG3D"
 
@@ -287,7 +287,7 @@ tall =
       addTabs shrinkText myTabTheme $
         subLayout [] (smartBorders Simplest) $
           limitWindows 12 $
-            mySpacing 4 $
+            mySpacing 3  $
               ResizableTall 1 (3 / 100) (1 / 2) []
 
 magnify =
@@ -297,7 +297,7 @@ magnify =
         subLayout [] (smartBorders Simplest) $
           magnifier $
             limitWindows 12 $
-              mySpacing 4 $
+              mySpacing 3 $
                 ResizableTall 1 (3 / 100) (1 / 2) []
 
 monocle =
@@ -316,7 +316,7 @@ grid =
       addTabs shrinkText myTabTheme $
         subLayout [] (smartBorders Simplest) $
           limitWindows 12 $
-            mySpacing 4 $
+            mySpacing 3 $
               mkToggle (single MIRROR) $
                 Grid (16 / 10)
 
@@ -325,7 +325,7 @@ spirals =
     smartBorders $
       addTabs shrinkText myTabTheme $
         subLayout [] (smartBorders Simplest) $
-          mySpacing' 4 $
+          mySpacing' 3 $
             spiral (6 / 7)
 
 threeCol =
@@ -639,11 +639,11 @@ main = do
                     ppOutput = \x ->
                       hPutStrLn xmproc0 x -- xmobar on monitor 1
                         >> hPutStrLn xmproc1 x, -- xmobar on monitor 2
-                    ppCurrent = xmobarColor "#98be65" "" . wrap "[" "]", -- Current workspace
-                    ppVisible = xmobarColor "#98be65" "" . clickable, -- Visible but not current workspace
-                    ppHidden = xmobarColor "#82AAFF" "" . wrap "*" "" . clickable, -- Hidden workspaces
-                    ppHiddenNoWindows = xmobarColor "#c792ea" "" . clickable, -- Hidden workspaces (no windows)
-                    ppTitle = xmobarColor "#b3afc2" "" . shorten 60, -- Title of active window
+                    ppCurrent = xmobarColor "#D02A8B" "" . wrap "[" "]", -- Current workspace
+                    ppVisible = xmobarColor "#D02A8B" "" . clickable, -- Visible but not current workspace
+                    ppHidden = xmobarColor "#ED5DB1" "" . clickable, -- Hidden workspaces
+                    ppHiddenNoWindows = xmobarColor "#D899BE" "" . clickable, -- Hidden workspaces (no windows)
+                    ppTitle = xmobarColor "#B29DFE" "" . shorten 60, -- Title of active window
                     ppSep = "<fc=#666666> <fn=1>|</fn> </fc>", -- Separator character
                     ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!", -- Urgent workspace
                     ppExtras = [windowCount], -- # of windows current workspace
