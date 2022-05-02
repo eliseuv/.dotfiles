@@ -111,11 +111,18 @@ alias c='clear'
 alias h='history -i'
 
 # Changing 'ls' to 'exa'
-alias l='exa --color=always --group-directories-first'
-alias la='exa -a --color=always --group-directories-first'
-alias ll='exa -lah --color=always --group-directories-first'
-alias lt='exa -aT --color=always --group-directories-first'
-alias l.='exa -a | rg "^\."'
+alias l='exa --group-directories-first --icons --color=always'
+alias la='exa --all --group-directories-first --icons --color=always'
+alias ll='exa --all --long --header --git --group-directories-first --icons --color=always'
+alias lt='exa --all --tree --group-directories-first --icons --ignore-glob=.git --color=always'
+alias l.='exa --all | rg "^\."'
+
+# Changing 'ls' to 'lsd'
+#alias l='lsd --group-dirs=first --color=always'
+#alias la='lsd --all --group-dirs=first --color=always'
+#alias ll='lsd  --almost-all --long --group-dirs=first --color=always'
+#alias lt='lsd --all --tree --group-dirs=first --ignore-glob=.git --color=always'
+#alias l.='lsd --all | rg "^\."'
 
 # Easier cd
 alias ..='cd ..'

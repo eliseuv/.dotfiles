@@ -39,6 +39,7 @@ exa
 fakeroot
 fd
 feh
+figlet
 file
 filesystem
 findutils
@@ -93,6 +94,7 @@ linux-firmware
 lldb
 llvm
 logrotate
+lolcat
 lvm2
 lxsession
 m4

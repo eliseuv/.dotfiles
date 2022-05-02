@@ -155,7 +155,7 @@ myNormColor :: String
 myNormColor = "#282c34" -- Border color of normal windows
 
 myFocusColor :: String
-myFocusColor = "#52266c" -- Border color of focused windows
+myFocusColor = "#561959" --"#52266c" -- Border color of focused windows
 
 altMask :: KeyMask
 altMask = mod1Mask -- Setting this for use in xprompts
@@ -287,7 +287,7 @@ tall =
       addTabs shrinkText myTabTheme $
         subLayout [] (smartBorders Simplest) $
           limitWindows 12 $
-            mySpacing 3  $
+            mySpacing 2  $
               ResizableTall 1 (3 / 100) (1 / 2) []
 
 magnify =
@@ -297,7 +297,7 @@ magnify =
         subLayout [] (smartBorders Simplest) $
           magnifier $
             limitWindows 12 $
-              mySpacing 3 $
+              mySpacing 2 $
                 ResizableTall 1 (3 / 100) (1 / 2) []
 
 monocle =
@@ -316,7 +316,7 @@ grid =
       addTabs shrinkText myTabTheme $
         subLayout [] (smartBorders Simplest) $
           limitWindows 12 $
-            mySpacing 3 $
+            mySpacing 2 $
               mkToggle (single MIRROR) $
                 Grid (16 / 10)
 
@@ -325,7 +325,7 @@ spirals =
     smartBorders $
       addTabs shrinkText myTabTheme $
         subLayout [] (smartBorders Simplest) $
-          mySpacing' 3 $
+          mySpacing' 2 $
             spiral (6 / 7)
 
 threeCol =
@@ -641,8 +641,8 @@ main = do
                         >> hPutStrLn xmproc1 x, -- xmobar on monitor 2
                     ppCurrent = xmobarColor "#D02A8B" "" . wrap "[" "]", -- Current workspace
                     ppVisible = xmobarColor "#D02A8B" "" . clickable, -- Visible but not current workspace
-                    ppHidden = xmobarColor "#ED5DB1" "" . clickable, -- Hidden workspaces
-                    ppHiddenNoWindows = xmobarColor "#D899BE" "" . clickable, -- Hidden workspaces (no windows)
+                    ppHidden = xmobarColor "#D78CB8" "" . clickable, -- Hidden workspaces
+                    ppHiddenNoWindows = xmobarColor "#B49EAB" "" . clickable, -- Hidden workspaces (no windows)
                     ppTitle = xmobarColor "#B29DFE" "" . shorten 60, -- Title of active window
                     ppSep = "<fc=#666666> <fn=1>|</fn> </fc>", -- Separator character
                     ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!", -- Urgent workspace

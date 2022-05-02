@@ -76,6 +76,12 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+" Telescope
+if has('nvim')
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+endif
+
 " Gutter
 Plug 'airblade/vim-gitgutter'
 
@@ -176,3 +182,9 @@ autocmd BufWritePre * :call TrimWhiteSpace()
 " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 " --color: Search color options
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+
+" Key map
+
+" Leader key
+nnoremap <SPACE> <Nop>
+let mapleader=" "

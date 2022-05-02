@@ -29,5 +29,5 @@ Config {
         -- Layout
         , sepChar =     "%"     -- delineator between plugin names and straight text
         , alignSep =    "}{"    -- separator between left-right alignment
-        , template = " <fc=#1793d0> <fn=2> </fn> </fc> %UnsafeStdinReader% }{ <fc=#46d9ff> %date% </fc> "
+        , template = "   <fc=#1793d0> <fn=2> </fn> </fc> %UnsafeStdinReader% }{ <fc=#c678dd>%date% </fc>   "
 }
