@@ -26,3 +26,5 @@ require "evf.comment"
 require "evf.nvim-tree"
 -- Bufferline
 require "evf.bufferline"
+-- Toggleterm
+require "evf.toggleterm"

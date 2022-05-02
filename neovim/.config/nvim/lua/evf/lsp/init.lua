@@ -13,3 +13,6 @@ require("evf.lsp.lsp-installer")
 
 -- LSP setup
 require("evf.lsp.handlers").setup()
+
+-- Null LS
+require "evf.lsp.null-ls"

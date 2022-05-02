@@ -55,8 +55,8 @@ return packer.startup(function(use)
     use "tami5/sqlite.lua"              -- Wrapper for SQLite databases
 
     -- Colorschemes
-    --use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
-    --use "rafamadriz/neon"
+    use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
+    use "rafamadriz/neon"
     use "folke/tokyonight.nvim"
 
     -- Start screen
@@ -105,6 +105,9 @@ return packer.startup(function(use)
     -- Bufferline
     use "akinsho/bufferline.nvim"
     use "moll/vim-bbye"             -- Delete buffers without messing up the layout
+
+    -- Toggleterm
+    use "akinsho/toggleterm.nvim"
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
