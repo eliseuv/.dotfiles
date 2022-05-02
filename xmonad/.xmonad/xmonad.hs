@@ -145,8 +145,8 @@ myFileManager = "pcmanfm"
 myEditor :: String
 myEditor = myTerminal ++ " -e nvim" -- Sets default text editor
 
-myWallpaperPath :: String
-myWallpaperPath = "$HOME/.wallpapers/digital_starry.jpg"
+myWallpaperScript :: String
+myWallpaperScript = "$HOME/.wallpapers/set_wallpaper.sh"
 
 myBorderWidth :: Dimension
 myBorderWidth = 1 -- Sets border width for windows
@@ -155,7 +155,7 @@ myNormColor :: String
 myNormColor = "#282c34" -- Border color of normal windows
 
 myFocusColor :: String
-myFocusColor = "#561959" --"#52266c" -- Border color of focused windows
+myFocusColor = "#1A2772" --"#52266c" -- Border color of focused windows
 
 altMask :: KeyMask
 altMask = mod1Mask -- Setting this for use in xprompts
@@ -176,7 +176,7 @@ windowCount =
 
 myStartupHook :: X ()
 myStartupHook = do
-  spawn ("feh --bg-scale --no-xinerama " ++ myWallpaperPath) -- Set wallpaper
+  spawn myWallpaperScript -- Set wallpaper
   spawnOnce "picom --experimental-backends -b --config ~/.config/picom/picom.conf &" -- Compositor
   --spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 0 --transparent true --alpha 0 --tint 0x282c34  --height 22 &" -- Tray
   --spawnOnce "nm-applet &"                     -- NetworkManager in tray
@@ -484,7 +484,7 @@ myKeys =
     -- , ("M-S-<Return>", spawn "dmenu_run -i -p \"Run: \"") -- Dmenu
     ( "M-S-<Return>",
       spawn
-        "rofi -modi combi -combi-modi window,drun,ssh -theme purple -font \"hack 10\" -show combi"
+        "rofi -show combi"
     ),
     -- Other Dmenu Prompts
     -- In Xmonad and many tiling window managers, M-p is the default keybinding to
@@ -639,9 +639,9 @@ main = do
                     ppOutput = \x ->
                       hPutStrLn xmproc0 x -- xmobar on monitor 1
                         >> hPutStrLn xmproc1 x, -- xmobar on monitor 2
-                    ppCurrent = xmobarColor "#D02A8B" "" . wrap "[" "]", -- Current workspace
-                    ppVisible = xmobarColor "#D02A8B" "" . clickable, -- Visible but not current workspace
-                    ppHidden = xmobarColor "#D78CB8" "" . clickable, -- Hidden workspaces
+                    ppCurrent = xmobarColor "#225EC5" "" . wrap "[" "]", -- Current workspace
+                    ppVisible = xmobarColor "#225EC5" "" . clickable, -- Visible but not current workspace
+                    ppHidden = xmobarColor "#466DAF" "" . clickable, -- Hidden workspaces
                     ppHiddenNoWindows = xmobarColor "#B49EAB" "" . clickable, -- Hidden workspaces (no windows)
                     ppTitle = xmobarColor "#B29DFE" "" . shorten 60, -- Title of active window
                     ppSep = "<fc=#666666> <fn=1>|</fn> </fc>", -- Separator character

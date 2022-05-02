@@ -76,6 +76,7 @@ iputils
 jfsutils
 jq
 jsoncpp
+lazygit
 ledger
 less
 lib32-nvidia-utils
@@ -178,6 +179,7 @@ sshfs
 stack
 starship
 stow
+stylua
 sudo
 surfraw
 sxiv
