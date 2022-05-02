@@ -52,6 +52,7 @@ return packer.startup(function(use)
     use "windwp/nvim-autopairs"         -- Autopairs, integrates with both cmp and treesitter
     use "numToStr/Comment.nvim"         -- Easily comment stuff
     use "kyazdani42/nvim-web-devicons"  -- Cool file icons
+    use "tami5/sqlite.lua"              -- Wrapper for SQLite databases
 
     -- Colorschemes
     --use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
@@ -79,8 +80,12 @@ return packer.startup(function(use)
     use "neovim/nvim-lspconfig"             -- LSP main plugin
     use "williamboman/nvim-lsp-installer"   -- Language server installer
 
+    -- Null LS
+    use "jose-elias-alvarez/null-ls.nvim"
+
     -- Telescope
     use "nvim-telescope/telescope.nvim"             -- Telescope
+    use "nvim-telescope/telescope-frecency.nvim"    -- Intelligent editing history
     use 'nvim-telescope/telescope-media-files.nvim' -- Preview media in Telescope
 
     -- Treesitter
@@ -96,6 +101,10 @@ return packer.startup(function(use)
 
     -- NVim Tree
     use "kyazdani42/nvim-tree.lua"
+
+    -- Bufferline
+    use "akinsho/bufferline.nvim"
+    use "moll/vim-bbye"             -- Delete buffers without messing up the layout
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

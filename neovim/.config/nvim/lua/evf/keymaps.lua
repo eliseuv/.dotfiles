@@ -41,9 +41,10 @@ keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
 -- Telescope
 -- https://github.com/nvim-telescope/telescope.nvim
-keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
 --keymap("n", "<leader>ff", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
+keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", opts)
 keymap("n", "<leader>fh", "<cmd>Telescope oldfiles<cr>", opts)
+keymap("n", "<leader>fr", "<cmd>Telescope frecency<cr>", opts)
 keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", opts)
 keymap("n", "<leader>fm", "<cmd>Telescope marks<cr>", opts)
 keymap("n", "<leader>ft", "<cmd>Telescope treesitter<cr>", opts)

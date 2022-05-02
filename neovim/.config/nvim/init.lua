@@ -24,3 +24,5 @@ require "evf.gitsigns"
 require "evf.comment"
 -- nvim-tree
 require "evf.nvim-tree"
+-- Bufferline
+require "evf.bufferline"
