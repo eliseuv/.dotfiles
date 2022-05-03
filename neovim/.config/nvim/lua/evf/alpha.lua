@@ -37,7 +37,7 @@ dashboard.section.buttons.val = {
 	dashboard.button( "SPC f r",	"  Frecency/MRU",	        ":Telescope frecency <CR>"),
 	dashboard.button( "SPC f g",	"  Find word",	            ":Telescope live_grep <CR>"),
 	dashboard.button( "SPC f m",	"  Jump to bookmarks",	    ":Telescope marks <CR>"),
-	--dashboard.button( "SPC s l",	"  Open last session",	    ":"),
+	dashboard.button( "SPC s l",	"  Open last session",	    ":SessionManager load_last_session <CR>"),
 	dashboard.button( "SPC f c",	"  Select colorscheme",	":Telescope colorscheme <CR>"),
     dashboard.button( "q",          "  Quit" ,                 ":qa<CR>"),
 }

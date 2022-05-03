@@ -53,6 +53,13 @@ keymap("n", "<leader>fs", "<cmd>Telescope lsp_workspace_symbols<cr>", opts)
 keymap("n", "<leader>fi", "<cmd>Telescope lsp_implemenetations<cr>", opts)
 keymap("n", "<leader>fc", "<cmd>Telescope colorscheme<cr>", opts)
 
+-- Nvimtree
+-- https://github.com/kyazdani42/nvim-tree.lua
+keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
+
+-- Session manager
+keymap("n", "<leader>sl", ":SessionManager load_last_session<cr>", opts)
+
 -- Insert --
 -- Press jk fast to enter normal mode
 --keymap("i", "jk", "<ESC>", opts)
@@ -82,7 +89,3 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
-
--- Nvimtree
--- https://github.com/kyazdani42/nvim-tree.lua
-keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)

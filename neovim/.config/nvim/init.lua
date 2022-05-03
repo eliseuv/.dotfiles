@@ -28,3 +28,5 @@ require "evf.nvim-tree"
 require "evf.bufferline"
 -- Toggleterm
 require "evf.toggleterm"
+-- Session manager
+require "evf.sessions"
