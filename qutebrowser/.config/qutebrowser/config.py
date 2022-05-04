@@ -199,6 +199,10 @@ config.bind(',cE', 'config-edit')
 # Open in editor
 config.bind(',E', 'edit-url')
 
+# Move tabs
+config.bind('<Ctrl+Shift+k>', 'tab-move -')
+config.bind('<Ctrl+Shift+j>', 'tab-move +')
+
 # Hint yank
 config.bind(',y', 'hint all yank')
 
