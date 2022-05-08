@@ -5,7 +5,7 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
-(setq user-full-name "Eliseu Venites Filho"
+(setq user-full-name "evf"
       user-mail-address "eliseuv816@gmail.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
@@ -107,6 +107,11 @@
   (set-popup-rule! "*doom:vterm-popup" :size 0.3 :vslot -4 :select t :quit nil :ttl 0 :side 'right)
   )
 
+;; Recognize uppercase letters as word boundaries (useful for CamelCase naming)
+;(global-subword-mode t)
+;; Ignore hyphens and underscores when traversing words (useful for snake_case and lisp-case naming)
+(global-superword-mode t)
+
 ;; org-roam
 (use-package! org-roam
   :after org
@@ -197,7 +202,7 @@
                                         ; Select julia environment
 (setq lsp-julia-default-environment "~/.julia/environments/v1.7")
 (after! julia-repl
-(julia-repl-set-terminal-backend 'vterm)
-(set-popup-rule! "*julia:\*" :side 'right :size 0.3 :ttl 0 :quit nil :select nil)
-(setenv "JULIA_NUM_THREADS" "15")
-)
+  (julia-repl-set-terminal-backend 'vterm)
+  (set-popup-rule! "*julia:\*" :side 'right :size 0.3 :ttl 0 :quit nil :select nil)
+  (setenv "JULIA_NUM_THREADS" "15")
+  )

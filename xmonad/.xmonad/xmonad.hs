@@ -639,10 +639,10 @@ main = do
                     ppOutput = \x ->
                       hPutStrLn xmproc0 x -- xmobar on monitor 1
                         >> hPutStrLn xmproc1 x, -- xmobar on monitor 2
-                    ppCurrent = xmobarColor "#225EC5" "" . wrap "[" "]", -- Current workspace
-                    ppVisible = xmobarColor "#225EC5" "" . clickable, -- Visible but not current workspace
-                    ppHidden = xmobarColor "#466DAF" "" . clickable, -- Hidden workspaces
-                    ppHiddenNoWindows = xmobarColor "#B49EAB" "" . clickable, -- Hidden workspaces (no windows)
+                    ppCurrent = xmobarColor "#1A5ED3" "" . wrap "[" "]", -- Current workspace
+                    ppVisible = xmobarColor "#1A5ED3" "" . clickable, -- Visible but not current workspace
+                    ppHidden = xmobarColor "#7095D2" "" . clickable, -- Hidden workspaces
+                    ppHiddenNoWindows = xmobarColor "#42587D" "" . clickable, -- Hidden workspaces (no windows)
                     ppTitle = xmobarColor "#B29DFE" "" . shorten 60, -- Title of active window
                     ppSep = "<fc=#666666> <fn=1>|</fn> </fc>", -- Separator character
                     ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!", -- Urgent workspace

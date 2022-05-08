@@ -7,9 +7,8 @@ if not status_ok then
 	return
 end
 
--- LSP installer
--- https://github.com/williamboman/nvim-lsp-installer
-require("evf.lsp.lsp-installer")
+-- LSP configs
+require("evf.lsp.configs")
 
 -- LSP setup
 require("evf.lsp.handlers").setup()
