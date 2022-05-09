@@ -6,6 +6,7 @@ arandr
 autoconf
 automake
 bash
+bash-language-server
 bat
 bc
 binutils
@@ -54,6 +55,7 @@ gdb
 geckodriver
 gettext
 git
+github-cli
 glibc
 global
 gnuplot
@@ -63,6 +65,7 @@ groff
 gvim
 gzip
 haskell-language-server
+helix
 hledger
 hlint
 hoogle

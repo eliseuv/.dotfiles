@@ -1,5 +1,9 @@
-#+TITLE: Readme
+#+TITLE: Zsh Readme
 #+AUTHOR: evf (eliseuv816@gmail.com)
+
+#+BEGIN_COMMENT
+This file outputs
+#+END_COMMENT
 
 * Zsh config
 

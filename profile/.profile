@@ -85,12 +85,21 @@ export NNN_OPTS="dEox"
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
 
-#######
-# GPG #
-#######
+#############
+# GPG + SSH #
+#############
 
-# GPG SSH keys
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+# Let GPG manage SSH
+unset SSH_AGENT_PID
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+fi
+
+# Configure pinentry to use the correct tty
+export GPG_TTY=$(tty)
+gpg-connect-agent updatestartuptty /bye >/dev/null
+
+# Launch GPG Agnet
 gpgconf --launch gpg-agent
 
 #########
@@ -153,8 +162,8 @@ alias b='bat'
 alias v='nvim'
 alias lv='lvim'
 
-# Kakoune
-alias k='kak'
+# Helix
+alias hx='helix'
 
 # Newsboat
 alias nb='newsboat'
@@ -340,7 +349,7 @@ alias pac="pacman -Sl | awk '{print \$2(\$4==\"\" ? \"\" : \" *\")}' | fzf --mul
 # Fuzzy search on installed packacges and remove
 alias pacremove="pacman -Qettq | fzf --multi --preview 'pacman -Qii {1}' --reverse | xargs -ro sudo pacman -Rns"
 # Update all packages
-alias pacsyu='sudo pacman -Syu --noconfirm'
+alias pacsyu='sudo pacman -Syu'
 # Remove lock
 alias pacunlock='sudo rm /var/lib/pacman/db.lck'
 
@@ -350,9 +359,9 @@ alias par="paru -Sl | awk '{print \$2(\$4==\"\" ? \"\" : \" *\")}' | fzf --multi
 # Fuzzy search on installed packacges and remove
 alias parremove="paru -Qeq | fzf --multi --preview 'paru -Qi {1}' --reverse| xargs -ro paru -Rns"
 # Update all packacges (standard and AUR)
-alias parsyu='paru -Syu --noconfirm'
+alias parsyu='paru -Syu'
 # Update AUR packages
-alias parsua='paru -Sua --noconfirm'
+alias parsua='paru -Sua'
 
 # Pacman cleanup
 paccleanup() {
@@ -368,7 +377,7 @@ paccleanup() {
 # Upgrade system
 update() {
     printf "\n${GREEN}Updating system...${RESET}\n\n"
-    parsyu
+    parsyu --noconfirm
     printf "\n${GREEN}Updating Rust...${RESET}\n\n"
     rustup update --no-self-update
     printf "\n${GREEN}Updating Julia...${RESET}\n\n"

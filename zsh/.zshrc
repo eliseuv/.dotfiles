@@ -156,7 +156,7 @@ bindkey -v
 # Profile
 source ~/.profile
 
-# fzf completions
+# fzf
 . /usr/share/fzf/key-bindings.zsh
 . /usr/share/fzf/completion.zsh
 
