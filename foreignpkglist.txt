@@ -8,7 +8,6 @@ nerd-fonts-fira-code
 openrazer-meta
 otf-fira-code-symbol
 paru
-polybar
 task-spooler
 ttf-alegreya
 xorg-font-utils

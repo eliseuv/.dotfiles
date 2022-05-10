@@ -96,7 +96,7 @@ if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
 fi
 
 # Configure pinentry to use the correct tty
-export GPG_TTY=$(tty)
+export GPG_TTY=$TTY
 gpg-connect-agent updatestartuptty /bye >/dev/null
 
 # Launch GPG Agnet

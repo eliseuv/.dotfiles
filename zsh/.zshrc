@@ -153,9 +153,6 @@ unsetopt beep extendedglob notify
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
-# Profile
-source ~/.profile
-
 # fzf
 . /usr/share/fzf/key-bindings.zsh
 . /usr/share/fzf/completion.zsh
@@ -177,3 +174,6 @@ bindkey "^x^e" vim-command-line
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Load profile
+source ~/.profile

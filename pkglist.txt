@@ -122,7 +122,6 @@ neovim
 netctl
 newsboat
 nnn
-nodejs
 noto-fonts
 noto-fonts-emoji
 nss-mdns
@@ -147,6 +146,7 @@ perl
 perl-file-mimeinfo
 picom
 pkgconf
+polybar
 poppler-glib
 prettier
 procps-ng
@@ -160,7 +160,7 @@ python-adblock
 python-pdftotext
 python2
 qbittorrent
-qemu
+qemu-desktop
 qutebrowser
 racket-minimal
 reflector
