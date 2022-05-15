@@ -59,6 +59,7 @@ github-cli
 glibc
 global
 gnuplot
+go
 graphviz
 grep
 groff
@@ -243,4 +244,7 @@ zathura-djvu
 zathura-pdf-mupdf
 zathura-ps
 zsh
+zsh-autosuggestions
 zsh-completions
+zsh-syntax-highlighting
+zsh-theme-powerlevel10k

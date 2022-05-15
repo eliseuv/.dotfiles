@@ -522,6 +522,14 @@ myKeys =
     ("M-t", withFocused $ windows . W.sink), -- Push floating window back to tile
     ("M-S-t", sinkAll), -- Push ALL floating windows to tile
 
+    -- Volume Controls
+    --("<XF86AudioMute>", spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle"),
+    --("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%"),
+    --("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%"),
+    ("M-S-0", spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle"),
+    ("M-S--", spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%"),
+    ("M-S-=", spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%"),
+
     -- Increase/decrease spacing (gaps)
     ("M-d", decWindowSpacing 4), -- Decrease window spacing
     ("M-i", incWindowSpacing 4), -- Increase window spacing

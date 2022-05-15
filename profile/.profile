@@ -36,6 +36,9 @@ pathappend() {
 # System binaries
 pathappend /bin /usr/bin /usr/local/bin /usr/local/sbin
 
+# Custom scripts
+pathappend ~/.local/bin ~/.scripts
+
 # CUDA
 #pathappend /opt/cuda/bin /opt/cuda/nsight_compute /opt/cuda/nsight_systems/bin
 
@@ -48,9 +51,6 @@ pathappend ~/.local/share/gem/ruby/3.0.0/bin
 # DOOM Emacs
 pathappend ~/.emacs.doom/bin
 
-# Custom scripts
-pathappend ~/.local/bin ~/.scripts
-
 ############
 # ENV VARS #
 ############
@@ -58,6 +58,7 @@ pathappend ~/.local/bin ~/.scripts
 # Terminal emulator
 #export TERM='rxvt-unicode-256color'
 export TERM='alacritty'
+export TERMINAL='alacritty'
 
 # Text editors
 export EDITOR='nvim'
@@ -75,15 +76,8 @@ export BROWSERCLI='w3m'
 # Set manpager
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-# Rust backtrace
-export RUST_BACKTRACE=1
-
 # n^3 file manager options
 export NNN_OPTS="dEox"
-
-# fzf
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
 
 #############
 # GPG + SSH #
@@ -125,13 +119,6 @@ alias la='exa --all --group-directories-first --icons --color=always'
 alias ll='exa --all --long --header --git --group-directories-first --icons --color=always'
 alias lt='exa --all --tree --group-directories-first --icons --ignore-glob=.git --color=always'
 alias l.='exa --all | rg "^\."'
-
-# Changing 'ls' to 'lsd'
-#alias l='lsd --group-dirs=first --color=always'
-#alias la='lsd --all --group-dirs=first --color=always'
-#alias ll='lsd  --almost-all --long --group-dirs=first --color=always'
-#alias lt='lsd --all --tree --group-dirs=first --ignore-glob=.git --color=always'
-#alias l.='lsd --all | rg "^\."'
 
 # Easier cd
 alias ..='cd ..'
@@ -201,21 +188,6 @@ alias ssh-restart='killall ssh-agent; eval `ssh-agent`; ssh-add'
 # FUNCTIONS #
 #############
 
-# Fuzzy search dir navigation
-fcd() {
-    cd "$(find ~ -not -path '*/.*' -type d | fzf --height 50% --reverse --preview 'exa -lah {}')" || return
-}
-
-# Fuzzy search file in dir and open
-fop() {
-    filename=$(find . -type f | fzf --reverse --preview 'bat {} --color always')
-    if [ -f "$filename" ]; then
-        filetype=$(xdg-mime query filetype "$filename")
-        echo "Opening file " "$filename" " of type " "$filetype" " with " "$(xdg-mime query default $filetype)"
-        xdg-open "$filename" &
-    fi
-}
-
 # Print csv file
 pcsv() {
     sed 's/,,/, ,/g;s/,,/, ,/g' "$1" | column -s, -t | less -#2 -N -S
@@ -244,6 +216,45 @@ ex() {
     fi
 }
 
+# YouTube MP3
+ytmp3() {
+    yt-dlp -f 'ba' -x --audio-format mp3 $1 -o '$HOME/Storage/Music/_unsorted/%(title)s.%(ext)s'
+}
+
+# Add spacing left of text
+# Pipe to it to to add spacing to the beginning of outpu
+# COMMAND | tab
+tab() {
+    while read LINE; do
+        sed -e 's/^/  /' <<< "$LINE"
+    done
+}
+
+#######
+# fzf #
+#######
+
+# fzf ripgrep options
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+# fzf theme
+export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
+
+# Fuzzy search dir navigation
+fcd() {
+    cd "$(find ~ -not -path '*/.*' -type d | fzf --height 50% --reverse --preview 'exa -lah {}')" || return
+}
+
+# Fuzzy search file in dir and open
+fop() {
+    filename=$(find . -type f | fzf --reverse --preview 'bat {} --color always')
+    if [ -f "$filename" ]; then
+        filetype=$(xdg-mime query filetype "$filename")
+        echo "Opening file " "$filename" " of type " "$filetype" " with " "$(xdg-mime query default $filetype)"
+        xdg-open "$filename" &
+    fi
+}
+
 # using ripgrep combined with preview
 # find-in-file - usage: fif <searchTerm>
 fif() {
@@ -257,9 +268,59 @@ fmp() {
     mpc listall -f $FORMAT | fzf --multi --preview 'mediainfo ~/Storage/Music/{}' | mpc add
 }
 
-# YouTube MP3
-ytmp3() {
-    yt-dlp -f 'ba' -x --audio-format mp3 $1 -o '$HOME/Storage/Music/_unsorted/%(title)s.%(ext)s'
+########
+# Rust #
+########
+
+# Rust Cargo
+pathappend ~/.cargo/bin
+
+# Rust backtrace
+export RUST_BACKTRACE=1
+
+# Update Rust through Rustup
+alias rust-update='rustup update --no-self-update'
+
+# Update cargo binaries
+# https://crates.io/crates/cargo-update
+alias cargo-update='cargo install-update --all'
+
+# Cargo cleanup
+# https://github.com/matthiaskrgr/cargo-cache
+# Removes crate source checkouts and git repo checkouts
+alias cargo-cleanup='cargo cache --autoclean'
+# Recompress git repos
+alias cargo-gc='cargo cache --gc'
+
+cargocleanup() {
+    printf "${BLUE}Removing crate source checkouts and git repos checkouts...${RESET}\n"
+    cargo-cleanup
+    printf "\n${BLUE}Recompressing git repos...${RESET}\n"
+    cargo-gc
+}
+
+######
+# Go #
+######
+
+# Go path
+export GOPATH=$HOME/go
+
+# Go binaries
+export GOBIN=$GOPATH/bin
+
+# Go Programs
+pathappend "$GOBIN"
+
+# Update binaries obtained by 'go install'
+# https://github.com/nao1215/gup
+alias go-update='gup update'
+
+gocleanup() {
+    printf "${BLUE}Removing build cache...${RESET}\n"
+    go clean -cache
+    printf "\n${BLUE}Removing module download cache...${RESET}\n"
+    go clean -modcache
 }
 
 #########
@@ -282,7 +343,7 @@ alias julia-update='julia -e "using Pkg; Pkg.update()"'
 alias julia-cleanup='julia -e "using Pkg; Pkg.gc()"'
 
 #############
-# MINICONDA #
+# Miniconda #
 #############
 
 # Conda profile
@@ -303,14 +364,14 @@ condaenv() {
 alias conda-list='conda env export --from-history'
 
 condaupdate() {
-    printf "${BLUE}Updating base env...${RESET}\n"
+    printf "${BLUE}Updating base env...${RESET}\n\n"
     conda activate base
     sudo conda update --all --yes
     conda deactivate
     ENVS=`ls $CONDA_ENVS_DIR`
     for ENV in ${ENVS[@]}
     do
-        printf "${BLUE}Updating $ENV env...${RESET}\n"
+        printf "${BLUE}Updating $ENV env...${RESET}\n\n"
         conda activate $ENV
         conda upgrade --all --yes
         conda deactivate
@@ -318,23 +379,23 @@ condaupdate() {
 }
 
 condacleanup() {
-    printf "${BLUE}Cleaning up base env...${RESET}\n"
+    printf "${BLUE}Cleaning up base env...${RESET}\n\n"
     conda activate base
     sudo conda clean --all --yes
     conda deactivate
     ENVS=`ls $CONDA_ENVS_DIR`
     for ENV in ${ENVS[@]}
     do
-        printf "\n${BLUE}Cleaning up $ENV env...${RESET}\n"
+        printf "\n${BLUE}Cleaning up $ENV env...${RESET}\n\n"
         conda activate $ENV
         conda clean --all --yes
         conda deactivate
     done
 }
 
-####################
-# PACKAGE MANPAGER #
-####################
+##########
+# PACMAN #
+##########
 
 # Pacman mirrors
 alias mirror='sudo reflector --verbose --protocol https --latest 50 --number 20 --country Brazil --country Chile --country US --sort rate --save /etc/pacman.d/mirrorlist'
@@ -365,49 +426,62 @@ alias parsua='paru -Sua'
 
 # Pacman cleanup
 paccleanup() {
-    printf "\n${BLUE}Pacman cache cleanup...${RESET}\n"
+    printf "\n${BLUE}Pacman cache cleanup...${RESET}\n\n"
     paccache -rk1
     paccache -ruk0
-    printf "\n${BLUE}Paru AUR cache cleanup...${RESET}\n"
+    printf "\n${BLUE}Paru AUR cache cleanup...${RESET}\n\n"
     paru -Scca --noconfirm
-    printf "\n${BLUE}Removing orphaned packages...${RESET}\n"
+    printf "\n${BLUE}Removing orphaned packages...${RESET}\n\n"
     pacman -Qdtq | xargs -ro sudo pacman -Rns --noconfirm
 }
 
-# Upgrade system
+#######################
+# Systemwide Commands #
+#######################
+
+# Update system
 update() {
-    printf "\n${GREEN}Updating system...${RESET}\n\n"
+    printf "\n${GREEN}Updating Arch...${RESET}\n\n"
     parsyu --noconfirm
     printf "\n${GREEN}Updating Rust...${RESET}\n\n"
-    rustup update --no-self-update
+    rust-update
+    printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"
+    cargo-update
+    printf "\n${GREEN}Updating Go bins...${RESET}\n\n"
+    go-update
     printf "\n${GREEN}Updating Julia...${RESET}\n\n"
     julia-update
-    printf "\n${GREEN}Updating Anaconda...${RESET}\n\n"
+    printf "\n${GREEN}Updating Miniconda...${RESET}\n\n"
     condaupdate
-    printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
+    printf "${GREEN}Updating DOOM Emacs...${RESET}\n\n"
     doom --yes upgrade
+    printf "\n${GREEN}Custom check...${RESET}\n"
+    customcheck
     printf "\n"
 }
 
 # Cleanup
 cleanup() {
-    printf "\n${GREEN}System cleanup...${RESET}\n"
+    printf "\n${GREEN}Pacman cleanup...${RESET}\n"
     paccleanup
     printf "\n${GREEN}Julia cleanup...${RESET}\n\n"
     julia-cleanup
-    printf "\n${GREEN}Anaconda cleanup...${RESET}\n\n"
+    printf "\n${GREEN}Miniconda cleanup...${RESET}\n\n"
     condacleanup
+    printf "\n${GREEN}Cargo cleanup...${RESET}\n\n"
+    cargocleanup
+    printf "\n${GREEN}Go cleanup...${RESET}\n\n"
+    gocleanup
     printf "\n${GREEN}DOOM purge...${RESET}\n\n"
     doom purge
 }
 
 customcheck() {
-  printf "\n${GREEN}No custom checks${RESET}\n"
+    printf "\n${GREEN}✓ ${BLUE}No custom checks${RESET}\n"
 
-  # printf "\n${GREEN}Custom check...${RESET}\n"
-  # printf "\n${BLUE}Checking if Emacs with native compilation is available...${RESET}\n"
-  # pacman -Si emacs-nativecomp
+    # printf "\n${BLUE}Checking if Emacs with native compilation is available...${RESET}\n"
+    # pacman -Si emacs-nativecomp
 }
 
 # Update and cleanup
-alias up='update;cleanup;customcheck'
+alias up='update;customcheck;'

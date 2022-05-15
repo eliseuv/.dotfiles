@@ -35,13 +35,15 @@ Config
                                 ]
                                 ["-L", "20", "-H", "50", "-m", "1", "-p", "3"] 60
                       -- Runs custom script to check for pacman updates.
-                    , Run Com "sh" ["-c", "echo $(checkupdatescount)"] "updates" 600
+                    , Run Com "sh" ["-c", "echo $(checkupdatescount)"] "updates" 900
                       -- Weather
-                    , Run Com "sh" ["-c", "echo $(weather)"] "weather" 600
+                    , Run Com "sh" ["-c", "echo $(weather)"] "weather" 900
+                      -- Volume
+                    , Run Com "sh" ["-c", "echo $(volume)"] "volume" 10
                       -- user@hostname
                     , Run Com "sh" ["-c", "echo $(whoami)@$(hostname)"] "user" 0
                       -- Runs a standard shell command 'uname -r' to get kernel version
-                    , Run Com "uname" ["-r"] "" 600
+                    , Run Com "uname" ["-r"] "" 900
                       -- Prints out the left side items such as workspaces, layout, etc.
                       -- The workspaces are 'clickable'.
                     , Run UnsafeStdinReader
@@ -50,5 +52,5 @@ Config
         -- Layout
         , sepChar =     "%"     -- delineator between plugin names and straight text
         , alignSep =    "}{"    -- separator between left-right alignment
-        , template = "   <fc=#1793d0> <fn=2> </fn> </fc> %UnsafeStdinReader% }{ <fc=#b3afc2>%user%</fc> <fn=1> | </fn> <fc=#b3afc2><fn=1> </fn>%uname%</fc> <fn=1> | </fn> %updates% <fn=1> | </fn> <fc=#ff6c6b>%cpu%</fc> <fn=1> | </fn> <fc=#ecbe7b>%memory%</fc> <fn=1> | </fn> <fc=#51afef>%disku%</fc> <fn=1> | </fn> <fc=#98be65>%enp4s0%</fc> <fn=1> | </fn> %weather% <fn=1> | </fn> <fc=#c678dd>%date% </fc>   "
+        , template = "   <fc=#1793d0> <fn=2> </fn> </fc> %UnsafeStdinReader% }{ <fc=#b3afc2>%user%</fc> <fn=1> | </fn> <fc=#b3afc2><fn=1> </fn>%uname%</fc> <fn=1> | </fn> %updates% <fn=1> | </fn> <fc=#ff6c6b>%cpu%</fc> <fn=1> | </fn> <fc=#ecbe7b>%memory%</fc> <fn=1> | </fn> <fc=#51afef>%disku%</fc> <fn=1> | </fn> <fc=#98be65>%enp4s0%</fc> <fn=1> | </fn> %weather% <fn=1> | </fn> %volume% <fn=1> | </fn> <fc=#c678dd>%date% </fc>   "
 }
