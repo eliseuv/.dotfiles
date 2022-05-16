@@ -5,7 +5,7 @@
 
 The package ~Revise.jl~ allows us to edit source files mid-session without having to restart the REPL or even reloading the files.
 
-To launch it by default in every REPL session you can add the following lines to your ~juliarc~ files (~~/.julia/config/startup.jl~):
+To launch it by default in every REPL session you can add the following lines to your ~juliarc~ file (~~/.julia/config/startup.jl~):
 
 #+BEGIN_SRC julia
 atreplinit() do repl
@@ -62,11 +62,11 @@ Here we tell ~PackageCompiler~ to generate a custom sysimage containing the func
 #+BEGIN_SRC julia
 using PackageCompiler
 
-PackageCompiler.create_sysimage(["Revise", "OhMyREPL", "Symbolics"]; sysimage_path="revise-omr_sysimage.so",
+PackageCompiler.create_sysimage(["Revise", "OhMyREPL"]; sysimage_path="revise-omr_sysimage.so",
                                 precompile_statements_file="revise-omr_precompile.jl")
 #+END_SRC
 
-If you loaded other packages inside your ~juliarc~, you must add it to list (first argument of the ~create_sysimage~ function).
+If you loaded other packages inside your ~juliarc~ (~Symbolics~ for example), you must add it to list (first argument of the ~create_sysimage~ function).
 
 Wait for the compilation to finish and exit Julia.
 

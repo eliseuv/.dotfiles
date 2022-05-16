@@ -7,24 +7,24 @@
 ##########
 
 # ANSI color code variables
-RED="\e[0;91m"
-BLUE="\e[0;94m"
-EXPAND_BG="\E[K"
-BLUE_BG="\e[0;104m${EXPAND_BG}"
-RED_BG="\e[0;101m${EXPAND_BG}"
-GREEN_BG="\e[0;102m${EXPAND_BG}"
-GREEN="\e[0;92m"
-WHITE="\e[0;97m"
-BOLD="\e[1m"
-ULINE="\e[4m"
-RESET="\e[0m"
+local RED="\e[0;91m"
+local BLUE="\e[0;94m"
+local EXPAND_BG="\E[K"
+local BLUE_BG="\e[0;104m${EXPAND_BG}"
+local RED_BG="\e[0;101m${EXPAND_BG}"
+local GREEN_BG="\e[0;102m${EXPAND_BG}"
+local GREEN="\e[0;92m"
+local WHITE="\e[0;97m"
+local BOLD="\e[1m"
+local ULINE="\e[4m"
+local RESET="\e[0m"
 
 ########
 # PATH #
 ########
 
 # Append to PATH if not already there
-pathappend() {
+function pathappend {
   for ARG in "$@"
   do
     if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
@@ -189,13 +189,13 @@ alias ssh-restart='killall ssh-agent; eval `ssh-agent`; ssh-add'
 #############
 
 # Print csv file
-pcsv() {
+function pcsv {
     sed 's/,,/, ,/g;s/,,/, ,/g' "$1" | column -s, -t | less -#2 -N -S
 }
 
 # ex - archive extractor
 # usage: ex <file>
-ex() {
+function ex {
     if [ -f $1 ] ; then
         case $1 in
         *.tar.bz2)   tar xjf $1   ;;
@@ -217,14 +217,14 @@ ex() {
 }
 
 # YouTube MP3
-ytmp3() {
+function ytmp3 {
     yt-dlp -f 'ba' -x --audio-format mp3 $1 -o '$HOME/Storage/Music/_unsorted/%(title)s.%(ext)s'
 }
 
 # Add spacing left of text
 # Pipe to it to to add spacing to the beginning of outpu
 # COMMAND | tab
-tab() {
+function tab {
     while read LINE; do
         sed -e 's/^/  /' <<< "$LINE"
     done
@@ -241,15 +241,15 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
 
 # Fuzzy search dir navigation
-fcd() {
+function fcd {
     cd "$(find ~ -not -path '*/.*' -type d | fzf --height 50% --reverse --preview 'exa -lah {}')" || return
 }
 
 # Fuzzy search file in dir and open
-fop() {
-    filename=$(find . -type f | fzf --reverse --preview 'bat {} --color always')
+function fop {
+    local filename=$(find . -type f | fzf --reverse --preview 'bat {} --color always')
     if [ -f "$filename" ]; then
-        filetype=$(xdg-mime query filetype "$filename")
+        local filetype=$(xdg-mime query filetype "$filename")
         echo "Opening file " "$filename" " of type " "$filetype" " with " "$(xdg-mime query default $filetype)"
         xdg-open "$filename" &
     fi
@@ -257,14 +257,14 @@ fop() {
 
 # using ripgrep combined with preview
 # find-in-file - usage: fif <searchTerm>
-fif() {
+function fif {
     if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
     rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
 }
 
 # Fuzzy search music library
-fmp() {
-    FORMAT="[%file%]"
+function fmp {
+    local FORMAT="[%file%]"
     mpc listall -f $FORMAT | fzf --multi --preview 'mediainfo ~/Storage/Music/{}' | mpc add
 }
 
@@ -292,7 +292,7 @@ alias cargo-cleanup='cargo cache --autoclean'
 # Recompress git repos
 alias cargo-gc='cargo cache --gc'
 
-cargocleanup() {
+function cargocleanup {
     printf "${BLUE}Removing crate source checkouts and git repos checkouts...${RESET}\n"
     cargo-cleanup
     printf "\n${BLUE}Recompressing git repos...${RESET}\n"
@@ -316,7 +316,7 @@ pathappend "$GOBIN"
 # https://github.com/nao1215/gup
 alias go-update='gup update'
 
-gocleanup() {
+function gocleanup {
     printf "${BLUE}Removing build cache...${RESET}\n"
     go clean -cache
     printf "\n${BLUE}Removing module download cache...${RESET}\n"
@@ -354,21 +354,21 @@ export CONDA_BASE_DIR="/opt/miniconda3"
 export CONDA_ENVS_DIR="$HOME/.conda/envs"
 
 # Activate an env (with fzf)
-condaenv() {
-  ENVS_LIST=("base")
-  ENVS_LIST+=$(ls $CONDA_ENVS_DIR)
+function condaenv {
+  local ENVS_LIST=("base")
+  local ENVS_LIST+=$(ls $CONDA_ENVS_DIR)
   conda activate $(printf "%s\n" ${ENVS_LIST[@]} | fzf)
 }
 
 # List explicitly installed packages
 alias conda-list='conda env export --from-history'
 
-condaupdate() {
+function condaupdate {
     printf "${BLUE}Updating base env...${RESET}\n\n"
     conda activate base
     sudo conda update --all --yes
     conda deactivate
-    ENVS=`ls $CONDA_ENVS_DIR`
+    local ENVS=`ls $CONDA_ENVS_DIR`
     for ENV in ${ENVS[@]}
     do
         printf "${BLUE}Updating $ENV env...${RESET}\n\n"
@@ -378,12 +378,12 @@ condaupdate() {
     done
 }
 
-condacleanup() {
+function condacleanup {
     printf "${BLUE}Cleaning up base env...${RESET}\n\n"
     conda activate base
     sudo conda clean --all --yes
     conda deactivate
-    ENVS=`ls $CONDA_ENVS_DIR`
+    local ENVS=`ls $CONDA_ENVS_DIR`
     for ENV in ${ENVS[@]}
     do
         printf "\n${BLUE}Cleaning up $ENV env...${RESET}\n\n"
@@ -425,7 +425,7 @@ alias parsyu='paru -Syu'
 alias parsua='paru -Sua'
 
 # Pacman cleanup
-paccleanup() {
+function paccleanup {
     printf "\n${BLUE}Pacman cache cleanup...${RESET}\n\n"
     paccache -rk1
     paccache -ruk0
@@ -440,7 +440,7 @@ paccleanup() {
 #######################
 
 # Update system
-update() {
+function update {
     printf "\n${GREEN}Updating Arch...${RESET}\n\n"
     parsyu --noconfirm
     printf "\n${GREEN}Updating Rust...${RESET}\n\n"
@@ -461,7 +461,7 @@ update() {
 }
 
 # Cleanup
-cleanup() {
+function cleanup {
     printf "\n${GREEN}Pacman cleanup...${RESET}\n"
     paccleanup
     printf "\n${GREEN}Julia cleanup...${RESET}\n\n"
@@ -476,12 +476,12 @@ cleanup() {
     doom purge
 }
 
-customcheck() {
-    printf "\n${GREEN}✓ ${BLUE}No custom checks${RESET}\n"
+function customcheck {
+    printf "\n  ${GREEN}✓ ${BLUE}No custom checks${RESET}\n"
 
     # printf "\n${BLUE}Checking if Emacs with native compilation is available...${RESET}\n"
     # pacman -Si emacs-nativecomp
 }
 
 # Update and cleanup
-alias up='update;customcheck;'
+alias up='update'

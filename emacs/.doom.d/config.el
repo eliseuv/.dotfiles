@@ -202,7 +202,10 @@
                                         ; Select julia environment
 (setq lsp-julia-default-environment "~/.julia/environments/v1.7")
 (after! julia-repl
+  ;; Use vterm
   (julia-repl-set-terminal-backend 'vterm)
+  ;; Open REPL at the right side
   (set-popup-rule! "*julia:\*" :side 'right :size 0.3 :ttl 0 :quit nil :select nil)
+  ;; Set environment variables
   (setenv "JULIA_NUM_THREADS" "15")
-  )
+)
