@@ -182,7 +182,7 @@ c.url.searchengines["ny"] = "https://nyaa.si/?f=0&c=0_0&q={}"
 c.url.searchengines["wa"] = "https://www.wolframalpha.com/input/?i={}"
 c.url.searchengines["amz"] = "https://www.amazon.com.br/s?k={}"
 c.url.searchengines["color"] = "https://www.color-hex.com/color/{}"
-c.url.searchengines["sc"] = "https://www.shellcheck.net/wiki/{}"
+c.url.searchengines["sc"] = "https://www.shellcheck.net/wiki/SC{}"
 
 # Aliases
 c.aliases = {   'w': 'session-save',
