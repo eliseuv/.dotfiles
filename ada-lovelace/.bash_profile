@@ -174,13 +174,13 @@ alias pf="ls | sort | fzf --preview='bat {}' --bind shift-up:preview-page-up,shi
 
 # Fuzzy search and change dir
 fcd() {
-    cd "$(find ~ -not -path '*/.*' -type d | fzf --height 50% --reverse --preview 'exa -lah {}')"
+    cd "$(find ~ -not -path '*/.*' -type d | fzf --height 50% --reverse --preview 'exa -lah {}')" || exit
 }
 
 # Fuzzy search current dir and open text file
 fop() {
     filename=$(find . -type f -not -path '*/.*' | fzf --reverse --preview '~/bin/baat {} --color always')
-    [[ -f $filename ]] && vim $filename
+    [[ -f $filename ]] && vim "$filename"
 }
 
 #########
@@ -219,5 +219,5 @@ function juliacleanup {
 
 # Queue job that executes julia script
 sbjl() {
-    sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$HOME/.juliaup/bin/julia $@"
+    sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$HOME/.juliaup/bin/julia $*"
 }
