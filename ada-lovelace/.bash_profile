@@ -5,17 +5,17 @@
 ##########
 
 # ANSI color code variables
-local RED="\e[0;91m"
-local BLUE="\e[0;94m"
-local EXPAND_BG="\E[K"
-local BLUE_BG="\e[0;104m${EXPAND_BG}"
-local RED_BG="\e[0;101m${EXPAND_BG}"
-local GREEN_BG="\e[0;102m${EXPAND_BG}"
-local GREEN="\e[0;92m"
-local WHITE="\e[0;97m"
-local BOLD="\e[1m"
-local ULINE="\e[4m"
-local RESET="\e[0m"
+RED="\e[0;91m"
+BLUE="\e[0;94m"
+EXPAND_BG="\E[K"
+BLUE_BG="\e[0;104m${EXPAND_BG}"
+RED_BG="\e[0;101m${EXPAND_BG}"
+GREEN_BG="\e[0;102m${EXPAND_BG}"
+GREEN="\e[0;92m"
+WHITE="\e[0;97m"
+BOLD="\e[1m"
+ULINE="\e[4m"
+RESET="\e[0m"
 
 ########
 # PATH #
@@ -35,6 +35,9 @@ pathappend /bin /usr/bin /usr/local/bin /usr/local/sbin
 
 # Custom scripts
 pathappend ~/.local/bin
+
+# Custom binaries
+pathappend ~/bin
 
 # Julia
 pathappend ~/.juliaup/bin
