@@ -371,7 +371,7 @@ function condaupdate {
     local ENVS=`ls $CONDA_ENVS_DIR`
     for ENV in ${ENVS[@]}
     do
-        printf "${BLUE}Updating $ENV env...${RESET}\n\n"
+        printf "\n${BLUE}Updating $ENV env...${RESET}\n\n"
         conda activate $ENV
         conda upgrade --all --yes
         conda deactivate
@@ -453,7 +453,7 @@ function update {
     julia-update
     printf "\n${GREEN}Updating Miniconda...${RESET}\n\n"
     condaupdate
-    printf "${GREEN}Updating DOOM Emacs...${RESET}\n\n"
+    printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
     doom --yes upgrade
     printf "\n${GREEN}Custom check...${RESET}\n"
     customcheck
