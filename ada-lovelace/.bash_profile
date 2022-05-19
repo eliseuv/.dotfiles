@@ -210,7 +210,7 @@ function juliaupdate {
 alias julia-cleanup='juliaup gc; julia -e "using Pkg; Pkg.gc()"'
 
 # Complete Julia cleanup
-function juliaupdate {
+function juliacleanup {
     printf "\n${BLUE}Cleaning juliaup...${RESET}\n\n"
     juliaup gc
     printf "\n${BLUE}Cleaning Julia environments...${RESET}\n\n"
