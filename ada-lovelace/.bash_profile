@@ -194,10 +194,10 @@ export JULIA_NUM_THREADS=auto
 export JULIA_EDITOR=vim
 
 # Update Julia packages
-alias julia-update='julia -e "using Pkg; Pkg.update()"'
+alias julia-update='juliaup self updade; juliaup update; julia -e "using Pkg; Pkg.update()"'
 
 # Julia package manager garbage collection
-alias julia-cleanup='julia -e "using Pkg; Pkg.gc()"'
+alias julia-cleanup='juliaup gc; julia -e "using Pkg; Pkg.gc()"'
 
 # Queue job that executes julia script
 sbjl() {
