@@ -110,7 +110,7 @@
 ;; Recognize uppercase letters as word boundaries (useful for CamelCase naming)
 ;(global-subword-mode t)
 ;; Ignore hyphens and underscores when traversing words (useful for snake_case and lisp-case naming)
-(global-superword-mode t)
+;(global-superword-mode t)
 
 ;; org-roam
 (use-package! org-roam

@@ -125,6 +125,9 @@ config.set('content.javascript.enabled', True, 'devtools://*')
 config.set('content.javascript.enabled', True, 'chrome://*/*')
 config.set('content.javascript.enabled', True, 'qute://*/*')
 
+# Cookies
+c.content.cookies.accept = "no-3rdparty"
+
 # Default editor
 c.editor.command = ["alacritty",
                     "-e",
