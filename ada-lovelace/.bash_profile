@@ -60,7 +60,7 @@ pathappend ~/.juliaup/bin
 
 # Terminal emulator
 #export TERM='rxvt-unicode-256color'
-#export TERM='alacritty'
+export TERM='linux'
 #export TERMINAL='alacritty'
 
 # Text editors
@@ -81,6 +81,8 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # n^3 file manager options
 export NNN_OPTS="dEox"
+
+export DATA="/home_tmp/eliseuvf"
 
 ###########
 # ALIASES #
@@ -114,6 +116,10 @@ alias rm='rm -i'
 # Use rsync for copying files
 alias rs='rsync -Pazvh'
 alias rsrm='rsync -Pazvh --remove-source-files'
+
+mvdata() {
+    rsync -Pazvh --remove-source-files "$@" "$DATA"
+}
 
 # Reset fail lock after failed authentication attempts
 alias failreset='faillock --user $USER --reset'
@@ -220,4 +226,10 @@ function juliacleanup {
 # Queue job that executes julia script
 sbjl() {
     sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$HOME/.juliaup/bin/julia $@"
+}
+
+sbjlargs() {
+    for arg in $(~/.juliaup/bin/julia --startup-file=no "$2"); do
+        sbjl "$1 $arg"
+    done
 }
