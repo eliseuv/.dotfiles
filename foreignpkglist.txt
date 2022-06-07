@@ -3,6 +3,7 @@ cmake-format
 freezer-bin
 julia-bin
 lightdm-settings
+logseq-desktop-bin
 miniconda3
 nerd-fonts-fira-code
 openrazer-meta

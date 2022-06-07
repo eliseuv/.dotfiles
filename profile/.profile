@@ -184,6 +184,11 @@ alias wttr='curl wttr.in/?0Fq'
 # SSH agent restart (temporary)
 alias ssh-restart='killall ssh-agent; eval `ssh-agent`; ssh-add'
 
+# Disk destroyer
+# I always forget the correct flags for writing the image to USB drive
+# Usage: disk-destroyer if=/path/to/image.iso of=/dev/sd<?>
+alias disk-destroyer='sudo dd bs=4M conv=fsync oflag=direct status=progress'
+
 #############
 # FUNCTIONS #
 #############

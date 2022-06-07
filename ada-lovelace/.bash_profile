@@ -178,15 +178,29 @@ alias wttsqueue='watch -n 1.0 '"'"'squeue | tail -n115'"'"
 alias wssqueue='watch -n 1.0 sudo squeue'
 alias pf="ls | sort | fzf --preview='bat {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
 
-# Fuzzy search and change dir
-fcd() {
-    cd "$(find ~ -not -path '*/.*' -type d | fzf --height 50% --reverse --preview 'exa -lah {}')"
+# Fuzzy search dir navigation
+function fcd {
+    cd "$(find ~ -not -path '*/.*' -type d | fzf --height 50% --reverse --preview 'exa -lah {}')" || return
 }
 
-# Fuzzy search current dir and open text file
-fop() {
-    filename=$(find . -type f -not -path '*/.*' | fzf --reverse --preview '~/bin/baat {} --color always')
-    [[ -f $filename ]] && vim $filename
+# Fuzzy search file in dir and open
+function fop {
+    local filename=$(find . -type f | fzf --reverse --preview 'bat {} --color always')
+    if [ -f "$filename" ]; then
+        local filetype=$(xdg-mime query filetype "$filename")
+        echo "Opening file " "$filename" " of type " "$filetype" " with " "$(xdg-mime query default $filetype)"
+        xdg-open "$filename" &
+    fi
+}
+
+# using ripgrep combined with preview
+# find-in-file - usage: fif <searchTerm>
+function fif {
+    if [ ! "$#" -gt 0 ]; then
+        echo "Need a string to search for!"
+        return 1
+    fi
+    rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
 }
 
 #########
@@ -224,8 +238,8 @@ function juliacleanup {
 }
 
 # Queue job that executes julia script
-sbjl() {
-    sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$HOME/.juliaup/bin/julia $@"
+function sbjl {
+    sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$HOME/.juliaup/bin/julia $*"
 }
 
 sbjlargs() {
