@@ -235,6 +235,11 @@ function tab {
     done
 }
 
+# Cheat sheet
+function cheat {
+    curl cheat.sh/"$@" | bat
+}
+
 #######
 # fzf #
 #######
