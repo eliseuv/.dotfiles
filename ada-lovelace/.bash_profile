@@ -134,14 +134,11 @@ alias b='bat'
 alias v='vim'
 #alias lv='lvim'
 
-# Helix
-#alias hx='helix'
-
-# Newsboat
-#alias nb='newsboat'
-
-# Pulse Mixer
-#alias pm='pulsemixer'
+# tmux
+alias t='tmux attach || tmux new-session'
+alias ta='tmux attach -t'
+alias tn='tmux new-session'
+alias tl='tmux list-sessions'
 
 # Watch with 1s refresh
 alias w='watch --color -n 1.0 '
