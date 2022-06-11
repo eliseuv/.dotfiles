@@ -144,7 +144,7 @@ alias v='vim'
 #alias pm='pulsemixer'
 
 # Watch with 1s refresh
-alias w='watch -n 1.0'
+alias w='watch --color -n 1.0 '
 
 # Resource monitors
 alias ht='htop -d5 -sPERCENT_CPU'
@@ -243,7 +243,9 @@ function sbjl {
 }
 
 sbjlargs() {
+    printf "\nSubmitting script $1\n\n"
     for arg in $(~/.juliaup/bin/julia --startup-file=no "$2"); do
+        printf "Args = $arg\n"
         sbjl "$1 $arg"
     done
 }
