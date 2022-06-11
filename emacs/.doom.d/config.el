@@ -128,7 +128,7 @@
       :unnarrowed t)
      ("b" "bibliography" plain
       (file "~/documents/org-roam/templates/bibliography.org")
-      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+TITLE: ${title}\n#+DATE: %U\n#+FILETAGS: biblio \n\n")
+      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+TITLE: ${title}\n#+DATE: %U\n#+FILETAGS: biblio\n\n")
       :unnarrowed t)))
   :bind (("C-c n g" . org-roam-ui-mode))
   :config
