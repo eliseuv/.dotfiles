@@ -42,9 +42,9 @@
 ;; change `org-directory'. It must be set before org loads!
 (after! org
   ;;(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-  (setq org-directory (file-truename "~/documents/org/")
-        org-agenda-files (file-truename "~/documents/org/agenda.org")
-        org-capture-journal-file (file-truename "~/documents/org/journal.org")
+  (setq org-directory (file-truename "~/Documents/org/")
+        org-agenda-files (file-truename "~/Documents/org/agenda.org")
+        org-capture-journal-file (file-truename "~/Documents/org/journal.org")
         org-hide-emphasis-markers t)
   ;; Default folding
   (setq org-startup-folded 'content)
@@ -119,15 +119,15 @@
   :init
   (setq org-roam-v2-ack t)
   :custom
-  (org-roam-directory (file-truename "~/documents/org-roam"))
+  (org-roam-directory (file-truename "~/Documents/org-roam"))
   (org-roam-complete-everywhere t)
   (org-roam-capture-templates
    '(("d" "default" plain
-      (file "~/documents/org-roam/templates/default.org")
+      (file "~/Documents/org-roam/templates/default.org")
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+TITLE: ${title}\n#+DATE: %U\n#+FILETAGS: \n\n")
       :unnarrowed t)
      ("b" "bibliography" plain
-      (file "~/documents/org-roam/templates/bibliography.org")
+      (file "~/Documents/org-roam/templates/bibliography.org")
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+TITLE: ${title}\n#+DATE: %U\n#+FILETAGS: biblio\n\n")
       :unnarrowed t)))
   :bind (("C-c n g" . org-roam-ui-mode))
