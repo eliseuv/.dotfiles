@@ -1,17 +1,80 @@
+#+title: DOOM Emacs Configuration
+#+author: evf (eliseuv816@gmail.com)
+#+property: header-args:emacs-lisp :tangle yes :cache yes :results silent :padline no
+
+* Lexical binding
+
+[[https://nullprogram.com/blog/2016/12/22/][More info]].
+
+#+begin_src emacs-lisp :comments no
 ;;; config.el -*- lexical-binding: t; -*-
+#+end_src
+
+
+* User info
+
+#+begin_src emacs-lisp
 (setq user-full-name "evf"
       user-mail-address "eliseuv816@gmail.com")
+#+end_src
+
+
+* Appearence
+
+
+** Fonts
+
+Select fonts:
+
+#+begin_src emacs-lisp
 (setq doom-font (font-spec :family "Fira Code" :size 12)
       doom-variable-pitch-font (font-spec :family "Alegreya" :size 13)
       doom-big-font (font-spec :family "Fira Code" :size 24))
+#+end_src
+
+Change certain keywords to symbols, such as lambda
+
+#+begin_src emacs-lisp
 (setq global-prettify-symbols-mode t)
+#+end_src
+
+
+** Theme
+
+My favourite themes:
+
+#+begin_src emacs-lisp
 ;;(setq doom-theme 'doom-vibrant)
 ;;(setq doom-theme 'doom-dracula)
 ;;(setq doom-theme 'doom-outrun-electric)
 (setq doom-theme 'doom-tokyo-night)
+#+end_src
+
+Allow bold and italic text:
+
+#+begin_src emacs-lisp
 (setq doom-themes-enable-bold t
       doom-themes-enable-italic t)
+#+end_src
+
+
+* Generalities
+
+
+** Line numbers
+
+If set to ~t~, line numbers are enabled.
+If set to ~nil~, line numbers are disabled.
+For relative line numbers, set this to ~relative~.
+
+#+begin_src emacs-lisp
 (setq display-line-numbers-type t)
+#+end_src
+
+
+** Better defaults
+
+#+begin_src emacs-lisp
 (setq-default
  delete-by-moving-to-trash t                      ; Delete files to trash
  window-combination-resize t                      ; take new window space from all other windows (not just current)
@@ -26,15 +89,53 @@
       scroll-margin 2)                            ; It's nice to maintain a little margin
 
 (global-subword-mode t)                           ; Recognize uppercase letters as word boundaries (useful for CamelCase naming)
+#+end_src
+
+
+** Windows
+
+Enable vertical and horizontal splitting:
+
+#+begin_src emacs-lisp
 (setq evil-vsplit-window-right t
       evil-split-window-below t)
+#+end_src
+
+Ask which buffer (with preview) to open when window is split:
+
+#+begin_src emacs-lisp
 (defadvice! prompt-for-buffer (&rest _)
   :after '(evil-window-split evil-window-vsplit)
   (consult-buffer))
+#+end_src
+
+
+** VTerm repositioning
+
+#+begin_src emacs-lisp
 (after! vterm
   (set-popup-rule! "*doom:vterm-popup" :size 0.3 :vslot -4 :select t :quit nil :ttl 0 :side 'right))
+#+end_src
+
+
+** Set some directories
+
+Projects:
+
+#+begin_src emacs-lisp
 (setq projectile-project-search-path '("~/programs"))
+#+end_src
+
+Info files:
+
+#+begin_src emacs-lisp
 (add-to-list 'Info-directory-list "~/.doom.d/info")
+#+end_src
+
+
+* LSP and Flycheck
+
+#+begin_src emacs-lisp
 (require 'lsp-mode)
 (setq lsp-eldoc-enable-hover 't
       lsp-eldoc-render-all 't
@@ -49,18 +150,45 @@
 ;(setq lsp-ui-sideline-mode 't
 ;      lsp-ui-imenu-buffer-mode 't
 ;      lsp-ui-imenu-enable 't)
+#+end_src
+
+#+begin_src emacs-lisp
 (setq flycheck-check-syntax-automatically '(save idle-change new-line mode-enabled)
       flycheck-idle-change-delay 0.2)
+#+end_src
+
+
+* Org-mode
+
+Use org-mode as default major mode in new buffers:
+
+#+begin_src emacs-lisp
 ;; (setq-default major-mode 'org-mode)
+#+end_src
+
+Location of files:
+
+#+begin_src emacs-lisp
 (after! org
   (setq org-directory (file-truename "~/Documents/org/")
         org-agenda-files (file-truename "~/Documents/org/agenda.org")
         org-capture-journal-file (file-truename "~/Documents/org/journal.org")
         org-hide-emphasis-markers t))
+#+end_src
+
+#+begin_src emacs-lisp
 (after! org
   ;;(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
   ;; Default folding
   (setq org-startup-folded 'content))
+#+end_src
+
+
+** LaTeX
+
+Default $\LaTeX$ packages.
+
+#+begin_src emacs-lisp
 (after! org
   (setq org-latex-packages-alist '(("" "amsmath" t)
                                    ("" "amsthm" t)
@@ -68,19 +196,40 @@
                                    ("" "braket" t)
                                    ("dvipsnames" "xcolor" t)
                                    ("" "cancel" t))))
+#+end_src
+
+Set default PDF reader:
+
+#+begin_src emacs-lisp
 (setq +latex-viewers '(zathura))
 (with-eval-after-load 'tex
   (add-to-list 'TeX-view-program-selection
                '(output-pdf "Zathura"))
   (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer))
+#+end_src
+
+Use $\LaTeX$ preview pane mode:
+
+#+begin_src emacs-lisp
 (require 'latex-preview-pane)
 (latex-preview-pane-enable)
 ;(map!
 ; :map LaTeX-mode-map
 ; :localleader
 ; :desc "View" "v" #'TeX-view)
+#+end_src
+
+Use ~TAB~ for ~cdlatex~:
+
+#+begin_src emacs-lisp
 (map! :map cdlatex-mode-map
       :i "TAB" #'cdlatex-tab)
+#+end_src
+
+
+** Org Roam
+
+#+begin_src emacs-lisp
 (use-package! org-roam
   :after org
   :ensure t
@@ -102,6 +251,12 @@
   :config
   (org-roam-setup)
   (org-id-update-id-locations))
+#+end_src
+
+
+*** Org Roam UI
+
+#+begin_src emacs-lisp
 (use-package! websocket
   :after org-roam)
 
@@ -113,15 +268,46 @@
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t
         org-roam-ui-browser-function #'browse-url-xdg-open))
+#+end_src
+
+
+* Python
+
+#+begin_src emacs-lisp
 (add-hook 'python-mode-hook 'lsp)
+#+end_src
+
+
+** Anaconda
+
+#+begin_src emacs-lisp
 (require 'conda)
 (custom-set-variables
  '(conda-anaconda-home "/opt/miniconda3"))
 (setq conda-anaconda-home "/opt/miniconda3")
 (setq conda-env-home-directory (file-truename "~/.conda/"))
 (add-hook 'conda-postactivate-hook 'python-mode)
+#+end_src
+
+
+* Julia
+
+Do not use built-in package:
+
+#+begin_src emacs-lisp
 (setq lsp-julia-package-dir nil)
+#+end_src
+
+Select Julia environment:
+
+#+begin_src emacs-lisp
 (setq lsp-julia-default-environment "~/.julia/environments/v1.7")
+#+end_src
+
+
+** Julia REPL
+
+#+begin_src emacs-lisp
 (after! julia-repl
   ;; Use vterm
   (julia-repl-set-terminal-backend 'vterm)
@@ -129,3 +315,4 @@
   (set-popup-rule! "*julia:\*" :side 'right :size 0.3 :ttl 0 :quit nil :select nil)
   ;; Set environment variables
   (setenv "JULIA_NUM_THREADS" "15"))
+#+end_src
