@@ -1,8 +1,15 @@
 #+title: DOOM Emacs Configuration
-#+author: evf (eliseuv816@gmail.com)
-#+property: header-args:emacs-lisp :tangle yes :cache yes :results silent :padline no
+#+author: evf
+#+property: header-args:emacs-lisp :tangle yes :comments link
+#+property: header-args :tangle no :results silent :eval no-export
 
-* Lexical binding
+This is my first attempt on an Emacs literate configuration, mostly based on [[https://tecosaur.github.io/emacs-config/config.html][Tecosaur's config]].
+
+
+* Basic configuration
+
+
+** Lexical binding
 
 [[https://nullprogram.com/blog/2016/12/22/][More info]].
 
@@ -11,64 +18,11 @@
 #+end_src
 
 
-* User info
+** User info
 
 #+begin_src emacs-lisp
 (setq user-full-name "evf"
       user-mail-address "eliseuv816@gmail.com")
-#+end_src
-
-
-* Appearence
-
-
-** Fonts
-
-Select fonts:
-
-#+begin_src emacs-lisp
-(setq doom-font (font-spec :family "Fira Code" :size 12)
-      doom-variable-pitch-font (font-spec :family "Alegreya" :size 13)
-      doom-big-font (font-spec :family "Fira Code" :size 24))
-#+end_src
-
-Change certain keywords to symbols, such as lambda
-
-#+begin_src emacs-lisp
-(setq global-prettify-symbols-mode t)
-#+end_src
-
-
-** Theme
-
-My favourite themes:
-
-#+begin_src emacs-lisp
-;;(setq doom-theme 'doom-vibrant)
-;;(setq doom-theme 'doom-dracula)
-;;(setq doom-theme 'doom-outrun-electric)
-(setq doom-theme 'doom-tokyo-night)
-#+end_src
-
-Allow bold and italic text:
-
-#+begin_src emacs-lisp
-(setq doom-themes-enable-bold t
-      doom-themes-enable-italic t)
-#+end_src
-
-
-* Generalities
-
-
-** Line numbers
-
-If set to ~t~, line numbers are enabled.
-If set to ~nil~, line numbers are disabled.
-For relative line numbers, set this to ~relative~.
-
-#+begin_src emacs-lisp
-(setq display-line-numbers-type t)
 #+end_src
 
 
@@ -92,7 +46,7 @@ For relative line numbers, set this to ~relative~.
 #+end_src
 
 
-** Windows
+*** Windows
 
 Enable vertical and horizontal splitting:
 
@@ -107,6 +61,425 @@ Ask which buffer (with preview) to open when window is split:
 (defadvice! prompt-for-buffer (&rest _)
   :after '(evil-window-split evil-window-vsplit)
   (consult-buffer))
+#+end_src
+
+
+*** Default buffer
+
+Use =org-mode= as default major mode in new buffers:
+
+#+begin_src emacs-lisp
+(setq-default major-mode 'org-mode)
+#+end_src
+
+
+* DOOM configuration
+
+
+** Modules
+:PROPERTIES:
+:header-args:emacs-lisp: :tangle no
+:END:
+
+#+name: init.el
+#+begin_src emacs-lisp :tangle "init.el" :noweb no-export :comments no
+;;; init.el -*- lexical-binding: t; -*-
+
+(doom! :completion
+       <<doom-completion>>
+
+       :ui
+       <<doom-ui>>
+
+       :editor
+       <<doom-editor>>
+
+       :emacs
+       <<doom-emacs>>
+
+       :term
+       <<doom-term>>
+
+       :checkers
+       <<doom-checkers>>
+
+       :tools
+       <<doom-tools>>
+
+       :os
+       <<doom-os>>
+
+       :lang
+       <<doom-lang>>
+
+       :email
+       <<doom-email>>
+
+       :app
+       <<doom-app>>
+
+       :config
+       <<doom-config>>
+       )
+#+end_src
+
+*** DOOM Config
+
+#+name: doom-config
+#+begin_src emacs-lisp
+literate
+(default +bindings +smartparens)
+#+end_src
+
+*** DOOM Completion
+
+#+name: doom-completion
+#+begin_src emacs-lisp
+(company                 ; the ultimate code completion backend
+ +childframe)            ; ... when your children are better than you
+;;helm                   ; the *other* search engine for love and life
+;;ido                    ; the other *other* search engine...
+;;(ivy                   ; a search engine for love and life
+;; +icons                ; ... icons are nice
+;; +prescient)           ; ... I know what I want(ed)
+(vertico +icons)         ; the search engine of the future
+#+end_src
+
+*** DOOM UI
+
+#+name: doom-ui
+#+begin_src emacs-lisp
+;;deft                   ; notational velocity for Emacs
+doom              ; what makes DOOM look the way it does
+doom-dashboard    ; a nifty splash screen for Emacs
+doom-quit         ; DOOM quit-message prompts when you quit Emacs
+(emoji +unicode)  ; 🙂
+hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
+hydra
+indent-guides     ; highlighted indent columns
+(ligatures +fira +extra)         ; ligatures and symbols to make your code pretty again
+minimap           ; show a map of the code on the side
+modeline          ; snazzy, Atom-inspired modeline, plus API
+nav-flash         ; blink cursor line after big motions
+;;neotree           ; a project drawer, like NERDTree for vim
+ophints           ; highlight the region an operation acts on
+(popup +all +defaults)   ; tame sudden yet inevitable temporary windows
+;;tabs              ; a tab bar for Emacs
+(treemacs +lsp)          ; a project drawer, like neotree but cooler
+;;unicode           ; extended unicode support for various languages
+vc-gutter         ; vcs diff in the fringe
+vi-tilde-fringe   ; fringe tildes to mark beyond EOB
+(window-select +numbers)     ; visually switch windows
+workspaces        ; tab emulation, persistence & separate workspaces
+;;zen               ; distraction-free coding or writing
+#+end_src
+
+*** DOOM Editor
+
+#+name: doom-editor
+#+begin_src emacs-lisp
+(evil +everywhere); come to the dark side, we have cookies
+file-templates    ; auto-snippets for empty files
+fold              ; (nigh) universal code folding
+(format +onsave)  ; automated prettiness
+;;god               ; run Emacs commands without modifier keys
+;;lispy             ; vim for lisp, for people who don't like vim
+multiple-cursors  ; editing in many places at once
+;;objed             ; text object editing for the innocent
+;;parinfer          ; turn lisp into python, sort of
+rotate-text       ; cycle region at point between text candidates
+snippets          ; my elves. They type so I don't have to
+;;word-wrap         ; soft wrapping with language-aware indent
+#+end_src
+
+*** DOOM Emacs
+
+#+name: doom-emacs
+#+begin_src emacs-lisp
+(dired +icons)            ; making dired pretty [functional]
+electric          ; smarter, keyword-based electric-indent
+(ibuffer +icons)         ; interactive buffer management
+(undo +tree)              ; persistent, smarter undo for your inevitable mistakes
+vc                ; version-control and Emacs, sitting in a tree
+#+end_src
+
+*** DOOM Terminal
+
+#+name: doom-term
+#+begin_src emacs-lisp
+;;eshell            ; the elisp shell that works everywhere
+;;shell             ; simple shell REPL for Emacs
+;;term              ; basic terminal emulator for Emacs
+vterm             ; the best terminal emulation in Emacs
+#+end_src
+
+*** DOOM Checkers
+
+#+name: doom-checkers
+#+begin_src emacs-lisp
+syntax              ; tasing you for every semicolon you forget
+;;(spell +flyspell) ; tasing you for misspelling mispelling
+;;grammar           ; tasing grammar mistake every you make
+#+end_src
+
+*** DOOM Tools
+
+#+name: doom-tools
+#+begin_src emacs-lisp
+;;ansible
+biblio              ; Writes a PhD for you (citation needed)
+;;debugger          ; FIXME stepping through code, to help you add bugs
+;;direnv
+;;docker
+;;editorconfig      ; let someone else argue about tabs vs spaces
+;;ein               ; tame Jupyter notebooks with emacs
+(eval +overlay)     ; run code, run (also, repls)
+;;gist              ; interacting with github gists
+(lookup             ; navigate your code and its documentation
+ +dictionary)       ; dictionary/thesaurus is nice
+(lsp +peek)         ; M-x vscode
+magit               ; a git porcelain for Emacs
+make                ; run make tasks from Emacs
+(pass +auth)        ; password manager for nerds
+pdf                 ; pdf enhancements
+;;prodigy           ; FIXME managing external services & code builders
+rgb                 ; creating color strings
+;;taskrunner        ; taskrunner for all your projects
+;;terraform         ; infrastructure as code
+;;tmux              ; an API for interacting with tmux
+upload              ; map local to remote projects via ssh/ftp
+#+end_src
+
+*** DOOM OS
+
+#+name: doom-os
+#+begin_src emacs-lisp
+(:if IS-MAC macos)  ; improve compatibility with macOS
+tty                 ; improve the terminal Emacs experience
+#+end_src
+
+*** DOOM Languages
+
+#+name: doom-lang
+#+begin_src emacs-lisp
+;;agda              ; types of types of types of types...
+;;beancount         ; mind the GAAP
+(cc +lsp)           ; C > C++ == 1
+;;clojure           ; java with a lisp
+;;common-lisp       ; if you've seen one lisp, you've seen them all
+;;coq               ; proofs-as-programs
+;;crystal           ; ruby at the speed of c
+;;csharp            ; unity, .NET, and mono shenanigans
+data              ; config/data formats
+;;(dart +flutter)   ; paint ui and not much else
+;;dhall
+;;elixir            ; erlang done right
+;;elm               ; care for a cup of TEA?
+emacs-lisp        ; drown in parentheses
+;;erlang            ; an elegant language for a more civilized age
+;;ess               ; emacs speaks statistics
+;;factor
+;;faust             ; dsp, but you get to keep your soul
+;;fortran           ; in FORTRAN, GOD is REAL (unless declared INTEGER)
+;;fsharp            ; ML stands for Microsoft's Language
+;;fstar             ; (dependent) types and (monadic) effects and Z3
+;;gdscript          ; the language you waited for
+;;(go +lsp)         ; the hipster dialect
+;;(graphql +lsp)    ; Give queries a REST
+(haskell +lsp)  ; a language that's lazier than I am
+;;hy                ; readability of scheme w/ speed of python
+;;idris             ; a language you can depend on
+(json +lsp)              ; At least it ain't XML
+;;(java +lsp)            ; the poster child for carpal tunnel syndrome
+;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
+(julia +lsp)             ; a better, faster MATLAB
+;;kotlin            ; a better, slicker Java(Script)
+(latex +latexmk +cdlatex +lsp +fold)             ; writing papers in Emacs has never been so fun
+;;lean              ; for folks with too much to prove
+ledger            ; be audit you can be
+;;lua               ; one-based indices? one-based indices
+markdown          ; writing docs for people to ignore
+;;nim               ; python + lisp at the speed of c
+nix               ; I hereby declare "nix geht mehr!"
+;;ocaml             ; an objective camel
+(org                         ; organize your plain life in plain text
+ +dragndrop                  ; drag & drop files/images into org buffers
+ ;;+hugo                     ; use Emacs for hugo blogging
+ +noter                      ; enhanced PDF notetaking
+ +jupyter                    ; ipython/jupyter support for babel
+ +pandoc                     ; export-with-pandoc support
+ +gnuplot                    ; who doesn't like pretty pictures
+ ;;+pomodoro                 ; be fruitful with the tomato technique
+ +present                    ; using org-mode for presentations
+ +pretty
+ +roam2)                     ; wander around notes
+;;php               ; perl's insecure younger brother
+;;plantuml          ; diagrams for confusing people more
+;;purescript        ; javascript, but functional
+(python +lsp +pyright +conda)            ; beautiful is better than ugly
+;;qt                ; the 'cutest' gui framework ever
+;;(racket +lsp +xp)            ; a DSL for DSLs
+;;raku              ; the artist formerly known as perl6
+;;rest              ; Emacs as a REST client
+;;rst               ; ReST in peace
+;;(ruby +rails)     ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+(rust +lsp)              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+;;scala             ; java, but good
+;;(scheme +guile)   ; a fully conniving family of lisps
+(sh +lsp)                ; she sells {ba,z,fi}sh shells on the C xor
+;;sml
+;;solidity          ; do you need a blockchain? No.
+;;swift             ; who asked for emoji variables?
+;;terra             ; Earth and Moon in alignment for performance.
+;;web               ; the tubes
+(yaml +lsp)              ; JSON, but readable
+;;zig               ; C, but simpler
+#+end_src
+
+*** DOOM Email
+
+#+name: doom-email
+#+begin_src emacs-lisp
+;;(mu4e +org +gmail)
+;;notmuch
+;;(wanderlust +gmail)
+#+end_src
+
+*** DOOM Applications
+
+#+name: doom-app
+#+begin_src emacs-lisp
+;;calendar
+;;emms
+;;everywhere        ; *leave* Emacs!? You must be joking
+;;irc               ; how neckbeards socialize
+(rss +org)          ; emacs as an RSS reader
+;;twitter           ; twitter client https://twitter.com/vnought
+#+end_src
+
+
+
+** Visual settings
+
+
+*** Fonts
+
+Select fonts:
+
+#+begin_src emacs-lisp
+(setq doom-font (font-spec :family "Fira Code" :size 12)
+      doom-big-font (font-spec :family "Fira Code" :size 24)
+      doom-variable-pitch-font (font-spec :family "Alegreya" :size 13)
+      ;doom-unicode-font (font-spec :family "JuliaMono")
+      doom-serif (font-spec :family "IBM Plex Mono" :weight 'light))
+#+end_src
+
+Change certain keywords to symbols, such as lambda (\lambda):
+
+#+begin_src emacs-lisp
+(setq global-prettify-symbols-mode t)
+#+end_src
+
+Detect missing fonts:
+
+#+name: detect-missing-fonts
+#+begin_src emacs-lisp :tangle no
+(defvar required-fonts '("Fira Code" "Alegreya" "IBM Plex Mono"))
+
+(defvar available-fonts
+  (delete-dups (or (font-family-list)
+                   (split-string (shell-command-to-string "fc-list : family")
+                                 "[,\n]"))))
+
+(defvar missing-fonts
+  (delq nil (mapcar
+             (lambda (font)
+               (unless (delq nil (mapcar (lambda (f)
+                                           (string-match-p (format "^%s$" font) f))
+                                         available-fonts))
+                 font))
+             required-fonts)))
+
+(if missing-fonts
+    (pp-to-string
+     `(unless noninteractive
+        (add-hook! 'doom-init-ui-hook
+          (run-at-time nil nil
+                       (lambda ()
+                         (message "%s missing the following fonts: %s"
+                                  (propertize "Warning!" 'face '(bold warning))
+                                  (mapconcat (lambda (font)
+                                               (propertize font 'face 'font-lock-variable-name-face))
+                                             ',missing-fonts
+                                             ", "))
+                         (sleep-for 0.5))))))
+  ";; No missing fonts detected")
+#+end_src
+
+#+begin_src emacs-lisp :noweb no-export
+<<detect-missing-fonts()>>
+#+end_src
+
+
+*** Theme
+
+My favourite themes:
+
+#+begin_src emacs-lisp
+;;(setq doom-theme 'doom-vibrant)
+;;(setq doom-theme 'doom-dracula)
+;;(setq doom-theme 'doom-outrun-electric)
+(setq doom-theme 'doom-tokyo-night)
+#+end_src
+
+Allow bold and italic text:
+
+#+begin_src emacs-lisp
+(setq doom-themes-enable-bold t
+      doom-themes-enable-italic t)
+#+end_src
+
+
+*** Modeline
+
+Hide encoding if it is the default =LF UTF-8=:
+
+#+begin_src emacs-lisp
+(defun doom-modeline-conditional-buffer-encoding ()
+  "We expect the encoding to be LF UTF-8, so only show the modeline when this is not the case"
+  (setq-local doom-modeline-buffer-encoding
+              (unless (and (memq (plist-get (coding-system-plist buffer-file-coding-system) :category)
+                                 '(coding-category-undecided coding-category-utf-8))
+                           (not (memq (coding-system-eol-type buffer-file-coding-system) '(1 2))))
+                t)))
+
+(add-hook 'after-change-major-mode-hook #'doom-modeline-conditional-buffer-encoding)
+#+end_src
+
+
+*** Line numbers
+
+If set to ~t~, line numbers are enabled.
+If set to ~nil~, line numbers are disabled.
+For relative line numbers, set this to ~relative~.
+
+#+begin_src emacs-lisp
+(setq display-line-numbers-type t)
+#+end_src
+
+
+** Allow babel execution in CLI actions
+
+The file =$DOOMDIR/cli.el= is sourced every time a =DOOM Emacs= command line command is run.
+
+#+begin_src emacs-lisp :tangle cli.el :comments no
+;;; cli.el -*- lexical-binding: t; -*-
+(setq org-confirm-babel-evaluate nil)
+
+(defun doom-shut-up-a (orig-fn &rest args)
+  (quiet! (apply orig-fn args)))
+
+(advice-add 'org-babel-execute-src-block :around #'doom-shut-up-a)
 #+end_src
 
 
@@ -159,12 +532,6 @@ Info files:
 
 
 * Org-mode
-
-Use org-mode as default major mode in new buffers:
-
-#+begin_src emacs-lisp
-;; (setq-default major-mode 'org-mode)
-#+end_src
 
 Location of files:
 
