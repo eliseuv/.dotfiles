@@ -66,6 +66,7 @@ groff
 gvim
 gzip
 haskell-language-server
+hdf5
 helix
 hledger
 hlint
@@ -210,6 +211,7 @@ ttf-cascadia-code
 ttf-dejavu
 ttf-fira-code
 ttf-font-awesome
+ttf-ibm-plex
 ttf-nerd-fonts-symbols
 udiskie
 ueberzug
