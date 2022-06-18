@@ -26,7 +26,7 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- override a default keymapping
 -- lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
 
--- Options table
+-- -- Options table
 local options = {
     backup = false, -- creates a backup file
     clipboard = "unnamedplus", -- allows neovim to access the system clipboard
@@ -64,12 +64,13 @@ local options = {
     guifont = "fira code:h17", -- the font used in graphical neovim applications
 }
 
--- Apply options defined previously
+-- -- Apply options defined previously
 for k, v in pairs(options) do
     vim.opt[k] = v
 end
 
--- Some config directly in vimscript
+
+-- -- Some config directly in vimscript
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]] -- treat snake_case names as same word
 
@@ -110,7 +111,7 @@ lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 0
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
