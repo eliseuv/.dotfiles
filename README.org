@@ -35,4 +35,4 @@ paru -S --needed - < foreignpkglist.txt
 
 * Chemacs and DOOM Emacs
 
-In order to use [[https://github.com/plexus/chemacs2][Chemacs2]], clone [[https://github.com/hlissner/doom-emacs][DOOM Emacs]] repo to =~/.emacs.doom= dir.
+In order to use [[https://github.com/plexus/chemacs2][Chemacs2]], clone [[https://github.com/hlissner/doom-emacs][DOOM Emacs]] repo to =~/.config/doom= dir.
