@@ -4,22 +4,22 @@
 * How to use
 
 You can use [[https://www.gnu.org/software/stow/][GNU Stow]] to easily place the dotfiles in your home dir.
-For example, in order to install the i3wm dotfiles:
+For example, in order to install the =Emacs= config files:
 
 #+BEGIN_SRC bash
 cd ~
-git clone https://github.com/eliseuv/dotfiles.git
-cd dotfiles
-stow i3/
+git clone https://github.com/eliseuv/.dotfiles.git
+cd .dotfiles
+stow emacs/
 #+END_SRC
 
 Or if the repo was cloned to somewhere other than =$HOME=:
 
 #+BEGIN_SRC bash
-stow -d dotfiles/i3/ -t ~/
+stow -d .dotfiles/emacs/ -t ~/
 #+END_SRC
 
-* Packages
+* Arch Packages
 
 On an Arch based distro you can install all the packages needed by executing:
 
@@ -32,7 +32,3 @@ For installing foreign packages you can use your favorite AUR helper, for exampl
 #+BEGIN_SRC bash
 paru -S --needed - < foreignpkglist.txt
 #+END_SRC
-
-* Chemacs and DOOM Emacs
-
-In order to use [[https://github.com/plexus/chemacs2][Chemacs2]], clone [[https://github.com/hlissner/doom-emacs][DOOM Emacs]] repo to =~/.config/doom= dir.

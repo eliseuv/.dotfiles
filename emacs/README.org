@@ -1,18 +1,43 @@
 #+TITLE: Emacs config
 #+AUTHOR: evf
 
-* Using Chemacs2 to manage multiple Emacs profiles
+* Multiple Emacs profiles
 
-Clone [[https://github.com/plexus/chemacs2][Chemacs2]] to =~/.config/emacs= and [[https://github.com/hlissner/doom-emacs][DOOM Emacs]] to =~/.config/emacs-doom=.
+In order to use multiple Emacs profiles, clone [[https://github.com/plexus/chemacs2][Chemacs2]] to ~~/.config/emacs~ and [[https://github.com/hlissner/doom-emacs][DOOM Emacs]] to ~~/.config/emacs-doom~.
 
-+ Emacs main dir (Chemacs2): =~/.config/emacs=
-+ Chemacs2 config: =~/.config/chemacs=
-+ Personal config: =~/.config/emacs-personal=
-+ DOOM Emacs: =~/.config/emacs-doom=
-+ DOOM Emacs config: =~/.config/doom=
++ Emacs home (now =Chemacs2= home): ~~/.config/emacs~
++ =Chemacs2= config: ~~/.config/chemacs~
++ Personal config: ~~/.config/emacs-default~
++ =DOOM Emacs= home: ~~/.config/emacs-doom~
++ =DOOM Emacs= config: ~~/.config/doom~
+
+The profile configuration is defined in the file [[file:.config/chemacs/profiles.el][profiles.el]]:
+
+#+begin_src elisp :tangle .config/chemacs/profiles.el
+(
+ ; Personal Emacs config
+ ("default" . ((user-emacs-directory . "~/.config/emacs-default")))
+ ; DOOM Emacs
+ ("doom" . ((user-emacs-directory . "~/.config/emacs-doom")
+           (env . (("DOOMDIR" . "~/.config/doom"))))
+ )
+)
+#+end_src
+
 
 ** Start with a given profile
 
 #+BEGIN_SRC shell
 emacs --with-profile my-profile
 #+END_SRC
+
+
+** Default profile
+
+The default profile is the one loaded when no ~--with-profile~ flag is specified and it can be set by editing the file [[file:.config/chemacs/profile][profile]].
+
+For example to set =DOOM Emacs= as the default profile:
+
+#+begin_src shell :tangle .config/chemacs/profile
+doom
+#+end_src
