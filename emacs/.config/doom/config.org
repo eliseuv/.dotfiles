@@ -1181,10 +1181,11 @@ Use =elfeed= to read RSS feeds.
 
 
 *** Visual enhancements
+
 #+begin_src emacs-lisp
 (after! elfeed
 
-  (elfeed-org)
+  ;; (elfeed-org)
   (use-package! elfeed-link)
 
   (setq elfeed-search-filter "@1-week-ago +unread"
