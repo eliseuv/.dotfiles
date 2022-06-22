@@ -21,8 +21,6 @@ stow -d .dotfiles/emacs/ -t ~/
 
 * Arch Packages
 
-On my main host =evf@GLaDOS=
-
 On an Arch based distro you can install all the packages needed by executing:
 
 #+BEGIN_SRC bash
