@@ -8,23 +8,38 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-# if running bash
-if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
+########
+# PATH #
+########
+
+# Append to PATH if not already there
+function pathappend {
+  for ARG in "$@"
+  do
+    if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
+        PATH="${PATH:+"$PATH:"}$ARG"
     fi
-fi
+  done
+}
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
+# System binaries
+pathappend /bin /usr/bin /usr/local/bin /usr/local/sbin
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
+# Custom scripts
+pathappend ~/.local/bin
+
+# CUDA
+#pathappend /opt/cuda/bin /opt/cuda/nsight_compute /opt/cuda/nsight_systems/bin
+
+# Perl
+#pathappend /usr/bin/core_perl /usr/bin/site_perl /usr/bin/vendor_perl
+
+# Ruby
+#pathappend ~/.local/share/gem/ruby/3.0.0/bin
+
+# DOOM Emacs
+pathappend ~/.config/emacs/bin
+
 
 # >>> juliaup initialize >>>
 
@@ -46,6 +61,7 @@ alias c='clear'
 alias ..='cd ..'
 alias ~='cd ~'
 alias b='batcat'
+alias bt='bpytop'
 alias v='lvim'
 alias l='exa --color=always --all'
 alias ll='exa --color=always --all --long --header'
