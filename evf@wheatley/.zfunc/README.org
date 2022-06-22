@@ -1,0 +1,16 @@
+#+TITLE: zsh completions
+
+* Rustup
+
++ [[file:_rustup]]
+
+Generated using:
+#+BEGIN_SRC shell
+rustup completions zsh > ~/.zfunc/_rustup
+#+END_SRC
+
+* Anaconda
+
++ [[file:_conda]]
+
+Cloned from [[https://github.com/esc/conda-zsh-completion][conda-zsh-completion]] repo.
