@@ -127,6 +127,7 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 
 # Cookies
 c.content.cookies.accept = "no-3rdparty"
+c.content.cookies.store = True
 
 # Default editor
 c.editor.command = ["alacritty",
@@ -188,20 +189,24 @@ c.url.searchengines["color"] = "https://www.color-hex.com/color/{}"
 c.url.searchengines["sc"] = "https://www.shellcheck.net/wiki/SC{}"
 
 # Aliases
-c.aliases = {   'w': 'session-save',
-                'l': 'session-load',
+c.aliases = {   'w': 'session-save --current --only-active-window',
                 'q': 'close',
                 'qa': 'quit',
                 'wq': 'quit --save',
                 'wqa': 'quit --save',
                 }
 
+
 # Read this config.py file
 config.bind(',cS', 'config-source')
 config.bind(',cE', 'config-edit')
 
+# Save session
+config.bind('<Ctrl+w>', 'session-save --current --only-active-window')
+config.bind('<Ctrl+l>', 'set-cmd-text -s :session-load --clear')
+
 # Open in editor
-config.bind(',E', 'edit-url')
+config.bind(',e', 'edit-url')
 
 # Move tabs
 config.bind('<Ctrl+Shift+k>', 'tab-move -')
@@ -229,4 +234,4 @@ config.bind(',d', 'hint --rapid images download')
 config.set('hints.selectors', {
 	'reddit-expand': ['.expando-button'],
 }, pattern='*://*.reddit.com/*')
-config.bind(',e', 'hint reddit-expand')
+config.bind(',E', 'hint reddit-expand')

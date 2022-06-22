@@ -300,7 +300,7 @@ ledger            ; be audit you can be
 ;;lua               ; one-based indices? one-based indices
 markdown          ; writing docs for people to ignore
 ;;nim               ; python + lisp at the speed of c
-nix               ; I hereby declare "nix geht mehr!"
+;;nix               ; I hereby declare "nix geht mehr!"
 ;;ocaml             ; an objective camel
 (org                         ; organize your plain life in plain text
  +dragndrop                  ; drag & drop files/images into org buffers
@@ -645,7 +645,7 @@ Prevent projectile from adding directories simply by looking at documentation:
 Where to look for projects:
 
 #+begin_src emacs-lisp
-;(setq projectile-project-search-path '("~/programs"))
+(setq projectile-project-search-path '("~/programs"))
 #+end_src
 
 
@@ -696,28 +696,28 @@ Nested snippets are good, so let's enable that.
 *** LSP
 
 #+begin_src emacs-lisp
-(require 'lsp-mode)
-(setq lsp-eldoc-enable-hover 't
-      lsp-eldoc-render-all 't
-      lsp-ui-doc-mode 't
-      lsp-ui-doc-enable 't
-      lsp-ui-doc-delay 0.2
-      lsp-ui-doc-use-webkit 't
-      lsp-ui-doc-include-signature 't
-      lsp-ui-doc-header 't
-      lsp-ui-doc-include-signature 't
-      lsp-log-io 't)
-;(setq lsp-ui-sideline-mode 't
-;      lsp-ui-imenu-buffer-mode 't
-;      lsp-ui-imenu-enable 't)
+;; (require 'lsp-mode)
+;; (setq lsp-eldoc-enable-hover 't
+;;       lsp-eldoc-render-all 't
+;;       lsp-ui-doc-mode 't
+;;       lsp-ui-doc-enable 't
+;;       lsp-ui-doc-delay 0.2
+;;       lsp-ui-doc-use-webkit 't
+;;       lsp-ui-doc-include-signature 't
+;;       lsp-ui-doc-header 't
+;;       lsp-ui-doc-include-signature 't
+;;       lsp-log-io 't)
+;; ;(setq lsp-ui-sideline-mode 't
+;; ;      lsp-ui-imenu-buffer-mode 't
+;; ;      lsp-ui-imenu-enable 't)
 #+end_src
 
 
 *** Flycheck
 
 #+begin_src emacs-lisp
-(setq flycheck-check-syntax-automatically '(save idle-change new-line mode-enabled)
-      flycheck-idle-change-delay 0.2)
+;; (setq flycheck-check-syntax-automatically '(save idle-change new-line mode-enabled)
+;;       flycheck-idle-change-delay 0.2)
 #+end_src
 
 
@@ -1369,7 +1369,7 @@ Location of files:
 
 #+begin_src emacs-lisp
 (setq org-directory (file-truename "~/Documents/org/")
-      org-agenda-files (file-truename "~/Documents/org/agenda.org")
+      org-agenda-files '("~/Documents/org/")
       org-capture-journal-file (file-truename "~/Documents/org/journal.org")
       org-hide-emphasis-markers t)
 #+end_src
