@@ -695,29 +695,29 @@ Nested snippets are good, so let's enable that.
 
 *** LSP
 
-#+begin_src emacs-lisp
-;; (require 'lsp-mode)
-;; (setq lsp-eldoc-enable-hover 't
-;;       lsp-eldoc-render-all 't
-;;       lsp-ui-doc-mode 't
-;;       lsp-ui-doc-enable 't
-;;       lsp-ui-doc-delay 0.2
-;;       lsp-ui-doc-use-webkit 't
-;;       lsp-ui-doc-include-signature 't
-;;       lsp-ui-doc-header 't
-;;       lsp-ui-doc-include-signature 't
-;;       lsp-log-io 't)
-;; ;(setq lsp-ui-sideline-mode 't
-;; ;      lsp-ui-imenu-buffer-mode 't
-;; ;      lsp-ui-imenu-enable 't)
+#+begin_src emacs-lisp :tangle no
+(require 'lsp-mode)
+(setq lsp-eldoc-enable-hover 't
+      lsp-eldoc-render-all 't
+      lsp-ui-doc-mode 't
+      lsp-ui-doc-enable 't
+      lsp-ui-doc-delay 0.2
+      lsp-ui-doc-use-webkit 't
+      lsp-ui-doc-include-signature 't
+      lsp-ui-doc-header 't
+      lsp-ui-doc-include-signature 't
+      lsp-log-io 't)
+;(setq lsp-ui-sideline-mode 't
+;      lsp-ui-imenu-buffer-mode 't
+;      lsp-ui-imenu-enable 't)
 #+end_src
 
 
 *** Flycheck
 
-#+begin_src emacs-lisp
-;; (setq flycheck-check-syntax-automatically '(save idle-change new-line mode-enabled)
-;;       flycheck-idle-change-delay 0.2)
+#+begin_src emacs-lisp :tangle no
+(setq flycheck-check-syntax-automatically '(save idle-change new-line mode-enabled)
+      flycheck-idle-change-delay 0.2)
 #+end_src
 
 
@@ -1569,16 +1569,22 @@ Use ~TAB~ for ~cdlatex~:
 
 ** Julia
 
-Do not use built-in package:
+If using =lsp-julia=:
 
 #+begin_src emacs-lisp
+;; Do not use built-in package
 (setq lsp-julia-package-dir nil)
+;; Select Julia environment
+(setq lsp-julia-default-environment "~/.julia/environments/v1.7")
 #+end_src
 
-Select Julia environment:
+If using =eglot=:
 
-#+begin_src emacs-lisp
-(setq lsp-julia-default-environment "~/.julia/environments/v1.7")
+#+begin_src emacs-lisp :tangle no
+(setq eglot-connect-timeout 600)
+(setq eglot-jl-language-server-project "~/.julia/environments/v1.7")
+(after! eglot-jl
+  (setq eglot-jl-language-server-project eglot-jl-base))
 #+end_src
 
 
