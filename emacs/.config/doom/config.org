@@ -1457,6 +1457,27 @@ Default $\LaTeX$ packages.
                                  ("" "cancel" t)))
 #+end_src
 
+Default bibliography file:
+
+#+begin_src emacs-lisp
+(setq reftex-default-bibliography
+      '("~/Storage/Zotero/my_library.bib"))
+#+end_src
+
+
+*** Org-Cite
+
+Import CSL citation styles and bibliography from =Zotero=:
+
+#+begin_src emacs-lisp
+(setq org-cite-csl-styles-dir "~/Storage/Zotero/styles"
+      org-cite-global-bibliography '("~/Storage/Zotero/my_library.bib")
+      citar-bibliography '("~/Storage/Zotero/my_library.bib")
+      org-cite-csl--fallback-style-file "~/Storage/Zotero/styles/american-physics-society.csl"
+      )
+#+end_src
+
+
 
 *** Visuals
 
@@ -1559,8 +1580,6 @@ Use ~TAB~ for ~cdlatex~:
 
 #+begin_src emacs-lisp
 (require 'conda)
-(custom-set-variables
- '(conda-anaconda-home "/opt/miniconda3"))
 (setq conda-anaconda-home "/opt/miniconda3")
 (setq conda-env-home-directory (file-truename "~/.conda/"))
 (add-hook 'conda-postactivate-hook 'python-mode)

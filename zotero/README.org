@@ -3,6 +3,10 @@
 
 * Zotero
 
+** Better BibTex
+
+[[https://retorque.re/zotero-better-bibtex/][Better BibTex]]
+
 ** Theme
 
 [[https://github.com/ThomasFKJorna/zotero-night][Zotero Night]]

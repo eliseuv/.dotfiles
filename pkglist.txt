@@ -58,6 +58,7 @@ git
 github-cli
 glibc
 global
+gnu-apl
 gnuplot
 go
 graphviz

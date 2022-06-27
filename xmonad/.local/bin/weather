@@ -3,7 +3,7 @@
 # (Based https://github.com/GuidoFe/weather-polybar-plugin)
 
 # API key
-APIKEY="$(cat "$HOME"/documents/personal/api_keys/openweather.txt)"
+APIKEY="$(cat "$HOME"/Documents/personal/api_keys/openweather.txt)"
 
 # Location
 CITY_ID="3452925"
