@@ -241,8 +241,8 @@ function sbjl {
 
 sbjlargs() {
     printf "\nSubmitting script $1\n\n"
-    for arg in $(~/.juliaup/bin/julia --startup-file=no "$2"); do
-        printf "Args = $arg\n"
-        sbjl "$1 $arg"
-    done
+    while IFS= read -r line; do
+        printf "Args = $line\n"
+        sbjl "$1 $line"
+    done <<< $(~/.juliaup/bin/julia --startup-file=no "$2")
 }
