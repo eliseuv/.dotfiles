@@ -21,6 +21,7 @@ chromium
 clang
 cmake
 cmatrix
+code
 colordiff
 coreutils
 cryptsetup

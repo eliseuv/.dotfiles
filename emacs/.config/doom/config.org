@@ -695,7 +695,7 @@ Nested snippets are good, so let's enable that.
 
 *** LSP
 
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
 (require 'lsp-mode)
 (setq lsp-eldoc-enable-hover 't
       lsp-eldoc-render-all 't
@@ -706,16 +706,16 @@ Nested snippets are good, so let's enable that.
       lsp-ui-doc-include-signature 't
       lsp-ui-doc-header 't
       lsp-ui-doc-include-signature 't
-      lsp-log-io 't)
-;(setq lsp-ui-sideline-mode 't
-;      lsp-ui-imenu-buffer-mode 't
-;      lsp-ui-imenu-enable 't)
+      lsp-log-io 't
+      lsp-ui-sideline-mode 't
+      lsp-ui-imenu-buffer-mode 't
+      lsp-ui-imenu-enable 't)
 #+end_src
 
 
 *** Flycheck
 
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
 (setq flycheck-check-syntax-automatically '(save idle-change new-line mode-enabled)
       flycheck-idle-change-delay 0.2)
 #+end_src
@@ -1388,6 +1388,15 @@ Location of files:
 :END:
 
 
+**** GNU APL
+
+Use =GNU APL= mode:
+
+#+begin_src emacs-lisp
+(package! gnu-apl-mode)
+#+end_src
+
+
 **** Org Roam UI
 
 Use the latest version of =Org Roam=:
@@ -1572,7 +1581,7 @@ Use ~TAB~ for ~cdlatex~:
 ** Python
 
 #+begin_src emacs-lisp
-(add-hook 'python-mode-hook 'lsp)
+;; (add-hook 'python-mode-hook 'lsp)
 #+end_src
 
 
@@ -1580,9 +1589,13 @@ Use ~TAB~ for ~cdlatex~:
 
 #+begin_src emacs-lisp
 (require 'conda)
-(setq conda-anaconda-home "/opt/miniconda3")
-(setq conda-env-home-directory (file-truename "~/.conda/"))
-(add-hook 'conda-postactivate-hook 'python-mode)
+;; (custom-set-variables
+;;  '(conda-anaconda-home "/opt/miniconda3/"))
+(setq
+ conda-anaconda-home (expand-file-name "/opt/miniconda3/")
+ conda-env-home-directory (expand-file-name "~/.conda/")
+ conda-env-subdirectory "envs")
+;; (add-hook 'conda-postactivate-hook 'python-mode)
 #+end_src
 
 
