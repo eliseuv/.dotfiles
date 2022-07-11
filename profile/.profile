@@ -25,12 +25,11 @@ local RESET="\e[0m"
 
 # Append to PATH if not already there
 function pathappend {
-  for ARG in "$@"
-  do
-    if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
-        PATH="${PATH:+"$PATH:"}$ARG"
-    fi
-  done
+    for ARG in "$@"; do
+        if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
+            PATH="${PATH:+"$PATH:"}$ARG"
+        fi
+    done
 }
 
 # System binaries
@@ -79,6 +78,10 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # n^3 file manager options
 export NNN_OPTS="dEox"
 
+# Task Spooler
+# Mximum number of parallel jobs
+export TS_SLOTS=1
+
 #############
 # GPG + SSH #
 #############
@@ -86,7 +89,7 @@ export NNN_OPTS="dEox"
 # Let GPG manage SSH
 unset SSH_AGENT_PID
 if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 fi
 
 # Configure pinentry to use the correct tty
@@ -159,7 +162,7 @@ alias nb='newsboat'
 alias pm='pulsemixer'
 
 # Watch with 1s refresh
-alias watch='watch -tc -n 1'
+alias watch='watch -tc -n 1 '
 
 # Resource monitors
 alias ht='htop -d5 -sPERCENT_CPU'
@@ -201,20 +204,20 @@ function pcsv {
 # ex - archive extractor
 # usage: ex <file>
 function ex {
-    if [ -f $1 ] ; then
+    if [ -f $1 ]; then
         case $1 in
-        *.tar.bz2)   tar xjf $1   ;;
-        *.tar.gz)    tar xzf $1   ;;
-        *.bz2)       bunzip2 $1   ;;
-        *.rar)       unrar x $1     ;;
-        *.gz)        gunzip $1    ;;
-        *.tar)       tar xf $1    ;;
-        *.tbz2)      tar xjf $1   ;;
-        *.tgz)       tar xzf $1   ;;
-        *.zip)       unzip $1     ;;
-        *.Z)         uncompress $1;;
-        *.7z)        7z x $1      ;;
-        *)           echo "'$1' cannot be extracted via ex()" ;;
+            *.tar.bz2) tar xjf $1 ;;
+            *.tar.gz) tar xzf $1 ;;
+            *.bz2) bunzip2 $1 ;;
+            *.rar) unrar x $1 ;;
+            *.gz) gunzip $1 ;;
+            *.tar) tar xf $1 ;;
+            *.tbz2) tar xjf $1 ;;
+            *.tgz) tar xzf $1 ;;
+            *.zip) unzip $1 ;;
+            *.Z) uncompress $1 ;;
+            *.7z) 7z x $1 ;;
+            *) echo "'$1' cannot be extracted via ex()" ;;
         esac
     else
         echo "'$1' is not a valid file"
@@ -231,7 +234,7 @@ function ytmp3 {
 # COMMAND | tab
 function tab {
     while read LINE; do
-        sed -e 's/^/  /' <<< "$LINE"
+        sed -e 's/^/  /' <<<"$LINE"
     done
 }
 
@@ -268,7 +271,10 @@ function fop {
 # using ripgrep combined with preview
 # find-in-file - usage: fif <searchTerm>
 function fif {
-    if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+    if [ ! "$#" -gt 0 ]; then
+        echo "Need a string to search for!"
+        return 1
+    fi
     rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
 }
 
@@ -352,6 +358,24 @@ alias julia-update='julia -e "using Pkg; Pkg.update()"'
 # Julia package manager garbage collection
 alias julia-cleanup='julia -e "using Pkg; Pkg.gc()"'
 
+# Enqueue Julia scripts as jobs
+jlargs() {
+    printf "\nSubmitting script $1\n\n"
+    while IFS= read -r line; do
+        echo "ARGS = $line"
+        tsp julia $1 $line
+    done <<<$(julia --startup-file=no "$2")
+}
+
+###########
+# Haskell #
+###########
+
+# Add the -dynamic flag to every invocation of GHC
+alias cabal-install='cabal install --ghc-options=-dynamic'
+
+[ -f "/home/evf/.ghcup/env" ] && source "/home/evf/.ghcup/env" # ghcup-env
+
 #############
 # Miniconda #
 #############
@@ -365,9 +389,9 @@ export CONDA_ENVS_DIR="$HOME/.conda/envs"
 
 # Activate an env (with fzf)
 function condaenv {
-  local ENVS_LIST=("base")
-  local ENVS_LIST+=$(ls $CONDA_ENVS_DIR)
-  conda activate $(printf "%s\n" ${ENVS_LIST[@]} | fzf)
+    local ENVS_LIST=("base")
+    local ENVS_LIST+=$(ls $CONDA_ENVS_DIR)
+    conda activate $(printf "%s\n" ${ENVS_LIST[@]} | fzf)
 }
 
 # List explicitly installed packages
@@ -378,9 +402,8 @@ function condaupdate {
     conda activate base
     sudo conda update --all --yes
     conda deactivate
-    local ENVS=`ls $CONDA_ENVS_DIR`
-    for ENV in ${ENVS[@]}
-    do
+    local ENVS=$(ls $CONDA_ENVS_DIR)
+    for ENV in ${ENVS[@]}; do
         printf "\n${BLUE}Updating $ENV env...${RESET}\n\n"
         conda activate $ENV
         conda upgrade --all --yes
@@ -393,9 +416,8 @@ function condacleanup {
     conda activate base
     sudo conda clean --all --yes
     conda deactivate
-    local ENVS=`ls $CONDA_ENVS_DIR`
-    for ENV in ${ENVS[@]}
-    do
+    local ENVS=$(ls $CONDA_ENVS_DIR)
+    for ENV in ${ENVS[@]}; do
         printf "\n${BLUE}Cleaning up $ENV env...${RESET}\n\n"
         conda activate $ENV
         conda clean --all --yes
@@ -451,6 +473,8 @@ function paccleanup {
 
 # Update system
 function update {
+    [[ -f /tmp/update.lock ]] && exit 1
+    touch /tmp/update.lock
     printf "\n${GREEN}Updating Arch...${RESET}\n\n"
     parsyu --noconfirm
     printf "\n${GREEN}Updating Rust...${RESET}\n\n"
@@ -464,10 +488,11 @@ function update {
     printf "\n${GREEN}Updating Miniconda...${RESET}\n\n"
     condaupdate
     printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
-    doom --yes upgrade
+    doom upgrade -!
     printf "\n${GREEN}Custom check...${RESET}\n"
     customcheck
     printf "\n"
+    rm -f /tmp/update.lock
 }
 
 # Cleanup

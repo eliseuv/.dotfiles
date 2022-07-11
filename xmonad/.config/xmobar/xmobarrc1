@@ -21,6 +21,8 @@ Config {
        , commands = [
                       -- Time and date
                       Run Date " <fn=1>\xf64f </fn>%Y-%m-%d %H:%M " "date" 60
+                      -- Volume
+                    , Run Com "sh" ["-c", "echo $(volume)"] "volume" 10
                       -- Prints out the left side items such as workspaces, layout, etc.
                       -- The workspaces are 'clickable' in my configs.
                     , Run UnsafeStdinReader
@@ -29,5 +31,5 @@ Config {
         -- Layout
         , sepChar =     "%"     -- delineator between plugin names and straight text
         , alignSep =    "}{"    -- separator between left-right alignment
-        , template = "   <fc=#1793d0> <fn=2> </fn> </fc> %UnsafeStdinReader% }{ <fc=#c678dd>%date% </fc>   "
+        , template = "   <fc=#1793d0> <fn=2> </fn> </fc> %UnsafeStdinReader% }{ %volume% <fn=1> | </fn> <fc=#c678dd>%date% </fc>   "
 }

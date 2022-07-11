@@ -12,10 +12,10 @@ bc
 binutils
 bison
 bitwarden
+bitwarden-cli
 bridge-utils
 btop
 bzip2
-cabal-install
 calibre
 chromium
 clang
@@ -67,11 +67,8 @@ grep
 groff
 gvim
 gzip
-haskell-language-server
 hdf5
 helix
-hledger
-hlint
 hoogle
 i3-gaps
 i3status
@@ -162,6 +159,7 @@ pv
 pyright
 python-adblock
 python-pdftotext
+python-tldextract
 python2
 qbittorrent
 qemu-desktop
