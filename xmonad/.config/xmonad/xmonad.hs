@@ -116,8 +116,8 @@ myFocusColor :: String      -- Border color of focused windows
 myFocusColor  = color15     -- This variable is imported from Colors.THEME
 -- myFocusColor = "#1A2772"
 
-mySoundPlayer :: String
-mySoundPlayer = "ffplay -nodisp -autoexit " -- The program that will play system sounds
+-- mySoundPlayer :: String
+-- mySoundPlayer = "ffplay -nodisp -autoexit " -- The program that will play system sounds
 
 myWallpaperScript :: String
 myWallpaperScript = "$HOME/.wallpapers/set_wallpaper.sh"
@@ -146,8 +146,9 @@ myStartupHook = do
   spawn myWallpaperScript -- Set wallpaper
   spawnOnce "picom --experimental-backends -b --config ~/.config/picom/picom.conf &" -- Compositor
   spawn "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
-  --spawnOnce "nm-applet &"                     -- NetworkManager in tray
-  --spawnOnce "volumeicon &"                    -- Volume controls in tray
+  -- spawnOnce "urxvtd -q -o -f &"               -- urxvt daemon for better performance
+  -- spawnOnce "nm-applet &"                     -- NetworkManager in tray
+  -- spawnOnce "volumeicon &"                    -- Volume controls in tray
   -- spawn ("sleep 2 && conky -c $HOME/.config/conky/xmonad/" ++ colorScheme ++ "-01.conkyrc")
   -- spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 22")
   -- spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"
@@ -362,7 +363,7 @@ tall     = renamed [Replace "tall"]
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
-           $ mySpacing 8
+           $ mySpacing 4
            $ ResizableTall 1 (3/100) (1/2) []
 monocle  = renamed [Replace "monocle"]
            $ smartBorders
@@ -379,7 +380,7 @@ grid     = renamed [Replace "grid"]
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
-           $ mySpacing 8
+           $ mySpacing' 4
            $ mkToggle (single MIRROR)
            $ Grid (16/10)
 spirals  = renamed [Replace "spirals"]
@@ -388,7 +389,7 @@ spirals  = renamed [Replace "spirals"]
            $ windowNavigation
            $ addTabs shrinkText myTabTheme
            $ subLayout [] (smartBorders Simplest)
-           $ mySpacing' 8
+           $ mySpacing' 4
            $ spiral (6/7)
 threeCol = renamed [Replace "threeCol"]
            $ limitWindows 7
@@ -442,19 +443,31 @@ myLayoutHook = avoidStruts
                $ T.toggleLayouts floats
                $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
   where
-    myDefaultLayout = withBorder myBorderWidth tall
+    myDefaultLayout = withBorder myBorderWidth grid
+                                           ||| tall
                                            ||| noBorders monocle
-                                           ||| floats
                                            ||| noBorders tabs
-                                           ||| grid
                                            ||| spirals
+                                           ||| floats
                                            ||| threeCol
                                            ||| threeRow
                                            ||| tallAccordion
                                            ||| wideAccordion
 
 -- myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
-myWorkspaces = [" dev ", " www ", " sys ", " doc ", " vbox ", " chat ", " mus ", " vid ", " gfx "]
+myWorkspaces =
+  [ " dev "     -- 0
+  , " sh "      -- 1
+  , " www "     -- 2
+  , " mus "     -- 3
+  , " vid "     -- 4
+  , " doc "     -- 5
+  , " chat "    -- 6
+  , " torrent " -- 7
+  , " vm "      -- 8
+  , " gfx "     -- 9
+  ]
+
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
 
 clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
@@ -507,11 +520,11 @@ myManageHook = composeAll
   className =? "Virt-manager" --> doShift (myWorkspaces !! 8)
   ] <+> namedScratchpadManageHook myScratchPads
 
-soundDir = "/opt/dtos-sounds/" -- The directory that has the sound files
+-- soundDir = "/opt/dtos-sounds/" -- The directory that has the sound files
 
-startupSound  = soundDir ++ "startup-01.mp3"
-shutdownSound = soundDir ++ "shutdown-01.mp3"
-dmenuSound    = soundDir ++ "menu-01.mp3"
+-- startupSound  = soundDir ++ "startup-01.mp3"
+-- shutdownSound = soundDir ++ "shutdown-01.mp3"
+-- dmenuSound    = soundDir ++ "menu-01.mp3"
 
 subtitle' ::  String -> ((KeyMask, KeySym), NamedAction)
 subtitle' x = ((0,0), NamedAction $ map toUpper
@@ -644,10 +657,10 @@ myKeys c =
 
   -- Increase/decrease spacing (gaps)
   ^++^ subKeys "Window spacing (gaps)"
-  [ ("C-M1-j", addName "Decrease window spacing" $ decWindowSpacing 4)
-  , ("C-M1-k", addName "Increase window spacing" $ incWindowSpacing 4)
-  , ("C-M1-h", addName "Decrease screen spacing" $ decScreenSpacing 4)
-  , ("C-M1-l", addName "Increase screen spacing" $ incScreenSpacing 4)]
+  [ ("C-M1-j", addName "Decrease window spacing" $ decWindowSpacing 2)
+  , ("C-M1-k", addName "Increase window spacing" $ incWindowSpacing 2)
+  , ("C-M1-h", addName "Decrease screen spacing" $ decScreenSpacing 2)
+  , ("C-M1-l", addName "Increase screen spacing" $ incScreenSpacing 2)]
 
   -- Increase/decrease windows in the master pane or the stack
   ^++^ subKeys "Increase/decrease windows in master pane or the stack"
