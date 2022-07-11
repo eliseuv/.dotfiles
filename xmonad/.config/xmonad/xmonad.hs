@@ -728,18 +728,21 @@ myKeys c =
 
   -- Multimedia Keys
   ^++^ subKeys "Multimedia keys"
-  [ ("<XF86AudioPlay>", addName "mocp play"           $ spawn "mocp --play")
-  , ("<XF86AudioPrev>", addName "mocp next"           $ spawn "mocp --previous")
-  , ("<XF86AudioNext>", addName "mocp prev"           $ spawn "mocp --next")
-  , ("<XF86AudioMute>", addName "Toggle audio mute"   $ spawn "amixer set Master toggle")
-  , ("<XF86AudioLowerVolume>", addName "Lower vol"    $ spawn "amixer set Master 5%- unmute")
-  , ("<XF86AudioRaiseVolume>", addName "Raise vol"    $ spawn "amixer set Master 5%+ unmute")
-  , ("<XF86HomePage>", addName "Open home page"       $ spawn (myBrowser ++ " https://www.youtube.com/c/DistroTube"))
-  , ("<XF86Search>", addName "Web search (dmscripts)" $ spawn "dm-websearch")
-  , ("<XF86Mail>", addName "Email client"             $ runOrRaise "thunderbird" (resource =? "thunderbird"))
-  , ("<XF86Calculator>", addName "Calculator"         $ runOrRaise "qalculate-gtk" (resource =? "qalculate-gtk"))
-  , ("<XF86Eject>", addName "Eject /dev/cdrom"        $ spawn "eject /dev/cdrom")
-  , ("<Print>", addName "Take screenshot (dmscripts)" $ spawn "dm-maim")
+  [ ("<XF86AudioPlay>",         addName "mocp play"                     $ spawn "mocp --play")
+  , ("<XF86AudioPrev>",         addName "mocp next"                     $ spawn "mocp --previous")
+  , ("<XF86AudioNext>",         addName "mocp prev"                     $ spawn "mocp --next")
+  , ("<XF86AudioMute>",         addName "Toggle audio mute"             $ spawn "amixer set Master toggle")
+  , ("<XF86AudioLowerVolume>",  addName "Lower vol"                     $ spawn "amixer set Master 5%- unmute")
+  , ("<XF86AudioRaiseVolume>",  addName "Raise vol"                     $ spawn "amixer set Master 5%+ unmute")
+  , ("<XF86HomePage>",          addName "Open home page"                $ spawn (myBrowser ++ " https://www.youtube.com/c/DistroTube"))
+  , ("<XF86Search>",            addName "Web search (dmscripts)"        $ spawn "dm-websearch")
+  , ("<XF86Mail>",              addName "Email client"                  $ runOrRaise "thunderbird" (resource =? "thunderbird"))
+  , ("<XF86Calculator>",        addName "Calculator"                    $ runOrRaise "qalculate-gtk" (resource =? "qalculate-gtk"))
+  , ("<XF86Eject>",             addName "Eject /dev/cdrom"              $ spawn "eject /dev/cdrom")
+  , ("<Print>",                 addName "Take screenshot (dmscripts)"   $ spawn "dm-maim")
+  , ("M-S--",                   addName "Lower vol"                     $ spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
+  , ("M-S-=",                   addName "Raise vol"                     $ spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
+  , ("M-S-0",                   addName "Toggle audio mute"             $ spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
   ]
   -- The following lines are needed for named scratchpads.
     where nonNSP          = WSIs (return (\ws -> W.tag ws /= "NSP"))
