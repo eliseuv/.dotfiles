@@ -135,15 +135,15 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 
-# Use rsync for copying files
-alias rs='rsync -Pazvh'
-alias rsrm='rsync -Pazvh --remove-source-files'
-
-# Reset fail lock after failed authentication attempts
-alias failreset='faillock --user $USER --reset'
-
 # Grep
 alias grep='grep --color'
+
+# stow: never fold
+alias stow='stow --no-folding'
+
+# Watch with 1s refresh
+# The whitespace at the end is important as it triggers alias substitution
+alias watch='watch -tc -n 1 '
 
 # Use 'bat' instead of 'cat'
 alias b='bat'
@@ -161,19 +161,10 @@ alias nb='newsboat'
 # Pulse Mixer
 alias pm='pulsemixer'
 
-# Watch with 1s refresh
-alias watch='watch -tc -n 1 '
-
 # Resource monitors
 alias ht='htop -d5 -sPERCENT_CPU'
 #alias gt='gotop -p -r 500ms'
 alias bt='btop'
-
-# stow: never fold
-alias stow='stow --no-folding'
-
-# udiskie
-alias ud-umount='udiskie-umount --detach'
 
 # n^3 file manager
 alias nn="(export VISUAL='nvim'; nnn)"
@@ -184,6 +175,18 @@ alias scrot='scrot ~/Storage/Images/screenshots/%Y-%m-%d_%H:%M:%S.png'
 # Weather
 alias wttr='curl wttr.in/?0Fq'
 
+# Convenience aliases
+
+# Use rsync for copying files
+alias rs='rsync -Pazvh'
+alias rsrm='rsync -Pazvh --remove-source-files'
+
+# Reset fail lock after failed authentication attempts
+alias failreset='faillock --user $USER --reset'
+
+# udiskie
+alias ud-umount='udiskie-umount --detach'
+
 # SSH agent restart (temporary)
 alias ssh-restart='killall ssh-agent; eval `ssh-agent`; ssh-add'
 
@@ -191,6 +194,8 @@ alias ssh-restart='killall ssh-agent; eval `ssh-agent`; ssh-add'
 # I always forget the correct flags for writing the image to USB drive
 # Usage: disk-destroyer if=/path/to/image.iso of=/dev/sd<?>
 alias disk-destroyer='sudo dd bs=4M conv=fsync oflag=direct status=progress'
+
+alias git-push="git add . && git commit -m 'update' && git push"
 
 #############
 # FUNCTIONS #
@@ -374,7 +379,8 @@ jlargs() {
 # Add the -dynamic flag to every invocation of GHC
 alias cabal-install='cabal install --ghc-options=-dynamic'
 
-[ -f "/home/evf/.ghcup/env" ] && source "/home/evf/.ghcup/env" # ghcup-env
+# GHCup env
+[ -f "/home/evf/.ghcup/env" ] && source "/home/evf/.ghcup/env"
 
 #############
 # Miniconda #
