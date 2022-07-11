@@ -629,7 +629,7 @@ myKeys c =
 
   ^++^ subKeys "Shell commands"
   [ ("M-M1-h",  addName "Launch btop"   $ spawn (myTerminal ++ " -e btop"))
-  , ("M-S-u",   addName "Update system" $ spawn (myTerminal ++ " -e up"))
+  , ("M-M1-u",   addName "Update system" $ spawn (myTerminal ++ " -e ~/.local/bin/update"))
   ]
 
   ^++^ subKeys "Monitors"
