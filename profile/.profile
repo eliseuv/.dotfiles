@@ -195,6 +195,7 @@ alias ssh-restart='killall ssh-agent; eval `ssh-agent`; ssh-add'
 # Usage: disk-destroyer if=/path/to/image.iso of=/dev/sd<?>
 alias disk-destroyer='sudo dd bs=4M conv=fsync oflag=direct status=progress'
 
+# Stage, commit and push changes with default commit message
 alias git-push="git add . && git commit -m 'update' && git push"
 
 #############
