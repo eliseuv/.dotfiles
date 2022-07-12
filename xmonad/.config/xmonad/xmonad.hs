@@ -497,6 +497,7 @@ myManageHook = composeAll
   , className =? "Emacs" --> doShift (myWorkspaces !! 0)
   -- Web Browsers
   , title =? "Mozilla Firefox" --> doShift (myWorkspaces !! 2)
+  , title =? "Chromium" --> doShift (myWorkspaces !! 2)
   , className =? "Navigator" --> doShift (myWorkspaces !! 2)
   , className =? "firefox" --> doShift (myWorkspaces !! 2)
   , className =? "Brave-browser"   --> doShift ( myWorkspaces !! 2 )

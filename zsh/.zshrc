@@ -37,6 +37,11 @@ unsetopt beep extendedglob notify
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
+# Use Home, End and Delete keys
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[F"   end-of-line
+bindkey  "^[[3~"  delete-char
+
 # fzf
 . /usr/share/fzf/key-bindings.zsh
 . /usr/share/fzf/completion.zsh
