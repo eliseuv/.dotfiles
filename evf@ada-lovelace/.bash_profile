@@ -234,6 +234,11 @@ function juliacleanup {
     julia-cleanup
 }
 
+# Queue job
+function sbexec {
+    sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$*"
+}
+
 # Queue job that executes julia script
 function sbjl {
     sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$HOME/.juliaup/bin/julia $*"
@@ -244,5 +249,5 @@ sbjlargs() {
     while IFS= read -r line; do
         printf "Args = $line\n"
         sbjl "$1 $line"
-    done <<< $(~/.juliaup/bin/julia --startup-file=no "$2")
+    done <<<$(~/.juliaup/bin/julia --startup-file=no "$2")
 }

@@ -1,5 +1,6 @@
 brave-bin
 cmake-format
+fortls
 freezer-bin
 julia-bin
 lightdm-settings
@@ -11,5 +12,6 @@ otf-fira-code-symbol
 paru
 task-spooler
 ttf-alegreya
+visual-studio-code-bin
 xorg-font-utils
 zotero-bin

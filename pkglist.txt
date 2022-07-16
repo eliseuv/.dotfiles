@@ -21,7 +21,6 @@ chromium
 clang
 cmake
 cmatrix
-code
 colordiff
 coreutils
 cryptsetup
@@ -51,6 +50,7 @@ flex
 fzf
 gawk
 gcc
+gcc-fortran
 gcc-libs
 gdb
 geckodriver
@@ -67,6 +67,7 @@ grep
 groff
 gvim
 gzip
+haskell-language-server
 hdf5
 helix
 hoogle
@@ -158,6 +159,7 @@ pulsemixer
 pv
 pyright
 python-adblock
+python-json5
 python-pdftotext
 python-tldextract
 python2
