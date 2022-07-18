@@ -62,8 +62,11 @@ myModMask :: KeyMask
 myModMask = mod4Mask -- Sets modkey to super/windows key
 
 myTerminal :: String
-myTerminal = "alacritty" -- Sets default terminal
---myTerminal = "urxvtc"    -- Sets default terminal
+myTerminal = "alacritty msg create-window || alacritty" -- Sets default terminal
+-- myTerminal = "urxvtc"    -- Sets default terminal
+
+myTerminalCommand :: String -> String
+myTerminalCommand cmd = "alacritty msg create-window -e " ++ cmd ++ " || alacritty -e " ++ cmd
 
 myBrowser :: String
 myBrowser = "qutebrowser " -- Sets qutebrowser as browser
@@ -564,7 +567,7 @@ myKeys c =
   let subKeys str ks = subtitle' str : mkNamedKeymap c ks
    in subKeys
         "Xmonad Essentials"
-        [ ("M-C-r", addName "Recompile XMonad" $ spawn (myTerminal ++ "-e xmonad --recompile")),
+        [ ("M-C-r", addName "Recompile XMonad" $ spawn (myTerminalCommand "xmonad --recompile")),
           ("M-S-r", addName "Restart XMonad" $ spawn "xmonad --restart"),
           ("M-S-<Backspace> e", addName "Quit XMonad" $ io exitSuccess),
           ("M-S-<Backspace> s", addName "Shutdown" $ spawn "systemctl poweroff"),
@@ -647,8 +650,8 @@ myKeys c =
           ]
         ^++^ subKeys
           "Shell commands"
-          [ ("M-M1-h", addName "Launch btop" $ spawn (myTerminal ++ " -e btop")),
-            ("M-M1-u", addName "Update system" $ spawn (myTerminal ++ " -e ~/.local/bin/update"))
+          [ ("M-M1-h", addName "Launch btop" $ spawn (myTerminalCommand "btop")),
+            ("M-M1-u", addName "Update system" $ spawn (myTerminalCommand " ~/.local/bin/update"))
           ]
         ^++^ subKeys
           "Monitors"

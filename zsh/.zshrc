@@ -60,9 +60,8 @@ autoload -Uz compinit
 fpath+=~/.zfunc
 compinit
 
-# setting for gup command (auto generate)
-fpath=(~/.zsh/completion $fpath)
-autoload -Uz compinit && compinit -i
+# Zoxide
+eval "$(zoxide init zsh)"
 
 # Syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
