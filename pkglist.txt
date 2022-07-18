@@ -70,6 +70,7 @@ gzip
 haskell-language-server
 hdf5
 helix
+hledger-ui
 hoogle
 i3-gaps
 i3status
