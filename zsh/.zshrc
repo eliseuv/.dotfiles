@@ -83,3 +83,7 @@ eval "$(bw completion --shell zsh); compdef _bw bw;"
 
 # Load profile
 source ~/.profile
+
+# setting for gup command (auto generate)
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i

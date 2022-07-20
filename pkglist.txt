@@ -243,11 +243,13 @@ xorg-server-xephyr
 xorg-xinit
 xorg-xrandr
 xterm
+yaml-language-server
 yt-dlp
 zathura
 zathura-djvu
 zathura-pdf-mupdf
 zathura-ps
+zoxide
 zsh
 zsh-autosuggestions
 zsh-completions
