@@ -248,6 +248,6 @@ sbjlargs() {
     printf "\nSubmitting script $1\n\n"
     while IFS= read -r line; do
         printf "Args = $line\n"
-        echo "julia $1 $line"
+        sbjl "$1 $line"
     done <<<$(~/.juliaup/bin/julia --startup-file=no "$2")
 }
