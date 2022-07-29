@@ -210,6 +210,7 @@ texlive-latexextra
 texlive-pictures
 texlive-science
 tldr
+torbrowser-launcher
 ttf-cascadia-code
 ttf-dejavu
 ttf-fira-code

@@ -7,17 +7,17 @@
 ##########
 
 # ANSI color code variables
+local RESET="\e[0m"
 local RED="\e[0;91m"
 local BLUE="\e[0;94m"
-local EXPAND_BG="\E[K"
-local BLUE_BG="\e[0;104m${EXPAND_BG}"
-local RED_BG="\e[0;101m${EXPAND_BG}"
-local GREEN_BG="\e[0;102m${EXPAND_BG}"
 local GREEN="\e[0;92m"
 local WHITE="\e[0;97m"
 local BOLD="\e[1m"
 local ULINE="\e[4m"
-local RESET="\e[0m"
+local EXPAND_BG="\E[K"
+local RED_BG="\e[0;101m${EXPAND_BG}"
+local GREEN_BG="\e[0;102m${EXPAND_BG}"
+local BLUE_BG="\e[0;104m${EXPAND_BG}"
 
 ########
 # PATH #
@@ -60,7 +60,7 @@ export TERM='alacritty'
 export TERMINAL='alacritty'
 
 # Text editors
-export EDITOR='nvim'
+export EDITOR='lvim'
 export VISUAL='emacsclient -c -a emacs'
 # PDF Reader
 export READER='zathura'
@@ -368,8 +368,9 @@ alias julia-cleanup='julia -e "using Pkg; Pkg.gc()"'
 jlargs() {
     printf "\nSubmitting script $1\n\n"
     while IFS= read -r line; do
-        echo "ARGS = $line"
-        tsp julia $1 $line
+        echo "Args = $line"
+        COMMAND="tsp julia $1 $line"
+        eval "$COMMAND"
     done <<<$(julia --startup-file=no "$2")
 }
 

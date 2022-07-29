@@ -27,11 +27,16 @@ zstyle :compinstall filename '/home/evf/.zshrc'
 # End of lines added by compinstall
 
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=1000000
+SAVEHIST=1000000
+setopt BANG_HIST
+unsetopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
+setopt HIST_VERIFY
 setopt autocd nomatch
 unsetopt beep extendedglob notify
 bindkey -v
@@ -79,11 +84,7 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # BitWarden CLI completions
-eval "$(bw completion --shell zsh); compdef _bw bw;"
+# eval "$(bw completion --shell zsh); compdef _bw bw;"
 
 # Load profile
 source ~/.profile
-
-# setting for gup command (auto generate)
-fpath=(~/.zsh/completion $fpath)
-autoload -Uz compinit && compinit -i
