@@ -82,6 +82,10 @@ export NNN_OPTS="dEox"
 # Mximum number of parallel jobs
 export TS_SLOTS=1
 
+# Ada Lovelace cluster
+export LOVELACE='ada-lovelace.if.ufrgs.br'
+export LOVELACE_DATA="eliseuvf@$LOVELACE:/home_tmp/eliseuvf/"
+
 #############
 # GPG + SSH #
 #############
@@ -179,7 +183,7 @@ alias wttr='curl wttr.in/?0Fq'
 
 # Use rsync for copying files
 alias rs='rsync -Pazvh'
-alias rsrm='rsync -Pazvh --remove-source-files'
+alias rsmv='rsync -Pazvh --remove-source-files'
 
 # Reset fail lock after failed authentication attempts
 alias failreset='faillock --user $USER --reset'

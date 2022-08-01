@@ -88,3 +88,7 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # Load profile
 source ~/.profile
+
+# setting for gup command (auto generate)
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
