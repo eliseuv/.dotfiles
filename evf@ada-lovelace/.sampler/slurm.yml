@@ -1,0 +1,16 @@
+barcharts:
+  - title: Job count
+    position: [[0, 0], [80, 5]]
+    rate-ms: 1000
+    scale: 0
+    items:
+      - label: Total
+        sample: squeue -h | wc -l
+      - label: Pending
+        sample: squeue -h -t PENDING | wc -l
+      - label: Running
+        sample: squeue -h -t RUNNING | wc -l
+textboxes:
+  - title: Queue
+    position: [[0, 5], [42, 22]]
+    sample: squeue -t RUNNING

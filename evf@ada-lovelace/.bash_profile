@@ -171,7 +171,7 @@ alias sb='sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos
 alias ssqueue='sudo squeue'
 alias wsqueue='watch -n 1.0 squeue'
 alias wtsqueue='watch -n 1.0 '"'"'squeue | tail -n25'"'"
-alias wttsqueue='watch -n 1.0 '"'"'squeue | tail -n115'"'"
+alias wttsqueue='watch -n 1.0 '"'"'squeue | tail -n109'"'"
 alias wssqueue='watch -n 1.0 sudo squeue'
 alias pf="ls | sort | fzf --preview='bat {}' --bind shift-up:preview-page-up,shift-down:preview-page-down"
 
