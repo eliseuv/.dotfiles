@@ -1,4 +1,6 @@
+airshipper
 brave-bin
+clifm
 cmake-format
 fortls
 freezer-bin
@@ -10,6 +12,7 @@ nerd-fonts-fira-code
 openrazer-meta
 otf-fira-code-symbol
 paru
+sampler
 task-spooler
 ttf-alegreya
 visual-studio-code-bin
