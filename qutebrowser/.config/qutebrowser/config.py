@@ -172,8 +172,9 @@ c.url.searchengines["gs"] = "https://scholar.google.com/scholar?hl=en&q={}"
 c.url.searchengines["lib"] = "http://libgen.rs/search.php?req={}"
 c.url.searchengines["sci"] = "https://sci-hub.se/{}"
 c.url.searchengines["gh"] = "https://github.com/search?q={}"
+c.url.searchengines["h"] = "https://hoogle.haskell.org/?hoogle={}"
 c.url.searchengines["r"] = "https://old.reddit.com/search?q={}"
-c.url.searchengines["t"] = "https://twitter.com/search?q={}"
+c.url.searchengines["t"] = "https://nitter.net/search?q={}"
 c.url.searchengines["w"] = "https://en.wikipedia.org/w/index.php?search={}"
 c.url.searchengines["mw"] = "https://www.merriam-webster.com/dictionary/{}"
 c.url.searchengines["th"] = "https://www.thesaurus.com/browse/{}"
@@ -200,6 +201,9 @@ c.aliases = {   'w': 'session-save --current --only-active-window',
 # Read this config.py file
 config.bind(',cS', 'config-source')
 config.bind(',cE', 'config-edit')
+
+# Dev tools
+config.bind('wi', 'devtools bottom')
 
 # Save session
 config.bind('<Ctrl+w>', 'session-save --current --only-active-window')
