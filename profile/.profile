@@ -32,6 +32,15 @@ function pathappend {
     done
 }
 
+# Append to PATH if not already there
+function pathprepend {
+    for ARG in "$@"; do
+        if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
+            PATH="$ARG${PATH:+":$PATH"}"
+        fi
+    done
+}
+
 # System binaries
 pathappend /bin /usr/bin /usr/local/bin /usr/local/sbin
 
@@ -381,6 +390,9 @@ jlargs() {
 ###########
 # Haskell #
 ###########
+
+# Put GHCup path at the start
+pathprepend "$HOME/.ghcup/bin"
 
 # Add the -dynamic flag to every invocation of GHC
 alias cabal-install='cabal install --ghc-options=-dynamic'

@@ -123,6 +123,7 @@ neofetch
 neovim
 netctl
 newsboat
+nmap
 nnn
 noto-fonts
 noto-fonts-cjk
@@ -140,7 +141,6 @@ p7zip
 pacman
 pacman-contrib
 pandoc
-papirus-icon-theme
 pass
 patch
 pciutils
@@ -232,6 +232,7 @@ virt-viewer
 w3m
 wget
 which
+words
 x11-ssh-askpass
 xfsprogs
 xmobar

@@ -293,7 +293,7 @@ emacs-lisp        ; drown in parentheses
 (json +lsp)              ; At least it ain't XML
 ;;(java +lsp)            ; the poster child for carpal tunnel syndrome
 ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
-(julia +tree-sitter +lsp)             ; a better, faster MATLAB
+(julia +lsp +tree-sitter)             ; a better, faster MATLAB
 ;;kotlin            ; a better, slicker Java(Script)
 (latex +latexmk +cdlatex +lsp +fold)             ; writing papers in Emacs has never been so fun
 ;;lean              ; for folks with too much to prove
@@ -1608,14 +1608,14 @@ If using =lsp-julia=:
 ;; Do not use built-in package
 (setq lsp-julia-package-dir nil)
 ;; Select Julia environment
-(setq lsp-julia-default-environment "~/.julia/environments/v1.7")
+(setq lsp-julia-default-environment "~/.julia/environments/v1.8")
 #+end_src
 
 If using =eglot=:
 
 #+begin_src emacs-lisp :tangle no
 (setq eglot-connect-timeout 600)
-(setq eglot-jl-language-server-project "~/.julia/environments/v1.7")
+(setq eglot-jl-language-server-project "~/.julia/environments/v1.8")
 (after! eglot-jl
   (setq eglot-jl-language-server-project eglot-jl-base))
 #+end_src

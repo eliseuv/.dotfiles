@@ -74,7 +74,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # Autosuggestions
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-export ZSH_AUTOSUGGEST_HISTORY_IGNORE=("cd *" "cp *")
+export ZSH_AUTOSUGGEST_HISTORY_IGNORE=("cd *" "cp *" "z *")
 bindkey '^ ' autosuggest-accept
 
 # Powerlevel10k theme
