@@ -368,6 +368,9 @@ export JULIA_NUM_THREADS=auto
 # Julia default editor for the @edit macro
 export JULIA_EDITOR=nvim
 
+# Add path to julia
+pathappend ~/.julia/juliaup/bin
+
 # Julia with precompiled Revise.jl and OhMyREPL
 alias jl='julia --sysimage=/home/evf/.julia/config/sysimages/revise-omr_sysimage.so'
 
