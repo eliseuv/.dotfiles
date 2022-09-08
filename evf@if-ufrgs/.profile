@@ -57,7 +57,7 @@ pathappend /usr/bin/core_perl /usr/bin/site_perl /usr/bin/vendor_perl
 pathappend ~/.local/share/gem/ruby/3.0.0/bin
 
 # DOOM Emacs
-pathappend ~/.config/emacs-doom/bin
+pathappend ~/.emacs.d/bin
 
 ############
 # ENV VARS #
@@ -367,6 +367,9 @@ export JULIA_NUM_THREADS=auto
 
 # Julia default editor for the @edit macro
 export JULIA_EDITOR=nvim
+
+# Julia binaries
+pathappend "$HOME/.julia/juliaup/bin"
 
 # Julia with precompiled Revise.jl and OhMyREPL
 alias jl='julia --sysimage=/home/evf/.julia/config/sysimages/revise-omr_sysimage.so'
