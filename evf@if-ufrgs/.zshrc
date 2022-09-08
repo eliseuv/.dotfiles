@@ -73,6 +73,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
   git
   zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -124,6 +125,9 @@ bindkey -v
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
+
+# Use Ctrl+Space to accept current suggestion
+bindkey '^ ' autosuggest-accept
 
 # Open in editor
 autoload -z edit-command-line
