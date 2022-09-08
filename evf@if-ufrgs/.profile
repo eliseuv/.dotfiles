@@ -427,7 +427,7 @@ alias conda-list='conda env export --from-history'
 function condaupdate {
     printf "${BLUE}Updating base env...${RESET}\n\n"
     conda activate base
-    sudo conda update --all --yes
+    conda update --all --yes
     conda deactivate
     local ENVS=$(ls $CONDA_ENVS_DIR)
     for ENV in ${ENVS[@]}; do
@@ -441,7 +441,7 @@ function condaupdate {
 function condacleanup {
     printf "${BLUE}Cleaning up base env...${RESET}\n\n"
     conda activate base
-    sudo conda clean --all --yes
+    conda clean --all --yes
     conda deactivate
     local ENVS=$(ls $CONDA_ENVS_DIR)
     for ENV in ${ENVS[@]}; do
@@ -502,8 +502,8 @@ function paccleanup {
 function update {
     [[ -f /tmp/update.lock ]] && exit 1
     touch /tmp/update.lock
-    printf "\n${GREEN}Updating Arch...${RESET}\n\n"
-    parsyu --noconfirm
+    printf "\n${GREEN}Updating PopOS!...${RESET}\n\n"
+    sudo apt update && sudo apt upgrade
     printf "\n${GREEN}Updating Rust...${RESET}\n\n"
     rust-update
     printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"

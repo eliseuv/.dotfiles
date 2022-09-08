@@ -141,6 +141,7 @@ bindkey "^x^e" vim-command-line
 # Autocompletions
 autoload -Uz compinit
 fpath+=~/.zfunc
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 compinit
 
 # Powerlevel10k prompt
