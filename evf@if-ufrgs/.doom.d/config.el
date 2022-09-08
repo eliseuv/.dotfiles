@@ -74,3 +74,53 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+;; Better defaults
+(setq-default
+ delete-by-moving-to-trash t                      ; Delete files to trash
+ window-combination-resize t                      ; take new window space from all other windows (not just current)
+ x-stretch-cursor t)                              ; Stretch cursor to the glyph width
+
+(setq undo-limit 80000000                         ; Raise undo-limit to 80Mb
+      evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
+      auto-save-default t                         ; Nobody likes to loose work, I certainly don't
+      truncate-string-ellipsis "…"                ; Unicode ellispis are nicer than "...", and also save /precious/ space
+      password-cache-expiry nil                   ; I can trust my computers ... can't I?
+      ;; scroll-preserve-screen-position 'always     ; Don't have `point' jump around
+      scroll-margin 2)                            ; It's nice to maintain a little margin
+
+(global-subword-mode t)                           ; Recognize uppercase letters as word boundaries (useful for CamelCase naming)
+
+;; Enable vertical and horizontal splitting
+(setq evil-vsplit-window-right t
+      evil-split-window-below t)
+
+;; Ask which buffer (with preview) to open when window is split:
+(defadvice! prompt-for-buffer (&rest _)
+  :after '(evil-window-split evil-window-vsplit)
+  (consult-buffer))
+
+;; Default mode
+(setq-default major-mode 'org-mode)
+
+;; vterm
+(use-package! vterm
+  :ensure t)
+(after! vterm
+  (set-popup-rule! "*doom:vterm-popup" :size 0.3 :vslot -4 :select t :quit nil :ttl 0 :side 'right))
+
+;; Julia
+
+;; Do not use built-in package
+(setq lsp-julia-package-dir nil)
+;; Select Julia environment
+(setq lsp-julia-default-environment "~/.julia/environments/v1.8")
+
+;; Julia REPL
+(after! julia-repl
+  ;; Use vterm
+  (julia-repl-set-terminal-backend 'vterm)
+  ;; Open REPL at the right side
+  (set-popup-rule! "*julia:\*" :side 'right :size 0.3 :ttl 0 :quit nil :select nil)
+  ;; Set environment variables
+  (setenv "JULIA_NUM_THREADS" "15"))
