@@ -135,14 +135,13 @@ literate
 
 #+name: doom-completion
 #+begin_src emacs-lisp
-(company                 ; the ultimate code completion backend
- +childframe)            ; ... when your children are better than you
+company                  ; the ultimate code completion backend
 ;;helm                   ; the *other* search engine for love and life
 ;;ido                    ; the other *other* search engine...
 ;;(ivy                   ; a search engine for love and life
 ;; +icons                ; ... icons are nice
 ;; +prescient)           ; ... I know what I want(ed)
-(vertico +icons)         ; the search engine of the future
+(vertico +icons +childframe)         ; the search engine of the future
 #+end_src
 
 *** DOOM UI
@@ -613,7 +612,7 @@ Make completions appear faster and more often:
 #+begin_src emacs-lisp
 (after! company
   (setq company-idle-delay 0.5
-        company-minimum-prefix-length 2)
+        company-minimum-prefix-length 1)
   (setq company-show-numbers t)
   (add-hook 'evil-normal-state-entry-hook #'company-abort)) ;; make aborting less annoying.
 #+end_src
@@ -1461,6 +1460,7 @@ Default $\LaTeX$ packages.
 #+begin_src emacs-lisp
 (setq org-latex-packages-alist '(("" "amsmath" t)
                                  ("" "amsthm" t)
+                                 ("" "amssymb" t)
                                  ("" "mathtools" t)
                                  ("" "braket" t)
                                  ("dvipsnames" "xcolor" t)

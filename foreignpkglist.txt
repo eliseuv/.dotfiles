@@ -2,7 +2,6 @@ airshipper
 brave-bin
 clifm
 cmake-format
-fortls
 freezer-bin
 insect
 julia-bin
