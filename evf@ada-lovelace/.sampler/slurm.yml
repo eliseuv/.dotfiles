@@ -1,16 +1,18 @@
 barcharts:
   - title: Job count
-    position: [[0, 0], [80, 5]]
+    position: [[0, 0], [41, 5]]
     rate-ms: 1000
     scale: 0
     items:
       - label: Total
-        sample: squeue -h | wc -l
+        sample: wc -l /tmp/squeue | cut -d' ' -f1
       - label: Pending
-        sample: squeue -h -t PENDING | wc -l
+        sample: grep -c PENDING /tmp/squeue
       - label: Running
-        sample: squeue -h -t RUNNING | wc -l
+        sample: grep -c RUNNING /tmp/squeue
 textboxes:
   - title: Queue
-    position: [[0, 5], [42, 22]]
-    sample: squeue -t RUNNING
+    position: [[0, 5], [41, 27]]
+    rate-ms: 1000
+    sample: squeue -h -o '%.10i %.7j %.9P %.10T %.10M %.10N' | tee /tmp/squeue | grep
+        RUNNING

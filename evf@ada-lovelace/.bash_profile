@@ -154,6 +154,9 @@ alias stow='stow --no-folding'
 # udiskie
 #alias ud-umount='udiskie-umount --detach'
 
+# Default git push
+alias git-push="git add . && git commit -m 'Lovelace update' && git push"
+
 # n^3 file manager
 alias nn="(export VISUAL='vim'; nnn-static)"
 
