@@ -87,7 +87,7 @@ configuration {
 	kb-mode-complete: "Control+l";
 	kb-row-left: "Control+h";
 /*	kb-row-right: "Control+l";*/
-	kb-row-up: "Up,Control+k,ISO_Left_Tab";
+	kb-row-up: "Up,Control+k";
 	kb-row-down: "Down,Control+j";
 /*	kb-row-tab: "Tab";*/
 /*	kb-page-prev: "Page_Up";*/

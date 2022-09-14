@@ -57,7 +57,7 @@ pathappend /usr/bin/core_perl /usr/bin/site_perl /usr/bin/vendor_perl
 pathappend ~/.local/share/gem/ruby/3.0.0/bin
 
 # DOOM Emacs
-pathappend ~/.config/emacs-doom/bin
+pathappend ~/.emacs.d/bin
 
 ############
 # ENV VARS #
@@ -65,8 +65,8 @@ pathappend ~/.config/emacs-doom/bin
 
 # Terminal emulator
 #export TERM='rxvt-unicode-256color'
-export TERM='alacritty'
-export TERMINAL='alacritty'
+#export TERM='alacritty'
+#export TERMINAL='alacritty'
 
 # Text editors
 export EDITOR='lvim'
@@ -82,7 +82,7 @@ export BROWSER='qutebrowser'
 export BROWSERCLI='w3m'
 
 # Set manpager
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 
 # n^3 file manager options
 export NNN_OPTS="dEox"
@@ -132,7 +132,7 @@ alias h='history -i'
 # Changing 'ls' to 'exa'
 alias l='exa --group-directories-first --icons --color=always'
 alias la='exa --all --group-directories-first --icons --color=always'
-alias ll='exa --all --long --header --git --group-directories-first --icons --color=always'
+alias ll='exa --all --long --header --group-directories-first --icons --color=always'
 alias lt='exa --all --tree --group-directories-first --icons --ignore-glob=.git --color=always'
 alias l.='exa --all | rg "^\."'
 
@@ -159,7 +159,7 @@ alias stow='stow --no-folding'
 alias watch='watch -tc -n 1 '
 
 # Use 'bat' instead of 'cat'
-alias b='bat'
+alias b='batcat'
 
 # NeoVim
 alias v='nvim'
@@ -368,6 +368,9 @@ export JULIA_NUM_THREADS=auto
 # Julia default editor for the @edit macro
 export JULIA_EDITOR=nvim
 
+# Julia binaries
+pathappend "$HOME/.julia/juliaup/bin"
+
 # Julia with precompiled Revise.jl and OhMyREPL
 alias jl='julia --sysimage=/home/evf/.julia/config/sysimages/revise-omr_sysimage.so'
 
@@ -424,7 +427,7 @@ alias conda-list='conda env export --from-history'
 function condaupdate {
     printf "${BLUE}Updating base env...${RESET}\n\n"
     conda activate base
-    sudo conda update --all --yes
+    conda update --all --yes
     conda deactivate
     local ENVS=$(ls $CONDA_ENVS_DIR)
     for ENV in ${ENVS[@]}; do
@@ -438,7 +441,7 @@ function condaupdate {
 function condacleanup {
     printf "${BLUE}Cleaning up base env...${RESET}\n\n"
     conda activate base
-    sudo conda clean --all --yes
+    conda clean --all --yes
     conda deactivate
     local ENVS=$(ls $CONDA_ENVS_DIR)
     for ENV in ${ENVS[@]}; do
@@ -499,8 +502,8 @@ function paccleanup {
 function update {
     [[ -f /tmp/update.lock ]] && exit 1
     touch /tmp/update.lock
-    printf "\n${GREEN}Updating Arch...${RESET}\n\n"
-    parsyu --noconfirm
+    printf "\n${GREEN}Updating PopOS!...${RESET}\n\n"
+    sudo apt update && sudo apt upgrade
     printf "\n${GREEN}Updating Rust...${RESET}\n\n"
     rust-update
     printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"

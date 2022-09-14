@@ -1,7 +1,9 @@
+airshipper
 brave-bin
+clifm
 cmake-format
-fortls
 freezer-bin
+insect
 julia-bin
 lightdm-settings
 logseq-desktop-bin
@@ -9,9 +11,10 @@ miniconda3
 nerd-fonts-fira-code
 openrazer-meta
 otf-fira-code-symbol
+otf-symbola
 paru
+sampler
 task-spooler
 ttf-alegreya
-visual-studio-code-bin
 xorg-font-utils
 zotero-bin

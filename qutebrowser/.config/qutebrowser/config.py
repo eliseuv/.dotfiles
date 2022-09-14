@@ -169,11 +169,13 @@ c.url.searchengines["sp"] = "https://www.startpage.com/sp/search?query={}"
 c.url.searchengines["yt"] = "https://www.youtube.com/results?search_query={}"
 c.url.searchengines["tw"] = "https://www.twitch.tv/search?term={}"
 c.url.searchengines["gs"] = "https://scholar.google.com/scholar?hl=en&q={}"
+c.url.searchengines["gd"] = "https://datasetsearch.research.google.com/search?query={}"
 c.url.searchengines["lib"] = "http://libgen.rs/search.php?req={}"
 c.url.searchengines["sci"] = "https://sci-hub.se/{}"
 c.url.searchengines["gh"] = "https://github.com/search?q={}"
+c.url.searchengines["h"] = "https://hoogle.haskell.org/?hoogle={}"
 c.url.searchengines["r"] = "https://old.reddit.com/search?q={}"
-c.url.searchengines["t"] = "https://twitter.com/search?q={}"
+c.url.searchengines["t"] = "https://nitter.net/search?q={}"
 c.url.searchengines["w"] = "https://en.wikipedia.org/w/index.php?search={}"
 c.url.searchengines["mw"] = "https://www.merriam-webster.com/dictionary/{}"
 c.url.searchengines["th"] = "https://www.thesaurus.com/browse/{}"
@@ -185,6 +187,7 @@ c.url.searchengines["tpb"] = "https://thepiratebay.org/search.php?q={}&all=on&se
 c.url.searchengines["ny"] = "https://nyaa.si/?f=0&c=0_0&q={}"
 c.url.searchengines["wa"] = "https://www.wolframalpha.com/input/?i={}"
 c.url.searchengines["amz"] = "https://www.amazon.com.br/s?k={}"
+c.url.searchengines["keepa"] = "https://keepa.com/#!search/12-{}"
 c.url.searchengines["color"] = "https://www.color-hex.com/color/{}"
 c.url.searchengines["sc"] = "https://www.shellcheck.net/wiki/SC{}"
 
@@ -200,6 +203,9 @@ c.aliases = {   'w': 'session-save --current --only-active-window',
 # Read this config.py file
 config.bind(',cS', 'config-source')
 config.bind(',cE', 'config-edit')
+
+# Dev tools
+config.bind('wi', 'devtools bottom')
 
 # Save session
 config.bind('<Ctrl+w>', 'session-save --current --only-active-window')
@@ -219,16 +225,26 @@ config.bind(',y', 'hint all yank')
 config.bind('ym', 'yank inline [[{url}][{title}]]')
 
 # Open links on mpv
-config.bind(',p', 'hint links spawn mpv {hint-url}')
-config.bind(',P', 'spawn mpv {url}')
-config.bind(';P', 'hint --rapid links spawn mpv {hint-url}')
+config.bind(',p', 'hint links spawn --detach mpv {hint-url}')
+config.bind(',P', 'spawn --detach mpv {url}')
+config.bind(';p', 'hint --rapid links spawn --detach mpv {hint-url}')
+
+# Download video links
+config.bind(',dv', 'hint links spawn --verbose --detach yt-dlp \'{hint-url}\'')
+config.bind(',dV', 'spawn --verbose --detach yt-dlp \'{url}\'')
+config.bind(';dv', 'hint --rapid links spawn --verbose --detach yt-dlp \'{hint-url}\'')
+
+# Download video links
+config.bind(',dm', 'hint links spawn --verbose --detach yt-dlp -f ba -x --audio-format mp3 \'{hint-url}\'')
+config.bind(',dM', 'spawn --verbose --detach yt-dlp -f ba -x --audio-format mp3 \'{url}\'')
+config.bind(';dm', 'hint --rapid links spawn --verbose --detach yt-dlp -f ba -x --audio-format mp3 \'{hint-url}\'')
 
 # Open webpage on internet archive
 config.bind(',a', 'hint links fill :open -t https://web.archive.org/web/{hint-url}')
 config.bind(',A', 'open https://web.archive.org/web/{url}')
 
 # Download image in page
-config.bind(',d', 'hint --rapid images download')
+config.bind(',di', 'hint --rapid images download')
 
 # Custom hint group that only selects Reddit expand buttons.
 config.set('hints.selectors', {
