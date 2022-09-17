@@ -188,6 +188,10 @@ alias scrot='scrot ~/Storage/Images/screenshots/%Y-%m-%d_%H:%M:%S.png'
 # Weather
 alias wttr='curl wttr.in/?0Fq'
 
+# SciHub to pdf
+# https://github.com/dougy147/scitopdf
+alias scihub="curl https://raw.githubusercontent.com/dougy147/scitopdf/master/bin/scitopdf | bash -s "
+
 # Convenience aliases
 
 # Use rsync for copying files
