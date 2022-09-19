@@ -71,6 +71,11 @@ pathappend ~/.emacs.d/bin
 # Text editors
 export EDITOR='lvim'
 export VISUAL='emacsclient -c -a emacs'
+
+# DOOM Emacs
+export EMACSDIR='~/.config/emacs-doom'
+export DOOMDIR='~/.config/doom'
+
 # PDF Reader
 export READER='zathura'
 
