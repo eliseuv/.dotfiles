@@ -14,6 +14,7 @@ otf-fira-code-symbol
 otf-symbola
 paru
 sampler
+scidavis-qt5
 task-spooler
 ttf-alegreya
 xorg-font-utils
