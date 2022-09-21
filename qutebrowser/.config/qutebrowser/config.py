@@ -235,9 +235,9 @@ config.bind(',dV', 'spawn --verbose --detach yt-dlp \'{url}\'')
 config.bind(';dv', 'hint --rapid links spawn --verbose --detach yt-dlp \'{hint-url}\'')
 
 # Download video links
-config.bind(',dm', 'hint links spawn --verbose --detach yt-dlp -f ba -x --audio-format mp3 \'{hint-url}\'')
-config.bind(',dM', 'spawn --verbose --detach yt-dlp -f ba -x --audio-format mp3 \'{url}\'')
-config.bind(';dm', 'hint --rapid links spawn --verbose --detach yt-dlp -f ba -x --audio-format mp3 \'{hint-url}\'')
+config.bind(',dm', 'hint links spawn --verbose --detach yt-dlp -f ba -x --audio-format mp3 -o \'~/Storage/Music/_unsorted/%(channel)s - %(title)s [%(id)s].%(ext)s\' \'{hint-url}\'')
+config.bind(',dM', 'spawn --verbose --detach yt-dlp -f ba -x --audio-format mp3 -o \'~/Storage/Music/_unsorted/%(channel)s - %(title)s [%(id)s].%(ext)s\' \'{url}\'')
+config.bind(';dm', 'hint --rapid links spawn --verbose --detach yt-dlp -f ba -x --audio-format mp3 -o \'~/Storage/Music/_unsorted/%(channel)s - %(title)s [%(id)s].%(ext)s\' \'{hint-url}\'')
 
 # Open webpage on internet archive
 config.bind(',a', 'hint links fill :open -t https://web.archive.org/web/{hint-url}')

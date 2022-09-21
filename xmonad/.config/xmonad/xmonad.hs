@@ -75,8 +75,9 @@ myEmacs :: String
 myEmacs = "emacsclient -c -a 'emacs' " -- Makes emacs keybindings easier to type
 
 myEditor :: String
-myEditor = "emacsclient -c -a 'emacs' " -- Sets emacs as editor
+myEditor = myEmacs -- Sets emacs as editor
 -- myEditor = myTerminal ++ " -e vim "    -- Sets vim as editor
+-- myEditor = myTerminal ++ " -e hx "    -- Sets helix as editor
 
 myFileManager :: String
 myFileManager = "pcmanfm"
@@ -121,7 +122,7 @@ myStartupHook = do
   -- spawnOnce "lxsession"
   spawn myWallpaperScript -- Set wallpaper
   spawnOnce "picom --experimental-backends -b --config ~/.config/picom/picom.conf &" -- Compositor
-  -- spawn "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
+  spawn "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
   -- spawnOnce "urxvtd -q -o -f &"               -- urxvt daemon for better performance
   -- spawnOnce "nm-applet &"                     -- NetworkManager in tray
   -- spawnOnce "volumeicon &"                    -- Volume controls in tray

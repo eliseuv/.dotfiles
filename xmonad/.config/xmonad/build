@@ -1,0 +1,11 @@
+#!/bin/sh
+/usr/bin/ghc \
+    --make xmonad.hs \
+    -i \
+    -ilib \
+    -fforce-recomp \
+    -main-is main \
+    -dynamic \
+    -v0 \
+    -outputdir /home/evf/.cache/xmonad/build-x86_64-linux \
+    -o /home/evf/.cache/xmonad/xmonad-x86_64-linux
