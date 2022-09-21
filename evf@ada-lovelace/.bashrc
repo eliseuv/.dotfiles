@@ -8,3 +8,4 @@ case ":$PATH:" in *:/home/eliseuvf/.juliaup/bin:*);; *)
 esac
 
 # <<< juliaup initialize <<<
+. "$HOME/.cargo/env"
