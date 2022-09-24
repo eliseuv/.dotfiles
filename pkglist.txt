@@ -65,7 +65,6 @@ go
 graphviz
 grep
 groff
-gvim
 gzip
 haskell-language-server
 hdf5
@@ -83,6 +82,7 @@ iputils
 jfsutils
 jq
 jsoncpp
+lapce
 lazygit
 ledger
 less
@@ -213,6 +213,7 @@ texlive-latexextra
 texlive-pictures
 texlive-science
 tldr
+tmux
 torbrowser-launcher
 ttf-cascadia-code
 ttf-dejavu
@@ -229,6 +230,7 @@ usbutils
 util-linux
 vde2
 vi
+vim
 virt-manager
 virt-viewer
 w3m

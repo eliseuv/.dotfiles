@@ -61,6 +61,7 @@ require("tokyonight").setup({
     style = "night", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
 })
 lvim.colorscheme = "tokyonight"
+
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
