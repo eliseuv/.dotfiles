@@ -174,6 +174,7 @@ alias lv='lvim'
 alias hx='helix'
 
 # tmux
+alias tmux="TERM=screen-256color-bce tmux"
 alias t='tmux attach || tmux new-session'
 alias ta='tmux attach -t'
 alias tn='tmux new-session'

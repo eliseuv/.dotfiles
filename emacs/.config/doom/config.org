@@ -1405,16 +1405,22 @@ Use the latest version of =Org Roam=:
 (unpin! org-roam)
 #+end_src
 
-Install dependencies:
+Install =Org Roam UI=
 
 #+begin_src emacs-lisp
+(package! org-roam-ui)
+#+end_src
+
+Install dependencies:
+
+#+begin_src emacs-lisp :tangle config.el
 (use-package! websocket
   :after org-roam)
 #+end_src
 
-Install =Org Roam=:
+Configure package =Org Roam UI=:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle config.el
 (use-package! org-roam-ui
   :after org-roam
   :config
