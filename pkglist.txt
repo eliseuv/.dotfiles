@@ -166,7 +166,6 @@ python-adblock
 python-json5
 python-pdftotext
 python-tldextract
-python2
 qbittorrent
 qemu-desktop
 qutebrowser

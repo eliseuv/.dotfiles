@@ -5,4 +5,4 @@
 // @run-at         document-start
 // ==/UserScript==
 
-location.href=location.href.replace("en.wikipedia.org/wiki","wikiwand.com/en");
+location.href = location.href.replace("en.wikipedia.org/wiki", "wikiwand.com/en");
