@@ -42,7 +42,6 @@
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
 
-
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
@@ -99,6 +98,9 @@
 (defadvice! prompt-for-buffer (&rest _)
   :after '(evil-window-split evil-window-vsplit)
   (consult-buffer))
+
+;; Remove window decoration
+(setq default-frame-alist '((undecorated . t)))
 
 ;; Default mode
 (setq-default major-mode 'org-mode)

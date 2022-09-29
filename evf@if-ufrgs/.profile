@@ -57,7 +57,7 @@ pathappend /usr/bin/core_perl /usr/bin/site_perl /usr/bin/vendor_perl
 pathappend ~/.local/share/gem/ruby/3.0.0/bin
 
 # DOOM Emacs
-pathappend ~/.config/emacs-doom/bin
+pathappend ~/.config/emacs/bin
 
 ############
 # ENV VARS #
@@ -73,7 +73,7 @@ export EDITOR='lvim'
 export VISUAL='emacsclient -c -a emacs'
 
 # DOOM Emacs
-export EMACSDIR='~/.config/emacs-doom'
+export EMACSDIR='~/.config/emacs'
 export DOOMDIR='~/.config/doom'
 
 # PDF Reader
