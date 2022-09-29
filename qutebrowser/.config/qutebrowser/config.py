@@ -125,6 +125,9 @@ config.set('content.javascript.enabled', True, 'devtools://*')
 config.set('content.javascript.enabled', True, 'chrome://*/*')
 config.set('content.javascript.enabled', True, 'qute://*/*')
 
+# Hide window decaoration
+c.window.hide_decoration = True
+
 # Cookies
 c.content.cookies.accept = "no-3rdparty"
 c.content.cookies.store = True
