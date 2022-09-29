@@ -167,11 +167,17 @@ alias watch='watch -tc -n 1 '
 alias b='batcat'
 
 # NeoVim
-alias v='nvim'
-alias lv='lvim'
+alias v='lvim'
 
 # Helix
 alias hx='helix'
+
+# tmux
+alias tmux="TERM=screen-256color-bce tmux"
+alias t='tmux attach || tmux new-session'
+alias ta='tmux attach -t'
+alias tn='tmux new-session'
+alias tl='tmux list-sessions'
 
 # Newsboat
 alias nb='newsboat'
@@ -371,7 +377,7 @@ function gocleanup {
 export JULIA_NUM_THREADS=auto
 
 # Julia default editor for the @edit macro
-export JULIA_EDITOR=nvim
+export JULIA_EDITOR=lvim
 
 # Julia binaries
 pathappend "$HOME/.julia/juliaup/bin"
@@ -552,3 +558,4 @@ function customcheck {
 
 # Update and cleanup
 alias up='update'
+. "$HOME/.cargo/env"
