@@ -199,6 +199,10 @@ c.aliases = {   'w': 'session-save --current --only-active-window',
                 'wqa': 'quit --save',
                 }
 
+# Add libreddit class to hints selectors
+c.hints.selectors['libreddit-post'] = ['.post_title']
+c.hints.selectors['libreddit-subreddit'] = ['.post_subreddit']
+c.hints.selectors['libreddit-user'] = ['.post_author', '.comment_author']
 
 # Read this config.py file
 config.bind(',cS', 'config-source')
@@ -246,8 +250,7 @@ config.bind(',A', 'open https://web.archive.org/web/{url}')
 # Download image in page
 config.bind(',di', 'hint --rapid images download')
 
-# Custom hint group that only selects Reddit expand buttons.
-config.set('hints.selectors', {
-	'reddit-expand': ['.expando-button'],
-}, pattern='*://*.reddit.com/*')
-config.bind(',E', 'hint reddit-expand')
+# Libreddit navigation 
+config.bind(',rp', 'hint libreddit-post tab')
+config.bind(',rr', 'hint libreddit-subreddit tab')
+config.bind(',ru', 'hint libreddit-user tab')

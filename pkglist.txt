@@ -1,6 +1,7 @@
 alacritty
 amd-ucode
 arandr
+archlinux-keyring
 autoconf
 automake
 bash
@@ -104,12 +105,14 @@ llvm
 logrotate
 lolcat
 lvm2
+lxappearance-gtk3
 lxsession
 m4
 mailcap
 make
 man-db
 man-pages
+materia-gtk-theme
 mdadm
 mediainfo
 mkvtoolnix-cli
@@ -146,7 +149,7 @@ pandoc
 pass
 patch
 pciutils
-pcmanfm
+pcmanfm-gtk3
 pdfjs
 perl
 perl-file-mimeinfo
