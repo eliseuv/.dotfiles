@@ -849,7 +849,7 @@ Make open on the right:
 Use [[https://calibre-ebook.com/][calibre]] for managing ebooks:
 
 #+begin_src emacs-lisp :tangle packages.el
-(package! calibredb :pin "232fa1cf3af08200af439d1cbb5a131f38286183")
+(package! calibredb :pin "8a6148a264e5e57e11824a238ae7b92bb3b6c9ab")
 #+end_src
 
 #+begin_src emacs-lisp
