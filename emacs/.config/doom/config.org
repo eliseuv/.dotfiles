@@ -231,7 +231,7 @@ biblio              ; Writes a PhD for you (citation needed)
 ;;direnv
 ;;docker
 ;;editorconfig      ; let someone else argue about tabs vs spaces
-;;ein               ; tame Jupyter notebooks with emacs
+ein               ; tame Jupyter notebooks with emacs
 (eval +overlay)     ; run code, run (also, repls)
 ;;gist              ; interacting with github gists
 (lookup             ; navigate your code and its documentation
@@ -302,17 +302,21 @@ markdown          ; writing docs for people to ignore
 ;;nim               ; python + lisp at the speed of c
 ;;nix               ; I hereby declare "nix geht mehr!"
 ;;ocaml             ; an objective camel
-(org                         ; organize your plain life in plain text
- +dragndrop                  ; drag & drop files/images into org buffers
- ;;+hugo                     ; use Emacs for hugo blogging
- +noter                      ; enhanced PDF notetaking
- +jupyter                    ; ipython/jupyter support for babel
- +pandoc                     ; export-with-pandoc support
- +gnuplot                    ; who doesn't like pretty pictures
- ;;+pomodoro                 ; be fruitful with the tomato technique
- +present                    ; using org-mode for presentations
- +pretty
- +roam2)                     ; wander around notes
+(org                    ; organize your plain life in plain text
+ ;;+brain               ; org-brain integration
+ ;;+contacts            ; org-contacts integration
+ +dragndrop             ; drag & drop files/images into org buffers
+ +gnuplot               ; who doesn't like pretty pictures
+ ;;+hugo                ; use Emacs for hugo blogging
+ ;;+journal             ; org-journal integration
+ +jupyter               ; ipython/jupyter support for babel
+ +noter                 ; enhanced PDF notetaking
+ +pandoc                ; export-with-pandoc support
+ ;;+passwords           ; org-passwords integration
+ ;;+pomodoro            ; be fruitful with the tomato technique
+ +present               ; using org-mode for presentations
+ +pretty                ; pretty unicode symbols, better syntax highlighting for LaTeX
+ +roam2)                ; wander around notes
 ;;php               ; perl's insecure younger brother
 ;;plantuml          ; diagrams for confusing people more
 ;;purescript        ; javascript, but functional

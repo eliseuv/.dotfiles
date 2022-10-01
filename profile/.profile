@@ -433,7 +433,7 @@ export CONDA_ENVS_DIR="$HOME/.conda/envs"
 # Activate an env (with fzf)
 function condaenv {
     local ENVS_LIST=("base")
-    local ENVS_LIST+=$(ls $CONDA_ENVS_DIR)
+    local ENVS_LIST=("${ENVS_LIST[@]}" "$(ls $CONDA_ENVS_DIR)")
     conda activate $(printf "%s\n" ${ENVS_LIST[@]} | fzf)
 }
 
@@ -445,7 +445,7 @@ function condaupdate {
     conda activate base
     sudo conda update --all --yes
     conda deactivate
-    local ENVS=$(ls $CONDA_ENVS_DIR)
+    local ENVS=($(ls $CONDA_ENVS_DIR))
     for ENV in ${ENVS[@]}; do
         printf "\n${BLUE}Updating $ENV env...${RESET}\n\n"
         conda activate $ENV
