@@ -511,6 +511,7 @@ myManageHook =
       isFullscreen --> doFullFloat,
       -- Programming
       className =? "Emacs" --> doShift (myWorkspaces !! 0),
+      className =? "code-oss" --> doShift (myWorkspaces !! 0),
       -- Web Browsers
       title =? "Mozilla Firefox" --> doShift (myWorkspaces !! 2),
       title =? "Chromium" --> doShift (myWorkspaces !! 2),
