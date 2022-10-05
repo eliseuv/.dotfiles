@@ -167,8 +167,7 @@ alias watch='watch -tc -n 1 '
 alias b='bat'
 
 # NeoVim
-alias v='nvim'
-alias lv='lvim'
+alias v='lvim'
 
 # Helix
 alias hx='helix'
@@ -459,7 +458,7 @@ function condacleanup {
     conda activate base
     sudo conda clean --all --yes
     conda deactivate
-    local ENVS=$(ls $CONDA_ENVS_DIR)
+    local ENVS=($(ls $CONDA_ENVS_DIR))
     for ENV in ${ENVS[@]}; do
         printf "\n${BLUE}Cleaning up $ENV env...${RESET}\n\n"
         conda activate $ENV

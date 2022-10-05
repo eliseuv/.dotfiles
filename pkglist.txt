@@ -19,7 +19,6 @@ calibre
 chromium
 clang
 cmake
-cmatrix
 code
 colordiff
 coreutils
@@ -71,6 +70,7 @@ haskell-language-server
 hdf5
 helix
 hledger-ui
+hledger-web
 hoogle
 i3-gaps
 i3status
@@ -166,9 +166,7 @@ pulsemixer
 pv
 pyright
 python-adblock
-python-json5
 python-pdftotext
-python-tldextract
 qbittorrent
 qemu-desktop
 qutebrowser
@@ -191,7 +189,6 @@ shellcheck
 shfmt
 speedcrunch
 sshfs
-stack
 starship
 stow
 stylua

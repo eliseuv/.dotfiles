@@ -2,6 +2,7 @@ airshipper
 brave-bin
 clifm
 cmake-format
+git-secret
 insect
 julia-bin
 lightdm-settings

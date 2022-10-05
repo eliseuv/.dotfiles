@@ -4,12 +4,12 @@ usage() {
     local SCRIPT_NAME
     SCRIPT_NAME=$(basename "$0")
     echo "Usage: $SCRIPT_NAME [-f SEP] [-i INPUT_FILE] DICT_FILE"
-    echo "Substitute to contents of INPUT_FILE using DICT_FILE contents as dictionary using SEP as filed separator (defaulting to a single space) and prints it to stdout."
+    echo "Substitute to contents of INPUT_FILE using DICT_FILE contents as dictionary using SEP as filed separator (defaulting to a comma) and prints it to stdout."
     echo "If no INPUT_FILE is provided, it will use stdin."
 }
 
 # Default values
-SEP=" "
+SEP=","
 USE_INPUT_FILE=0
 INPUT_FILE=""
 TEMP_FILE=/tmp/subs_name.temp
@@ -35,7 +35,7 @@ while getopts "hi:f:" OPT; do
     esac
 done
 
-shift "$(($OPTIND - 1))"
+shift "$((OPTIND - 1))"
 DICT_FILE=$1
 
 # Function that performs substitution on a single line
@@ -43,19 +43,19 @@ subs_line() {
     echo "$LINE" >$TEMP_FILE
     # Loop on dict lines
     while read -r DICT_ENTRY; do
-        sed -i "s/${DICT_ENTRY%$SEP*}/${DICT_ENTRY#*$SEP}/g" "$TEMP_FILE"
-    done <$DICT_FILE
+        sed -i "s/${DICT_ENTRY%"$SEP"*}/${DICT_ENTRY#*"$SEP"}/g" "$TEMP_FILE"
+    done <"$DICT_FILE"
     cat "$TEMP_FILE"
 }
 
 if [[ $USE_INPUT_FILE == 1 ]]; then
     # Use input file
-    while read LINE; do
+    while read -r LINE; do
         subs_line
-    done <$INPUT_FILE
+    done <"$INPUT_FILE"
 else
     # Use stdin
-    while read LINE; do
+    while read -r LINE; do
         subs_line
     done
 fi

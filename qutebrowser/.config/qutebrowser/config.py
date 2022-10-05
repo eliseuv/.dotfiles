@@ -303,6 +303,11 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:90.0) Gecko
 # Type: FormatString
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99 Safari/537.36', 'https://*.slack.com/*')
 
+old_chrome_ua = 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {qt_key}/{qt_version} {upstream_browser_key}/67.0.1 Safari/{webkit_version}'
+config.set('content.headers.user_agent', old_chrome_ua, 'steamdb.info')
+config.set('content.headers.user_agent', old_chrome_ua, 'www.nginx.com')
+config.set('content.headers.user_agent', old_chrome_ua, 'gitlab.com/users/sign_in')
+
 # Load images automatically in web pages.
 config.set('content.images', True, 'chrome-devtools://*')
 config.set('content.images', True, 'devtools://*')
@@ -446,6 +451,10 @@ config.bind(',di', 'hint --rapid images download')
 config.bind(',rp', 'hint libreddit-post tab')
 config.bind(',rr', 'hint libreddit-subreddit tab')
 config.bind(',ru', 'hint libreddit-user tab')
+
+# Binds for moving through completion items
+config.bind('<Ctrl-j>', 'completion-item-focus next', mode='command')
+config.bind('<Ctrl-k>', 'completion-item-focus prev', mode='command')
 
 # Bindings for cycling through CSS stylesheets from Solarized Everything CSS:
 # https://github.com/alphapapa/solarized-everything-css
