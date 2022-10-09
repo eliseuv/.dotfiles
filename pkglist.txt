@@ -69,6 +69,7 @@ gzip
 haskell-language-server
 hdf5
 helix
+hledger-iadd
 hledger-ui
 hledger-web
 hoogle
@@ -138,6 +139,7 @@ ntfs-3g
 numlockx
 nvidia
 nvtop
+obs-studio
 openbsd-netcat
 openssh
 openssl-1.0

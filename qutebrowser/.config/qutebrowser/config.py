@@ -397,8 +397,8 @@ c.aliases = {   'w': 'session-save --current --only-active-window',
                 }
 
 # Add libreddit class to hints selectors
+c.hints.selectors['libreddit-subreddit'] = ['.post_subreddit', '.search_subreddit']
 c.hints.selectors['libreddit-post'] = ['.post_title']
-c.hints.selectors['libreddit-subreddit'] = ['.post_subreddit']
 c.hints.selectors['libreddit-user'] = ['.post_author', '.comment_author']
 
 # Read this config.py file

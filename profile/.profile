@@ -100,6 +100,9 @@ export TS_SLOTS=1
 export LOVELACE='lovelace.if.ufrgs.br'
 export LOVELACE_DATA="eliseuvf@$LOVELACE:/home_tmp/eliseuvf/"
 
+# hledger
+export LEDGER_FILE=~/Documents/finances/home-ledger/home.ledger
+
 #############
 # GPG + SSH #
 #############
