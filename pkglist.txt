@@ -2,6 +2,10 @@ alacritty
 amd-ucode
 arandr
 archlinux-keyring
+aspell
+aspell-en
+aspell-fr
+aspell-pt
 autoconf
 automake
 bash

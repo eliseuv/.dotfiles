@@ -72,7 +72,7 @@ myBrowser :: String
 myBrowser = "qutebrowser " -- Sets qutebrowser as browser
 
 myEmacs :: String
-myEmacs = "emacsclient -c -a 'emacs' " -- Makes emacs keybindings easier to type
+myEmacs = "emacsclient -nc -a 'emacs' " -- Makes emacs keybindings easier to type
 
 myEditor :: String
 myEditor = myEmacs -- Sets emacs as editor
@@ -120,6 +120,7 @@ myStartupHook = do
   -- spawn "killall trayer"  -- kill current trayer on each restart
 
   -- spawnOnce "lxsession"
+  spawn "setxkbmap -option caps:swapescape" -- Swap CAPS LOCK and ESCAPE keys
   spawn myWallpaperScript -- Set wallpaper
   spawnOnce "picom --experimental-backends -b --config ~/.config/picom/picom.conf &" -- Compositor
   spawn "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
@@ -128,7 +129,6 @@ myStartupHook = do
   -- spawnOnce "volumeicon &"                    -- Volume controls in tray
   -- spawn ("sleep 2 && conky -c $HOME/.config/conky/xmonad/" ++ colorScheme ++ "-01.conkyrc")
   -- spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 22")
-  spawn "setxkbmap -option caps:swapescape" -- Swap CAPS LOCK and ESCAPE keys
   -- spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"
   -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
   -- spawnOnce "feh --randomize --bg-fill /usr/share/backgrounds/dtos-backgrounds/*"  -- feh set random wallpaper
@@ -330,7 +330,7 @@ myScratchPads =
         t = 0.75 - h
         l = 0.70 - w
 
---Makes setting the spacingRaw simpler to write. The spacingRaw module adds a configurable amount of space around windows.
+-- Makes setting the spacingRaw simpler to write. The spacingRaw module adds a configurable amount of space around windows.
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
 
@@ -559,14 +559,14 @@ showKeybindings :: [((KeyMask, KeySym), NamedAction)] -> NamedAction
 showKeybindings x = addName "Show Keybindings" $
   io $ do
     h <- spawnPipe "yad --text-info --fontname=\"SauceCodePro Nerd Font Mono 12\" --fore=#46d9ff back=#282c36 --center --geometry=1200x800 --title \"XMonad keybindings\""
-    --hPutStr h (unlines $ showKm x) -- showKM adds ">>" before subtitles
+    -- hPutStr h (unlines $ showKm x) -- showKM adds ">>" before subtitles
     hPutStr h (unlines $ showKmSimple x) -- showKmSimple doesn't add ">>" to subtitles
     hClose h
     return ()
 
 myKeys :: XConfig l0 -> [((KeyMask, KeySym), NamedAction)]
 myKeys c =
-  --(subtitle "Custom Keys":) $ mkNamedKeymap c $
+  -- (subtitle "Custom Keys":) $ mkNamedKeymap c $
   let subKeys str ks = subtitle' str : mkNamedKeymap c ks
    in subKeys
         "Xmonad Essentials"
@@ -801,7 +801,7 @@ main = do
         docks $
           def
             { manageHook = myManageHook <+> manageDocks,
-              --, handleEventHook    = docks
+              -- , handleEventHook    = docks
               -- Uncomment this line to enable fullscreen support on things like YouTube/Netflix.
               -- This works perfect on SINGLE monitor systems. On multi-monitor systems,
               -- it adds a border around the window if screen does not have focus. So, my solution

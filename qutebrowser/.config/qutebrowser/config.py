@@ -384,6 +384,7 @@ c.url.searchengines["tpb"] = "https://thepiratebay.org/search.php?q={}&all=on&se
 c.url.searchengines["ny"] = "https://nyaa.si/?f=0&c=0_0&q={}"
 c.url.searchengines["wa"] = "https://www.wolframalpha.com/input/?i={}"
 c.url.searchengines["amz"] = "https://www.amazon.com.br/s?k={}"
+c.url.searchengines["hltv"] = "https://www.hltv.org/search?query={}"
 c.url.searchengines["keepa"] = "https://keepa.com/#!search/12-{}"
 c.url.searchengines["color"] = "https://www.color-hex.com/color/{}"
 c.url.searchengines["sc"] = "https://www.shellcheck.net/wiki/SC{}"
@@ -395,11 +396,6 @@ c.aliases = {   'w': 'session-save --current --only-active-window',
                 'wq': 'quit --save',
                 'wqa': 'quit --save',
                 }
-
-# Add libreddit class to hints selectors
-c.hints.selectors['libreddit-subreddit'] = ['.post_subreddit', '.search_subreddit']
-c.hints.selectors['libreddit-post'] = ['.post_title']
-c.hints.selectors['libreddit-user'] = ['.post_author', '.comment_author']
 
 # Read this config.py file
 config.bind(',cS', 'config-source')
@@ -447,10 +443,25 @@ config.bind(',A', 'open https://web.archive.org/web/{url}')
 # Download image in page
 config.bind(',di', 'hint --rapid images download')
 
+# Libreddit selector hints
+c.hints.selectors['libreddit-subreddit'] = ['.post_subreddit', '.search_subreddit']
+c.hints.selectors['libreddit-post'] = ['.post_title']
+c.hints.selectors['libreddit-user'] = ['.post_author', '.comment_author']
+
 # Libreddit navigation 
 config.bind(',rp', 'hint libreddit-post tab')
 config.bind(',rr', 'hint libreddit-subreddit tab')
 config.bind(',ru', 'hint libreddit-user tab')
+
+# 4chan selector hints
+c.hints.selectors['4chan-image'] = ['.fileThumb']
+c.hints.selectors['4chan-backlink'] = ['.backlink']
+c.hints.selectors['4chan-quotelink'] = ['.quotelink']
+
+# 4chan navigation
+config.bind(',ci', 'hint --rapid 4chan-image')
+config.bind(',cb', 'hint 4chan-backlink')
+config.bind(',cq', 'hint 4chan-quotelink')
 
 # Binds for moving through completion items
 config.bind('<Ctrl-j>', 'completion-item-focus next', mode='command')
