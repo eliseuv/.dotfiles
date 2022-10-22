@@ -533,7 +533,8 @@ function update {
     printf "\n${GREEN}Updating Miniconda...${RESET}\n\n"
     condaupdate
     printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
-    doom upgrade -!
+    # doom upgrade -!
+    doom sync -u
     printf "\n${GREEN}Custom check...${RESET}\n"
     customcheck
     printf "\n"
@@ -553,6 +554,7 @@ function cleanup {
     printf "\n${GREEN}Go cleanup...${RESET}\n\n"
     gocleanup
     printf "\n${GREEN}DOOM purge...${RESET}\n\n"
+    doom clean
     doom purge
 }
 

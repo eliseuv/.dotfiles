@@ -45,6 +45,17 @@ This is my first attempt on an Emacs literate configuration, mostly based on [[h
 (global-subword-mode t)                           ; Recognize uppercase letters as word boundaries (useful for CamelCase naming)
 #+end_src
 
+Make popups open on the right:
+
+#+begin_src emacs-lisp
+(set-popup-rule!
+  '(("^ \\*" :size 0.3 :slot -1 :side 'right)
+    ("^\\*" :select t :side 'right)
+    ("^\\*\\(?:scratch\\|Messages\\)" :ttl t)
+    ("^\\*Help" :slot -1 :size 0.2 :select t)
+    ("^\\*doom:" :size 0.35 :select t :modeline t :quit t :ttl t :side 'right)))
+#+end_src
+
 
 *** Auto customization
 
@@ -700,7 +711,7 @@ Make open on the right:
 
 #+begin_src emacs-lisp
 (after! vterm
-  (set-popup-rule! "*doom:vterm-popup" :size 0.3 :vslot -4 :select t :quit nil :ttl 0 :side 'right))
+  (set-popup-rule! "*doom:vterm-popup:main" :size 0.3 :vslot -4 :select t :quit nil :ttl 0 :side 'right))
 #+end_src
 
 
@@ -1077,6 +1088,7 @@ Location of files:
 
 *** Extra functionality
 
+
 **** Julia Support
 
 Org Babel Julia:
@@ -1222,6 +1234,7 @@ Now, by default, =LSP=s don't really function at all in ~src~ blocks.
 
 
 *** Visuals
+
 
 **** Org Modern
 
