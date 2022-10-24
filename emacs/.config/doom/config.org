@@ -1114,15 +1114,39 @@ Org Babel Julia:
 
 **** LaTeX Support
 
+$\LaTeX$ classes:
+
+#+begin_src emacs-lisp
+(require 'ox-latex)
+(unless (boundp 'org-latex-classes)
+  (setq org-latex-classes nil))
+(add-to-list 'org-latex-classes
+             '("note"
+               "\\documentclass{article}[a4]
+                \\usepackage[margin=0.5in]{geometry}"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+#+end_src
+
+
 Default $\LaTeX$ packages.
 
 #+begin_src emacs-lisp
-(setq org-latex-packages-alist '(("" "amsmath" t)
+(setq org-latex-packages-alist '(
+                                 ;; AMS packages
+                                 ("" "amsmath" t)
                                  ("" "amsthm" t)
                                  ("" "amssymb" t)
+                                 ;; Extended math
                                  ("" "mathtools" t)
+                                 ;; Dirac braket notation
                                  ("" "braket" t)
+                                 ;; Color names
                                  ("dvipsnames" "xcolor" t)
+                                 ;; Cancel terms
                                  ("" "cancel" t)))
 #+end_src
 
