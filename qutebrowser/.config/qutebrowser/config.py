@@ -406,7 +406,7 @@ config.bind('wi', 'devtools bottom')
 
 # Save session
 config.bind('<Ctrl+w>', 'session-save --current --only-active-window')
-config.bind('<Ctrl+l>', 'set-cmd-text -s :session-load --clear')
+config.bind('<Ctrl+o>', 'set-cmd-text -s :session-load --clear')
 
 # Open in editor
 config.bind(',e', 'edit-url')
