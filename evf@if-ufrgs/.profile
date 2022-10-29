@@ -94,7 +94,7 @@ export NNN_OPTS="dEox"
 
 # Task Spooler
 # Mximum number of parallel jobs
-export TS_SLOTS=1
+export TS_SLOTS=8
 
 # Ada Lovelace cluster
 export LOVELACE='ada-lovelace.if.ufrgs.br'
@@ -495,14 +495,11 @@ alias parsyu='paru -Syu'
 alias parsua='paru -Sua'
 
 # Pacman cleanup
-function paccleanup {
-    printf "\n${BLUE}Pacman cache cleanup...${RESET}\n\n"
-    paccache -rk1
-    paccache -ruk0
-    printf "\n${BLUE}Paru AUR cache cleanup...${RESET}\n\n"
-    paru -Scca --noconfirm
+function poposcleanup {
     printf "\n${BLUE}Removing orphaned packages...${RESET}\n\n"
-    pacman -Qdtq | xargs -ro sudo pacman -Rns --noconfirm
+    sudo apt autoremove --purge --yes
+    printf "\n${BLUE}Cleaning packages and install scripts...${RESET}\n\n"
+    sudo apt clean --yes
 }
 
 #######################
@@ -514,7 +511,7 @@ function update {
     [[ -f /tmp/update.lock ]] && exit 1
     touch /tmp/update.lock
     printf "\n${GREEN}Updating PopOS!...${RESET}\n\n"
-    sudo apt update && sudo apt upgrade
+    sudo apt update --yes && sudo apt upgrade --yes
     printf "\n${GREEN}Updating Rust...${RESET}\n\n"
     rust-update
     printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"
@@ -535,8 +532,8 @@ function update {
 
 # Cleanup
 function cleanup {
-    printf "\n${GREEN}Pacman cleanup...${RESET}\n"
-    paccleanup
+    printf "\n${GREEN}PopOS! cleanup...${RESET}\n"
+    poposcleanup   
     printf "\n${GREEN}Julia cleanup...${RESET}\n\n"
     julia-cleanup
     printf "\n${GREEN}Miniconda cleanup...${RESET}\n\n"
