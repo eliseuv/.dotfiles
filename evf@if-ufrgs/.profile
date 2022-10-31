@@ -222,6 +222,9 @@ alias disk-destroyer='sudo dd bs=4M conv=fsync oflag=direct status=progress'
 # Stage, commit and push changes with default commit message
 alias git-push="git add . && git commit -m 'update' && git push"
 
+# Connect to UFRGS VPN
+alias vpn-ufrgs="sudo openvpn --config ~/.config/openvpn/vpn-ufrgs.ovpn"
+
 #############
 # FUNCTIONS #
 #############
