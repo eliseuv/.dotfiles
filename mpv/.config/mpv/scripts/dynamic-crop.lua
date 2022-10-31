@@ -85,7 +85,9 @@ local labels = {
 local in_progress, seeking, paused, toggled, filter_missing, filter_inserted
 -- computed options
 local function convert_sec_to_ms(num) return math.floor(num * 1000) end
+
 local function convert_ms_to_sec(num) return num / 1000 end
+
 local o_timer = {}
 for option, _ in pairs(options) do
     for t in string.gmatch(tostring(option), "_timer") do
@@ -122,9 +124,10 @@ local function insert_cropdetect_filter()
     -- "vf pre" cropdetect / "vf append" crop, in a proper order
     local function insert_filter()
         return manage_filter("pre",
-                             string.format("%s:lavfi-cropdetect=limit=%d/255:round=%d:reset=%d%s", labels.cropdetect,
-                                           limit.current, options.detect_round, options.detect_reset, cropdetect_skip))
+            string.format("%s:lavfi-cropdetect=limit=%d/255:round=%d:reset=%d%s", labels.cropdetect,
+                limit.current, options.detect_round, options.detect_reset, cropdetect_skip))
     end
+
     if not insert_filter() then
         cropdetect_skip = ""
         if not insert_filter() then
@@ -139,14 +142,15 @@ end
 
 local function compute_metadata(meta)
     meta.whxy = string.format("w=%s:h=%s:x=%s:y=%s", meta.w, meta.h, meta.x, meta.y)
-    meta.offset = {x = meta.x - (source.w - meta.w) / 2, y = meta.y - (source.h - meta.h) / 2}
+    meta.offset = { x = meta.x - (source.w - meta.w) / 2, y = meta.y - (source.h - meta.h) / 2 }
     meta.mt, meta.mb, meta.ml, meta.mr = meta.y, source.h - meta.h - meta.y, meta.x, source.w - meta.w - meta.x
     meta.is_source = meta.whxy == source.whxy
     meta.is_invalid = meta.h < 0 or meta.w < 0
     meta.is_trusted_offsets = is_trusted_offset(meta.offset.x, "x") and is_trusted_offset(meta.offset.y, "y")
-    meta.time = {buffer = 0, overall = 0}
+    meta.time = { buffer = 0, overall = 0 }
     -- check aspect ratio with the known list
-    if not meta.is_invalid and math.abs(meta.w - source.w) <= options.detect_round * 2 or math.abs(meta.h - source.h) <=
+    if not meta.is_invalid and math.abs(meta.w - source.w) <= options.detect_round * 2 or
+        math.abs(meta.h - source.h) <=
         options.detect_round * 2 then
         for ratio in string.gmatch(options.ratios, "%S+%s?") do
             for a, b in string.gmatch(tostring(ratio), "(%d+)/(%d+)") do ratio = a / b end
@@ -182,13 +186,13 @@ local function print_debug(meta, type_, label)
     if options.debug then
         if type_ == "detail" then
             print(string.format("%s, %-29s | offX:%3s offY:%3s | limit:%-2s", label, meta.whxy, meta.offset.x,
-                                meta.offset.y, limit.current))
+                meta.offset.y, limit.current))
         end
         if not type_ then print(meta) end
     end
     if type_ == "stats" and stats and stats.trusted then
         mp.msg.info("Meta Stats:")
-        local read_maj_offset = {x = "", y = ""}
+        local read_maj_offset = { x = "", y = "" }
         for axis, _ in pairs(read_maj_offset) do
             for _, v in pairs(stats.trusted_offset[axis]) do
                 read_maj_offset[axis] = read_maj_offset[axis] .. v .. " "
@@ -197,17 +201,17 @@ local function print_debug(meta, type_, label)
         mp.msg.info(
             string.format("Limit - min/max: %s/%s | counter: %s", limit.min, options.detect_limit, limit.counter))
         mp.msg.info(string.format("Trusted - unique: %s | offset: X:%sY:%s", stats.trusted_unique, read_maj_offset.x,
-                                  read_maj_offset.y))
+            read_maj_offset.y))
         for whxy, ref in pairs(stats.trusted) do
             if stats.trusted[whxy] then
                 mp.msg.info(string.format("\\ %-29s | offX=%3s offY=%3s | applied=%s overall=%s last_seen=%s", whxy,
-                                          ref.offset.x, ref.offset.y, ref.applied, convert_ms_to_sec(ref.time.overall),
-                                          convert_ms_to_sec(ref.time.last_seen)))
+                    ref.offset.x, ref.offset.y, ref.applied, convert_ms_to_sec(ref.time.overall),
+                    convert_ms_to_sec(ref.time.last_seen)))
             end
         end
         mp.msg.info("Buffer - unique: " .. buffer.unique_meta .. " | total: " .. buffer.index_total,
-                    convert_ms_to_sec(buffer.time_total) .. "sec | known_ratio:", buffer.index_known_ratio,
-                    convert_ms_to_sec(buffer.time_known) .. "sec")
+            convert_ms_to_sec(buffer.time_total) .. "sec | known_ratio:", buffer.index_known_ratio,
+            convert_ms_to_sec(buffer.time_known) .. "sec")
         -- if options.debug and stats.buffer then
         --     for whxy, ref in pairs(stats.buffer) do
         --         mp.msg.info(string.format(
@@ -246,7 +250,7 @@ local function process_metadata(timestamp, collected)
     end
     -- add collected to the buffer
     if buffer.index_total == 0 or buffer.ordered[buffer.index_total][1] ~= collected then
-        table.insert(buffer.ordered, {collected, elapsed_time})
+        table.insert(buffer.ordered, { collected, elapsed_time })
         buffer.index_total = buffer.index_total + 1
         buffer.index_known_ratio = buffer.index_known_ratio + 1
     elseif last_collected == collected then
@@ -276,7 +280,7 @@ local function process_metadata(timestamp, collected)
     if not collected.is_trusted_offsets and stats.buffer[collected.whxy] and collected.is_known_ratio and
         (collected.is_linked_to_source and collected.time.buffer >= o_timer.new_offset or collected.time.buffer >=
             o_timer.new_fallback) then
-        for _, axis in pairs({"x", "y"}) do
+        for _, axis in pairs({ "x", "y" }) do
             if not is_trusted_offset(collected.offset[axis], axis) then
                 table.insert(stats.trusted_offset[axis], collected.offset[axis])
             end
@@ -287,11 +291,11 @@ local function process_metadata(timestamp, collected)
 
     -- add collected ready to the trusted list
     local new_ready =
-        not stats.trusted[collected.whxy] and collected.is_trusted_offsets and not collected.is_invalid and
-            (collected.is_known_ratio and
-                (collected.is_linked_to_source and collected.time.buffer >= o_timer.new_linked_known_ratio or
-                    collected.time.buffer >= o_timer.new_known_ratio) or not collected.is_known_ratio and
-                collected.time.buffer >= o_timer.new_fallback)
+    not stats.trusted[collected.whxy] and collected.is_trusted_offsets and not collected.is_invalid and
+        (collected.is_known_ratio and
+            (collected.is_linked_to_source and collected.time.buffer >= o_timer.new_linked_known_ratio or
+                collected.time.buffer >= o_timer.new_known_ratio) or not collected.is_known_ratio and
+            collected.time.buffer >= o_timer.new_fallback)
     if new_ready then
         stats.trusted[collected.whxy] = collected
         stats.trusted_unique = stats.trusted_unique + 1
@@ -308,8 +312,8 @@ local function process_metadata(timestamp, collected)
         -- find closest trusted metadata
         local closest = {}
         for _, ref in pairs(stats.trusted) do
-            local diff = {ref = ref, vs_current = 0, vs_applied = 0, closest_side = {}}
-            for _, side in pairs({"mt", "mb", "ml", "mr"}) do
+            local diff = { ref = ref, vs_current = 0, vs_applied = 0, closest_side = {} }
+            for _, side in pairs({ "mt", "mb", "ml", "mr" }) do
                 diff[side] = math.abs(current[side] - ref[side])
                 if diff[side] > 0 then
                     diff.vs_current = diff.vs_current + 1
@@ -351,14 +355,14 @@ local function process_metadata(timestamp, collected)
     if options.detect_round <= 4 and stats.trusted[current.whxy] then
         local margin = options.detect_round * 4
         local applied_in_margin = math.abs(current.w - applied.w) <= margin and math.abs(current.h - applied.h) <=
-                                      margin
+            margin
         for _, ref in pairs(stats.trusted) do
             local in_margin = math.abs(current.w - ref.w) <= margin and math.abs(current.h - ref.h) <= margin
             if in_margin then
                 local gt_applied = applied_in_margin and ref ~= applied and ref.time.overall > applied.time.overall * 2
                 local applied_gt = applied_in_margin and ref == applied and ref.time.overall * 2 > current.time.overall
                 local pattern = not applied_in_margin and ref.time.overall > current.time.overall or gt_applied or
-                                    applied_gt
+                    applied_gt
                 local set = stabilized and ref.time.overall > stabilized.time.overall
                 -- print("\\", ref.whxy, ref.time.overall, current.time.overall, applied.time.overall)
                 if ref ~= current and pattern and (not stabilized or set) then stabilized = ref end
@@ -384,7 +388,7 @@ local function process_metadata(timestamp, collected)
     -- apply crop
     local detect_source = current == last_current and (current.is_source or collected.is_source) and limit.target >= 0
     local confirmation = not current.is_source and stats.trusted[current.whxy] and current.time.last_seen >=
-                             o_timer.fast_change and (not corrected.ref or current == last_current)
+        o_timer.fast_change and (not corrected.ref or current == last_current)
     local crop_filter = applied.whxy ~= current.whxy and (confirmation or detect_source)
     if crop_filter and (not timestamps.prevent or timestamp >= timestamps.prevent) then
         if limit.current < limit.min then limit.min = limit.current end -- store minimum limit
@@ -392,7 +396,7 @@ local function process_metadata(timestamp, collected)
         manage_filter("append", string.format("%s:lavfi-crop=%s", labels.crop, current.whxy))
         print_debug(string.format("- Apply: %s", current.whxy))
         current.applied = current.applied + 1
-        table.insert(stats.applied, {timestamp, current})
+        table.insert(stats.applied, { timestamp, current })
         applied = current
         if o_timer.prevent_change > 0 then
             timestamps.prevent = nil
@@ -407,6 +411,7 @@ local function process_metadata(timestamp, collected)
 
     -- cleanup buffer
     local function time_to_cleanup_buffer(time_1, time_2) return time_1 > time_2 * (1 + options.segmentation) end
+
     while time_to_cleanup_buffer(buffer.time_known, o_timer.new_known_ratio) do
         local position = (buffer.index_total + 1) - buffer.index_known_ratio
         buffer.time_known = buffer.time_known - buffer.ordered[position][2]
@@ -421,8 +426,9 @@ local function process_metadata(timestamp, collected)
     end
     local function proactive_cleanup() -- start to cleanup if too much unique meta are present
         return buffer.time_total > buffer.time_known and buffer.unique_meta > buffer.index_total *
-                   (buffer_timer * options.segmentation / (buffer_timer * (1 + options.segmentation))) + 1
+            (buffer_timer * options.segmentation / (buffer_timer * (1 + options.segmentation))) + 1
     end
+
     while time_to_cleanup_buffer(buffer.time_total, buffer_timer) or proactive_cleanup() do
         local ref = buffer.ordered[1][1]
         ref.time.buffer = ref.time.buffer - buffer.ordered[1][2]
@@ -441,7 +447,9 @@ local function process_metadata(timestamp, collected)
     if options.limit_timer == 0 or timestamp >= limit.timer then
         limit.last_target = limit.target
         if not collected.is_source and not current.is_invalid and -- stable limit
-            (collected.is_trusted_offsets or collected == last_collected or current == last_current and corrected.ref and
+            (
+            collected.is_trusted_offsets or collected == last_collected or
+                current == last_current and corrected.ref and
                 not current.is_source) then
             limit.target = 0
             -- reset limit to help with different dark color
@@ -485,7 +493,8 @@ local function update_time_pos(_, timestamp)
     timestamps.current = convert_sec_to_ms(timestamp) -- %.3f into int
     if not timestamps.insert then timestamps.insert = timestamps.current end
 
-    if in_progress or not collected_.whxy or not timestamps.previous or filter_inserted or seeking or paused or toggled >
+    if in_progress or not collected_.whxy or not timestamps.previous or filter_inserted or seeking or paused or
+        toggled >
         1 or timestamp < options.start_delay then return end
 
     process_metadata(timestamps.current, collected_)
@@ -594,22 +603,22 @@ local function on_start()
         return
     end
     -- init/re-init source, buffer, limit and other data
-    buffer = {index_total = 0, index_known_ratio = 0, ordered = {}, time_total = 0, time_known = 0, unique_meta = 0}
-    limit = {counter = 0, step = 2, target = 0, timer = 0, up = 2}
+    buffer = { index_total = 0, index_known_ratio = 0, ordered = {}, time_total = 0, time_known = 0, unique_meta = 0 }
+    limit = { counter = 0, step = 2, target = 0, timer = 0, up = 2 }
     limit.current, limit.min = options.detect_limit, options.detect_limit
-    collected_, stats = {}, {buffer = {}, trusted = {}, trusted_offset = {x = {}, y = {}}, trusted_unique = 1}
-    candidate = {offset = {}, offset_i = 0, fallback = {}, fallback_i = 0}
-    source = {w_untouched = mp.get_property_number("width"), h_untouched = mp.get_property_number("height")}
+    collected_, stats = {}, { buffer = {}, trusted = {}, trusted_offset = { x = {}, y = {} }, trusted_unique = 1 }
+    candidate = { offset = {}, offset_i = 0, fallback = {}, fallback_i = 0 }
+    source = { w_untouched = mp.get_property_number("width"), h_untouched = mp.get_property_number("height") }
     source.w = math.floor(source.w_untouched / options.detect_round) * options.detect_round
     source.h = math.floor(source.h_untouched / options.detect_round) * options.detect_round
     source.x, source.y = (source.w_untouched - source.w) / 2, (source.h_untouched - source.h) / 2
-    stats.trusted_offset = {x = {source.x}, y = {source.y}}
+    stats.trusted_offset = { x = { source.x }, y = { source.y } }
     stats.applied = {}
     source = compute_metadata(source)
     stats.trusted[source.whxy] = source
     source.applied, source.time.last_seen = 1, 0
     applied = source
-    timestamps = {current = mp.get_property_number("time-pos")}
+    timestamps = { current = mp.get_property_number("time-pos") }
     -- register events
     mp.register_event("seek", playback_events)
     mp.register_event("playback-restart", playback_events)
