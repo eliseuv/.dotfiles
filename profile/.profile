@@ -499,7 +499,7 @@ alias mirrora='sudo reflector --verbose --protocol https --latest 50 --number 20
 # Pacman
 # Fuzzy search on available packages and install
 function pac {
-    pacman -Sl | awk '{print \$2(\$4==\"\" ? \"\" : \" *\")}' | fzf --multi --preview 'pacman -Sii {1}' --reverse | xargs -ro sudo pacman -S
+    pacman -Sl | awk '{print $2($4=="" ? "" : " *")}' | fzf --multi --preview 'pacman -Sii {1}' --reverse | xargs -ro sudo pacman -S
 }
 # Fuzzy search on installed packacges and remove
 alias pacremove="pacman -Qettq | fzf --multi --preview 'pacman -Qii {1}' --reverse | xargs -ro sudo pacman -Rns"
@@ -511,7 +511,7 @@ alias pacunlock='sudo rm /var/lib/pacman/db.lck'
 # paru
 # Fuzzy search on available packages and install
 function par {
-    paru -Sl | awk '{print \$2(\$4==\"\" ? \"\" : \" *\")}' | fzf --multi --preview 'paru -Si {1}' --reverse | xargs -ro paru -S
+    paru -Sl | awk '{print $2($4=="" ? "" : " *")}' | fzf --multi --preview 'paru -Si {1}' --reverse | xargs -ro paru -S
 }
 # Fuzzy search on installed packacges and remove
 alias parremove="paru -Qeq | fzf --multi --preview 'paru -Qi {1}' --reverse| xargs -ro paru -Rns"

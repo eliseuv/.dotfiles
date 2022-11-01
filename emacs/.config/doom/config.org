@@ -316,7 +316,7 @@ data              ; config/data formats
 ;;elm               ; care for a cup of TEA?
 emacs-lisp        ; drown in parentheses
 ;;erlang            ; an elegant language for a more civilized age
-;;ess               ; emacs speaks statistics
+ess               ; emacs speaks statistics
 ;;factor
 ;;faust             ; dsp, but you get to keep your soul
 (fortran +lsp)      ; in FORTRAN, GOD is REAL (unless declared INTEGER)
@@ -1583,6 +1583,19 @@ If using =eglot=:
   (set-popup-rule! "*julia:\*" :side 'right :size 0.3 :ttl 0 :quit nil :select nil)
   ;; Set environment variables
   (setenv "JULIA_NUM_THREADS" "15"))
+#+end_src
+
+
+*** Julia vterm
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! julia-vterm)
+#+end_src
+
+Activate =julia-vterm= minor mode in =julia-mode=.
+
+#+begin_src emacs-lisp :tangle no
+(add-hook 'julia-mode-hook #'julia-vterm-mode)
 #+end_src
 
 
