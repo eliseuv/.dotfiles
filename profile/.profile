@@ -171,6 +171,7 @@ alias b='bat'
 
 # NeoVim
 alias v='lvim'
+alias lvimupdate='lvim +LvimUpdate +q'
 
 # Helix
 alias hx='helix'
@@ -532,8 +533,9 @@ function update {
     julia-update
     printf "\n${GREEN}Updating Miniconda...${RESET}\n\n"
     condaupdate
+    printf "\n${GREEN}Updating LunarVim...${RESET}\n\n"
+    lvimupdate
     printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
-    # doom upgrade -!
     doom sync -u
     printf "\n${GREEN}Custom check...${RESET}\n"
     customcheck
