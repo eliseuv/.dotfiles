@@ -2,22 +2,25 @@
 
 # Profile with environment variables and aliases
 
+# Ignore errors related to unused variables and printf escape sequences
+# shellcheck disable=SC2034,SC2059
+
 ##########
 # COLORS #
 ##########
 
 # ANSI color code variables
-local RESET="\e[0m"
-local RED="\e[0;91m"
-local BLUE="\e[0;94m"
-local GREEN="\e[0;92m"
-local WHITE="\e[0;97m"
-local BOLD="\e[1m"
-local ULINE="\e[4m"
-local EXPAND_BG="\E[K"
-local RED_BG="\e[0;101m${EXPAND_BG}"
-local GREEN_BG="\e[0;102m${EXPAND_BG}"
-local BLUE_BG="\e[0;104m${EXPAND_BG}"
+RESET="\e[0m"
+RED="\e[0;91m"
+BLUE="\e[0;94m"
+GREEN="\e[0;92m"
+WHITE="\e[0;97m"
+BOLD="\e[1m"
+ULINE="\e[4m"
+EXPAND_BG="\E[K"
+RED_BG="\e[0;101m${EXPAND_BG}"
+GREEN_BG="\e[0;102m${EXPAND_BG}"
+BLUE_BG="\e[0;104m${EXPAND_BG}"
 
 ########
 # PATH #
@@ -73,8 +76,8 @@ export EDITOR='lvim'
 export VISUAL='emacsclient -c -a emacs'
 
 # DOOM Emacs
-export EMACSDIR='~/.config/emacs-doom'
-export DOOMDIR='~/.config/doom'
+export EMACSDIR="$HOME/.config/emacs-doom"
+export DOOMDIR="$HOME/.config/doom"
 
 # PDF Reader
 export READER='zathura'
@@ -110,7 +113,8 @@ export LEDGER_FILE=~/Documents/finances/home-ledger/home.ledger
 # Let GPG manage SSH
 unset SSH_AGENT_PID
 if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+    SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+    export SSH_AUTH_SOCK
 fi
 
 # Configure pinentry to use the correct tty
@@ -245,19 +249,19 @@ function pcsv {
 # ex - archive extractor
 # usage: ex <file>
 function ex {
-    if [ -f $1 ]; then
-        case $1 in
-            *.tar.bz2) tar xjf $1 ;;
-            *.tar.gz) tar xzf $1 ;;
-            *.bz2) bunzip2 $1 ;;
-            *.rar) unrar x $1 ;;
-            *.gz) gunzip $1 ;;
-            *.tar) tar xf $1 ;;
-            *.tbz2) tar xjf $1 ;;
-            *.tgz) tar xzf $1 ;;
-            *.zip) unzip $1 ;;
-            *.Z) uncompress $1 ;;
-            *.7z) 7z x $1 ;;
+    if [ -f "$1" ]; then
+        case "$1" in
+            *.tar.bz2) tar xjf "$1" ;;
+            *.tar.gz) tar xzf "$1" ;;
+            *.bz2) bunzip2 "$1" ;;
+            *.rar) unrar x "$1" ;;
+            *.gz) gunzip "$1" ;;
+            *.tar) tar xf "$1" ;;
+            *.tbz2) tar xjf "$1" ;;
+            *.tgz) tar xzf "$1" ;;
+            *.zip) unzip "$1" ;;
+            *.Z) uncompress "$1" ;;
+            *.7z) 7z x "$1" ;;
             *) echo "'$1' cannot be extracted via ex()" ;;
         esac
     else
@@ -267,21 +271,21 @@ function ex {
 
 # YouTube MP3
 function ytmp3 {
-    yt-dlp -f 'ba' -x --audio-format mp3 $1 -o '$HOME/Storage/Music/_unsorted/%(title)s.%(ext)s'
+    yt-dlp -f 'ba' -x --audio-format mp3 "$1" -o "$HOME/Storage/Music/_unsorted/%(title)s.%(ext)s"
 }
 
 # Add spacing left of text
 # Pipe to it to to add spacing to the beginning of outpu
 # COMMAND | tab
 function tab {
-    while read LINE; do
-        sed -e 's/^/  /' <<<"$LINE"
+    while read -r LINE; do
+        echo "${LINE//^/  }"
     done
 }
 
 # Cheat sheet
 function cheat {
-    curl cheat.sh/"$@" | bat
+    curl cheat.sh/"$*" | bat
 }
 
 #######
@@ -301,10 +305,12 @@ function fcd {
 
 # Fuzzy search file in dir and open
 function fop {
-    local filename=$(find . -type f | fzf --reverse --preview 'bat {} --color always')
+    local filename
+    filename=$(find . -type f | fzf --reverse --preview 'bat {} --color always')
     if [ -f "$filename" ]; then
-        local filetype=$(xdg-mime query filetype "$filename")
-        echo "Opening file " "$filename" " of type " "$filetype" " with " "$(xdg-mime query default $filetype)"
+        local filetype
+        filetype=$(xdg-mime query filetype "$filename")
+        echo "Opening file " "$filename" " of type " "$filetype" " with " "$(xdg-mime query default "$filetype")"
         xdg-open "$filename" &
     fi
 }
@@ -322,7 +328,7 @@ function fif {
 # Fuzzy search music library
 function fmp {
     local FORMAT="[%file%]"
-    mpc listall -f $FORMAT | fzf --multi --preview 'mediainfo ~/Storage/Music/{}' | mpc add
+    mpc listall -f "$FORMAT" | fzf --multi --preview 'mediainfo ~/Storage/Music/{}' | mpc add
 }
 
 ########
@@ -406,7 +412,7 @@ jlargs() {
         echo "Args = $line"
         COMMAND="tsp julia $1 $line"
         eval "$COMMAND"
-    done <<<$(julia --startup-file=no "$2")
+    done <<<"$(julia --startup-file=no "$2")"
 }
 
 ###########
@@ -436,8 +442,8 @@ export CONDA_ENVS_DIR="$HOME/.conda/envs"
 # Activate an env (with fzf)
 function condaenv {
     local ENVS_LIST=("base")
-    local ENVS_LIST=("${ENVS_LIST[@]}" "$(ls $CONDA_ENVS_DIR)")
-    conda activate $(printf "%s\n" ${ENVS_LIST[@]} | fzf)
+    local ENVS_LIST=("${ENVS_LIST[@]}" "$(ls "$CONDA_ENVS_DIR")")
+    conda activate "$(printf "%s\n" "${ENVS_LIST[@]}" | fzf)"
 }
 
 # List explicitly installed packages
@@ -446,12 +452,16 @@ alias conda-list='conda env export --from-history'
 function condaupdate {
     printf "${BLUE}Updating base env...${RESET}\n\n"
     conda activate base
-    sudo conda update --all --yes
+    sh -c 'sudo conda update --all --yes'
     conda deactivate
-    local ENVS=($(ls $CONDA_ENVS_DIR))
-    for ENV in ${ENVS[@]}; do
+    # explicitly set IFS to contain only a line feed
+    IFS='
+    '
+    for ENV_DIR in "$CONDA_ENVS_DIR"/*; do
+        [[ -e "$ENV_DIR" ]] || break
+        ENV="$(basename "$ENV_DIR")"
         printf "\n${BLUE}Updating $ENV env...${RESET}\n\n"
-        conda activate $ENV
+        conda activate "$ENV"
         conda upgrade --all --yes
         conda deactivate
     done
@@ -460,12 +470,16 @@ function condaupdate {
 function condacleanup {
     printf "${BLUE}Cleaning up base env...${RESET}\n\n"
     conda activate base
-    sudo conda clean --all --yes
+    sh -c 'sudo conda clean --all --yes'
     conda deactivate
-    local ENVS=($(ls $CONDA_ENVS_DIR))
-    for ENV in ${ENVS[@]}; do
+    # explicitly set IFS to contain only a line feed
+    IFS='
+    '
+    for ENV_DIR in "$CONDA_ENVS_DIR"/*; do
+        [[ -e "$ENV_DIR" ]] || break
+        ENV="$(basename "$ENV_DIR")"
         printf "\n${BLUE}Cleaning up $ENV env...${RESET}\n\n"
-        conda activate $ENV
+        conda activate "$ENV"
         conda clean --all --yes
         conda deactivate
     done
@@ -484,7 +498,9 @@ alias mirrora='sudo reflector --verbose --protocol https --latest 50 --number 20
 
 # Pacman
 # Fuzzy search on available packages and install
-alias pac="pacman -Sl | awk '{print \$2(\$4==\"\" ? \"\" : \" *\")}' | fzf --multi --preview 'pacman -Sii {1}' --reverse | xargs -ro sudo pacman -S"
+function pac {
+    pacman -Sl | awk '{print \$2(\$4==\"\" ? \"\" : \" *\")}' | fzf --multi --preview 'pacman -Sii {1}' --reverse | xargs -ro sudo pacman -S
+}
 # Fuzzy search on installed packacges and remove
 alias pacremove="pacman -Qettq | fzf --multi --preview 'pacman -Qii {1}' --reverse | xargs -ro sudo pacman -Rns"
 # Update all packages
@@ -494,7 +510,9 @@ alias pacunlock='sudo rm /var/lib/pacman/db.lck'
 
 # paru
 # Fuzzy search on available packages and install
-alias par="paru -Sl | awk '{print \$2(\$4==\"\" ? \"\" : \" *\")}' | fzf --multi --preview 'paru -Si {1}' --reverse | xargs -ro paru -S"
+function par {
+    paru -Sl | awk '{print \$2(\$4==\"\" ? \"\" : \" *\")}' | fzf --multi --preview 'paru -Si {1}' --reverse | xargs -ro paru -S
+}
 # Fuzzy search on installed packacges and remove
 alias parremove="paru -Qeq | fzf --multi --preview 'paru -Qi {1}' --reverse| xargs -ro paru -Rns"
 # Update all packacges (standard and AUR)
