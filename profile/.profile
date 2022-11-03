@@ -237,14 +237,12 @@ alias git-push="git add . && git commit -m 'update' && git push"
 # Connect to UFRGS VPN
 alias vpn-ufrgs="sudo openvpn --config ~/.config/openvpn/vpn-ufrgs.ovpn"
 
+# Start Alpine VM
+alias start-alpine-vm="sudo virsh start alpinelinux3.16"
+
 #############
 # FUNCTIONS #
 #############
-
-function runalpine {
-    sudo virsh start alpinelinux3.16
-    ssh 192.168.122.81
-}
 
 # Print csv file
 function pcsv {
