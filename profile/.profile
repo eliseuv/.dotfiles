@@ -241,6 +241,11 @@ alias vpn-ufrgs="sudo openvpn --config ~/.config/openvpn/vpn-ufrgs.ovpn"
 # FUNCTIONS #
 #############
 
+function runalpine {
+    sudo virsh start alpinelinux3.16
+    ssh 192.168.122.81
+}
+
 # Print csv file
 function pcsv {
     sed 's/,,/, ,/g;s/,,/, ,/g' "$1" | column -s, -t | less -#2 -N -S
