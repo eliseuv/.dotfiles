@@ -48,12 +48,13 @@ This is my first attempt on an Emacs literate configuration, mostly based on [[h
 Make popups open on the right:
 
 #+begin_src emacs-lisp
-(set-popup-rule!
-  '(("^ \\*" :size 0.3 :slot -1 :side 'right)
-    ("^\\*" :select t :side 'right)
+(set-popup-rules!
+  '(("^ \\*" :slot -1)
+    ("^\\*" :select t)
+    ("^\\*Completions" :slot -1 :ttl 0)
     ("^\\*\\(?:scratch\\|Messages\\)" :ttl t)
     ("^\\*Help" :slot -1 :size 0.2 :select t)
-    ("^\\*doom:" :size 0.35 :select t :modeline t :quit t :ttl t :side 'right)))
+    ("^\\*doom:" :size 0.3 :select t :modeline t :quit t :ttl t :side right)))
 #+end_src
 
 
