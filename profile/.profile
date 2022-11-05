@@ -544,6 +544,8 @@ function update {
     touch /tmp/update.lock
     printf "\n${GREEN}Updating Arch...${RESET}\n\n"
     parsyu --noconfirm
+    printf "\n${GREEN}Detecting necessary rebuilds...${RESET}\n\n"
+    checkrebuild -v
     printf "\n${GREEN}Updating Rust...${RESET}\n\n"
     rust-update
     printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"
