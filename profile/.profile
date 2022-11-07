@@ -237,9 +237,6 @@ alias git-push="git add . && git commit -m 'update' && git push"
 # Connect to UFRGS VPN
 alias vpn-ufrgs="sudo openvpn --config ~/.config/openvpn/vpn-ufrgs.ovpn"
 
-# Start Alpine VM
-alias start-alpine-vm="sudo virsh start alpinelinux3.16"
-
 #############
 # FUNCTIONS #
 #############
@@ -332,6 +329,17 @@ function fif {
 function fmp {
     local FORMAT="[%file%]"
     mpc listall -f "$FORMAT" | fzf --multi --preview 'mediainfo ~/Storage/Music/{}' | mpc add
+}
+
+# SSH to Ubuntu VM
+function ssh-ubuntu-vm {
+    # Start VM
+    sudo virsh start ubuntu-vm
+    # Try to ssh
+    while ! ssh ubuntu-vm
+    do
+        sleep 3
+    done
 }
 
 ########
@@ -511,6 +519,11 @@ alias pacsyu='sudo pacman -Syu'
 # Remove lock
 alias pacunlock='sudo rm /var/lib/pacman/db.lck'
 
+function pacupdate {
+    printf "\n${BLUE}Pacman update...${RESET}\n\n"
+    pacsyu --noconfirm
+}
+
 # paru
 # Fuzzy search on available packages and install
 function par {
@@ -522,6 +535,13 @@ alias parremove="paru -Qeq | fzf --multi --preview 'paru -Qi {1}' --reverse| xar
 alias parsyu='paru -Syu'
 # Update AUR packages
 alias parsua='paru -Sua'
+
+function parupdate {
+    printf "\n${BLUE}Pacman + AUR update...${RESET}\n\n"
+    parsyu --noconfirm
+    printf "\n${BLUE}Detecting necessary rebuilds...${RESET}\n\n"
+    checkrebuild -v
+}
 
 # Pacman cleanup
 function paccleanup {
@@ -543,9 +563,7 @@ function update {
     [[ -f /tmp/update.lock ]] && exit 1
     touch /tmp/update.lock
     printf "\n${GREEN}Updating Arch...${RESET}\n\n"
-    parsyu --noconfirm
-    printf "\n${GREEN}Detecting necessary rebuilds...${RESET}\n\n"
-    checkrebuild -v
+    parupdate
     printf "\n${GREEN}Updating Rust...${RESET}\n\n"
     rust-update
     printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"
