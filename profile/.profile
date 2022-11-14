@@ -331,17 +331,6 @@ function fmp {
     mpc listall -f "$FORMAT" | fzf --multi --preview 'mediainfo ~/Storage/Music/{}' | mpc add
 }
 
-# SSH to Ubuntu VM
-function ssh-ubuntu-vm {
-    # Start VM
-    sudo virsh start ubuntu-vm
-    # Try to ssh
-    while ! ssh ubuntu-vm
-    do
-        sleep 3
-    done
-}
-
 ########
 # Rust #
 ########
