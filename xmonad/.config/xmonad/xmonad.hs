@@ -80,7 +80,7 @@ myEditor = myEmacs -- Sets emacs as editor
 -- myEditor = myTerminal ++ " -e hx "    -- Sets helix as editor
 
 myFileManager :: String
-myFileManager = "pcmanfm"
+myFileManager = "nautilus"
 
 myBorderWidth :: Dimension
 myBorderWidth = 1 -- Sets border width for windows
@@ -123,6 +123,7 @@ myStartupHook = do
   spawn "setxkbmap -option caps:swapescape" -- Swap CAPS LOCK and ESCAPE keys
   spawn myWallpaperScript -- Set wallpaper
   spawnOnce "picom --experimental-backends -b --config ~/.config/picom/picom.conf &" -- Compositor
+  spawnOnce "synology-drive &" -- Synology Drive
   -- spawn "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
   -- spawnOnce "urxvtd -q -o -f &"               -- urxvt daemon for better performance
   -- spawnOnce "nm-applet &"                     -- NetworkManager in tray
