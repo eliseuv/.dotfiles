@@ -415,6 +415,9 @@ jlargs() {
     done <<<"$(julia --startup-file=no "$2")"
 }
 
+# Run Julia Pluto
+alias start-pluto="julia --eval 'using Pluto ; Pluto.run(launch_browser=false)'"
+
 ###########
 # Haskell #
 ###########
