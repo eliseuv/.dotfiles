@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -x
+
+# Pull repos
+git -C ~/.config/xmonad/xmonad pull
+git -C ~/.config/xmonad/xmonad-contrib pull
+
+# Install xmonad
+cd ~/.config/xmonad || exit
+stack install
+
+# Recompile xmonad config
+xmonad --recompile

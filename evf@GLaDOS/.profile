@@ -556,6 +556,8 @@ function update {
     touch /tmp/update.lock
     printf "\n${GREEN}Updating Arch...${RESET}\n\n"
     parupdate
+    printf "\n${GREEN}Updating xmonad...${RESET}\n\n"
+    update-xmonad
     printf "\n${GREEN}Updating Rust...${RESET}\n\n"
     rust-update
     printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"
