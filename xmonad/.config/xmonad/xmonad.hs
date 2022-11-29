@@ -119,8 +119,6 @@ myStartupHook = do
   -- spawn "killall conky"   -- kill current conky on each restart
   -- spawn "killall trayer"  -- kill current trayer on each restart
 
-  -- spawnOnce "lxsession"
-  -- spawn "setxkbmap -option caps:swapescape" -- Swap CAPS LOCK and ESCAPE keys
   spawn myWallpaperScript -- Set wallpaper
   spawnOnce "picom -b --config ~/.config/picom/picom.conf &" -- Compositor
   spawnOnce "synology-drive &" -- Synology Drive

@@ -9,7 +9,7 @@ Config
        , bgColor = "#242730"
        , fgColor = "#666666"
        , position = Static { xpos = 0 , ypos = 0, width = 2560, height = 26 }
-       , iconRoot = "/home/evf/.xmonad/xpm/" -- default: "."
+       , iconRoot = "/home/evf/.xmobar/xpm/" -- default: "."
 
        -- Behaviour
        , lowerOnStart = True    -- send to bottom of window stack on start

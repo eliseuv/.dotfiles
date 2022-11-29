@@ -5,14 +5,8 @@
 #xrandr --setprovideroutputsource modesetting NVIDA-0
 #xrandr --auto
 
-# Dual screen setup
-[ -f "$HOME/.config/X11/dualscreen" ] && . "$HOME/.config/X11/dualscreen"
-
-# Locate Xresources file
-[ -f ~/.Xresources ] && xrdb -merge ~/.Xresources
-
 # Locate Xprofile file
-[ -f ~/.xprofile ] && . ~/.xprofile
+#[ -f ~/.xprofile ] && . ~/.xprofile
 
 # Start WM
-exec xmonad
+#exec xmonad
