@@ -527,8 +527,8 @@ function update {
     # go-update
     printf "\n${GREEN}Updating Julia...${RESET}\n\n"
     julia-update
-    printf "\n${GREEN}Updating Miniconda...${RESET}\n\n"
-    condaupdate
+    # printf "\n${GREEN}Updating Miniconda...${RESET}\n\n"
+    # condaupdate
     # printf "\n${GREEN}Updating LunarVim...${RESET}\n\n"
     # lvimupdate
     printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
@@ -546,12 +546,12 @@ function cleanup {
     poposcleanup   
     printf "\n${GREEN}Julia cleanup...${RESET}\n\n"
     julia-cleanup
-    printf "\n${GREEN}Miniconda cleanup...${RESET}\n\n"
-    condacleanup
+    # printf "\n${GREEN}Miniconda cleanup...${RESET}\n\n"
+    # condacleanup
     printf "\n${GREEN}Cargo cleanup...${RESET}\n\n"
     cargocleanup
-    printf "\n${GREEN}Go cleanup...${RESET}\n\n"
-    gocleanup
+    # printf "\n${GREEN}Go cleanup...${RESET}\n\n"
+    # gocleanup
     printf "\n${GREEN}DOOM purge...${RESET}\n\n"
     doom purge
 }
