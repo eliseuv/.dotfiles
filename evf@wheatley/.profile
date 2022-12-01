@@ -523,16 +523,17 @@ function update {
     rust-update
     printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"
     cargo-update
-    printf "\n${GREEN}Updating Go bins...${RESET}\n\n"
-    go-update
+    # printf "\n${GREEN}Updating Go bins...${RESET}\n\n"
+    # go-update
     printf "\n${GREEN}Updating Julia...${RESET}\n\n"
     julia-update
     printf "\n${GREEN}Updating Miniconda...${RESET}\n\n"
     condaupdate
-    printf "\n${GREEN}Updating LunarVim...${RESET}\n\n"
-    lvimupdate
+    # printf "\n${GREEN}Updating LunarVim...${RESET}\n\n"
+    # lvimupdate
     printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
-    doom sync -u
+    doom upgrade
+    doom sync
     printf "\n${GREEN}Custom check...${RESET}\n"
     customcheck
     printf "\n"
@@ -564,4 +565,3 @@ function customcheck {
 
 # Update and cleanup
 alias up='update'
-. "$HOME/.cargo/env"
