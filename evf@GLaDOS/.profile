@@ -571,7 +571,8 @@ function update {
     printf "\n${GREEN}Updating LunarVim...${RESET}\n\n"
     lvimupdate
     printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
-    doom sync -u
+    doom upgrade
+    doom sync
     printf "\n${GREEN}Custom check...${RESET}\n"
     customcheck
     printf "\n"

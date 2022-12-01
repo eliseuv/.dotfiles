@@ -3,8 +3,8 @@
 set -x
 
 # Pull repos
-git -C ~/.config/xmonad/xmonad pull
-git -C ~/.config/xmonad/xmonad-contrib pull
+git -C ~/.config/xmonad/xmonad pull --rebase
+git -C ~/.config/xmonad/xmonad-contrib pull --rebase
 
 # Install xmonad
 cd ~/.config/xmonad || exit
