@@ -97,7 +97,7 @@ myFocusColor = color15 -- This variable is imported from Colors.THEME
 -- mySoundPlayer = "ffplay -nodisp -autoexit " -- The program that will play system sounds
 
 myWallpaperScript :: String
-myWallpaperScript = "$HOME/.wallpapers/set_wallpaper.sh"
+myWallpaperScript = "$HOME/.fehbg"
 
 windowCount :: X (Maybe String)
 windowCount =
