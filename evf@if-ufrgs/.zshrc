@@ -147,6 +147,9 @@ fpath+=~/.zfunc
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 compinit
 
+# Zoxide
+eval "$(zoxide init zsh)"
+
 # Powerlevel10k prompt
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
