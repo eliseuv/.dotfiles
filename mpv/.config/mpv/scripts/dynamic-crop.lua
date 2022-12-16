@@ -43,7 +43,7 @@ require "mp.options"
 
 local options = {
     -- behavior
-    mode = 4, -- [0-4] more details above
+    mode = 0, -- [0-4] more details above
     start_delay = 0, -- delay in seconds used to skip intro (usefull with mode 2)
     prevent_change_timer = 0, -- seconds
     prevent_change_mode = 2, -- [0-2], disable with 'prevent_change_timer = 0'
