@@ -573,6 +573,7 @@ myKeys c =
           ("M-S-r", addName "Restart XMonad" $ spawn "xmonad --restart"),
           ("M-S-<Backspace> e", addName "Quit XMonad" $ io exitSuccess),
           ("M-S-<Backspace> s", addName "Shutdown" $ spawn "systemctl poweroff"),
+          ("M-S-<Backspace> l", addName "Lock" $ spawn "i3lock-fancy"),
           ("M-S-<Backspace> r", addName "Reboot" $ spawn "systemctl reboot"),
           ("M-S-s", addName "Screenshot" $ spawn "scrot ~/Storage/Images/screenshots/%Y-%m-%d_%H-%M-%S.png -s"),
           ("M-S-q", addName "Kill focused window" kill1),

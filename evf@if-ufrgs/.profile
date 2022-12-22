@@ -484,8 +484,9 @@ alias mirrora='sudo reflector --verbose --protocol https --latest 50 --number 20
 # Pacman
 # Fuzzy search on available packages and install
 alias pac="pacman -Sl | awk '{print \$2(\$4==\"\" ? \"\" : \" *\")}' | fzf --multi --preview 'pacman -Sii {1}' --reverse | xargs -ro sudo pacman -S"
+alias apts="apt search . | rg \^\\\\w\+\.\*/ | awk -F/ '{print \$1}' | fzf --multi --preview 'apt show {1}' --reverse | xargs -ro sudo apt install"
 # Fuzzy search on installed packacges and remove
-alias pacremove="pacman -Qettq | fzf --multi --preview 'pacman -Qii {1}' --reverse | xargs -ro sudo pacman -Rns"
+alias aptremove="apt list --installed | rg \^\\\\w\+\.\*/ | awk -F/ '{print \$1}' | fzf --multi --preview 'apt show {1}' --reverse | xargs -ro sudo apt remove"
 # Update all packages
 alias pacsyu='sudo pacman -Syu'
 # Remove lock
