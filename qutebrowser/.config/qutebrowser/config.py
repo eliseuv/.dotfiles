@@ -411,6 +411,10 @@ config.bind('<Ctrl+o>', 'set-cmd-text -s :session-load --clear')
 # Open in editor
 config.bind(',e', 'edit-url')
 
+# Select tabs
+config.bind('<Shift+k>', 'tab-prev')
+config.bind('<Shift+j>', 'tab-next')
+
 # Move tabs
 config.bind('<Ctrl+Shift+k>', 'tab-move -')
 config.bind('<Ctrl+Shift+j>', 'tab-move +')
