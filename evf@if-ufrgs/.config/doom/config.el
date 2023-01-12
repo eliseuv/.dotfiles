@@ -90,6 +90,15 @@
 
 (global-subword-mode t)                           ; Recognize uppercase letters as word boundaries (useful for CamelCase naming)
 
+;; Make popups open on the right
+(set-popup-rules!
+  '(("^ \\*" :slot -1)
+    ("^\\*" :select t)
+    ("^\\*Completions" :slot -1 :ttl 0)
+    ("^\\*\\(?:scratch\\|Messages\\)" :ttl t)
+    ("^\\*Help" :slot -1 :size 0.2 :select t)
+    ("^\\*doom:" :size 0.3 :select t :modeline t :quit t :ttl t :side right)))
+
 ;; Enable vertical and horizontal splitting
 (setq evil-vsplit-window-right t
       evil-split-window-below t)
@@ -109,7 +118,7 @@
 (use-package! vterm
   :ensure t)
 (after! vterm
-  (set-popup-rule! "*doom:vterm-popup" :size 0.3 :vslot -4 :select t :quit nil :ttl 0 :side 'right))
+  (set-popup-rule! "*doom:vterm-popup:main" :size 0.3 :vslot -4 :select t :quit nil :ttl 0 :side 'right))
 
 ;; Julia
 
