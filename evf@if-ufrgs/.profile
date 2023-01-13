@@ -195,7 +195,7 @@ alias bt='btop'
 alias nn="(export VISUAL='nvim'; nnn)"
 
 # scrot
-alias scrot='scrot ~/Storage/Images/screenshots/%Y-%m-%d_%H:%M:%S.png'
+alias scrot='scrot ~/Pictures/screenshots/%Y-%m-%d_%H:%M:%S.png'
 
 # Weather
 alias wttr='curl wttr.in/?0Fq'
