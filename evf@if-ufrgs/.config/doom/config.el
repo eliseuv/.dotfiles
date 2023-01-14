@@ -135,3 +135,18 @@
   (set-popup-rule! "*julia:\*" :side 'right :size 0.3 :ttl 0 :quit nil :select nil)
   ;; Set environment variables
   (setenv "JULIA_NUM_THREADS" "7"))
+
+;; Python
+
+;; (add-hook 'python-mode-hook 'lsp)
+
+;; Anaconda
+
+(require 'conda)
+;; (custom-set-variables
+;;  '(conda-anaconda-home "/opt/miniconda3/"))
+(setq
+ conda-anaconda-home (expand-file-name "~/anaconda3/")
+ conda-env-home-directory (expand-file-name "~/anaconda3/envs")
+ conda-env-subdirectory "envs")
+;; (add-hook 'conda-postactivate-hook 'python-mode)
