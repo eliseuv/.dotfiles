@@ -211,6 +211,7 @@ lvim.plugins = {
         cmd = "TroubleToggle",
     },
     { "JuliaEditorSupport/julia-vim" },
+    { "tridactyl/vim-tridactyl" },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
