@@ -18,7 +18,7 @@ bind ,g js let uri = document.location.href.replace(/https?:\/\//,"git@").replac
 
 " YouTube
 alias mpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('mpv ' + url))
-bind ,p hint -c [class="style-scope ytd-thumbnail"] -W mpvsafe
+bind ,p hint -c [id="video-title-link"] -W mpvsafe
 
 " Only hint search results on Google and DDG
 bindurl www.google.com f hint -Jc #search div:not(.action-menu) > a
@@ -33,6 +33,7 @@ bindurl wikiwand.com yy composite js document.location.href.replace("wikiwand.co
 
 set searchengine duckduckgo
 set searchurls.g https://www.google.com/search?&q=%s
+set searchurls.yt https://www.youtube.com/results?search_query=%s
 set searchurls.julia https://www.google.com/search?q=site:http://docs.julialang.org/en/v1%20
 
 " Misc
