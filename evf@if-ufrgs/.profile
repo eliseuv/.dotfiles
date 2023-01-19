@@ -447,7 +447,7 @@ function condaupdate {
     conda activate base
     conda update --all --yes
     conda deactivate
-    local ENVS=$(ls $CONDA_ENVS_DIR)
+    local ENVS=$(fd -d 1 -t d . $CONDA_ENVS_DIR -x echo {/.})
     for ENV in ${ENVS[@]}; do
         printf "\n${BLUE}Updating $ENV env...${RESET}\n\n"
         conda activate $ENV
@@ -461,7 +461,7 @@ function condacleanup {
     conda activate base
     conda clean --all --yes
     conda deactivate
-    local ENVS=$(ls $CONDA_ENVS_DIR)
+    local ENVS=$(fd -d 1 -t d . $CONDA_ENVS_DIR -x echo {/.})
     for ENV in ${ENVS[@]}; do
         printf "\n${BLUE}Cleaning up $ENV env...${RESET}\n\n"
         conda activate $ENV
@@ -528,8 +528,8 @@ function update {
     # go-update
     printf "\n${GREEN}Updating Julia...${RESET}\n\n"
     julia-update
-    # printf "\n${GREEN}Updating Miniconda...${RESET}\n\n"
-    # condaupdate
+    printf "\n${GREEN}Updating Miniconda...${RESET}\n\n"
+    condaupdate
     # printf "\n${GREEN}Updating LunarVim...${RESET}\n\n"
     # lvimupdate
     printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
@@ -547,8 +547,8 @@ function cleanup {
     poposcleanup   
     printf "\n${GREEN}Julia cleanup...${RESET}\n\n"
     julia-cleanup
-    # printf "\n${GREEN}Miniconda cleanup...${RESET}\n\n"
-    # condacleanup
+    printf "\n${GREEN}Miniconda cleanup...${RESET}\n\n"
+    condacleanup
     printf "\n${GREEN}Cargo cleanup...${RESET}\n\n"
     cargocleanup
     # printf "\n${GREEN}Go cleanup...${RESET}\n\n"
