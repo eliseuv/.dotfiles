@@ -147,6 +147,6 @@
 ;;  '(conda-anaconda-home "/opt/miniconda3/"))
 (setq
  conda-anaconda-home (expand-file-name "~/anaconda3/")
- conda-env-home-directory (expand-file-name "~/anaconda3/envs")
+ conda-env-home-directory (expand-file-name "~/anaconda3/")
  conda-env-subdirectory "envs")
 ;; (add-hook 'conda-postactivate-hook 'python-mode)
