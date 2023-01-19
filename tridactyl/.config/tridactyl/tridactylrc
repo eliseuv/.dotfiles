@@ -18,7 +18,7 @@ bind ,g js let uri = document.location.href.replace(/https?:\/\//,"git@").replac
 
 " YouTube
 alias mpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('mpv ' + url))
-bind ,p hint -c [id="video-title-link"] -W mpvsafe
+bindurl youtube.com ,p hint -c [id="video-title-link"] -W mpvsafe
 
 " Only hint search results on Google and DDG
 bindurl www.google.com f hint -Jc #search div:not(.action-menu) > a
@@ -38,9 +38,15 @@ set searchurls.julia https://www.google.com/search?q=site:http://docs.julialang.
 
 " Misc
 
+" Colorscheme
+colorscheme shydactyl
+
+" Redirects
+autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
+
 " Sane hinting mode
-set hintfiltermode vimperator-reflow
-set hintnames short
+" set hintfiltermode vimperator-reflow
+" set hintnames short
 
 " " bovine3dom's dogfood
 "
