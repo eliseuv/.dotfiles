@@ -552,8 +552,12 @@ function paccleanup {
 
 # Update system
 function update {
-    [[ -f /tmp/update.lock ]] && exit 1
-    touch /tmp/update.lock
+    local LOCK_FILE=/tmp/update.lock
+    if [ -f "$LOCK_FILE" ]; then
+        printf "${RED}Error: Lock file $LOCK_FILE found. ${RESET}\n"
+        return 1
+    fi
+    touch "$LOCK_FILE"
     printf "\n${GREEN}Updating Arch...${RESET}\n\n"
     parupdate
     printf "\n${GREEN}Updating xmonad...${RESET}\n\n"

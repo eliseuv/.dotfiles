@@ -10,6 +10,10 @@
 #   qute://help/configuring.html
 #   qute://help/settings.html
 
+# TODO:
+# - Yank git clone url keybinding
+# - Queue videos on mpv
+
 import subprocess
 
 def read_xresources(prefix):
@@ -426,9 +430,9 @@ config.bind(',y', 'hint all yank')
 config.bind('ym', 'yank inline [[{url}][{title}]]')
 
 # Open links on mpv
-config.bind(',p', 'hint links spawn --detach mpv {hint-url}')
-config.bind(',P', 'spawn --detach mpv {url}')
-config.bind(';p', 'hint --rapid links spawn --detach mpv {hint-url}')
+config.bind(',p', 'hint links spawn --detach umpv {hint-url}')
+config.bind(',P', 'spawn --detach umpv {url}')
+config.bind(';p', 'hint --rapid links spawn --detach umpv {hint-url}')
 
 # Download video links
 config.bind(',dv', 'hint links spawn --verbose --detach yt-dlp \'{hint-url}\'')
