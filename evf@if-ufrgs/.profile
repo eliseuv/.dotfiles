@@ -533,8 +533,8 @@ function update {
     # printf "\n${GREEN}Updating LunarVim...${RESET}\n\n"
     # lvimupdate
     printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
-    doom upgrade
     doom sync
+    doom upgrade
     printf "\n${GREEN}Custom check...${RESET}\n"
     customcheck
     printf "\n"
@@ -554,6 +554,7 @@ function cleanup {
     # printf "\n${GREEN}Go cleanup...${RESET}\n\n"
     # gocleanup
     printf "\n${GREEN}DOOM purge...${RESET}\n\n"
+    doom sync
     doom purge
 }
 

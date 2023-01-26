@@ -1,5 +1,8 @@
 " Bindings
 
+# Load config
+bind ,cS source
+
 " Cycle through tabs
 bind K tabprev
 bind J tabnext
@@ -34,8 +37,8 @@ bindurl wikiwand.com yy composite js document.location.href.replace("wikiwand.co
 set searchengine duckduckgo
 set searchurls.g https://www.google.com/search?&q=%s
 set searchurls.yt https://www.youtube.com/results?search_query=%s
-set searchurls.julia https://www.google.com/search?q=site:http://docs.julialang.org/en/v1%20
-
+set searchurls.gh https://github.com/search?q=%s
+set searchurls.jl https://docs.julialang.org/en/v1/search/?q=%s
 " Misc
 
 " Colorscheme
