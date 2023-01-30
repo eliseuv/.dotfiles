@@ -569,6 +569,7 @@ function update {
     printf "\n${GREEN}Updating Go bins...${RESET}\n\n"
     go-update
     printf "\n${GREEN}Updating Julia...${RESET}\n\n"
+    #juliaup update
     julia-update
     printf "\n${GREEN}Updating Miniconda...${RESET}\n\n"
     condaupdate
