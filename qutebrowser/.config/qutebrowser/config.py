@@ -430,7 +430,7 @@ config.bind(',y', 'hint all yank')
 config.bind('ym', 'yank inline [[{url}][{title}]]')
 
 # Open links on mpv
-config.bind(',p', 'hint links spawn --detach umpv {hint-url}')
+config.bind(',p', 'hint links spawn --detach mpv {hint-url}')
 config.bind(',P', 'spawn --detach umpv {url}')
 config.bind(';p', 'hint --rapid links spawn --detach umpv {hint-url}')
 
