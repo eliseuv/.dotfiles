@@ -1,0 +1,28 @@
+theme = "tokyonight"
+
+[editor]
+mouse = false
+auto-completion = true
+auto-info = true
+idle-timeout = 100
+true-color = true
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "block"
+
+[editor.statusline]
+left = ["mode", "spinner"]
+center = ["file-name", "file-type", "file-encoding", "file-line-ending"]
+right = ["diagnostics", "selections", "position"]
+separator = "|"
+
+[editor.indent-guides]
+render = true
+
+[editor.lsp]
+display-messages = true
+
+[editor.file-picker]
+hidden = false
