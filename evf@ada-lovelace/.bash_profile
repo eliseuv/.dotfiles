@@ -247,6 +247,11 @@ function sbjl {
     sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$HOME/.juliaup/bin/julia $*"
 }
 
+function sbpy {
+    local CONDA_ENV"$1"
+    sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="source /opt/miniconda3/etc/profile.d/conda.sh activate $CONDA_ENV"
+}
+
 sbjlargs() {
     printf "\nSubmitting script $1\n\n"
     while IFS= read -r line; do
