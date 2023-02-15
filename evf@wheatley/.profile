@@ -60,7 +60,7 @@ pathappend /usr/bin/core_perl /usr/bin/site_perl /usr/bin/vendor_perl
 pathappend ~/.local/share/gem/ruby/3.0.0/bin
 
 # DOOM Emacs
-pathappend ~/.config/emacs-doom/bin
+pathappend ~/.config/emacs/bin
 
 ############
 # ENV VARS #
@@ -76,7 +76,7 @@ export EDITOR='lvim'
 export VISUAL='emacsclient -c -a emacs'
 
 # DOOM Emacs
-export EMACSDIR="$HOME/.config/emacs-doom"
+export EMACSDIR="$HOME/.config/emacs"
 export DOOMDIR="$HOME/.config/doom"
 
 # PDF Reader
@@ -336,14 +336,13 @@ function fmp {
 ########
 
 # Rust Cargo
-#pathappend ~/.cargo/bin
-. "$HOME/.cargo/env"
+pathappend ~/.cargo/bin
 
 # Rust backtrace
 export RUST_BACKTRACE=1
 
 # Update Rust through Rustup
-alias rust-update='rustup update'
+alias rust-update='rustup update --no-self-update'
 
 # Update cargo binaries
 # https://crates.io/crates/cargo-update
@@ -494,7 +493,7 @@ function condacleanup {
 ##########
 
 # Pacman mirrors
-alias mirror="sudo reflector --verbose --protocol https --latest 50 --number 20 --country 'Brazil,Chile,US,' --sort rate --save /etc/pacman.d/mirrorlist"
+alias mirror='sudo reflector --verbose --protocol https --latest 50 --number 20 --country Brazil --country Chile --country US --sort rate --save /etc/pacman.d/mirrorlist'
 alias mirrorr='sudo reflector --verbose --protocol https --latest 50 --number 20 --sort rate --save /etc/pacman.d/mirrorlist'
 alias mirrord='sudo reflector --verbose --protocol https --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist'
 alias mirrors='sudo reflector --verbose --protocol https --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist'

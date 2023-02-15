@@ -1,5 +1,8 @@
 " Bindings
 
+# Load config
+bind ,cS source
+
 " Cycle through tabs
 bind K tabprev
 bind J tabnext
@@ -17,7 +20,7 @@ bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//
 bind ,g js let uri = document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git"); tri.native.run("cd ~/.repos/; git clone " + uri + "; cd \"$(basename \"" + uri + "\" .git)\"; st")
 
 " YouTube
-alias mpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('mpv ' + url))
+alias mpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('umpv ' + url))
 bindurl youtube.com ,p hint -c [id="video-title-link"] -W mpvsafe
 
 " Only hint search results on Google and DDG
@@ -34,8 +37,8 @@ bindurl wikiwand.com yy composite js document.location.href.replace("wikiwand.co
 set searchengine duckduckgo
 set searchurls.g https://www.google.com/search?&q=%s
 set searchurls.yt https://www.youtube.com/results?search_query=%s
-set searchurls.julia https://www.google.com/search?q=site:http://docs.julialang.org/en/v1%20
-
+set searchurls.gh https://github.com/search?q=%s
+set searchurls.jl https://docs.julialang.org/en/v1/search/?q=%s
 " Misc
 
 " Colorscheme

@@ -10,6 +10,10 @@
 #   qute://help/configuring.html
 #   qute://help/settings.html
 
+# TODO:
+# - Yank git clone url keybinding
+# - Queue videos on mpv
+
 import subprocess
 
 def read_xresources(prefix):
@@ -358,21 +362,22 @@ c.url.auto_search = 'naive'
 c.url.searchengines["DEFAULT"] = "https://duckduckgo.com/?q={}"
 c.url.searchengines["s"] = "https://searx.be/search?q={}&categories=general&language=en-US"
 c.url.searchengines["g"] = "https://www.google.com/search?q={}"
+c.url.searchengines["yt"] = "https://www.youtube.com/results?search_query={}"
+c.url.searchengines["bt"] = "https://btdig.com/search?q={}"
+c.url.searchengines["lib"] = "http://libgen.rs/search.php?req={}"
+c.url.searchengines["sci"] = "https://sci-hub.se/{}"
+c.url.searchengines["wp"] = "https://www.wikiwand.com/en/{}?fullSearch=true"
+c.url.searchengines["r"] = "https://libreddit.spike.codes/r/popular/search?q={}&sort=relevance&t=all"
+c.url.searchengines["t"] = "https://nitter.net/search?q={}"
 c.url.searchengines["b"] = "https://www.bing.com/search?q={}"
 c.url.searchengines["yd"] = "https://yandex.com/search/?text={}"
 c.url.searchengines["gm"] = "https://www.google.com/maps/search/{}"
-c.url.searchengines["wp"] = "https://www.wikiwand.com/en/{}?fullSearch=true"
 c.url.searchengines["sp"] = "https://www.startpage.com/sp/search?query={}"
-c.url.searchengines["yt"] = "https://www.youtube.com/results?search_query={}"
 c.url.searchengines["tw"] = "https://www.twitch.tv/search?term={}"
 c.url.searchengines["gs"] = "https://scholar.google.com/scholar?hl=en&q={}"
 c.url.searchengines["gd"] = "https://datasetsearch.research.google.com/search?query={}"
-c.url.searchengines["lib"] = "http://libgen.rs/search.php?req={}"
-c.url.searchengines["sci"] = "https://sci-hub.se/{}"
 c.url.searchengines["gh"] = "https://github.com/search?q={}"
 c.url.searchengines["h"] = "https://hoogle.haskell.org/?hoogle={}"
-c.url.searchengines["r"] = "https://libreddit.spike.codes/r/popular/search?q={}&sort=relevance&t=all"
-c.url.searchengines["t"] = "https://nitter.net/search?q={}"
 c.url.searchengines["w"] = "https://en.wikipedia.org/w/index.php?search={}"
 c.url.searchengines["mw"] = "https://www.merriam-webster.com/dictionary/{}"
 c.url.searchengines["th"] = "https://www.thesaurus.com/browse/{}"
@@ -427,8 +432,8 @@ config.bind('ym', 'yank inline [[{url}][{title}]]')
 
 # Open links on mpv
 config.bind(',p', 'hint links spawn --detach mpv {hint-url}')
-config.bind(',P', 'spawn --detach mpv {url}')
-config.bind(';p', 'hint --rapid links spawn --detach mpv {hint-url}')
+config.bind(',P', 'spawn --detach umpv {url}')
+config.bind(';p', 'hint --rapid links spawn --detach umpv {hint-url}')
 
 # Download video links
 config.bind(',dv', 'hint links spawn --verbose --detach yt-dlp \'{hint-url}\'')

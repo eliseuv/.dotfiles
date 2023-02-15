@@ -120,6 +120,7 @@ lvim.builtin.treesitter.ensure_installed = {
     "json",
     "julia",
     "lua",
+    "make",
     "python",
     "rust",
     "toml",

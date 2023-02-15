@@ -45,3 +45,4 @@ eval "$(starship init bash)"
 neofetch
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+. "$HOME/.cargo/env"
