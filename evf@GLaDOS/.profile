@@ -90,6 +90,7 @@ export BROWSER='qutebrowser'
 export BROWSERCLI='w3m'
 
 # Set manpager
+export PAGER='bat -p'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # n^3 file manager options
