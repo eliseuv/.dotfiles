@@ -48,7 +48,7 @@ function pathprepend {
 pathappend /bin /usr/bin /usr/local/bin /usr/local/sbin
 
 # Custom scripts
-pathappend ~/.local/bin
+pathprepend ~/.local/bin
 
 # CUDA
 #pathappend /opt/cuda/bin /opt/cuda/nsight_compute /opt/cuda/nsight_systems/bin
