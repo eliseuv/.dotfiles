@@ -1,0 +1,20 @@
+#+TITLE: termux
+
+* OhMyTmux
+
+[[https://github.com/gpakosz/.tmux][GitHub repo]]
+
+#+begin_src bash
+git clone git@github.com:gpakosz/.tmux.git
+ln -s .tmux/.tmux.conf ~/.tmux.conf
+cp .tmux/.tmux.conf.local ~/.tmux.conf.local
+#+end_src
+
+** Messed up colors in nvim
+
+Make sure to add this line somewhere in =~/.tmux.conf.local=:
+
+#+begin_src bash
+# Fixes colors in nvim
+set -ag terminal-overrides ",*:RGB"
+#+end_src

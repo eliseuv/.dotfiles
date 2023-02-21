@@ -68,7 +68,8 @@ pathappend ~/.config/emacs-doom/bin
 
 # Terminal emulator
 #export TERM='rxvt-unicode-256color'
-export TERM='alacritty'
+# export COLORTERM='truecolor'
+# export TERM='xterm-256color'
 export TERMINAL='alacritty'
 
 # Text editors
