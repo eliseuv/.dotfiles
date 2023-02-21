@@ -215,6 +215,9 @@ alias scihub="curl https://raw.githubusercontent.com/dougy147/scitopdf/master/bi
 
 # Convenience aliases
 
+# TLDR
+alias tldrf="tldr --list | tr -d \"[''],\" | tr ' ' '\n' | fzf --preview \"tldr {1}\" --preview-window=right,70% | xargs tldr"
+
 # Use rsync for copying files
 alias rs='rsync -Pazvh'
 alias rsmv='rsync -Pazvh --remove-source-files'
