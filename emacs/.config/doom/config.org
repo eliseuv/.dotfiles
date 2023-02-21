@@ -1651,23 +1651,3 @@ Use =GNU APL= mode:
 #+begin_src emacs-lisp :tangle packages.el
 (package! gnu-apl-mode)
 #+end_src
-
-* Temporary fixes
-
-** [[https://github.com/doomemacs/doomemacs/issues/7080][Issue#7080]]
-
-The following error occurs because some packages use function only available in Emacs 29.
-
-#+begin_src emacs-lisp :tangle no
-Error (doom-first-file-hook): Error running hook "global-git-commit-mode" because: (void-variable transient-base-map)
-#+end_src
-
-The [[https://github.com/doomemacs/doomemacs/issues/7078#issuecomment-1428775097][solution]] is to pin =transient= and =with-editor= to a previous version.
-
-#+begin_src emacs-lisp :tangle packages.el
-(package! transient
-  :pin "c2bdf7e12c530eb85476d3aef317eb2941ab9440")
-
-(package! with-editor
-  :pin "bbc60f68ac190f02da8a100b6fb67cf1c27c53ab")
-#+end_src

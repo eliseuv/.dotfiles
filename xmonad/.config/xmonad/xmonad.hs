@@ -69,7 +69,7 @@ myTerminalCommand :: String -> String
 myTerminalCommand cmd = "alacritty msg create-window -e " ++ cmd ++ " || alacritty -e " ++ cmd
 
 myBrowser :: String
-myBrowser = "qutebrowser " -- Sets qutebrowser as browser
+myBrowser = "firefox " -- Sets default browser
 
 myEmacs :: String
 myEmacs = "emacsclient -nc -a 'emacs' " -- Makes emacs keybindings easier to type
@@ -512,6 +512,7 @@ myManageHook =
       className =? "Emacs" --> doShift (myWorkspaces !! 0),
       className =? "code-oss" --> doShift (myWorkspaces !! 0),
       -- Web Browsers
+      (className =? "firefox" <&&> title =? "Picture-in-Picture") --> doShift (myWorkspaces !! 4),
       title =? "Mozilla Firefox" --> doShift (myWorkspaces !! 2),
       title =? "Chromium" --> doShift (myWorkspaces !! 2),
       className =? "Navigator" --> doShift (myWorkspaces !! 2),
