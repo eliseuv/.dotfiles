@@ -12,6 +12,8 @@ cp .tmux/.tmux.conf.local ~/.tmux.conf.local
 
 ** Messed up colors in nvim
 
+[[https://gist.github.com/andersevenrud/015e61af2fd264371032763d4ed965b6][More info]]
+
 Make sure to add this line somewhere in =~/.tmux.conf.local=:
 
 #+begin_src bash
