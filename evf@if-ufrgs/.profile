@@ -69,7 +69,7 @@ pathappend ~/.config/emacs/bin
 #export TERMINAL='alacritty'
 
 # Text editors
-export EDITOR='lvim'
+export EDITOR='nvim'
 export VISUAL='emacsclient -c -a emacs'
 
 # DOOM Emacs
@@ -167,18 +167,10 @@ alias watch='watch -tc -n 1 '
 alias b='batcat'
 
 # NeoVim
-alias v='lvim'
-alias lvimupdate='lvim +LvimUpdate +q'
+alias v='nvim'
 
 # Helix
 alias hx='helix'
-
-# tmux
-alias tmux="TERM=screen-256color-bce tmux"
-alias t='tmux attach || tmux new-session'
-alias ta='tmux attach -t'
-alias tn='tmux new-session'
-alias tl='tmux list-sessions'
 
 # Newsboat
 alias nb='newsboat'
@@ -319,6 +311,22 @@ function fmp {
 }
 
 ########
+# tmux #
+########
+
+export OHMYTMUX_DIR="$HOME/.repos/.tmux/"
+
+function update-ohmytmux {
+    cd "$OHMYTMUX_DIR" || exit
+    git pull --rebase
+}
+
+alias t='tmux attach || tmux new-session'
+alias ta='tmux attach -t'
+alias tn='tmux new-session'
+alias tl='tmux list-sessions'
+
+########
 # Rust #
 ########
 
@@ -381,7 +389,7 @@ function gocleanup {
 export JULIA_NUM_THREADS=auto
 
 # Julia default editor for the @edit macro
-export JULIA_EDITOR=lvim
+export JULIA_EDITOR=nvim
 
 # Julia binaries
 pathappend "$HOME/.julia/juliaup/bin"
@@ -520,6 +528,8 @@ function update {
     touch /tmp/update.lock
     printf "\n${GREEN}Updating PopOS!...${RESET}\n\n"
     sudo apt update --yes && sudo apt upgrade --yes
+    printf "\n${GREEN}Updating Oh my tmux...${RESET}\n\n"
+    update-ohmytmux
     printf "\n${GREEN}Updating Rust...${RESET}\n\n"
     rust-update
     printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"
@@ -530,8 +540,6 @@ function update {
     julia-update
     printf "\n${GREEN}Updating Miniconda...${RESET}\n\n"
     condaupdate
-    # printf "\n${GREEN}Updating LunarVim...${RESET}\n\n"
-    # lvimupdate
     printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
     doom sync
     doom upgrade
