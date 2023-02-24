@@ -73,7 +73,7 @@ pathappend ~/.config/emacs-doom/bin
 export TERMINAL='alacritty'
 
 # Text editors
-export EDITOR='lvim'
+export EDITOR='nvim'
 export VISUAL='emacsclient -c -a emacs'
 
 # DOOM Emacs
