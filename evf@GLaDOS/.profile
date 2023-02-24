@@ -182,13 +182,6 @@ alias v='nvim'
 # Helix
 alias hx='helix'
 
-# tmux
-alias tmux="TERM=screen-256color-bce tmux"
-alias t='tmux attach || tmux new-session'
-alias ta='tmux attach -t'
-alias tn='tmux new-session'
-alias tl='tmux list-sessions'
-
 # Newsboat
 alias nb='newsboat'
 
@@ -335,6 +328,22 @@ function fmp {
     local FORMAT="[%file%]"
     mpc listall -f "$FORMAT" | fzf --multi --preview 'mediainfo ~/Storage/Music/{}' | mpc add
 }
+
+########
+# tmux #
+########
+
+export OHMYTMUX_DIR="$HOME/.repos/.tmux/"
+
+function update-ohmytmux {
+    cd "$OHMYTMUX_DIR" || exit
+    git pull --rebase
+}
+
+alias t='tmux attach || tmux new-session'
+alias ta='tmux attach -t'
+alias tn='tmux new-session'
+alias tl='tmux list-sessions'
 
 ########
 # Rust #
@@ -568,6 +577,8 @@ function update {
     parupdate
     printf "\n${GREEN}Updating xmonad...${RESET}\n\n"
     update-xmonad
+    printf "\n${GREEN}Updating Oh my tmux...${RESET}\n\n"
+    update-ohmytmux
     printf "\n${GREEN}Updating Rust...${RESET}\n\n"
     rust-update
     printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"
