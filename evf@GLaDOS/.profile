@@ -73,7 +73,7 @@ pathappend ~/.config/emacs-doom/bin
 export TERMINAL='alacritty'
 
 # Text editors
-export EDITOR='lvim'
+export EDITOR='nvim'
 export VISUAL='emacsclient -c -a emacs'
 
 # DOOM Emacs
@@ -214,6 +214,9 @@ alias wttr='curl wttr.in/?0Fq'
 alias scihub="curl https://raw.githubusercontent.com/dougy147/scitopdf/master/bin/scitopdf | bash -s "
 
 # Convenience aliases
+
+# TLDR
+alias tldrf="tldr --list | tr -d \"[''],\" | tr ' ' '\n' | fzf --preview \"tldr {1}\" --preview-window=right,70% | xargs tldr"
 
 # Use rsync for copying files
 alias rs='rsync -Pazvh'

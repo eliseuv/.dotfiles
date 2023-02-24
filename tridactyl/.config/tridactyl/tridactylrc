@@ -14,14 +14,30 @@ bind <C-J> tabmove +1
 " make d take you to the left (I find it much less confusing)
 bind d composite tabprev; tabclose #
 
+" " Rudimentary search
+" bind / fillcmdline find
+" bind ? fillcmdline find --reverse
+" bind n findnext --search-from-view
+" bind N findnext --search-from-view --reverse
+" bind gn findselect
+" bind gN composite findnext --search-from-view --reverse; findselect
+" bind ,<Space> nohlsearch
+
+" make t open the selection with tabopen
+bind --mode=visual t composite js document.getSelection().toString() | fillcmdline tabopen
+
 " Git{Hub,Lab} git clone via SSH yank
 bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
 " As above but execute it and open terminal in folder
 bind ,g js let uri = document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git"); tri.native.run("cd ~/.repos/; git clone " + uri + "; cd \"$(basename \"" + uri + "\" .git)\"; st")
 
 " YouTube
-alias mpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('umpv ' + url))
-bindurl youtube.com ,p hint -c [id="video-title-link"],[id="video-title"] -W mpvsafe
+alias umpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('umpv ' + url))
+alias mpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('mpv ' + url))
+bindurl youtube.com ,p hint -c [id="video-title-link"],[id="video-title"] -W umpvsafe
+bindurl youtube.com ;p hint -c [id="video-title-link"],[id="video-title"] -W mpv
+bindurl youtube.com ;P mpv
+bindurl twitch.com ;P mpv
 
 " Only hint search results on Google and DDG
 bindurl www.google.com f hint -Jc #search div:not(.action-menu) > a
@@ -54,6 +70,7 @@ set searchurls.gs https://scholar.google.com/scholar?hl=en&q=%s
 set searchurls.gd https://datasetsearch.research.google.com/search?query=%s
 set searchurls.gh https://github.com/search?q=%s
 set searchurls.h https://hoogle.haskell.org/?hoogle=%s
+set searchurls.rs https://crates.io/search?q=%s
 set searchurls.w https://en.wikipedia.org/w/index.php?search=%s
 set searchurls.mw https://www.merriam-webster.com/dictionary/%s
 set searchurls.th https://www.thesaurus.com/browse/%s
