@@ -1,0 +1,23 @@
+#!/bin/bash
+
+OHMYTMUX_DIR="$HOME/.repos/.tmux/"
+
+# Clone or pull repo
+if [[ ! -d "$OHMYTMUX_DIR" ]]; then
+    git clone git@github.com:gpakosz/.tmux.git "$OHMYTMUX_DIR"
+    ln -s -f "$OHMYTMUX_DIR/.tmux.conf" ~/.tmux.conf
+else
+    git -C "$OHMYTMUX_DIR" pull --rebase
+fi
+
+OHMYTMUX_DIR_CONF_REMOTE="$OHMYTMUX_DIR/.tmux.conf.local"
+OHMYTMUX_DIR_CONF_LOCAL="$HOME/.tmux.conf.local"
+
+# Check if local config already exists
+if [[ ! -f ~/.tmux.conf.local ]]; then
+    cp "$OHMYTMUX_DIR_CONF_REMOTE" "$OHMYTMUX_DIR_CONF_LOCAL"
+else
+    # Show diffs if there's any
+    OHMYTMUX_DIR_CONF_DIFF=$(diff ~/.tmux.conf.local ~/.repos/.tmux/.tmux.conf.local --changed-group-format='%>' --unchanged-group-format='')
+    [[ -n $OHMYTMUX_DIR_CONF_DIFF ]] && delta "$OHMYTMUX_DIR_CONF_LOCAL" "$OHMYTMUX_DIR_CONF_REMOTE"
+fi

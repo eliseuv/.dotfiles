@@ -333,13 +333,6 @@ function fmp {
 # tmux #
 ########
 
-export OHMYTMUX_DIR="$HOME/.repos/.tmux/"
-
-function update-ohmytmux {
-    cd "$OHMYTMUX_DIR" || exit
-    git pull --rebase
-}
-
 alias t='tmux attach || tmux new-session'
 alias ta='tmux attach -t'
 alias tn='tmux new-session'
