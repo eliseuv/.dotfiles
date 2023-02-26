@@ -62,11 +62,12 @@ myModMask :: KeyMask
 myModMask = mod4Mask -- Sets modkey to super/windows key
 
 myTerminal :: String
-myTerminal = "alacritty msg create-window || alacritty" -- Sets default terminal
--- myTerminal = "urxvtc"    -- Sets default terminal
+myTerminal = "kitty --single-instance" -- Sets default terminal
+-- myTerminal = "alacritty msg create-window || alacritty" -- Sets default terminal
 
 myTerminalCommand :: String -> String
-myTerminalCommand cmd = "alacritty msg create-window -e " ++ cmd ++ " || alacritty -e " ++ cmd
+myTerminalCommand cmd = "kitty --single-instance -e " ++ cmd
+-- myTerminalCommand cmd = "alacritty msg create-window -e " ++ cmd ++ " || alacritty -e " ++ cmd
 
 myBrowser :: String
 myBrowser = "firefox " -- Sets default browser
