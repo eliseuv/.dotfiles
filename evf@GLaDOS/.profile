@@ -149,10 +149,10 @@ alias h='history -i'
 # alias ll='exa --all --long --header --git --group-directories-first --icons --color=always'
 # alias lt='exa --all --tree --group-directories-first --icons --ignore-glob=.git --color=always'
 # alias l.='exa --all | rg "^\."'
-alias l='lsd --group-directories-first --icon=always --color=always'
-alias la='lsd --almost-all --group-directories-first --icon=always --color=always '
-alias ll="lsd --almost-all --long --header --group-directories-first --icon=always --color=always --date '+%Y-%m-%d %H:%M'"
-alias lt='lsd --almost-all --tree --group-directories-first --icon=always --ignore-glob=.git --color=always'
+alias l='lsd --group-directories-first --icon=always --color=always --hyperlink=always'
+alias la='lsd --almost-all --group-directories-first --icon=always --color=always --hyperlink=always'
+alias ll="lsd --almost-all --long --header --group-directories-first --icon=always --color=always --hyperlink=always --date '+%Y-%m-%d %H:%M'"
+alias lt='lsd --almost-all --tree --group-directories-first --icon=always --ignore-glob=.git --color=always --hyperlink=always'
 alias l.='lsd --almost-all | rg "^\."'
 
 # Easier cd
@@ -225,6 +225,9 @@ alias fail-reset='faillock --user $USER --reset'
 
 # udiskie
 alias ud-umount='udiskie-umount --detach'
+
+# Use ssh kitten from kitty
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 # SSH agent restart (temporary)
 alias ssh-restart='killall ssh-agent; eval `ssh-agent`; ssh-add'

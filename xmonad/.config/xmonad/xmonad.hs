@@ -460,13 +460,13 @@ myLayoutHook =
       withBorder myBorderWidth grid
         ||| tall
         ||| noBorders monocle
-        ||| noBorders tabs
         ||| spirals
         ||| floats
         ||| threeCol
         ||| threeRow
         ||| tallAccordion
         ||| wideAccordion
+        ||| noBorders tabs
 
 -- myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
 myWorkspaces =
@@ -666,6 +666,7 @@ myKeys c =
         ^++^ subKeys
           "Switch layouts"
           [ ("M-<Tab>", addName "Switch to next layout" $ sendMessage NextLayout),
+            ("M-t", addName "Switch to tabbed layout" $ sendMessage $ JumpToLayout "tabs"),
             ("M-<Space>", addName "Toggle noborders/full" $ sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts)
           ]
         -- Window resizing
@@ -680,7 +681,7 @@ myKeys c =
         ^++^ subKeys
           "Floating windows"
           [ ("M-f", addName "Toggle float layout" $ sendMessage (T.Toggle "floats")),
-            ("M-t", addName "Sink a floating window" $ withFocused $ windows . W.sink),
+            -- ("M-t", addName "Sink a floating window" $ withFocused $ windows . W.sink),
             ("M-S-t", addName "Sink all floated windows" sinkAll)
           ]
         -- Increase/decrease spacing (gaps)

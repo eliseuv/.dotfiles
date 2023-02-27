@@ -1,16 +1,42 @@
 #!/bin/bash
 
-set -x
+XMONAD_ROOT="$HOME/.config/xmonad/"
+XMONAD_REPO="$XMONAD_ROOT/xmonad"
+XMONAD_CONTRIB_REPO="$XMONAD_REPO/xmonad-contrib"
 
-XMONAD_DIR="$HOME/.config/xmonad/"
+# Clone or pull repos
+printf "Checking xmonad/xmonad repo\n"
+XMONAD_UPDATED=0
+if [[ ! -d "$XMONAD_REPO" ]]; then
+    git clone https://github.com/xmonad/xmonad "$XMONAD_REPO"
+    XMONAD_UPDATED=1
+else
+    GIT_RESULT=$(git -C "$XMONAD_REPO" pull --rebase)
+    [[ "$GIT_RESULT" != "Already up to date." ]] && XMONAD_UPDATED=1
+    printf "%s\n\n" "$GIT_RESULT"
+fi
 
-# Pull repos
-git -C "$XMONAD_DIR"/xmonad pull --rebase
-git -C "$XMONAD_DIR"/xmonad-contrib pull --rebase
+printf "Checking xmonad/xmonad-contrib repo\n"
+XMONAD_CONTRIB_UPDATED=0
+if [[ ! -d "$XMONAD_CONTRIB_REPO" ]]; then
+    git clone https://github.com/xmonad/xmonad-contrib "$XMONAD_CONTRIB_REPO"
+    XMONAD_CONTRIB_UPDATED=1
+else
+    GIT_RESULT=$(git -C "$XMONAD_CONTRIB_REPO" pull --rebase)
+    [[ "$GIT_RESULT" != "Already up to date." ]] && XMONAD_CONTRIB_UPDATED=1
+    printf "%s\n\n" "$GIT_RESULT"
+fi
 
-# Install xmonad
-cd "$XMONAD_DIR" || exit
-stack install
+# If any repo was updated
+if [[ $XMONAD_UPDATED == 1 || $XMONAD_CONTRIB_UPDATED == 1 ]]; then
 
-# Recompile xmonad config
-xmonad --recompile
+    set -x
+
+    # Install xmonad
+    cd "$XMONAD_ROOT" || exit
+    stack install
+
+    # Recompile xmonad config
+    xmonad --recompile
+
+fi
