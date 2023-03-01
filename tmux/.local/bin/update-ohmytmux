@@ -4,7 +4,7 @@ OHMYTMUX_DIR="$HOME/.repos/.tmux/"
 
 # Clone or pull repo
 if [[ ! -d "$OHMYTMUX_DIR" ]]; then
-    git clone git@github.com:gpakosz/.tmux.git "$OHMYTMUX_DIR"
+    git clone https://github.com/gpakosz/.tmux.git "$OHMYTMUX_DIR"
     ln -s -f "$OHMYTMUX_DIR/.tmux.conf" ~/.tmux.conf
 else
     git -C "$OHMYTMUX_DIR" pull --rebase

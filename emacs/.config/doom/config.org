@@ -520,7 +520,7 @@ If set to ~nil~, line numbers are disabled.
 For relative line numbers, set this to ~relative~.
 
 #+begin_src emacs-lisp
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type 'relative)
 #+end_src
 
 
@@ -1156,6 +1156,21 @@ Default bibliography file:
 #+begin_src emacs-lisp
 (setq reftex-default-bibliography
       '("~/Storage/Zotero/my_library.bib"))
+#+end_src
+
+Fix LaTeX export with svg images ([[https://emacs.stackexchange.com/a/47462][Answer]]).
+
+#+begin_src emacs-lisp
+ (setq org-latex-pdf-process
+       (let
+           ((cmd (concat "latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode"
+                 " --synctex=1"
+                 " -output-directory=%o %f")))
+         (list cmd
+           "cd %o; if test -r %b.idx; then makeindex %b.idx; fi"
+           "cd %o; bibtex %b"
+           cmd
+           cmd)))
 #+end_src
 
 
