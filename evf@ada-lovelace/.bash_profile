@@ -258,7 +258,12 @@ sbjlargs() {
         printf "Args = $line\n"
         echo "$1 $line"
         sbjl "$1 $line"
-    done <<<$(~/.juliaup/bin/julia --startup-file=no "$2")
+    done <<<$(julia --startup-file=no "$2")
+}
+
+sbjlargs2() {
+    printf "\nSubmitting script $1\n\n"
+    julia "$2"
 }
 
 . "$HOME/.cargo/env"
