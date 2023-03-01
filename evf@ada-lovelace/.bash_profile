@@ -260,5 +260,3 @@ sbjlargs() {
         sbjl "$1 $line"
     done <<<$(julia "$2")
 }
-
-. "$HOME/.cargo/env"
