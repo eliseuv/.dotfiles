@@ -1,13 +1,13 @@
 Config
 {
        -- Appearance
-       font    = "xft:Ubuntu:weight=bold:pixelsize=11:antialias=true:hinting=true",
+       font    = "Ubuntu Bold 9",
        additionalFonts = [
-                           "xft:Fira Code Nerd Font:pixelsize=14:antialias=true:hinting=true"   -- Nerd fonts icons
-                         , "xft:Fira Code Nerd Font:pixelsize=17:antialias=true:hinting=true"   -- Slightly larger icons
+                           "Fira Code Nerd Font 11"   -- Nerd fonts icons
+                         , "Fira Code Nerd Font 14"   -- Slightly larger icons
                          ]
-       , bgColor = "#242730"
-       , fgColor = "#666666"
+        , bgColor      = "#1a1b26"
+        , fgColor      = "#a9b1d6"
        , position = Static { xpos = 1080 , ypos = 0, width = 2560, height = 26 }
        , iconRoot = "/home/evf/.xmobar/xpm/" -- default: "."
 

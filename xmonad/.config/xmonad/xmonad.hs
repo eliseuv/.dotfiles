@@ -62,14 +62,15 @@ myModMask :: KeyMask
 myModMask = mod4Mask -- Sets modkey to super/windows key
 
 myTerminal :: String
-myTerminal = "alacritty msg create-window || alacritty" -- Sets default terminal
--- myTerminal = "urxvtc"    -- Sets default terminal
+myTerminal = "kitty --single-instance" -- Sets default terminal
+-- myTerminal = "alacritty msg create-window || alacritty" -- Sets default terminal
 
 myTerminalCommand :: String -> String
-myTerminalCommand cmd = "alacritty msg create-window -e " ++ cmd ++ " || alacritty -e " ++ cmd
+myTerminalCommand cmd = "kitty --single-instance -e " ++ cmd
+-- myTerminalCommand cmd = "alacritty msg create-window -e " ++ cmd ++ " || alacritty -e " ++ cmd
 
 myBrowser :: String
-myBrowser = "qutebrowser " -- Sets qutebrowser as browser
+myBrowser = "firefox " -- Sets default browser
 
 myEmacs :: String
 myEmacs = "emacsclient -nc -a 'emacs' " -- Makes emacs keybindings easier to type
@@ -459,13 +460,13 @@ myLayoutHook =
       withBorder myBorderWidth grid
         ||| tall
         ||| noBorders monocle
-        ||| noBorders tabs
         ||| spirals
         ||| floats
         ||| threeCol
         ||| threeRow
         ||| tallAccordion
         ||| wideAccordion
+        ||| noBorders tabs
 
 -- myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
 myWorkspaces =
@@ -512,6 +513,7 @@ myManageHook =
       className =? "Emacs" --> doShift (myWorkspaces !! 0),
       className =? "code-oss" --> doShift (myWorkspaces !! 0),
       -- Web Browsers
+      (className =? "firefox" <&&> title =? "Picture-in-Picture") --> doShift (myWorkspaces !! 4),
       title =? "Mozilla Firefox" --> doShift (myWorkspaces !! 2),
       title =? "Chromium" --> doShift (myWorkspaces !! 2),
       className =? "Navigator" --> doShift (myWorkspaces !! 2),
@@ -664,6 +666,7 @@ myKeys c =
         ^++^ subKeys
           "Switch layouts"
           [ ("M-<Tab>", addName "Switch to next layout" $ sendMessage NextLayout),
+            ("M-t", addName "Switch to tabbed layout" $ sendMessage $ JumpToLayout "tabs"),
             ("M-<Space>", addName "Toggle noborders/full" $ sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts)
           ]
         -- Window resizing
@@ -678,7 +681,7 @@ myKeys c =
         ^++^ subKeys
           "Floating windows"
           [ ("M-f", addName "Toggle float layout" $ sendMessage (T.Toggle "floats")),
-            ("M-t", addName "Sink a floating window" $ withFocused $ windows . W.sink),
+            -- ("M-t", addName "Sink a floating window" $ withFocused $ windows . W.sink),
             ("M-S-t", addName "Sink all floated windows" sinkAll)
           ]
         -- Increase/decrease spacing (gaps)

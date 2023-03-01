@@ -6,7 +6,8 @@
 APIKEY="$(cat "$HOME"/Documents/personal/api_keys/openweather.txt)"
 
 # Location
-CITY_ID="3452925"
+CITY_NAME="Porto Alegre"
+COUNTRY_CODE="BR"
 
 # Language
 LANG="en"
@@ -80,7 +81,7 @@ if [ $UNITS = "kelvin" ]; then
 else
     UNIT_URL="&units=$UNITS"
 fi
-URL="api.openweathermap.org/data/2.5/weather?appid=${APIKEY}${UNIT_URL}&lang=${LANG}&id=${CITY_ID}"
+URL="api.openweathermap.org/data/2.5/weather?appid=${APIKEY}${UNIT_URL}&lang=${LANG}&q=${CITY_NAME// /%20},${COUNTRY_CODE}"
 
 # API call function
 RESPONSE=""
@@ -94,13 +95,13 @@ function getData {
     if [ $CODE -eq 0 ]; then
         RESPONSECODE="$(echo "$RESPONSE" | jq .cod)"
     fi
-    if [ $CODE -ne 0 ] || [ "$RESPONSECODE" -ne 200 ]; then
+    if [ $CODE -ne 0 ] || [ "${RESPONSECODE:=429}" -ne 200 ]; then
         if [ $CODE -ne 0 ]; then
             ERR_MSG="curl Error $CODE"
-            echo "curl Error $CODE" >>"$HOME/.weather.log"
+            echo "curl Error $CODE" >> "$HOME/.weather.log"
         else
             ERR_MSG="Conn. Err. $RESPONSECODE"
-            echo "API Error $RESPONSECODE" >>"$HOME/.weather.log"
+            echo "API Error $RESPONSECODE" >> "$HOME/.weather.log"
         fi
         ERROR=1
     else

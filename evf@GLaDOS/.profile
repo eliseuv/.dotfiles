@@ -48,7 +48,7 @@ function pathprepend {
 pathappend /bin /usr/bin /usr/local/bin /usr/local/sbin
 
 # Custom scripts
-pathappend ~/.local/bin
+pathprepend ~/.local/bin
 
 # CUDA
 #pathappend /opt/cuda/bin /opt/cuda/nsight_compute /opt/cuda/nsight_systems/bin
@@ -68,11 +68,12 @@ pathappend ~/.config/emacs-doom/bin
 
 # Terminal emulator
 #export TERM='rxvt-unicode-256color'
-export TERM='alacritty'
+# export COLORTERM='truecolor'
+# export TERM='xterm-256color'
 export TERMINAL='alacritty'
 
 # Text editors
-export EDITOR='lvim'
+export EDITOR='nvim'
 export VISUAL='emacsclient -c -a emacs'
 
 # DOOM Emacs
@@ -86,10 +87,11 @@ export READER='zathura'
 export BAT_THEME='Dracula'
 
 # Web browser
-export BROWSER='qutebrowser'
+export BROWSER='firefox'
 export BROWSERCLI='w3m'
 
 # Set manpager
+export PAGER='bat -p'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # n^3 file manager options
@@ -141,12 +143,17 @@ alias c='clear'
 # Show history
 alias h='history -i'
 
-# Changing 'ls' to 'exa'
-alias l='exa --group-directories-first --icons --color=always'
-alias la='exa --all --group-directories-first --icons --color=always'
-alias ll='exa --all --long --header --git --group-directories-first --icons --color=always'
-alias lt='exa --all --tree --group-directories-first --icons --ignore-glob=.git --color=always'
-alias l.='exa --all | rg "^\."'
+# Changing 'ls' to 'lsd'
+# alias l='exa --group-directories-first --icons --color=always'
+# alias la='exa --all --group-directories-first --icons --color=always'
+# alias ll='exa --all --long --header --git --group-directories-first --icons --color=always'
+# alias lt='exa --all --tree --group-directories-first --icons --ignore-glob=.git --color=always'
+# alias l.='exa --all | rg "^\."'
+alias l='lsd --group-directories-first --icon=always --color=always --hyperlink=always'
+alias la='lsd --almost-all --group-directories-first --icon=always --color=always --hyperlink=always'
+alias ll="lsd --almost-all --long --header --group-directories-first --icon=always --color=always --hyperlink=always --date '+%Y-%m-%d %H:%M'"
+alias lt='lsd --almost-all --tree --group-directories-first --icon=always --ignore-glob=.git --color=always --hyperlink=always'
+alias l.='lsd --almost-all | rg "^\."'
 
 # Easier cd
 alias ..='cd ..'
@@ -174,18 +181,11 @@ alias watch='watch -tc -n 1 '
 alias b='bat'
 
 # NeoVim
-alias v='lvim'
-alias lvimupdate='lvim +LvimUpdate +q'
+alias v='nvim'
+# alias lvimupdate='lvim +LvimUpdate +q'
 
 # Helix
 alias hx='helix'
-
-# tmux
-alias tmux="TERM=screen-256color-bce tmux"
-alias t='tmux attach || tmux new-session'
-alias ta='tmux attach -t'
-alias tn='tmux new-session'
-alias tl='tmux list-sessions'
 
 # Newsboat
 alias nb='newsboat'
@@ -213,6 +213,9 @@ alias scihub="curl https://raw.githubusercontent.com/dougy147/scitopdf/master/bi
 
 # Convenience aliases
 
+# TLDR
+alias tldrf="tldr --list | tr -d \"[''],\" | tr ' ' '\n' | fzf --preview \"tldr {1}\" --preview-window=right,70% | xargs tldr"
+
 # Use rsync for copying files
 alias rs='rsync -Pazvh'
 alias rsmv='rsync -Pazvh --remove-source-files'
@@ -222,6 +225,9 @@ alias fail-reset='faillock --user $USER --reset'
 
 # udiskie
 alias ud-umount='udiskie-umount --detach'
+
+# Use ssh kitten from kitty
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 # SSH agent restart (temporary)
 alias ssh-restart='killall ssh-agent; eval `ssh-agent`; ssh-add'
@@ -330,6 +336,15 @@ function fmp {
     local FORMAT="[%file%]"
     mpc listall -f "$FORMAT" | fzf --multi --preview 'mediainfo ~/Storage/Music/{}' | mpc add
 }
+
+########
+# tmux #
+########
+
+alias t='tmux attach || tmux new-session'
+alias ta='tmux attach -t'
+alias tn='tmux new-session'
+alias tl='tmux list-sessions'
 
 ########
 # Rust #
@@ -563,6 +578,8 @@ function update {
     parupdate
     printf "\n${GREEN}Updating xmonad...${RESET}\n\n"
     update-xmonad
+    printf "\n${GREEN}Updating Oh my tmux...${RESET}\n\n"
+    update-ohmytmux
     printf "\n${GREEN}Updating Rust...${RESET}\n\n"
     rust-update
     printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"
@@ -574,11 +591,8 @@ function update {
     julia-update
     printf "\n${GREEN}Updating Miniconda...${RESET}\n\n"
     condaupdate
-    printf "\n${GREEN}Updating LunarVim...${RESET}\n\n"
-    lvimupdate
     printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
-    doom upgrade
-    doom sync
+    doom sync -u
     printf "\n${GREEN}Custom check...${RESET}\n"
     customcheck
     printf "\n"

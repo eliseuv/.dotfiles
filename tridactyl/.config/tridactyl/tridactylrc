@@ -14,14 +14,30 @@ bind <C-J> tabmove +1
 " make d take you to the left (I find it much less confusing)
 bind d composite tabprev; tabclose #
 
+" " Rudimentary search
+" bind / fillcmdline find
+" bind ? fillcmdline find --reverse
+" bind n findnext --search-from-view
+" bind N findnext --search-from-view --reverse
+" bind gn findselect
+" bind gN composite findnext --search-from-view --reverse; findselect
+" bind ,<Space> nohlsearch
+
+" make t open the selection with tabopen
+bind --mode=visual t composite js document.getSelection().toString() | fillcmdline tabopen
+
 " Git{Hub,Lab} git clone via SSH yank
 bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
 " As above but execute it and open terminal in folder
 bind ,g js let uri = document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git"); tri.native.run("cd ~/.repos/; git clone " + uri + "; cd \"$(basename \"" + uri + "\" .git)\"; st")
 
 " YouTube
-alias mpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('umpv ' + url))
-bindurl youtube.com ,p hint -c [id="video-title-link"] -W mpvsafe
+alias umpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('umpv ' + url))
+alias mpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('mpv ' + url))
+bindurl youtube.com ,p hint -c [id="video-title-link"],[id="video-title"] -W umpvsafe
+bindurl youtube.com ;p hint -c [id="video-title-link"],[id="video-title"] -W mpv
+bindurl youtube.com ;P mpv
+bindurl twitch.com ;P mpv
 
 " Only hint search results on Google and DDG
 bindurl www.google.com f hint -Jc #search div:not(.action-menu) > a
@@ -33,12 +49,44 @@ bindurl ^https://duckduckgo.com F hint -Jbc [data-testid="result-title-a"]
 bindurl wikiwand.com yy composite js document.location.href.replace("wikiwand.com/en","wikipedia.org/wiki") | clipboard yank
 
 " Search engine
-
 set searchengine duckduckgo
+set searchurls.s https://searx.be/search?q=%s&categories=general&language=en-US
 set searchurls.g https://www.google.com/search?&q=%s
 set searchurls.yt https://www.youtube.com/results?search_query=%s
 set searchurls.gh https://github.com/search?q=%s
 set searchurls.jl https://docs.julialang.org/en/v1/search/?q=%s
+set searchurls.bt https://btdig.com/search?q=%s
+set searchurls.lib http://libgen.rs/search.php?req=%s
+set searchurls.sci https://sci-hub.se/%s
+set searchurls.wp https://www.wikiwand.com/en/%s?fullSearch=true
+set searchurls.r https://libreddit.spike.codes/r/popular/search?q=%s&sort=relevance&t=all
+set searchurls.t https://nitter.net/search?q=%s
+set searchurls.b https://www.bing.com/search?q=%s
+set searchurls.yd https://yandex.com/search/?text=%s
+set searchurls.gm https://www.google.com/maps/search/%s
+set searchurls.sp https://www.startpage.com/sp/search?query=%s
+set searchurls.tw https://www.twitch.tv/search?term=%s
+set searchurls.gs https://scholar.google.com/scholar?hl=en&q=%s
+set searchurls.gd https://datasetsearch.research.google.com/search?query=%s
+set searchurls.gh https://github.com/search?q=%s
+set searchurls.h https://hoogle.haskell.org/?hoogle=%s
+set searchurls.rs https://crates.io/search?q=%s
+set searchurls.w https://en.wikipedia.org/w/index.php?search=%s
+set searchurls.mw https://www.merriam-webster.com/dictionary/%s
+set searchurls.th https://www.thesaurus.com/browse/%s
+set searchurls.so https://stackoverflow.com/search?q=%s,
+set searchurls.arch https://wiki.archlinux.org/index.php?search=%s
+set searchurls.apkg https://archlinux.org/packages/?sort=&q=%s&maintainer=&flagged=
+set searchurls.aur https://aur.archlinux.org/packages?O=0&K=%s
+set searchurls.tpb https://thepiratebay.org/search.php?q=%s&all=on&search=Pirate+Search&
+set searchurls.ny https://nyaa.si/?f=0&c=0_0&q=%s
+set searchurls.wa https://www.wolframalpha.com/input/?i=%s
+set searchurls.amz https://www.amazon.com.br/s?k=%s
+set searchurls.hltv https://www.hltv.org/search?query=%s
+set searchurls.keepa https://keepa.com/#!search/12-%s
+set searchurls.color https://www.color-hex.com/color/%s
+set searchurls.sc https://www.shellcheck.net/wiki/SC%s
+
 " Misc
 
 " Colorscheme
@@ -46,6 +94,8 @@ colorscheme shydactyl
 
 " Redirects
 autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
+
+set editorcmd alacritty -e 'nvim'
 
 " Sane hinting mode
 " set hintfiltermode vimperator-reflow
