@@ -227,7 +227,7 @@ alias fail-reset='faillock --user $USER --reset'
 alias ud-umount='udiskie-umount --detach'
 
 # Use ssh kitten from kitty
-[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+# [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 # SSH agent restart (temporary)
 alias ssh-restart='killall ssh-agent; eval `ssh-agent`; ssh-add'

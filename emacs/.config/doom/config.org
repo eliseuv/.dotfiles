@@ -1173,6 +1173,29 @@ Fix LaTeX export with svg images ([[https://emacs.stackexchange.com/a/47462][Ans
            cmd)))
 #+end_src
 
+***** Subfigures
+
+#+begin_src emacs-lisp :tangle no
+(org-link-set-parameters
+ "subfig"
+ :follow (lambda (file) (find-file file))
+ :face '(:foreground "chocolate" :weight bold :underline t)
+ :display 'full
+ :export (lambda (file desc backend)
+           (when (eq backend 'latex)
+             (if (string-match ">(\\(.+\\))" desc)
+                 (concat "\\subfigure[" (replace-regexp-in-string "\s+>(.+)" "" desc) "]"
+                         "{\\includegraphics"
+                         "["
+                         (match-string 1 desc)
+                         "]"
+                         "{"
+                         file
+                         "}}")
+               (format "\\subfigure[%s]{\\includegraphics{%s}}" desc file)))))
+#+end_src
+
+
 
 **** Org-Cite
 
