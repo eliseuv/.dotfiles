@@ -2,7 +2,7 @@
 
 XMONAD_ROOT="$HOME/.config/xmonad/"
 XMONAD_REPO="$XMONAD_ROOT/xmonad"
-XMONAD_CONTRIB_REPO="$XMONAD_REPO/xmonad-contrib"
+XMONAD_CONTRIB_REPO="$XMONAD_ROOT/xmonad-contrib"
 
 # Clone or pull repos
 printf "Checking xmonad/xmonad repo\n"
