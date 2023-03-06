@@ -26,6 +26,8 @@ bind d composite tabprev; tabclose #
 " make t open the selection with tabopen
 bind --mode=visual t composite js document.getSelection().toString() | fillcmdline tabopen
 
+bind ,y hint | clipboard yank
+
 " Git{Hub,Lab} git clone via SSH yank
 bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
 " As above but execute it and open terminal in folder
