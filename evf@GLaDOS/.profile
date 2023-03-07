@@ -144,16 +144,16 @@ alias c='clear'
 alias h='history -i'
 
 # Changing 'ls' to 'lsd'
-# alias l='exa --group-directories-first --icons --color=always'
-# alias la='exa --all --group-directories-first --icons --color=always'
-# alias ll='exa --all --long --header --git --group-directories-first --icons --color=always'
-# alias lt='exa --all --tree --group-directories-first --icons --ignore-glob=.git --color=always'
-# alias l.='exa --all | rg "^\."'
-alias l='lsd --group-directories-first --icon=always --color=always --hyperlink=always'
-alias la='lsd --almost-all --group-directories-first --icon=always --color=always --hyperlink=always'
-alias ll="lsd --almost-all --long --header --group-directories-first --icon=always --color=always --hyperlink=always --date '+%Y-%m-%d %H:%M'"
-alias lt='lsd --almost-all --tree --group-directories-first --icon=always --ignore-glob=.git --color=always --hyperlink=always'
-alias l.='lsd --almost-all | rg "^\."'
+alias l='exa --group-directories-first --icons --color=always'
+alias la='exa --all --group-directories-first --icons --color=always'
+alias ll='exa --all --long --header --git --group-directories-first --icons --color=always'
+alias lt='exa --all --tree --group-directories-first --icons --ignore-glob=.git --color=always'
+alias l.='exa --all | rg "^\."'
+# alias l='lsd --group-directories-first --icon=always --color=always --hyperlink=always'
+# alias la='lsd --almost-all --group-directories-first --icon=always --color=always --hyperlink=always'
+# alias ll="lsd --almost-all --long --header --group-directories-first --icon=always --color=always --hyperlink=always --date '+%Y-%m-%d %H:%M'"
+# alias lt='lsd --almost-all --tree --group-directories-first --icon=always --ignore-glob=.git --color=always --hyperlink=always'
+# alias l.='lsd --almost-all | rg "^\."'
 
 # Easier cd
 alias ..='cd ..'
