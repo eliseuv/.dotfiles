@@ -1,0 +1,1 @@
+../../../../neovim/.config/nvim/lua/plugins/telescope.lua

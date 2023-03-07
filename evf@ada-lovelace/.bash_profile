@@ -64,7 +64,7 @@ export TERM='linux'
 #export TERMINAL='alacritty'
 
 # Text editors
-#export EDITOR='nvim'
+export EDITOR='vim'
 #export VISUAL='emacsclient -c -a emacs'
 # PDF Reader
 #export READER='zathura'
@@ -132,7 +132,6 @@ alias b='bat'
 
 # NeoVim
 alias v='vim'
-#alias lv='lvim'
 
 # tmux
 alias t='tmux attach || tmux new-session'
