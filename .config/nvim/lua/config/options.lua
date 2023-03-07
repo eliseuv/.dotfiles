@@ -1,1 +1,0 @@
-../../../../neovim/.config/nvim/lua/config/options.lua
