@@ -259,3 +259,16 @@ sbjlargs() {
         sbjl "$1 $line"
     done <<<$(julia "$2")
 }
+
+##########
+# Update #
+##########
+
+function update {
+    printf "\n${GREEN}Updating binaries...${RESET}\n\n"
+    bin update
+    printf "\n${GREEN}Updating Oh my tmux...${RESET}\n\n"
+    update-ohmytmux
+}
+
+alias up='update'
