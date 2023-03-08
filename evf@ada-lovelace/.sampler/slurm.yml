@@ -5,14 +5,14 @@ barcharts:
     scale: 0
     items:
       - label: Total
-        sample: wc -l /tmp/squeue | cut -d' ' -f1
+        sample: rg --count --include-zero '(PENDING|RUNNING)' /tmp/squeue
       - label: Pending
-        sample: grep -c PENDING /tmp/squeue
+        sample: rg --count --include-zero 'PENDING' /tmp/squeue
       - label: Running
-        sample: grep -c RUNNING /tmp/squeue
+        sample: rg --count --include-zero 'RUNNING' /tmp/squeue
 textboxes:
   - title: Queue
     position: [[0, 6], [44, 27]]
     rate-ms: 1000
-    sample: squeue -h -o '%.10i %.7j %.9P %.10T %.10M %.10N' | tee /tmp/squeue | grep
-        RUNNING
+    sample: squeue --format='%.10i %.7j %.9P %.10T %.10M %.10N' | tee /tmp/squeue | rg
+        '(JOBID|RUNNING)'
