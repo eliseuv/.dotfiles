@@ -3,12 +3,6 @@ return {
     -- Color name highlighter
     { "ap/vim-css-color" },
 
-    -- Tridactyl config file syntax
-    { "tridactyl/vim-tridactyl" },
-
-    -- Kitty config file
-    { "fladson/vim-kitty" },
-
     -- -- Neorg
     -- {
     --     "nvim-neorg/neorg",
