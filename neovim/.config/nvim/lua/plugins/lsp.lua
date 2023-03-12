@@ -14,7 +14,7 @@ return {
                     cmd = {
                         "rustup",
                         "run",
-                        "nightly",
+                        "stable",
                         "rust-analyzer",
                     },
                 },

@@ -108,6 +108,9 @@ export LOVELACE_DATA="eliseuvf@$LOVELACE:/home_tmp/eliseuvf/"
 # hledger
 export LEDGER_FILE=~/Documents/finances/home-ledger/home.ledger
 
+# npm
+export NODE_OPTIONS='--openssl-legacy-provider'
+
 #############
 # GPG + SSH #
 #############
@@ -205,7 +208,7 @@ alias nn="(export VISUAL='nvim'; nnn)"
 alias scrot='scrot ~/Storage/Images/screenshots/%Y-%m-%d_%H:%M:%S.png'
 
 # Weather
-alias wttr='curl wttr.in/?0Fq'
+alias wttr="curl 'wttr.in/?2AFQ?M'"
 
 # SciHub to pdf
 # https://github.com/dougy147/scitopdf
@@ -503,6 +506,15 @@ function condacleanup {
         conda deactivate
     done
 }
+
+########
+# Ruby #
+########
+
+# Install Ruby Gems to ~/gems
+export GEM_HOME="$HOME/gems"
+
+pathappend "$GEM_HOME/bin"
 
 ##########
 # PACMAN #

@@ -3,7 +3,7 @@ return {
     opts = {
         pickers = {
             find_files = {
-                find_command = { "rg", "--ignore", "--follow", "--hidden", "--files" },
+                follow = true,
             },
         },
     },
