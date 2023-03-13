@@ -37,6 +37,7 @@ alias mpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclai
 bindurl youtube.com ,p hint -c [id="video-title-link"],[id="video-title"] -W umpvsafe
 bindurl youtube.com ;p hint -c [id="video-title-link"],[id="video-title"] -W mpv
 bindurl youtube.com ;P mpv
+bindurl twitch.com ,p hint -c [class="tw-image"] -W mpv
 bindurl twitch.com ;P mpv
 
 " Only hint search results on Google and DDG
