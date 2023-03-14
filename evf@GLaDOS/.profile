@@ -624,6 +624,7 @@ function cleanup {
 	printf "\n${GREEN}Go cleanup...${RESET}\n\n"
 	gocleanup
 	printf "\n${GREEN}DOOM purge...${RESET}\n\n"
+	doom sync
 	doom purge
 	doom clean
 }
