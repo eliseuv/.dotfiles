@@ -563,6 +563,7 @@ function cleanup {
 	printf "\n${GREEN}DOOM purge...${RESET}\n\n"
 	doom sync
 	doom purge
+	doom clean
 }
 
 function customcheck {
