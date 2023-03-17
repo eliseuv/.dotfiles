@@ -478,37 +478,25 @@ function condacleanup {
 	done
 }
 
-##########
-# PACMAN #
-##########
+########
+# Ruby #
+########
 
-# Pacman mirrors
-alias mirror='sudo reflector --verbose --protocol https --latest 50 --number 20 --country Brazil --country Chile --country US --sort rate --save /etc/pacman.d/mirrorlist'
-alias mirrorr='sudo reflector --verbose --protocol https --latest 50 --number 20 --sort rate --save /etc/pacman.d/mirrorlist'
-alias mirrord='sudo reflector --verbose --protocol https --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist'
-alias mirrors='sudo reflector --verbose --protocol https --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist'
-alias mirrora='sudo reflector --verbose --protocol https --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist'
+# Install Ruby Gems to ~/gems
+export GEM_HOME="$HOME/gems"
+
+# Add Ruby Gems bin to path
+pathprepend "$GEM_HOME/bin"
+
+#######
+# APT #
+#######
 
 # Pacman
 # Fuzzy search on available packages and install
-alias pac="pacman -Sl | awk '{print \$2(\$4==\"\" ? \"\" : \" *\")}' | fzf --multi --preview 'pacman -Sii {1}' --reverse | xargs -ro sudo pacman -S"
 alias apts="apt search . | rg \^\\\\w\+\.\*/ | awk -F/ '{print \$1}' | fzf --multi --preview 'apt show {1}' --reverse | xargs -ro sudo apt install"
 # Fuzzy search on installed packacges and remove
 alias aptremove="apt list --installed | rg \^\\\\w\+\.\*/ | awk -F/ '{print \$1}' | fzf --multi --preview 'apt show {1}' --reverse | xargs -ro sudo apt remove"
-# Update all packages
-alias pacsyu='sudo pacman -Syu'
-# Remove lock
-alias pacunlock='sudo rm /var/lib/pacman/db.lck'
-
-# paru
-# Fuzzy search on available packages and install
-alias par="paru -Sl | awk '{print \$2(\$4==\"\" ? \"\" : \" *\")}' | fzf --multi --preview 'paru -Si {1}' --reverse | xargs -ro paru -S"
-# Fuzzy search on installed packacges and remove
-alias parremove="paru -Qeq | fzf --multi --preview 'paru -Qi {1}' --reverse| xargs -ro paru -Rns"
-# Update all packacges (standard and AUR)
-alias parsyu='paru -Syu'
-# Update AUR packages
-alias parsua='paru -Sua'
 
 # Pacman cleanup
 function poposcleanup {
