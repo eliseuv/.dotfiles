@@ -202,6 +202,13 @@ function fif {
     rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
 }
 
+########
+# Rust #
+########
+
+# Cargo env
+. "$HOME/.cargo/env"
+
 #########
 # Julia #
 #########
@@ -258,6 +265,14 @@ sbjlargs() {
         echo "$1 $line"
         sbjl "$1 $line"
     done <<<$(julia "$2")
+}
+
+binjlargs() {
+    printf "\nSubmitting bin $1\n\n"
+    while IFS= read -r line; do
+        echo "$1 $line"
+        sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$1 $line"
+    done <<<$(julia --startup-file=no "$2")
 }
 
 ##########
