@@ -38,10 +38,6 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
 
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
-
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;
@@ -119,6 +115,133 @@
   :ensure t)
 (after! vterm
   (set-popup-rule! "*doom:vterm-popup:main" :size 0.3 :vslot -4 :select t :quit nil :ttl 0 :side 'right))
+
+;; Org-mode
+
+;; Directories
+(setq org-directory "~/Documents/org/"
+      org-agenda-files '("~/Documents/org/")
+      org-capture-journal-file "~/Documents/org/journal.org"
+      org-use-property-inheritance t       ; It's convenient to have properties inherited.
+      org-log-done 'time                   ; Having the time a item is done sounds convenient.
+      org-catch-invisible-edits 'smart     ; Try not to accidently do weird stuff in invisible regions.
+      org-hide-emphasis-markers t)
+
+;; LaTeX classes
+(require 'ox-latex)
+(unless (boundp 'org-latex-classes)
+  (setq org-latex-classes nil))
+(add-to-list 'org-latex-classes
+             '("note"
+               "\\documentclass{article}[a4]
+                \\usepackage[margin=0.5in]{geometry}"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+;; Default latex packages
+(setq org-latex-packages-alist '(
+                                 ;; AMS packages
+                                 ("" "amsmath" t)
+                                 ("" "amsthm" t)
+                                 ("" "amssymb" t)
+                                 ;; Extended math
+                                 ("" "mathtools" t)
+                                 ;; Dirac braket notation
+                                 ("" "braket" t)
+                                 ;; Color names
+                                 ("dvipsnames" "xcolor" t)
+                                 ;; Cancel terms
+                                 ("" "cancel" t)))
+
+;; Default bibliography file
+(setq reftex-default-bibliography
+      '("~/Zotero/my_library.bib"))
+
+;;Fix LaTeX export with svg images ([[https://emacs.stackexchange.com/a/47462][Answer]]).
+ (setq org-latex-pdf-process
+       (let
+           ((cmd (concat "latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode"
+                 " --synctex=1"
+                 " -output-directory=%o %f")))
+         (list cmd
+           "cd %o; if test -r %b.idx; then makeindex %b.idx; fi"
+           "cd %o; bibtex %b"
+           cmd
+           cmd)))
+
+;; Subfigures
+(org-link-set-parameters
+ "subfig"
+ :follow (lambda (file) (find-file file))
+ :face '(:foreground "chocolate" :weight bold :underline t)
+ :display 'full
+ :export (lambda (file desc backend)
+           (when (eq backend 'latex)
+             (if (string-match ">(\\(.+\\))" desc)
+                 (concat "\\subfigure[" (replace-regexp-in-string "\s+>(.+)" "" desc) "]"
+                         "{\\includegraphics"
+                         "["
+                         (match-string 1 desc)
+                         "]"
+                         "{"
+                         file
+                         "}}")
+               (format "\\subfigure[%s]{\\includegraphics{%s}}" desc file)))))
+
+;; Use =Zotero= library:
+(after! citar
+  (setq org-cite-global-bibliography '("~/Zotero/my_library.bib"))
+  (setq bibtex-completion-bibliography '("~/Zotero/my_library.bib"))
+  (setq citar-bibliography '("~/Zotero/my_library.bib"))
+  (setq citar-library-paths '("~/Zotero/storage/"))
+  (setq citar-citeproc-csl-styles-dir (expand-file-name "~/Zotero/styles"))
+  (setq citar-citeproc-csl-style "american-physics-society.csl")
+  (setq citar-symbols
+        `((file ,(all-the-icons-faicon "file-o" :face 'all-the-icons-green :v-adjust -0.1) . " ")
+          (note ,(all-the-icons-material "speaker_notes" :face 'all-the-icons-blue :v-adjust -0.3) . " ")
+          (link ,(all-the-icons-octicon "link" :face 'all-the-icons-orange :v-adjust 0.01) . " "))))
+
+;; Import CSL citation styles and bibliography from =Zotero=:
+(after! oc-csl
+  (setq org-cite-csl-styles-dir (expand-file-name "~/Zotero/styles")
+        org-cite-csl--fallback-style-file "american-physics-society.csl"))
+
+;; Citation command under Org's localleader:
+(map! :after org
+      :map org-mode-map
+      :localleader
+      :desc "Insert citation" "@" #'org-cite-insert)
+
+;; Function that attempts to convert =org-ref= citations to =org-cite= forms:
+(after! oc
+  (defun org-ref-to-org-cite ()
+    "Attempt to convert org-ref citations to org-cite syntax."
+    (interactive)
+    (let* ((cite-conversions '(("cite" . "//b") ("Cite" . "//bc")
+                               ("nocite" . "/n")
+                               ("citep" . "") ("citep*" . "//f")
+                               ("parencite" . "") ("Parencite" . "//c")
+                               ("citeauthor" . "/a/f") ("citeauthor*" . "/a")
+                               ("citeyear" . "/na/b")
+                               ("Citep" . "//c") ("Citealp" . "//bc")
+                               ("Citeauthor" . "/a/cf") ("Citeauthor*" . "/a/c")
+                               ("autocite" . "") ("Autocite" . "//c")
+                               ("notecite" . "/l/b") ("Notecite" . "/l/bc")
+                               ("pnotecite" . "/l") ("Pnotecite" . "/l/bc")))
+           (cite-regexp (rx (regexp (regexp-opt (mapcar #'car cite-conversions) t))
+                            ":" (group (+ (not (any "\n     ,.)]}")))))))
+      (save-excursion
+        (goto-char (point-min))
+        (while (re-search-forward cite-regexp nil t)
+          (message (format "[cite%s:@%s]"
+                                 (cdr (assoc (match-string 1) cite-conversions))
+                                 (match-string 2)))
+          (replace-match (format "[cite%s:@%s]"
+                                 (cdr (assoc (match-string 1) cite-conversions))
+                                 (match-string 2))))))))
 
 ;; Julia
 
