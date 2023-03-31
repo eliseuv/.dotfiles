@@ -19,6 +19,8 @@ return {
                 "latex",
                 "ledger",
                 "lua",
+                "luadoc",
+                "luap",
                 "make",
                 "markdown",
                 "markdown_inline",

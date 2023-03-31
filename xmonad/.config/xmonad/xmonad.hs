@@ -123,6 +123,7 @@ myStartupHook = do
   spawn myWallpaperScript -- Set wallpaper
   spawnOnce "picom -b --config ~/.config/picom/picom.conf &" -- Compositor
   spawnOnce "synology-drive &" -- Synology Drive
+  spawnOnce "setxkbmap -option caps:swapescape" -- Swap Escape and CapsLock keys
   -- spawn "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
   -- spawnOnce "urxvtd -q -o -f &"               -- urxvt daemon for better performance
   -- spawnOnce "nm-applet &"                     -- NetworkManager in tray

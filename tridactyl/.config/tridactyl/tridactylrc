@@ -31,14 +31,17 @@ bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//
 " As above but execute it and open terminal in folder
 bind ,g js let uri = document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git"); tri.native.run("cd ~/.repos/; git clone " + uri + "; cd \"$(basename \"" + uri + "\" .git)\"; st")
 
+" Open bookmarks
+bind z fillcmdline bmarks
+
 " YouTube
 alias umpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('umpv ' + url))
 alias mpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('mpv ' + url))
 bindurl youtube.com ,p hint -c [id="video-title-link"],[id="video-title"] -W umpvsafe
-bindurl youtube.com ;p hint -c [id="video-title-link"],[id="video-title"] -W mpv
-bindurl youtube.com ;P mpv
-bindurl twitch.com ,p hint -c [class="tw-image"] -W mpv
-bindurl twitch.com ;P mpv
+bindurl youtube.com ;p hint -c [id="video-title-link"],[id="video-title"] -W mpvsafe
+bindurl youtube.com ;P mpvsafe
+bindurl twitch.com ,p hint -c [class="tw-image"] -W mpvsafe
+bindurl twitch.com ;P mpvsafe
 
 " Only hint search results on Google and DDG
 bindurl www.google.com f hint -Jc #search div:not(.action-menu) > a

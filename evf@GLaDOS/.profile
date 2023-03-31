@@ -108,8 +108,11 @@ export LOVELACE_DATA="eliseuvf@$LOVELACE:/home_tmp/eliseuvf/"
 # hledger
 export LEDGER_FILE=~/Documents/finances/home-ledger/home.ledger
 
+# Spotify API keys
+export $(xargs -d '\n' <"$HOME/Documents/personal/api_keys/spotify.txt")
+
 # npm
-export NODE_OPTIONS='--openssl-legacy-provider'
+# export NODE_OPTIONS='--openssl-legacy-provider'
 
 #############
 # GPG + SSH #
