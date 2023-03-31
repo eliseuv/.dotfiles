@@ -269,6 +269,16 @@ function cheat {
 	curl cheat.sh/"$@" | bat
 }
 
+# Enqueue bins as jobs
+binjlargs() {
+	printf "\nSubmitting script %s\n\n" "$1"
+	while IFS= read -r line; do
+		echo "$1 $line"
+		COMMAND="tsp $1 $line"
+		eval "$COMMAND"
+	done <<<$(julia --startup-file=no "$2")
+}
+
 #######
 # fzf #
 #######
