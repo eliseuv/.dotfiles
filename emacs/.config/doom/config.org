@@ -680,6 +680,10 @@ Nested snippets are good, so let's enable that.
 
 *** LSP
 
+#+begin_src emacs-lisp :tangle packages.el
+(unpin! lsp-mode) ; there be bugs
+#+end_src
+
 #+begin_src emacs-lisp
 (require 'lsp-mode)
 (setq lsp-eldoc-enable-hover 't
