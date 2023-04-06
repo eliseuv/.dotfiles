@@ -438,7 +438,7 @@ jlargs() {
 }
 
 # Run Julia Pluto
-alias start-pluto="julia --eval 'using Pluto ; Pluto.run(launch_browser=false)'"
+alias pluto-start="julia --eval 'using Pluto ; Pluto.run(launch_browser=false)'"
 
 ###########
 # Haskell #
