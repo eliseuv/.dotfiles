@@ -11,6 +11,15 @@ set -ag terminal-overrides ",*:RGB"
 bind-key -n C-S-Left swap-window -t -1\; select-window -t -1
 bind-key -n C-S-Right swap-window -t +1\; select-window -t +1
 
+# -- session creation ----------------------------------------------------------
+
+# prompt for session name when creating a new session, possible values are:
+#   - true
+#   - false (default)
+#   - disabled (do not modify new-session bindings)
+tmux_conf_new_session_prompt=false
+
+
 # -- windows & pane creation ---------------------------------------------------
 
 # new window retains current path, possible values are:
@@ -18,6 +27,12 @@ bind-key -n C-S-Right swap-window -t +1\; select-window -t +1
 #   - false (default)
 #   - disabled (do not modify new-window bindings)
 tmux_conf_new_window_retain_current_path=false
+
+# new window tries to reconnect ssh sessions, possible values are:
+#   - true
+#   - false (default)
+#   - disabled (do not modify new-window bindings)
+tmux_conf_new_window_reconnect_ssh=false
 
 # new pane retains current path, possible values are:
 #   - true (default)

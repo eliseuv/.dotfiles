@@ -40,7 +40,8 @@ This is my first attempt on an Emacs literate configuration, mostly based on [[h
       truncate-string-ellipsis "…"                ; Unicode ellispis are nicer than "...", and also save /precious/ space
       password-cache-expiry nil                   ; I can trust my computers ... can't I?
       ;; scroll-preserve-screen-position 'always     ; Don't have `point' jump around
-      scroll-margin 1)                            ; It's nice to maintain a little margin
+      scroll-margin 1                             ; It's nice to maintain a little margin
+      evil-kill-on-visual-paste nil)              ; Do not substitute clipboard on visual paste
 
 (global-subword-mode t)                           ; Recognize uppercase letters as word boundaries (useful for CamelCase naming)
 #+end_src
@@ -169,7 +170,7 @@ These modules are sorted in categories.
 
 #+name: doom-completion
 #+begin_src emacs-lisp
-company           ; the ultimate code completion backend
+(company +childframe)           ; the ultimate code completion backend
 ;;helm              ; the *other* search engine for love and life
 ;;ido               ; the other *other* search engine...
 ;;ivy               ; a search engine for love and life
@@ -303,7 +304,7 @@ upload              ; map local to remote projects via ssh/ftp
 #+name: doom-lang
 #+begin_src emacs-lisp
 ;;agda              ; types of types of types of types...
-(beancount +lsp)         ; mind the GAAP
+;; (beancount +lsp)         ; mind the GAAP
 (cc +lsp +tree-sitter)           ; C > C++ == 1
 ;;clojure           ; java with a lisp
 ;;common-lisp       ; if you've seen one lisp, you've seen them all
@@ -317,7 +318,7 @@ data              ; config/data formats
 ;;elm               ; care for a cup of TEA?
 emacs-lisp        ; drown in parentheses
 ;;erlang            ; an elegant language for a more civilized age
-ess               ; emacs speaks statistics
+;;ess               ; emacs speaks statistics
 ;;factor
 ;;faust             ; dsp, but you get to keep your soul
 (fortran +lsp)      ; in FORTRAN, GOD is REAL (unless declared INTEGER)
@@ -326,7 +327,7 @@ ess               ; emacs speaks statistics
 ;;gdscript          ; the language you waited for
 ;;(go +lsp)         ; the hipster dialect
 ;;(graphql +lsp)    ; Give queries a REST
-(haskell +lsp)  ; a language that's lazier than I am
+(haskell +lsp +tree-sitter)  ; a language that's lazier than I am
 ;;hy                ; readability of scheme w/ speed of python
 ;;idris             ; a language you can depend on
 (json +lsp +tree-sitter)              ; At least it ain't XML
@@ -376,7 +377,7 @@ markdown          ; writing docs for people to ignore
 ;;swift             ; who asked for emoji variables?
 ;;terra             ; Earth and Moon in alignment for performance.
 (web +lsp +tree-sitter)               ; the tubes
-(yaml +lsp)              ; JSON, but readable
+(yaml +lsp +tree-sitter)              ; JSON, but readable
 ;;zig               ; C, but simpler
 #+end_src
 
