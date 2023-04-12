@@ -680,22 +680,40 @@ Nested snippets are good, so let's enable that.
 
 *** LSP
 
-#+begin_src emacs-lisp
-(require 'lsp-mode)
-(setq lsp-eldoc-enable-hover 't
-      lsp-eldoc-render-all 't
-      lsp-ui-doc-mode 't
-      lsp-ui-doc-enable 't
-      lsp-ui-doc-delay 0.2
-      lsp-ui-doc-use-webkit 't
-      lsp-ui-doc-include-signature 't
-      lsp-ui-doc-header 't
-      lsp-ui-doc-include-signature 't
-      lsp-log-io 't
-      lsp-ui-sideline-mode 't
-      lsp-ui-imenu-buffer-mode 't
-      lsp-ui-imenu-enable 't)
+#+begin_src emacs-lisp :tangle packages.el
+(unpin! lsp-mode) ; there be bugs
 #+end_src
+
+#+begin_src emacs-lisp
+(use-package! lsp-mode
+  :ensure
+  :commands lsp
+  :custom
+  (lsp-eldoc-enable-hover t)
+  (lsp-eldoc-render-all t)
+  (lsp-idle-delay 0.3)
+  (lsp-log-io t)
+  :config
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package! lsp-ui
+  :ensure
+  :commands lsp-ui-mode
+  :custom
+  (lsp-ui-doc-mode t)
+  (lsp-ui-doc-enable t)
+  (lsp-ui-doc-delay 0.2)
+  (lsp-ui-doc-use-webkit t)
+  (lsp-ui-doc-include-signature t)
+  (lsp-ui-doc-header t)
+  (lsp-ui-doc-include-signature t)
+  (lsp-ui-sideline-mode t)
+  (lsp-ui-imenu-buffer-mode t)
+  (lsp-ui-imenu-enable t))
+#+end_src
+
 
 
 *** Flycheck
@@ -1602,14 +1620,27 @@ Use dark mode for PDF view.
 
 ** Rust
 
-Set =rust-analyzer= commmand:
+#+begin_src emacs-lisp
+(after! lsp-mode
+(setq lsp-rust-analyzer-cargo-watch-command "clippy")
+(setq lsp-rust-analyzer-server-display-inlay-hints 't)
+(setq lsp-rust-analyzer-display-lifetime-elision-hints-enable "skip_trivial")
+(setq lsp-rust-analyzer-display-chaining-hints 't)
+(setq lsp-rust-analyzer-display-lifetime-elision-hints-use-parameter-names nil)
+(setq lsp-rust-analyzer-display-closure-return-type-hints 't)
+(setq lsp-rust-analyzer-display-parameter-hints 't)
+(setq lsp-rust-analyzer-display-reborrow-hints 't))
+#+end_src
 
-#+begin_src emacs-lisp :tangle no
-(after! rustic
-  (setq
-   rustic-lsp-server 'rust-analyzer
-   rustic-analyzer-command '("rustup run stable rust-analyzer")
-   ))
+
+#+begin_src emacs-lisp
+(use-package! rustic
+  :ensure
+  :config
+  (setq rustic-lsp-server 'rust-analyzer)
+  (setq rustic-analyzer-command '("rustup run stable rust-analyzer"))
+  (setq rustic-format-on-save 't)
+  )
 #+end_src
 
 

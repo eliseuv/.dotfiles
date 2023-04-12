@@ -10,6 +10,7 @@ return {
                 "cpp",
                 "cuda",
                 "diff",
+                "fortran",
                 "go",
                 "help",
                 "html",
