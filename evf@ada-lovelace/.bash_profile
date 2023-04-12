@@ -64,7 +64,7 @@ export TERM='linux'
 #export TERMINAL='alacritty'
 
 # Text editors
-export EDITOR='vim'
+export EDITOR='nvim'
 #export VISUAL='emacsclient -c -a emacs'
 # PDF Reader
 #export READER='zathura'
@@ -131,7 +131,7 @@ alias grep='grep --color'
 alias b='bat'
 
 # NeoVim
-alias v='vim'
+alias v='nvim'
 
 # tmux
 alias t='tmux attach || tmux new-session'
@@ -157,7 +157,7 @@ alias stow='stow --no-folding'
 alias git-push="git add . && git commit -m 'Lovelace update' && git push"
 
 # n^3 file manager
-alias nn="(export VISUAL='vim'; nnn-static)"
+alias nn="(export VISUAL='nvim'; nnn-static)"
 
 # scrot
 #alias scrot='scrot ~/Storage/Images/screenshots/%Y-%m-%d_%H:%M:%S.png'
@@ -217,7 +217,7 @@ function fif {
 export JULIA_NUM_THREADS=auto
 
 # Julia default editor for the @edit macro
-export JULIA_EDITOR=vim
+export JULIA_EDITOR=nvim
 
 # Update Julia packages
 alias julia-update='julia -e "using Pkg; Pkg.update()"'
