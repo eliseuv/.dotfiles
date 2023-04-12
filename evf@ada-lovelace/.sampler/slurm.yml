@@ -1,6 +1,6 @@
 barcharts:
   - title: Job count
-    position: [[0, 0], [44, 6]]
+    position: [[0, 0], [54, 9]]
     rate-ms: 1000
     scale: 0
     items:
@@ -12,7 +12,7 @@ barcharts:
         sample: rg --count --include-zero 'RUNNING' /tmp/squeue
 textboxes:
   - title: Queue
-    position: [[0, 6], [44, 27]]
+    position: [[0, 9], [54, 30]]
     rate-ms: 1000
-    sample: squeue --format='%.10i %.7j %.9P %.10T %.10M %.10N' | tee /tmp/squeue | rg
-        '(JOBID|RUNNING)'
+    sample: squeue --format='%.10i %.7j %.9P %.10T %.10M %.10N' | tee /tmp/squeue
+        | rg '(JOBID|RUNNING)'
