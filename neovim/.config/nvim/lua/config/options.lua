@@ -6,3 +6,18 @@
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.tabstop = 4 -- Number of spaces tabs count for
 vim.opt.shiftwidth = 4 -- Size of an indent
+
+-- GUI config
+vim.opt.guifont = "Fira Code:h10"
+if vim.g.neovide then
+    vim.g.neovide_fullscreen = true
+    -- -- Transparency
+    -- vim.g.neovide_transparency = 0.97
+    -- vim.g.transparency = 0.8
+    -- vim.g.neovide_floating_blur_amount_x = 4.0
+    -- vim.g.neovide_floating_blur_amount_y = 4.0
+    -- Particle effects
+    vim.g.neovide_cursor_vfx_mode = "pixiedust"
+    vim.g.neovide_cursor_vfx_particle_lifetime = 2.0
+    vim.g.neovide_cursor_vfx_particle_density = 10.0
+end

@@ -70,10 +70,15 @@ myTerminalCommand :: String -> String
 myTerminalCommand cmd = "alacritty msg create-window -e " ++ cmd ++ " || alacritty -e " ++ cmd
 
 myBrowser :: String
-myBrowser = "firefox " -- Sets default browser
+myBrowser = "firefox" -- Sets default browser
 
 myEmacs :: String
 myEmacs = "emacsclient -nc -a 'emacs' " -- Makes emacs keybindings easier to type
+
+myVim :: String
+myVim = "neovide"
+
+-- myVim = "kitty -e nvim "
 
 myEditor :: String
 myEditor = myEmacs -- Sets emacs as editor
@@ -650,6 +655,7 @@ myKeys c =
           "Favorite programs"
           [ ("M-<Return>", addName "Launch terminal" $ spawn myTerminal),
             ("M-S-e", addName "Launch Emacs" $ spawn myEmacs),
+            ("M-S-v", addName "Launch vim" $ spawn myVim),
             ("M-S-b", addName "Launch web browser" $ spawn myBrowser),
             ("M-S-f", addName "Launch file manager" $ spawn myFileManager)
           ]

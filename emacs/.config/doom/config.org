@@ -342,7 +342,7 @@ ledger            ; be audit you can be
 markdown          ; writing docs for people to ignore
 ;;nim               ; python + lisp at the speed of c
 ;;nix               ; I hereby declare "nix geht mehr!"
-;;ocaml             ; an objective camel
+;;(ocaml +lsp +tree-sitter)             ; an objective camel
 (org                    ; organize your plain life in plain text
  ;;+brain               ; org-brain integration
  ;;+contacts            ; org-contacts integration
