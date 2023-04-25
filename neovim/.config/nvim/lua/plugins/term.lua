@@ -7,4 +7,8 @@ return {
             direction = "vertical",
         },
     },
+    {
+        "christoomey/vim-tmux-navigator",
+        lazy = false,
+    },
 }

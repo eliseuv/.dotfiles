@@ -25,6 +25,13 @@ return {
  `''                                                                      ``' 
                 ]]
             dashboard.section.header.val = vim.split(logo, "\n")
+
+            -- table.insert(
+            --     dashboard.section.buttons.val,
+            --     5,
+            --     dashboard.button("d", " " .. " Dotfiles", ":e ~/.dotfiles/ <CR>")
+            -- )
+
             return dashboard
         end,
     },
