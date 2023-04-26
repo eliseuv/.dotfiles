@@ -593,8 +593,6 @@ function update {
 	parupdate
 	printf "\n${GREEN}Updating xmonad...${RESET}\n\n"
 	update-xmonad
-	printf "\n${GREEN}Updating Oh my tmux...${RESET}\n\n"
-	update-ohmytmux
 	printf "\n${GREEN}Updating Rust...${RESET}\n\n"
 	rust-update
 	printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"
