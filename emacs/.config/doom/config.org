@@ -1639,7 +1639,7 @@ Use dark mode for PDF view.
   :ensure
   :config
   (setq rustic-lsp-server 'rust-analyzer)
-  (setq rustic-analyzer-command '("rustup run stable rust-analyzer"))
+  ;; (setq rustic-analyzer-command '("rustup run stable rust-analyzer"))
   (setq rustic-format-on-save 't)
   )
 #+end_src
