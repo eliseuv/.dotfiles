@@ -412,6 +412,14 @@ def_key "j"
 def_key "k"
     scroll_up
 
+def_key "J"
+    select_item
+    scroll_down
+
+def_key "K"
+    select_item
+    scroll_up
+
 def_key "ctrl-u"
     page_up
 #push_characters "kkkkkkkkkkkkkkk"
@@ -448,10 +456,10 @@ def_key "N"
     previous_found_item
 
 # not used but bound
-def_key "J"
-    move_sort_order_down
-def_key "K"
-    move_sort_order_up
+# def_key "J"
+#     move_sort_order_down
+# def_key "K"
+#     move_sort_order_up
 def_key "h"
   jump_to_parent_directory
 def_key "l"
