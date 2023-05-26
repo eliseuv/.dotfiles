@@ -324,13 +324,6 @@ function fmp {
 # tmux #
 ########
 
-export OHMYTMUX_DIR="$HOME/.repos/.tmux/"
-
-function update-ohmytmux {
-	cd "$OHMYTMUX_DIR" || exit
-	git pull --rebase
-}
-
 alias t='tmux attach || tmux new-session'
 alias ta='tmux attach -t'
 alias tn='tmux new-session'
@@ -526,14 +519,12 @@ function update {
 	touch /tmp/update.lock
 	printf "\n${GREEN}Updating PopOS!...${RESET}\n\n"
 	sudo apt update --yes && sudo apt upgrade --yes
-	printf "\n${GREEN}Updating Oh my tmux...${RESET}\n\n"
-	update-ohmytmux
 	printf "\n${GREEN}Updating Rust...${RESET}\n\n"
 	rust-update
 	printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"
 	cargo-update
-	# printf "\n${GREEN}Updating Go bins...${RESET}\n\n"
-	# go-update
+	printf "\n${GREEN}Updating Go bins...${RESET}\n\n"
+	go-update
 	printf "\n${GREEN}Updating Julia...${RESET}\n\n"
 	julia-update
 	printf "\n${GREEN}Updating Miniconda...${RESET}\n\n"

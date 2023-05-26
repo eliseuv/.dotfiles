@@ -20,5 +20,12 @@ return {
             end,
             desc = "Find Plugin File",
         },
+        {
+            "<leader>fd",
+            function()
+                require("telescope.builtin").find_files({ cwd = "~/.dotfiles/", hidden = true })
+            end,
+            desc = "Find dotfile",
+        },
     },
 }
