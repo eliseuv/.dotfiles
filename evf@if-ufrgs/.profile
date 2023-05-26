@@ -523,8 +523,8 @@ function update {
 	rust-update
 	printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"
 	cargo-update
-	# printf "\n${GREEN}Updating Go bins...${RESET}\n\n"
-	# go-update
+	printf "\n${GREEN}Updating Go bins...${RESET}\n\n"
+	go-update
 	printf "\n${GREEN}Updating Julia...${RESET}\n\n"
 	julia-update
 	printf "\n${GREEN}Updating Miniconda...${RESET}\n\n"
