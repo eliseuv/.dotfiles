@@ -23,11 +23,11 @@ RESET="\e[0m"
 
 # Append to PATH if not already there
 function pathappend {
-    for ARG in "$@"; do
-        if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
-            PATH="${PATH:+"$PATH:"}$ARG"
-        fi
-    done
+	for ARG in "$@"; do
+		if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
+			PATH="${PATH:+"$PATH:"}$ARG"
+		fi
+	done
 }
 
 # System binaries
@@ -118,7 +118,7 @@ alias rs='rsync -Pazvh'
 alias rsrm='rsync -Pazvh --remove-source-files'
 
 mvdata() {
-    rsync -Pazvh --remove-source-files "$@" "$DATA"
+	rsync -Pazvh --remove-source-files "$@" "$DATA"
 }
 
 # Reset fail lock after failed authentication attempts
@@ -147,8 +147,8 @@ alias ht='htop -d5 -sPERCENT_CPU'
 #alias gt='gotop -p -r 500ms'
 #alias bt='btop'
 
-# stow: never fold
-alias stow='stow --no-folding'
+# stow: use stowsh
+alias stow='stowsh -t ~'
 
 # udiskie
 #alias ud-umount='udiskie-umount --detach'
@@ -179,35 +179,41 @@ alias pf="ls | sort | fzf --preview='bat {}' --bind shift-up:preview-page-up,shi
 
 # Fuzzy search dir navigation
 function fcd {
-    cd "$(find ~ -not -path '*/.*' -type d | fzf --height 50% --reverse --preview 'exa -lah {}')" || return
+	cd "$(find ~ -not -path '*/.*' -type d | fzf --height 50% --reverse --preview 'exa -lah {}')" || return
 }
 
 # Fuzzy search file in dir and open
 function fop {
-    local filename=$(find . -type f | fzf --reverse --preview 'bat {} --color always')
-    if [ -f "$filename" ]; then
-        local filetype=$(xdg-mime query filetype "$filename")
-        echo "Opening file " "$filename" " of type " "$filetype" " with " "$(xdg-mime query default $filetype)"
-        xdg-open "$filename" &
-    fi
+	local filename=$(find . -type f | fzf --reverse --preview 'bat {} --color always')
+	if [ -f "$filename" ]; then
+		local filetype=$(xdg-mime query filetype "$filename")
+		echo "Opening file " "$filename" " of type " "$filetype" " with " "$(xdg-mime query default $filetype)"
+		xdg-open "$filename" &
+	fi
 }
 
 # using ripgrep combined with preview
 # find-in-file - usage: fif <searchTerm>
 function fif {
-    if [ ! "$#" -gt 0 ]; then
-        echo "Need a string to search for!"
-        return 1
-    fi
-    rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
+	if [ ! "$#" -gt 0 ]; then
+		echo "Need a string to search for!"
+		return 1
+	fi
+	rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
 }
+
+##########
+# Zoxide #
+##########
+
+eval "$(zoxide init bash)"
 
 ########
 # Rust #
 ########
 
 # Cargo env
-. "$HOME/.cargo/env"
+source "$HOME/.cargo/env"
 
 #########
 # Julia #
@@ -224,12 +230,12 @@ alias julia-update='julia -e "using Pkg; Pkg.update()"'
 
 # Complete Julia update
 function juliaupdate {
-    printf "\n${BLUE}Updating juliaup...${RESET}\n\n"
-    juliaup self update
-    printf "\n${BLUE}Updating Julia...${RESET}\n\n"
-    juliaup update
-    printf "\n${BLUE}Updating Julia environments...${RESET}\n\n"
-    julia-update
+	printf "\n${BLUE}Updating juliaup...${RESET}\n\n"
+	juliaup self update
+	printf "\n${BLUE}Updating Julia...${RESET}\n\n"
+	juliaup update
+	printf "\n${BLUE}Updating Julia environments...${RESET}\n\n"
+	julia-update
 }
 
 # Julia package manager garbage collection
@@ -237,53 +243,61 @@ alias julia-cleanup='juliaup gc; julia -e "using Pkg; Pkg.gc()"'
 
 # Complete Julia cleanup
 function juliacleanup {
-    printf "\n${BLUE}Cleaning juliaup...${RESET}\n\n"
-    juliaup gc
-    printf "\n${BLUE}Cleaning Julia environments...${RESET}\n\n"
-    julia-cleanup
+	printf "\n${BLUE}Cleaning juliaup...${RESET}\n\n"
+	juliaup gc
+	printf "\n${BLUE}Cleaning Julia environments...${RESET}\n\n"
+	julia-cleanup
 }
 
 # Queue job
 function sbexec {
-    sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$*"
+	sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$*"
 }
 
 # Queue job that executes julia script
 function sbjl {
-    sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$HOME/.juliaup/bin/julia $*"
+	sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$HOME/.juliaup/bin/julia $*"
 }
 
 function sbpy {
-    local CONDA_ENV"$1"
-    sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="source /opt/miniconda3/etc/profile.d/conda.sh activate $CONDA_ENV"
+	local CONDA_ENV"$1"
+	sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="source /opt/miniconda3/etc/profile.d/conda.sh activate $CONDA_ENV"
 }
 
 sbjlargs() {
-    printf "\nSubmitting script $1\n\n"
-    while IFS= read -r line; do
-        printf "Args = $line\n"
-        echo "$1 $line"
-        sbjl "$1 $line"
-    done <<<$(julia "$2")
+	printf "\nSubmitting script $1\n\n"
+	while IFS= read -r line; do
+		printf "Args = $line\n"
+		echo "$1 $line"
+		sbjl "$1 $line"
+	done <<<$(julia "$2")
 }
 
 binjlargs() {
-    printf "\nSubmitting bin $1\n\n"
-    while IFS= read -r line; do
-        echo "$1 $line"
-        sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$1 $line"
-    done <<<$(julia --startup-file=no "$2")
+	printf "\nSubmitting bin $1\n\n"
+	while IFS= read -r line; do
+		echo "$1 $line"
+		sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$1 $line"
+	done <<<$(julia --startup-file=no "$2")
 }
+
+########
+# Node #
+########
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 ##########
 # Update #
 ##########
 
 function update {
-    printf "\n${GREEN}Updating binaries...${RESET}\n\n"
-    bin update
-    printf "\n${GREEN}Updating Oh my tmux...${RESET}\n\n"
-    update-ohmytmux
+	printf "\n${GREEN}Updating binaries...${RESET}\n\n"
+	bin update
+	printf "\n${GREEN}Updating Oh my tmux...${RESET}\n\n"
+	update-ohmytmux
 }
 
 alias up='update'
