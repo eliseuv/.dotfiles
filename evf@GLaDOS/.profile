@@ -363,9 +363,6 @@ alias tl='tmux list-sessions'
 # Rust backtrace
 export RUST_BACKTRACE=1
 
-# Update Rust through Rustup
-alias rust-update='rustup update'
-
 # Update cargo binaries
 # https://crates.io/crates/cargo-update
 alias cargo-update='cargo install-update --all'
@@ -594,7 +591,7 @@ function update {
 	printf "\n${GREEN}Updating xmonad...${RESET}\n\n"
 	update-xmonad
 	printf "\n${GREEN}Updating Rust...${RESET}\n\n"
-	rust-update
+	rustup update
 	printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"
 	cargo-update
 	printf "\n${GREEN}Updating Go bins...${RESET}\n\n"
