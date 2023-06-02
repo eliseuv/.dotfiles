@@ -415,15 +415,6 @@ export JULIA_NUM_THREADS=auto
 # Julia default editor for the @edit macro
 export JULIA_EDITOR=nvim
 
-# Julia with precompiled Revise.jl and OhMyREPL
-alias jl='julia --sysimage=/home/evf/.julia/config/sysimages/revise-omr_sysimage.so'
-
-# Update Julia packages
-alias julia-update='julia -e "using Pkg; Pkg.update()"'
-
-# Julia package manager garbage collection
-alias julia-cleanup='julia -e "using Pkg; Pkg.gc()"'
-
 # Enqueue Julia scripts as jobs
 jlargs() {
 	printf "\nSubmitting script $1\n\n"
@@ -433,6 +424,15 @@ jlargs() {
 		eval "$COMMAND"
 	done <<<"$(julia --startup-file=no "$2")"
 }
+
+# Julia with precompiled Revise.jl and OhMyREPL
+alias jl='julia --sysimage=/home/evf/.julia/config/sysimages/revise-omr_sysimage.so'
+
+# Update Julia packages
+alias julia-update='julia -e "using Pkg; Pkg.update()"'
+
+# Julia package manager garbage collection
+alias julia-cleanup='julia -e "using Pkg; Pkg.gc()"'
 
 # Run Julia Pluto
 alias pluto-start="julia --eval 'using Pluto ; Pluto.run(launch_browser=false)'"
@@ -454,12 +454,28 @@ alias cabal-install='cabal install --ghc-options=-dynamic'
 # Miniconda #
 #############
 
-# Conda profile
-[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/evf/miniconda3/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
+if [ $? -eq 0 ]; then
+	eval "$__conda_setup"
+else
+	if [ -f "/home/evf/miniconda3/etc/profile.d/conda.sh" ]; then
+		. "/home/evf/miniconda3/etc/profile.d/conda.sh"
+	else
+		# export PATH="/home/evf/miniconda3/bin:$PATH"
+		pathprepend "$HOME/miniconda3/bin"
+	fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
 # Conda directories
-export CONDA_BASE_DIR="/opt/miniconda3"
+export CONDA_BASE_DIR="$HOME/miniconda3"
 export CONDA_ENVS_DIR="$HOME/.conda/envs"
+
+# Conda options
+export CONDA_AUTO_ACTIVATE_BASE=false
 
 # Activate an env (with fzf)
 function condaenv {
