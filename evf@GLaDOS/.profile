@@ -409,6 +409,9 @@ function gocleanup {
 # Julia #
 #########
 
+# Add Julia to path
+pathprepend "$HOME/.juliaup/bin"
+
 # Julia threads
 export JULIA_NUM_THREADS=auto
 
@@ -429,10 +432,10 @@ jlargs() {
 alias jl='julia --sysimage=/home/evf/.julia/config/sysimages/revise-omr_sysimage.so'
 
 # Update Julia packages
-alias julia-update='julia -e "using Pkg; Pkg.update()"'
+alias julia-env-update='julia -e "using Pkg; Pkg.update()"'
 
 # Julia package manager garbage collection
-alias julia-cleanup='julia -e "using Pkg; Pkg.gc()"'
+alias julia-env-cleanup='julia -e "using Pkg; Pkg.gc()"'
 
 # Run Julia Pluto
 alias pluto-start="julia --eval 'using Pluto ; Pluto.run(launch_browser=false)'"
@@ -490,7 +493,7 @@ alias conda-list='conda env export --from-history'
 function condaupdate {
 	printf "${BLUE}Updating base env...${RESET}\n\n"
 	conda activate base
-	sh -c 'sudo conda update --all --yes'
+	sh -c 'conda update --all --yes'
 	conda deactivate
 	# explicitly set IFS to contain only a line feed
 	IFS='
@@ -508,7 +511,7 @@ function condaupdate {
 function condacleanup {
 	printf "${BLUE}Cleaning up base env...${RESET}\n\n"
 	conda activate base
-	sh -c 'sudo conda clean --all --yes'
+	sh -c 'clean --all --yes'
 	conda deactivate
 	# explicitly set IFS to contain only a line feed
 	IFS='
@@ -613,8 +616,8 @@ function update {
 	printf "\n${GREEN}Updating Go bins...${RESET}\n\n"
 	go-update
 	printf "\n${GREEN}Updating Julia...${RESET}\n\n"
-	#juliaup update
-	julia-update
+	juliaup update
+	julia-env-update
 	printf "\n${GREEN}Updating Miniconda...${RESET}\n\n"
 	condaupdate
 	printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
@@ -630,7 +633,8 @@ function cleanup {
 	printf "\n${GREEN}Pacman cleanup...${RESET}\n"
 	paccleanup
 	printf "\n${GREEN}Julia cleanup...${RESET}\n\n"
-	julia-cleanup
+	juliaup gc
+	julia-env-cleanup
 	printf "\n${GREEN}Miniconda cleanup...${RESET}\n\n"
 	condacleanup
 	printf "\n${GREEN}Cargo cleanup...${RESET}\n\n"
