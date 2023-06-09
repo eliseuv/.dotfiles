@@ -296,8 +296,6 @@ export NVM_DIR="$HOME/.nvm"
 function update {
 	printf "\n${GREEN}Updating binaries...${RESET}\n\n"
 	bin update
-	printf "\n${GREEN}Updating Oh my tmux...${RESET}\n\n"
-	update-ohmytmux
 }
 
 alias up='update'
