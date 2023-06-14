@@ -54,7 +54,7 @@ bindkey  "^[[3~"  delete-char
 # Open in editor
 autoload -z edit-command-line
 vim-command-line () {
-  local VISUAL='vim'
+  local VISUAL='nvim'
   edit-command-line
 }
 zle -N vim-command-line
