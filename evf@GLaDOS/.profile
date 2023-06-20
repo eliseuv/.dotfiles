@@ -540,11 +540,20 @@ pathappend "$GEM_HOME/bin"
 ##########
 
 # Pacman mirrors
-alias mirror="sudo reflector --verbose --protocol https --latest 50 --number 20 --country 'Brazil,Chile,US,' --sort rate --save /etc/pacman.d/mirrorlist"
+# alias mirror="sudo reflector --verbose --protocol https --latest 50 --number 20 --country 'Brazil,Chile,US,' --sort rate --save /etc/pacman.d/mirrorlist"
 alias mirrorr='sudo reflector --verbose --protocol https --latest 50 --number 20 --sort rate --save /etc/pacman.d/mirrorlist'
 alias mirrord='sudo reflector --verbose --protocol https --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist'
 alias mirrors='sudo reflector --verbose --protocol https --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist'
 alias mirrora='sudo reflector --verbose --protocol https --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist'
+
+function mirror {
+	local TMPFILE
+	TMPFILE="$(mktemp)"
+	sudo true
+	rate-mirrors --save="$TMPFILE" arch --max-delay=43200
+	sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup
+	sudo mv "$TMPFILE" /etc/pacman.d/mirrorlist
+}
 
 # Pacman
 # Fuzzy search on available packages and install

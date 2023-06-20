@@ -1,4 +1,14 @@
 return {
+    -- -- Midnight colorscheme
+    -- { "dasupradyumna/midnight.nvim", lazy = false, priority = 1000 },
+    -- -- Set colorscheme
+    -- {
+    --     "LazyVim/LazyVim",
+    --     opts = {
+    --         colorscheme = "midnight",
+    --     },
+    -- },
+    -- Alpha dashboard
     {
         "goolord/alpha-nvim",
         opts = function()
