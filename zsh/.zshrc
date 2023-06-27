@@ -1,12 +1,20 @@
+# Download Znap, if it's not there yet.
+[[ -r ~/.repos/zsh-repos/znap/znap.zsh ]] ||
+    git clone --depth 1 -- \
+        https://github.com/marlonrichert/zsh-snap.git ~/.repos/zsh-repos/znap
+source ~/.repos/zsh-repos/znap/znap.zsh  # Start Znap
+
 # Startup command
 neofetch
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# Theme
+znap prompt romkatv/powerlevel10k
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# znap source marlonrichert/zsh-autocomplete
+
+# ZSH completions
+znap source zsh-users/zsh-completions
 
 # The following lines were added by compinstall
 zstyle ':completion:*' auto-description 'specify: %d'
@@ -25,6 +33,16 @@ zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %
 zstyle ':completion:*' verbose true
 zstyle :compinstall filename '/home/evf/.zshrc'
 # End of lines added by compinstall
+
+# ZSH Syntax Highlighting
+znap source zsh-users/zsh-syntax-highlighting
+ZSH_HIGHLIGHT_HIGHLIGHTERS=( main brackets )
+
+# ZSH Autosuggestions
+znap source zsh-users/zsh-autosuggestions
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+export ZSH_AUTOSUGGEST_HISTORY_IGNORE=("cd *" "cp *" "z *")
+bindkey '^ ' autosuggest-accept
 
 # Lines configured by zsh-newuser-install
 HISTFILE="$HOME/.zsh_history"
@@ -60,35 +78,14 @@ vim-command-line () {
 zle -N vim-command-line
 bindkey "^x^e" vim-command-line
 
-# Autocompletions
-autoload -Uz compinit
-fpath+=~/.zfunc
-compinit
-
 # Zoxide
 eval "$(zoxide init zsh)"
 
-# Syntax highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Autosuggestions
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-export ZSH_AUTOSUGGEST_HISTORY_IGNORE=("cd *" "cp *" "z *")
-bindkey '^ ' autosuggest-accept
-
-# Powerlevel10k theme
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-# Powerlevel10k prompt
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# BitWarden CLI completions
-# eval "$(bw completion --shell zsh); compdef _bw bw;"
+# Autocompletions
+autoload -Uz compinit
+fpath+=~/.zfunc
+fpath+=~/.zsh/completion
+compinit
 
 # Load profile
 source ~/.profile
-
-# setting for gup command (auto generate)
-fpath=(~/.zsh/completion $fpath)
-autoload -Uz compinit && compinit -i
