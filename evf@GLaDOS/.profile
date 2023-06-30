@@ -223,8 +223,8 @@ alias scihub="curl https://raw.githubusercontent.com/dougy147/scitopdf/master/bi
 alias tldrf="tldr --list | tr -d \"[''],\" | tr ' ' '\n' | fzf --preview \"tldr {1}\" --preview-window=right,70% | xargs tldr"
 
 # Use rsync for copying files
-alias rs='rsync -Pazvh'
-alias rsmv='rsync -Pazvh --remove-source-files'
+alias rs='rsync -Pazvhm'
+alias rsmv='rsync -Pazvhm --remove-source-files'
 
 # Reset fail lock after failed authentication attempts
 alias fail-reset='faillock --user $USER --reset'
