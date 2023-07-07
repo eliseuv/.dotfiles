@@ -432,12 +432,12 @@ alias cabal-install='cabal install --ghc-options=-dynamic'
 # GHCup env
 [ -f "/home/evf/.ghcup/env" ] && source "/home/evf/.ghcup/env"
 
-#############
-# Miniconda #
-#############
+############
+# Anaconda #
+############
 
 # Conda profile
-[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+[ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ] && source "$HOME/anaconda3/etc/profile.d/conda.sh"
 
 # Conda directories
 export CONDA_BASE_DIR="$HOME/anaconda3/"
@@ -446,7 +446,7 @@ export CONDA_ENVS_DIR="$HOME/anaconda3/envs/"
 # Activate an env (with fzf)
 function condaenv {
 	local ENVS_LIST=("base")
-	local ENVS_LIST+=$(fd -d 1 -t d . $CONDA_ENVS_DIR -x echo {/.})
+	ENVS_LIST+=$(fd -d 1 -t d . $CONDA_ENVS_DIR -x echo {/.})
 	conda activate $(printf "%s\n" ${ENVS_LIST[@]} | fzf)
 }
 
