@@ -663,6 +663,7 @@ myKeys c =
         ^++^ subKeys
           "Shell commands"
           [ ("M-M1-h", addName "Launch btop" $ spawn (myTerminalCommand "btop")),
+            ("M-M1-m", addName "Launch pulsemixer" $ spawn (myTerminalCommand "pulsemixer")),
             ("M-M1-u", addName "Update system" $ spawn (myTerminalCommand " ~/.local/bin/update"))
           ]
         ^++^ subKeys

@@ -475,7 +475,7 @@ unset __conda_setup
 
 # Conda directories
 export CONDA_BASE_DIR="$HOME/miniconda3"
-export CONDA_ENVS_DIR="$HOME/.conda/envs"
+export CONDA_ENVS_DIR="$CONDA_BASE_DIR/envs"
 
 # Conda options
 export CONDA_AUTO_ACTIVATE_BASE=false
