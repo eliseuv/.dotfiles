@@ -416,6 +416,16 @@ jlargs() {
 	done <<<$(julia --startup-file=no "$2")
 }
 
+# Enqueue Julia scripts as jobs
+binjlargs() {
+	printf "\nSubmitting bin $1\n\n"
+	while IFS= read -r line; do
+		echo "$1 $line"
+		COMMAND="tsp $1 $line"
+		eval "$COMMAND"
+	done <<<$(julia --startup-file=no "$2")
+}
+
 # Run Julia Pluto
 alias pluto-start="julia --eval 'using Pluto ; Pluto.run(launch_browser=false)'"
 
