@@ -91,8 +91,7 @@ export BROWSER='firefox'
 export BROWSERCLI='w3m'
 
 # Set manpager
-export PAGER='bat -p'
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # n^3 file manager options
 export NNN_OPTS="dEox"
@@ -224,6 +223,7 @@ alias tldrf="tldr --list | tr -d \"[''],\" | tr ' ' '\n' | fzf --preview \"tldr 
 
 # Use rsync for copying files
 alias rs='rsync -Pazvhm'
+alias rsonly='rsync -Pazvhm -include "*/" --exclude="*"'
 alias rsmv='rsync -Pazvhm --remove-source-files'
 
 # Reset fail lock after failed authentication attempts
