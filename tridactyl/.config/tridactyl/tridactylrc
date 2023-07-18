@@ -42,6 +42,9 @@ bindurl youtube.com ;p hint -c [id="video-title-link"],[id="video-title"] -W mpv
 bindurl youtube.com ;P mpvsafe
 bindurl twitch.com ,p hint -c [class="tw-image"] -W mpvsafe
 bindurl twitch.com ;P mpvsafe
+bindurl piped.video ,p hint -c [class="focus:underline hover:underline inline-block w-full"] -W umpvsafe
+bindurl piped.video ;p hint -c [class="focus:underline hover:underline inline-block w-full"] -W mpvsafe
+bindurl piped.video ;P mpvsafe
 
 " Only hint search results on Google and DDG
 bindurl www.google.com f hint -Jc #search div:not(.action-menu) > a

@@ -511,7 +511,7 @@ function condaupdate {
 function condacleanup {
 	printf "${BLUE}Cleaning up base env...${RESET}\n\n"
 	conda activate base
-	sh -c 'clean --all --yes'
+	conda clean --all --yes
 	conda deactivate
 	# explicitly set IFS to contain only a line feed
 	IFS='
