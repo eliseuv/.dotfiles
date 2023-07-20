@@ -59,6 +59,7 @@ bindurl wikiwand.com yy composite js document.location.href.replace("wikiwand.co
 set searchengine duckduckgo
 set searchurls.s https://searx.be/search?q=%s&categories=general&language=en-US
 set searchurls.g https://www.google.com/search?&q=%s
+set searchurls.p https://piped.video/results?search_query=%s
 set searchurls.yt https://www.youtube.com/results?search_query=%s
 set searchurls.gh https://github.com/search?q=%s
 set searchurls.jl https://docs.julialang.org/en/v1/search/?q=%s
