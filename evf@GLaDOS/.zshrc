@@ -11,10 +11,9 @@ neofetch
 znap prompt romkatv/powerlevel10k
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# znap source marlonrichert/zsh-autocomplete
-
 # ZSH completions
-znap source zsh-users/zsh-completions
+# znap source zsh-users/zsh-completions
+znap source marlonrichert/zsh-autocomplete
 
 # The following lines were added by compinstall
 zstyle ':completion:*' auto-description 'specify: %d'
@@ -57,8 +56,10 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_VERIFY
 setopt autocd nomatch
 unsetopt beep extendedglob notify
-bindkey -v
 # End of lines configured by zsh-newuser-install
+
+# Use vi (-v) or emacs (-e) mode
+bindkey -e
 
 # Use Home, End and Delete keys
 bindkey  "^[[H"   beginning-of-line
