@@ -59,7 +59,6 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_VERIFY
 setopt autocd nomatch
 unsetopt beep extendedglob notify
-bindkey -v
 # End of lines configured by zsh-newuser-install
 
 # Use Home, End and Delete keys
