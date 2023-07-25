@@ -10,6 +10,7 @@ return {
                 "cpp",
                 "cuda",
                 "diff",
+                "dockerfile",
                 "fortran",
                 "go",
                 "help",
