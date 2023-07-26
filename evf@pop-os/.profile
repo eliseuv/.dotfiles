@@ -87,7 +87,7 @@ export BROWSER='qutebrowser'
 export BROWSERCLI='w3m'
 
 # Set manpager
-export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # n^3 file manager options
 export NNN_OPTS="dEox"
@@ -164,7 +164,7 @@ alias stow='stow --no-folding'
 alias watch='watch -tc -n 1 '
 
 # Use 'bat' instead of 'cat'
-alias b='batcat'
+alias b='bat'
 
 # NeoVim
 alias v='nvim'
