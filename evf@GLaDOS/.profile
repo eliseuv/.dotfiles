@@ -368,7 +368,7 @@ export RUST_BACKTRACE=1
 alias cargo-update='cargo install-update --all'
 
 # Cargo cleanup
-# https://github.com/matthiaskrgr/cargo-cache
+# https://crates.io/crates/cargo-cache
 # Removes crate source checkouts and git repo checkouts
 alias cargo-cleanup='cargo cache --autoclean'
 # Recompress git repos
