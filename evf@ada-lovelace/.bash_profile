@@ -172,13 +172,6 @@ source "$HOME/lovelace-tools/slurm-utils.sh"
 
 eval "$(zoxide init bash)"
 
-########
-# Rust #
-########
-
-# Cargo env
-source "$HOME/.cargo/env"
-
 #########
 # Julia #
 #########
