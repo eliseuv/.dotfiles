@@ -84,6 +84,8 @@ export NNN_OPTS="dEox"
 
 export DATA="/home_tmp/eliseuvf"
 
+source "$HOME/lovelace-tools/slurm-utils.sh"
+
 ###########
 # ALIASES #
 ###########
@@ -249,37 +251,57 @@ function juliacleanup {
 	julia-cleanup
 }
 
-# Queue job
-function sbexec {
-	sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$*"
-}
-
-# Queue job that executes julia script
-function sbjl {
-	sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$HOME/.juliaup/bin/julia $*"
-}
-
-function sbpy {
-	local CONDA_ENV"$1"
-	sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="source /opt/miniconda3/etc/profile.d/conda.sh activate $CONDA_ENV"
-}
-
-sbjlargs() {
-	printf "\nSubmitting script $1\n\n"
-	while IFS= read -r line; do
-		printf "Args = $line\n"
-		echo "$1 $line"
-		sbjl "$1 $line"
-	done <<<$(julia "$2")
-}
-
-binjlargs() {
-	printf "\nSubmitting bin $1\n\n"
-	while IFS= read -r line; do
-		echo "$1 $line"
-		sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$1 $line"
-	done <<<$(julia --startup-file=no "$2")
-}
+# # Queue job
+# function sbexec {
+# 	sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$*"
+# }
+#
+# # Queue job that executes julia script
+# function sbjl {
+# 	sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$HOME/.juliaup/bin/julia $*"
+# }
+#
+# function sbpy {
+# 	local CONDA_ENV"$1"
+# 	sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="source /opt/miniconda3/etc/profile.d/conda.sh activate $CONDA_ENV"
+# }
+#
+# sbjlargs() {
+# 	printf "\nSubmitting script $1\n\n"
+# 	while IFS= read -r line; do
+# 		printf "Args = $line\n"
+# 		echo "$1 $line"
+# 		sbjl "$1 $line"
+# 	done <<<$(julia "$2")
+# }
+#
+# binjlargs() {
+# 	printf "\nSubmitting bin $1\n\n"
+# 	while IFS= read -r line; do
+# 		echo "$1 $line"
+# 		sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$1 $line"
+# 	done <<<$(julia --startup-file=no "$2")
+# }
+#
+# sbbinargsfile() {
+# 	local BIN_PATH="$1"
+# 	local ARGS_PATH="$2"
+# 	printf "\nSubmitting bin $BIN_PATH\n\n"
+# 	while IFS= read -r line; do
+# 		local COMMAND="$BIN_PATH $line"
+# 		echo "$COMMAND"
+# 		# sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$BIN_PATH $line"
+# 	done <<<$(<$ARGS_PATH)
+# }
+#
+# sbbinjlargsfile() {
+# 	local BIN_PATH="$1"
+# 	local JL_SCRIPT_PATH="$2"
+# 	while IFS= read -r temp_file; do
+# 		echo "Submitting $BIN_PATH with args file $temp_file"
+# 		# sbatch --time=31-00:00 --nodes=1 --ntasks=1 --partition=long --qos=qos_long --wrap="$1 $line"
+# 	done <<<$(julia --startup-file=no "$JL_SCRIPT_PATH")
+# }
 
 ########
 # Node #
