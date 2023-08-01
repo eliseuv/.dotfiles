@@ -98,10 +98,10 @@ function getData {
     if [ $CODE -ne 0 ] || [ "${RESPONSECODE:=429}" -ne 200 ]; then
         if [ $CODE -ne 0 ]; then
             ERR_MSG="curl Error $CODE"
-            echo "curl Error $CODE" >> "$HOME/.weather.log"
+            echo "curl Error $CODE" >>"$HOME/.weather.log"
         else
             ERR_MSG="Conn. Err. $RESPONSECODE"
-            echo "API Error $RESPONSECODE" >> "$HOME/.weather.log"
+            echo "API Error $RESPONSECODE" >>"$HOME/.weather.log"
         fi
         ERROR=1
     else
@@ -205,7 +205,7 @@ function setIcons {
 
     # Temperature
     if [ "$UNITS" = "metric" ]; then
-        TEMP_ICON="糖"
+        TEMP_ICON="󰔄"
     elif [ "$UNITS" = "imperial" ]; then
         TEMP_ICON="宅"
     else

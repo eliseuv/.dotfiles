@@ -22,7 +22,7 @@ Config
                       -- Time and date
                       Run Date "<fn=1>\xf64f </fn>%Y-%m-%d %H:%M" "date" 60
                       -- Network up and down
-                    , Run Network "enp4s0" ["-t", "<fn=1>\xf6d9 </fn><rx> kb <fn=1> \xfa51 </fn><tx> kb"] 10
+                    , Run Network "enp4s0" ["-t", "<fn=1>\xf409 </fn><rx> kb <fn=1> \xf40a </fn><tx> kb"] 10
                       -- Cpu usage in percent
                     , Run Cpu ["-t", "<fn=1>\xf85a </fn><total>% ","-H","50","--high","red"] 10
                       -- Ram used number and percent
@@ -30,9 +30,9 @@ Config
                       -- Disk space free
                     , Run DiskU [
                                   ("/", "<fn=1>\xe216 </fn><usedp>% <fn=1> - </fn>")
-                                , ("/home", "<fn=1>\xf7db </fn><usedp>% <fn=1> - </fn>")
-                                , ("/run/media/evf/Research", "<fn=1>\xfc66 </fn><usedp>% <fn=1> - </fn>")
-                                , ("/run/media/evf/Storage", "<fn=1>\xf0a0 </fn><usedp>%")
+                                , ("/run/media/evf/Research", "<fn=1>\xf0768 </fn><usedp>% <fn=1> - </fn>")
+                                , ("/run/media/evf/Storage", "<fn=1>\xf0a0 </fn><usedp>% <fn=1> - </fn>")
+                                , ("/home", "<fn=1>\xf7db </fn><usedp>%")
                                 ]
                                 ["-L", "20", "-H", "50", "-m", "1", "-p", "3"] 60
                       -- Runs custom script to check for pacman updates.
