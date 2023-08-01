@@ -72,6 +72,9 @@ export DATADIR="/home_tmp/eliseuvf"
 # ALIASES #
 ###########
 
+# Clear screen
+alias c='clear'
+
 # Changing 'ls' to 'exa'
 alias l='exa --group-directories-first --icons --color=always'
 alias la='exa --all --group-directories-first --icons --color=always'
