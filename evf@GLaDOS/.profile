@@ -187,6 +187,7 @@ alias b='bat'
 
 # NeoVim
 alias v='nvim'
+alias vr='nvim -R'
 # alias lvimupdate='lvim +LvimUpdate +q'
 
 # Helix
