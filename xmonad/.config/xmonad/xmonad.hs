@@ -789,8 +789,8 @@ myKeys c =
             ("<XF86Calculator>", addName "Calculator" $ runOrRaise "qalculate-gtk" (resource =? "qalculate-gtk")),
             ("<XF86Eject>", addName "Eject /dev/cdrom" $ spawn "eject /dev/cdrom"),
             ("<Print>", addName "Take screenshot (dmscripts)" $ spawn "dm-maim"),
-            ("M-S--", addName "Lower vol" $ spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%"),
-            ("M-S-=", addName "Raise vol" $ spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%"),
+            ("M-S--", addName "Lower vol" $ spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%"),
+            ("M-S-=", addName "Raise vol" $ spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%"),
             ("M-S-0", addName "Toggle audio mute" $ spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
           ]
   where
