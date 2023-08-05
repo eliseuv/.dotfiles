@@ -65,10 +65,14 @@ myTerminal :: String
 myTerminal = "kitty --single-instance" -- Sets default terminal
 -- myTerminal = "alacritty msg create-window || alacritty" -- Sets default terminal
 
-myTerminalCommand :: String -> String
-myTerminalCommand cmd = "kitty --single-instance -e " ++ cmd
+myKittyCommand :: String -> String
+myKittyCommand cmd = "kitty --single-instance -e " ++ cmd
 
--- myTerminalCommand cmd = "alacritty msg create-window -e " ++ cmd ++ " || alacritty -e " ++ cmd
+myAlacrittyCommand :: String -> String
+myAlacrittyCommand cmd = "alacritty msg create-window -e " ++ cmd ++ " || alacritty -e " ++ cmd
+
+myTerminalCommand :: String -> String
+myTerminalCommand = myKittyCommand
 
 myBrowser :: String
 myBrowser = "firefox" -- Sets default browser
@@ -664,6 +668,7 @@ myKeys c =
           "Shell commands"
           [ ("M-M1-h", addName "Launch btop" $ spawn (myTerminalCommand "btop")),
             ("M-M1-m", addName "Launch pulsemixer" $ spawn (myTerminalCommand "pulsemixer")),
+            ("M-M1-n", addName "Launch neonmodem" $ spawn (myAlacrittyCommand "neonmodem")),
             ("M-M1-u", addName "Update system" $ spawn (myTerminalCommand " ~/.local/bin/update"))
           ]
         ^++^ subKeys
