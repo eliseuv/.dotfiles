@@ -91,7 +91,8 @@ myEditor = myEmacs -- Sets emacs as editor
 -- myEditor = myTerminal ++ " -e hx "    -- Sets helix as editor
 
 myFileManager :: String
-myFileManager = "nautilus"
+myFileManager = "pcmanfm"
+-- myFileManager = "nautilus"
 
 myBorderWidth :: Dimension
 myBorderWidth = 1 -- Sets border width for windows

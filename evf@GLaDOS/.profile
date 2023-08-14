@@ -70,7 +70,7 @@ pathappend ~/.config/emacs-doom/bin
 #export TERM='rxvt-unicode-256color'
 # export COLORTERM='truecolor'
 # export TERM='xterm-256color'
-export TERMINAL='alacritty'
+export TERMINAL='kitty'
 
 # Text editors
 export EDITOR='nvim'
@@ -231,7 +231,8 @@ alias rsmv='rsync -Pazvhm --remove-source-files'
 alias fail-reset='faillock --user $USER --reset'
 
 # udiskie
-alias ud-umount='udiskie-umount --detach'
+alias ud-umount='udiskie-umount --detach --verbose'
+alias ud-mount='udiskie-mount --recursive --verbose'
 
 # Use ssh kitten from kitty
 # [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"

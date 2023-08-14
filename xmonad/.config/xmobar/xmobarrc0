@@ -32,7 +32,7 @@ Config
                                   ("/", "<fn=1>\xe216 </fn><usedp>% <fn=1> - </fn>")
                                 , ("/run/media/evf/Research", "<fn=1>\xf0768 </fn><usedp>% <fn=1> - </fn>")
                                 , ("/run/media/evf/Storage", "<fn=1>\xf0a0 </fn><usedp>% <fn=1> - </fn>")
-                                , ("/home", "<fn=1>\xf7db </fn><usedp>%")
+                                , ("/home", "<fn=1>\xf7db </fn><usedp>% <fn=1> - </fn>")
                                 ]
                                 ["-L", "20", "-H", "50", "-m", "1", "-p", "3"] 60
                       -- Runs custom script to check for pacman updates.
