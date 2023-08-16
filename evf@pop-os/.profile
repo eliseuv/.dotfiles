@@ -136,10 +136,10 @@ alias h='history -i'
 
 # Changing 'ls' to 'exa'
 alias l='exa --group-directories-first --icons --color=always'
-alias la='exa --all --group-directories-first --icons --color=always'
-alias ll='exa --all --long --header --group-directories-first --icons --color=always'
+alias la='exa --all --group-directories-first --icons --color=always --git'
+alias ll='exa --all --long --header --group-directories-first --icons --color=always --git'
 alias lt='exa --all --tree --group-directories-first --icons --ignore-glob=.git --color=always'
-alias l.='exa --all | rg "^\."'
+alias l.='exa --all | rg "^\." --git'
 
 # Easier cd
 alias ..='cd ..'

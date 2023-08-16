@@ -7,9 +7,9 @@ source ~/.repos/zsh-repos/znap/znap.zsh  # Start Znap
 # Startup command
 neofetch
 
-# Theme
-znap prompt romkatv/powerlevel10k
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# # Theme
+# znap prompt romkatv/powerlevel10k
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # The following lines were added by compinstall
 zstyle ':completion:*' auto-description 'specify: %d'
@@ -81,6 +81,9 @@ bindkey "^x^e" vim-command-line
 
 # Zoxide
 eval "$(zoxide init zsh)"
+
+# Starship prompt
+eval "$(starship init zsh)"
 
 # Autocompletions
 autoload -Uz compinit
