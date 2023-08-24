@@ -92,6 +92,7 @@ myEditor = myEmacs -- Sets emacs as editor
 
 myFileManager :: String
 myFileManager = "pcmanfm"
+
 -- myFileManager = "nautilus"
 
 myBorderWidth :: Dimension
@@ -674,8 +675,8 @@ myKeys c =
           ]
         ^++^ subKeys
           "Monitors"
-          [ ("M-.", addName "Switch focus to next monitor" nextScreen)
-          -- , ("M-,", addName "Switch focus to prev monitor" $ prevScreen)
+          [ ("M-.", addName "Switch focus to next monitor" nextScreen),
+            ("M-,", addName "Switch focus to prev monitor" $ prevScreen)
           ]
         -- Switch layouts
         ^++^ subKeys
@@ -811,6 +812,7 @@ main = do
   -- xmproc1 <- spawnPipe ("xmobar -x 1 $HOME/.config/xmonad/xmobar/" ++ colorScheme ++ "-xmobarrc")
   xmproc0 <- spawnPipe "xmobar -x 0 $HOME/.config/xmobar/xmobarrc0"
   xmproc1 <- spawnPipe "xmobar -x 1 $HOME/.config/xmobar/xmobarrc1"
+  xmproc2 <- spawnPipe "xmobar -x 2 $HOME/.config/xmobar/xmobarrc2"
   -- the xmonad, ya know...what the WM is named after!
   xmonad $
     addDescrKeys' ((mod4Mask, xK_F1), showKeybindings) myKeys $
@@ -838,7 +840,8 @@ main = do
                     xmobarPP
                       { ppOutput = \x ->
                           hPutStrLn xmproc0 x -- xmobar on monitor 1
-                            >> hPutStrLn xmproc1 x, -- xmobar on monitor 2
+                            >> hPutStrLn xmproc1 x -- xmobar on monitor 2
+                            >> hPutStrLn xmproc2 x, -- xmobar on monitor 3
                         ppCurrent =
                           xmobarColor color06 ""
                             . wrap
