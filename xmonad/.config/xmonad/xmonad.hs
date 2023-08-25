@@ -214,103 +214,6 @@ runSelectedAction' conf actions = do
     Just selectedAction -> selectedAction
     Nothing -> return ()
 
--- gsCategories =
---   [ ("Games",      spawnSelected' gsGames)
---   --, ("Education",   spawnSelected' gsEducation)
---   , ("Internet",   spawnSelected' gsInternet)
---   , ("Multimedia", spawnSelected' gsMultimedia)
---   , ("Office",     spawnSelected' gsOffice)
---   , ("Settings",   spawnSelected' gsSettings)
---   , ("System",     spawnSelected' gsSystem)
---   , ("Utilities",  spawnSelected' gsUtilities)
---   ]
-
-gsCategories =
-  [ ("Games", "xdotool key super+alt+1"),
-    ("Education", "xdotool key super+alt+2"),
-    ("Internet", "xdotool key super+alt+3"),
-    ("Multimedia", "xdotool key super+alt+4"),
-    ("Office", "xdotool key super+alt+5"),
-    ("Settings", "xdotool key super+alt+6"),
-    ("System", "xdotool key super+alt+7"),
-    ("Utilities", "xdotool key super+alt+8")
-  ]
-
-gsGames =
-  [ ("0 A.D.", "0ad"),
-    ("Battle For Wesnoth", "wesnoth"),
-    ("OpenArena", "openarena"),
-    ("Sauerbraten", "sauerbraten"),
-    ("Steam", "steam"),
-    ("Unvanquished", "unvanquished"),
-    ("Xonotic", "xonotic-glx")
-  ]
-
-gsEducation =
-  [ ("GCompris", "gcompris-qt"),
-    ("Kstars", "kstars"),
-    ("Minuet", "minuet"),
-    ("Scratch", "scratch")
-  ]
-
-gsInternet =
-  [ ("Brave", "brave"),
-    ("Discord", "discord"),
-    ("Element", "element-desktop"),
-    ("Firefox", "firefox"),
-    ("LBRY App", "lbry"),
-    ("Mailspring", "mailspring"),
-    ("Nextcloud", "nextcloud"),
-    ("Qutebrowser", "qutebrowser"),
-    ("Transmission", "transmission-gtk"),
-    ("Zoom", "zoom")
-  ]
-
-gsMultimedia =
-  [ ("Audacity", "audacity"),
-    ("Blender", "blender"),
-    ("Deadbeef", "deadbeef"),
-    ("Kdenlive", "kdenlive"),
-    ("OBS Studio", "obs"),
-    ("VLC", "vlc")
-  ]
-
-gsOffice =
-  [ ("Document Viewer", "evince"),
-    ("LibreOffice", "libreoffice"),
-    ("LO Base", "lobase"),
-    ("LO Calc", "localc"),
-    ("LO Draw", "lodraw"),
-    ("LO Impress", "loimpress"),
-    ("LO Math", "lomath"),
-    ("LO Writer", "lowriter")
-  ]
-
-gsSettings =
-  [ ("ARandR", "arandr"),
-    ("ArchLinux Tweak Tool", "archlinux-tweak-tool"),
-    ("Customize Look and Feel", "lxappearance"),
-    ("Firewall Configuration", "sudo gufw")
-  ]
-
-gsSystem =
-  [ ("Alacritty", "alacritty"),
-    ("Bash", myTerminal ++ " -e bash"),
-    ("Htop", myTerminal ++ " -e htop"),
-    ("Fish", myTerminal ++ " -e fish"),
-    ("PCManFM", "pcmanfm"),
-    ("VirtualBox", "virtualbox"),
-    ("Virt-Manager", "virt-manager"),
-    ("Zsh", myTerminal ++ " -e zsh")
-  ]
-
-gsUtilities =
-  [ ("Emacs", "emacs"),
-    ("Emacsclient", "emacsclient -c -a 'emacs'"),
-    ("Nitrogen", "nitrogen"),
-    ("Vim", myTerminal ++ " -e vim")
-  ]
-
 myScratchPads :: [NamedScratchpad]
 myScratchPads =
   [ NS "terminal" spawnTerm findTerm manageTerm,
@@ -483,8 +386,8 @@ myLayoutHook =
 
 -- myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
 myWorkspaces =
-  [ " dev ", -- 0
-    " sh ", -- 1
+  [ " sh ", -- 0
+    " dev ", -- 1
     " www ", -- 2
     " mus ", -- 3
     " vid ", -- 4
@@ -523,8 +426,8 @@ myManageHook =
       (className =? "firefox" <&&> resource =? "Dialog") --> doFloat, -- Float Firefox Dialog
       isFullscreen --> doFullFloat,
       -- Programming
-      className =? "Emacs" --> doShift (myWorkspaces !! 0),
-      className =? "code-oss" --> doShift (myWorkspaces !! 0),
+      className =? "Emacs" --> doShift (myWorkspaces !! 1),
+      className =? "code-oss" --> doShift (myWorkspaces !! 1),
       -- Web Browsers
       (className =? "firefox" <&&> title =? "Picture-in-Picture") --> doShift (myWorkspaces !! 4),
       title =? "Mozilla Firefox" --> doShift (myWorkspaces !! 2),
@@ -639,24 +542,24 @@ myKeys c =
         -- Dmenu scripts (dmscripts)
         -- In Xmonad and many tiling window managers, M-p is the default keybinding to
         -- launch dmenu_run, so I've decided to use M-p plus KEY for these dmenu scripts.
-        -- ++^ subKeys "Dmenu scripts"
-        -- [ ("M-p h", addName "List all dmscripts"     $ spawn "dm-hub")
-        -- , ("M-p a", addName "Choose ambient sound"   $ spawn "dm-sounds")
-        -- , ("M-p b", addName "Set background"         $ spawn "dm-setbg")
-        -- , ("M-p c", addName "Choose color scheme"    $ spawn "dtos-colorscheme")
-        -- , ("M-p C", addName "Pick color from scheme" $ spawn "dm-colpick")
-        -- , ("M-p e", addName "Edit config files"      $ spawn "dm-confedit")
-        -- , ("M-p i", addName "Take a screenshot"      $ spawn "dm-maim")
-        -- , ("M-p k", addName "Kill processes"         $ spawn "dm-kill")
-        -- , ("M-p m", addName "View manpages"          $ spawn "dm-man")
-        -- , ("M-p n", addName "Store and copy notes"   $ spawn "dm-note")
-        -- , ("M-p o", addName "Browser bookmarks"      $ spawn "dm-bookman")
-        -- , ("M-p p", addName "Passmenu"               $ spawn "passmenu -p \"Pass: \"")
-        -- , ("M-p q", addName "Logout Menu"            $ spawn "dm-logout")
-        -- , ("M-p r", addName "Listen to online radio" $ spawn "dm-radio")
-        -- , ("M-p s", addName "Search various engines" $ spawn "dm-websearch")
-        -- , ("M-p t", addName "Translate text"         $ spawn "dm-translate")
-        -- ]
+        ^++^ subKeys "Dmenu scripts"
+        [ ("M-p h", addName "List all dmscripts"     $ spawn "dm-hub")
+        , ("M-p a", addName "Choose ambient sound"   $ spawn "dm-sounds")
+        , ("M-p b", addName "Set background"         $ spawn "dm-setbg")
+        , ("M-p c", addName "Choose color scheme"    $ spawn "dtos-colorscheme")
+        , ("M-p C", addName "Pick color from scheme" $ spawn "dm-colpick")
+        , ("M-p e", addName "Edit config files"      $ spawn "dm-confedit")
+        , ("M-p i", addName "Take a screenshot"      $ spawn "dm-maim")
+        , ("M-p k", addName "Kill processes"         $ spawn "dm-kill")
+        , ("M-p m", addName "View manpages"          $ spawn "dm-man")
+        , ("M-p n", addName "Store and copy notes"   $ spawn "dm-note")
+        , ("M-p o", addName "Browser bookmarks"      $ spawn "dm-bookman")
+        , ("M-p p", addName "Passmenu"               $ spawn "passmenu -p \"Pass: \"")
+        , ("M-p q", addName "Logout Menu"            $ spawn "dm-logout")
+        , ("M-p r", addName "Listen to online radio" $ spawn "dm-radio")
+        , ("M-p s", addName "Search various engines" $ spawn "dm-websearch")
+        , ("M-p t", addName "Translate text"         $ spawn "dm-translate")
+        ]
 
         ^++^ subKeys
           "Favorite programs"
@@ -675,8 +578,8 @@ myKeys c =
           ]
         ^++^ subKeys
           "Monitors"
-          [ ("M-.", addName "Switch focus to next monitor" nextScreen),
-            ("M-,", addName "Switch focus to prev monitor" $ prevScreen)
+          [ ("M-h", addName "Switch focus to prev monitor" prevScreen),
+            ("M-l", addName "Switch focus to next monitor" nextScreen)
           ]
         -- Switch layouts
         ^++^ subKeys
@@ -688,10 +591,10 @@ myKeys c =
         -- Window resizing
         ^++^ subKeys
           "Window resizing"
-          [ ("M-h", addName "Shrink window" $ sendMessage Shrink),
-            ("M-l", addName "Expand window" $ sendMessage Expand),
-            ("M-M1-j", addName "Shrink window vertically" $ sendMessage MirrorShrink),
-            ("M-M1-k", addName "Expand window vertically" $ sendMessage MirrorExpand)
+          [ ("M-,", addName "Shrink window" $ sendMessage Shrink),
+            ("M-.", addName "Expand window" $ sendMessage Expand),
+            ("M-M1-,", addName "Shrink window vertically" $ sendMessage MirrorShrink),
+            ("M-M1-.", addName "Expand window vertically" $ sendMessage MirrorExpand)
           ]
         -- Floating windows
         ^++^ subKeys
@@ -747,26 +650,6 @@ myKeys c =
             ("M-u l", addName "mocp next" $ spawn "mocp --next"),
             ("M-u h", addName "mocp prev" $ spawn "mocp --previous"),
             ("M-u <Space>", addName "mocp toggle pause" $ spawn "mocp --toggle-pause")
-          ]
-        ^++^ subKeys
-          "GridSelect"
-          -- , ("C-g g", addName "Select favorite apps"     $ runSelectedAction' defaultGSConfig gsCategories)
-          [ ( "M-M1-<Return>",
-              addName "Select favorite apps" $
-                spawnSelected' $
-                  gsGames ++ gsEducation ++ gsInternet ++ gsMultimedia ++ gsOffice ++ gsSettings ++ gsSystem ++ gsUtilities
-            ),
-            ("M-M1-c", addName "Select favorite apps" $ spawnSelected' gsCategories),
-            ("M-M1-t", addName "Goto selected window" $ goToSelected $ mygridConfig myColorizer),
-            ("M-M1-b", addName "Bring selected window" $ bringSelected $ mygridConfig myColorizer),
-            ("M-M1-1", addName "Menu of games" $ spawnSelected' gsGames),
-            ("M-M1-2", addName "Menu of education apps" $ spawnSelected' gsEducation),
-            ("M-M1-3", addName "Menu of Internet apps" $ spawnSelected' gsInternet),
-            ("M-M1-4", addName "Menu of multimedia apps" $ spawnSelected' gsMultimedia),
-            ("M-M1-5", addName "Menu of office apps" $ spawnSelected' gsOffice),
-            ("M-M1-6", addName "Menu of settings apps" $ spawnSelected' gsSettings),
-            ("M-M1-7", addName "Menu of system apps" $ spawnSelected' gsSystem),
-            ("M-M1-8", addName "Menu of utilities apps" $ spawnSelected' gsUtilities)
           ]
         -- Emacs (SUPER-e followed by a key)
         ^++^ subKeys
