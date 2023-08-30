@@ -578,8 +578,8 @@ myKeys c =
           ]
         ^++^ subKeys
           "Monitors"
-          [ ("M-h", addName "Switch focus to prev monitor" prevScreen),
-            ("M-l", addName "Switch focus to next monitor" nextScreen)
+          [ ("M-l", addName "Switch focus to prev monitor" prevScreen),
+            ("M-h", addName "Switch focus to next monitor" nextScreen)
           ]
         -- Switch layouts
         ^++^ subKeys

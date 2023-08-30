@@ -6,6 +6,7 @@
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.tabstop = 4 -- Number of spaces tabs count for
 vim.opt.shiftwidth = 4 -- Size of an indent
+vim.opt.wrap = true
 
 -- GUI config
 vim.opt.guifont = "Fira Code:h9"

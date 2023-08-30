@@ -52,12 +52,11 @@ bindurl www.google.com F hint -Jbc #search div:not(.action-menu) > a
 bindurl ^https://duckduckgo.com f hint -Jc [data-testid="result-title-a"]
 bindurl ^https://duckduckgo.com F hint -Jbc [data-testid="result-title-a"]
 
-" I like wikiwand but I don't like the way it changes URLs
-bindurl wikiwand.com yy composite js document.location.href.replace("wikiwand.com/en","wikipedia.org/wiki") | clipboard yank
-
 " Search engine
-set searchengine s
-set searchurls.s https://search.rhscz.eu/search?q=%s&categories=general&language=en-US
+set searchengine ddg
+" set searchurls.s https://search.rhscz.eu/search?q=%s&categories=general&language=en-US
+" set searchurls.s https://searxng.nicfab.eu/searxng/search?q=%s&categories=general&language=en-US
+set searchurls.s https://searx.be/search?q=%s
 set searchurls.g https://www.google.com/search?&q=%s
 set searchurls.ddg https://duckduckgo.com/?q=%s&ia=web
 set searchurls.p https://piped.video/results?search_query=%s
@@ -105,6 +104,11 @@ colorscheme shydactyl
 
 " Redirects
 autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
+
+" Stop using wikiwand
+autocmddelete DocStart ^http(s?)://\w\+.wikipedia.org js tri.excmds.urlmodify("-t", "wikipedia", "wikiwand")
+autocmddelete DocStart ^http(s?)://\w+.wikipedia.org js tri.excmds.urlmodify("-t", "wikipedia", "wikiwand")
+autocmddelete DocStart ^http(s?)://(\w+).wikipedia.org js tri.excmds.urlmodify("-t", "wikipedia", "wikiwand")
 
 set editorcmd alacritty -e 'nvim'
 
