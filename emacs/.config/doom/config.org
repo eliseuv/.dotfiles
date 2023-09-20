@@ -39,11 +39,12 @@ This is my first attempt on an Emacs literate configuration, mostly based on [[h
       auto-save-default t                         ; Nobody likes to loose work, I certainly don't
       truncate-string-ellipsis "…"                ; Unicode ellispis are nicer than "...", and also save /precious/ space
       password-cache-expiry nil                   ; I can trust my computers ... can't I?
-      ;; scroll-preserve-screen-position 'always     ; Don't have `point' jump around
+      ;; scroll-preserve-screen-position 'always  ; Don't have `point' jump around
       scroll-margin 1                             ; It's nice to maintain a little margin
       evil-kill-on-visual-paste nil)              ; Do not substitute clipboard on visual paste
 
 (global-subword-mode t)                           ; Recognize uppercase letters as word boundaries (useful for CamelCase naming)
+(global-visual-line-mode 1)                       ; Line wrapping
 #+end_src
 
 Make popups open on the right:
@@ -333,7 +334,7 @@ emacs-lisp        ; drown in parentheses
 (json +lsp +tree-sitter)              ; At least it ain't XML
 ;;(java +lsp)       ; the poster child for carpal tunnel syndrome
 (javascript +lsp +tree-sitter)        ; all(hope(abandon(ye(who(enter(here))))))
-(julia +lsp +tree-sitter)             ; a better, faster MATLAB
+(julia +lsp +tree-sitter +snail)             ; a better, faster MATLAB
 ;;kotlin            ; a better, slicker Java(Script)
 (latex +cdlatex +fold +latexmk +lsp)             ; writing papers in Emacs has never been so fun
 ;;lean              ; for folks with too much to prove
@@ -2040,14 +2041,14 @@ If using =lsp-julia=:
 ;; Do not use built-in package
 (setq lsp-julia-package-dir nil)
 ;; Select Julia environment
-(setq lsp-julia-default-environment "~/.julia/environments/v1.8")
+(setq lsp-julia-default-environment "~/.julia/environments/v1.9")
 #+end_src
 
 If using =eglot=:
 
 #+begin_src emacs-lisp :tangle no
 (setq eglot-connect-timeout 600)
-(setq eglot-jl-language-server-project "~/.julia/environments/v1.8")
+(setq eglot-jl-language-server-project "~/.julia/environments/v1.9")
 (after! eglot-jl
   (setq eglot-jl-language-server-project eglot-jl-base))
 #+end_src

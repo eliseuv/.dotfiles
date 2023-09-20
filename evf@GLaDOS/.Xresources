@@ -110,3 +110,8 @@ URxvt.background: [90]#150015
 ! Background color
 Sxiv.background:    #000000
 Sxiv.foreground:    #ffffff
+
+!=================
+!==   Cursor    ==
+!=================
+Xcursor.size: 5

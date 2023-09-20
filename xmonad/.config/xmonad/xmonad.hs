@@ -386,16 +386,16 @@ myLayoutHook =
 
 -- myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
 myWorkspaces =
-  [ " sh ", -- 0
-    " dev ", -- 1
-    " www ", -- 2
-    " mus ", -- 3
-    " vid ", -- 4
-    " doc ", -- 5
-    " chat ", -- 6
-    " torrent ", -- 7
-    " vm ", -- 8
-    " gfx " -- 9
+  [ " sh ",     -- 0
+    " dev ",    -- 1
+    " www ",    -- 2
+    " mus ",    -- 3
+    " vid ",    -- 4
+    " doc ",    -- 5
+    " nb ",     -- 6
+    " chat ",   -- 7
+    " bt ",     -- 8
+    " vm "      -- 9
   ]
 
 myWorkspaceIndices = M.fromList $ zip myWorkspaces [1 ..]
@@ -431,7 +431,6 @@ myManageHook =
       -- Web Browsers
       (className =? "firefox" <&&> title =? "Picture-in-Picture") --> doShift (myWorkspaces !! 4),
       title =? "Mozilla Firefox" --> doShift (myWorkspaces !! 2),
-      title =? "Chromium" --> doShift (myWorkspaces !! 2),
       className =? "Navigator" --> doShift (myWorkspaces !! 2),
       className =? "firefox" --> doShift (myWorkspaces !! 2),
       className =? "Brave-browser" --> doShift (myWorkspaces !! 2),
@@ -446,13 +445,15 @@ myManageHook =
       className =? "Zathura" --> doShift (myWorkspaces !! 5),
       className =? "calibre" --> doShift (myWorkspaces !! 5),
       className =? "Zotero" --> doShift (myWorkspaces !! 5),
+      -- Notebooks
+      title =? "Chromium" --> doShift (myWorkspaces !! 6),
       -- Chats
-      className =? "TelegramDesktop" --> doShift (myWorkspaces !! 6),
-      className =? "discord" --> doShift (myWorkspaces !! 6),
+      className =? "TelegramDesktop" --> doShift (myWorkspaces !! 7),
+      className =? "discord" --> doShift (myWorkspaces !! 7),
       -- Torrent
-      className =? "qBittorrent" --> doShift (myWorkspaces !! 7),
+      className =? "qBittorrent" --> doShift (myWorkspaces !! 8),
       -- VM Manager
-      className =? "Virt-manager" --> doShift (myWorkspaces !! 8)
+      className =? "Virt-manager" --> doShift (myWorkspaces !! 9)
     ]
     <+> namedScratchpadManageHook myScratchPads
 
@@ -508,7 +509,8 @@ myKeys c =
             ("M-6", addName "Switch to workspace 6" (windows $ W.greedyView $ myWorkspaces !! 5)),
             ("M-7", addName "Switch to workspace 7" (windows $ W.greedyView $ myWorkspaces !! 6)),
             ("M-8", addName "Switch to workspace 8" (windows $ W.greedyView $ myWorkspaces !! 7)),
-            ("M-9", addName "Switch to workspace 9" (windows $ W.greedyView $ myWorkspaces !! 8))
+            ("M-9", addName "Switch to workspace 9" (windows $ W.greedyView $ myWorkspaces !! 8)),
+            ("M-0", addName "Switch to workspace 10" (windows $ W.greedyView $ myWorkspaces !! 9))
           ]
         ^++^ subKeys
           "Send window to workspace"
@@ -520,7 +522,8 @@ myKeys c =
             ("M-S-6", addName "Send to workspace 6" (windows $ W.shift $ myWorkspaces !! 5)),
             ("M-S-7", addName "Send to workspace 7" (windows $ W.shift $ myWorkspaces !! 6)),
             ("M-S-8", addName "Send to workspace 8" (windows $ W.shift $ myWorkspaces !! 7)),
-            ("M-S-9", addName "Send to workspace 9" (windows $ W.shift $ myWorkspaces !! 8))
+            ("M-S-9", addName "Send to workspace 9" (windows $ W.shift $ myWorkspaces !! 8)),
+            ("M-S-0", addName "Send to workspace 10" (windows $ W.shift $ myWorkspaces !! 9))
           ]
         ^++^ subKeys
           "Move window to WS and go there"

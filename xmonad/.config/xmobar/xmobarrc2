@@ -8,7 +8,7 @@ Config
                          ]
         , bgColor      = "#1a1b26"
         , fgColor      = "#a9b1d6"
-       , position = Static { xpos = 3000, ypos = 0, width = 2560, height = 26 }
+       , position = Static { xpos = 440, ypos = 0, width = 2560, height = 26 }
        , iconRoot = "/home/evf/.xmobar/xpm/" -- default: "."
 
        -- Behaviour

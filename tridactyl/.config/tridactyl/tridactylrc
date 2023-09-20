@@ -39,12 +39,10 @@ alias umpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.excla
 alias mpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('mpv ' + url))
 bindurl youtube.com ,p hint -c [id="video-title-link"],[id="video-title"] -W umpvsafe
 bindurl youtube.com ;p hint -c [id="video-title-link"],[id="video-title"] -W mpvsafe
-bindurl youtube.com ;P mpvsafe
 bindurl twitch.com ,p hint -c [class="tw-image"] -W mpvsafe
-bindurl twitch.com ;P mpvsafe
 bindurl piped.video ,p hint -c [class="focus:underline hover:underline inline-block w-full"] -W umpvsafe
 bindurl piped.video ;p hint -c [class="focus:underline hover:underline inline-block w-full"] -W mpvsafe
-bindurl piped.video ;P mpvsafe
+bind ;P composite js document.location.href.replace('https://', 'ytdl://') | shellescape | js -p 'PATH="$PATH:/usr/local/bin" mpv ' + JS_ARG | !s
 
 " Only hint search results on Google and DDG
 bindurl www.google.com f hint -Jc #search div:not(.action-menu) > a

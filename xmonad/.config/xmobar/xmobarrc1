@@ -8,7 +8,7 @@ Config {
                          ]
         , bgColor      = "#1a1b26"
         , fgColor      = "#a9b1d6"
-       , position = Static { xpos = 0 , ypos = 0, width = 1080, height = 26 }
+       , position = Static { xpos = 0 , ypos = 1080, width = 1080, height = 26 }
        , iconRoot = "/home/evf/.xmonad/xpm/"  -- default: "."
 
        -- Behaviour
