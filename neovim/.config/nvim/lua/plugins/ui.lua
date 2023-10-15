@@ -1,4 +1,11 @@
 return {
+    {
+        "LazyVim/LazyVim",
+        opts = {
+            colorscheme = "tokyonight-night",
+            -- colorscheme = "catppuccin-mocha",
+        },
+    },
     -- -- Midnight colorscheme
     -- { "dasupradyumna/midnight.nvim", lazy = false, priority = 1000 },
     -- -- Set colorscheme

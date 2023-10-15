@@ -231,8 +231,8 @@ alias rsmv='rsync -Pazvhm --remove-source-files'
 alias fail-reset='faillock --user $USER --reset'
 
 # udiskie
-alias ud-umount='udiskie-umount --detach --verbose'
-alias ud-mount='udiskie-mount --recursive --verbose'
+alias ud-umount='udiskie-umount --detach'
+alias ud-mount='udiskie-mount --recursive'
 
 # Use ssh kitten from kitty
 # [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"

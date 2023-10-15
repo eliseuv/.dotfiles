@@ -1,59 +1,78 @@
-import Colors.DoomOne
-import Data.Char (isSpace, toUpper)
-import Data.Map qualified as M
-import Data.Maybe (fromJust, isJust)
-import Data.Monoid
-import Data.Tree
-import System.Directory
-import System.Exit (exitSuccess)
-import System.IO (hClose, hPutStr, hPutStrLn)
+-- Base
 import XMonad
+import System.Directory
+import System.IO (hClose, hPutStr, hPutStrLn)
+import System.Exit (exitSuccess)
+import qualified XMonad.StackSet as W
+
+    -- Actions
 import XMonad.Actions.CopyWindow (kill1)
-import XMonad.Actions.CycleWS (Direction1D (..), WSType (..), moveTo, nextScreen, prevScreen, shiftTo)
+import XMonad.Actions.CycleWS (Direction1D(..), moveTo, shiftTo, WSType(..), nextScreen, prevScreen)
 import XMonad.Actions.GridSelect
 import XMonad.Actions.MouseResize
 import XMonad.Actions.Promote
-import XMonad.Actions.RotSlaves (rotAllDown, rotSlavesDown)
-import XMonad.Actions.Search qualified as S
+import XMonad.Actions.RotSlaves (rotSlavesDown, rotAllDown)
 import XMonad.Actions.WindowGo (runOrRaise)
-import XMonad.Actions.WithAll (killAll, sinkAll)
-import XMonad.Hooks.DynamicLog (PP (..), dynamicLogWithPP, shorten, wrap, xmobarColor, xmobarPP)
-import XMonad.Hooks.EwmhDesktops
-import XMonad.Hooks.ManageDocks (ToggleStruts (..), avoidStruts, docks, manageDocks)
-import XMonad.Hooks.ManageHelpers (doCenterFloat, doFullFloat, isFullscreen)
+import XMonad.Actions.WithAll (sinkAll, killAll)
+import qualified XMonad.Actions.Search as S
+
+    -- Data
+import Data.Char (isSpace, toUpper)
+import Data.Maybe (fromJust)
+import Data.Monoid
+import Data.Maybe (isJust)
+import Data.Tree
+import qualified Data.Map as M
+
+    -- Hooks
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.EwmhDesktops  -- for some fullscreen events, also for xcomposite in obs.
+import XMonad.Hooks.ManageDocks (avoidStruts, docks, manageDocks, ToggleStruts(..))
+import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat, doCenterFloat)
 import XMonad.Hooks.ServerMode
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
+import XMonad.Hooks.WindowSwallowing
 import XMonad.Hooks.WorkspaceHistory
+
+    -- Layouts
 import XMonad.Layout.Accordion
-import XMonad.Layout.GridVariants (Grid (Grid))
-import XMonad.Layout.LayoutModifier
-import XMonad.Layout.LimitWindows (decreaseLimit, increaseLimit, limitWindows)
-import XMonad.Layout.MultiToggle (EOT (EOT), mkToggle, single, (??))
-import XMonad.Layout.MultiToggle qualified as MT (Toggle (..))
-import XMonad.Layout.MultiToggle.Instances (StdTransformers (MIRROR, NBFULL, NOBORDERS))
-import XMonad.Layout.NoBorders
-import XMonad.Layout.Renamed
-import XMonad.Layout.ResizableTile
-import XMonad.Layout.ShowWName
-import XMonad.Layout.Simplest
+import XMonad.Layout.GridVariants (Grid(Grid))
 import XMonad.Layout.SimplestFloat
-import XMonad.Layout.Spacing
 import XMonad.Layout.Spiral
-import XMonad.Layout.SubLayouts
+import XMonad.Layout.ResizableTile
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
-import XMonad.Layout.ToggleLayouts qualified as T (ToggleLayout (Toggle), toggleLayouts)
-import XMonad.Layout.WindowArranger (WindowArrangerMsg (..), windowArrange)
+
+    -- Layouts modifiers
+import XMonad.Layout.LayoutModifier
+import XMonad.Layout.LimitWindows (limitWindows, increaseLimit, decreaseLimit)
+import XMonad.Layout.MultiToggle (mkToggle, single, EOT(EOT), (??))
+import XMonad.Layout.MultiToggle.Instances (StdTransformers(NBFULL, MIRROR, NOBORDERS))
+import XMonad.Layout.NoBorders
+import XMonad.Layout.Renamed
+import XMonad.Layout.ShowWName
+import XMonad.Layout.Simplest
+import XMonad.Layout.Spacing
+import XMonad.Layout.SubLayouts
+import XMonad.Layout.WindowArranger (windowArrange, WindowArrangerMsg(..))
 import XMonad.Layout.WindowNavigation
-import XMonad.StackSet qualified as W
+import qualified XMonad.Layout.ToggleLayouts as T (toggleLayouts, ToggleLayout(Toggle))
+import qualified XMonad.Layout.MultiToggle as MT (Toggle(..))
+
+   -- Utilities
 import XMonad.Util.Dmenu
 import XMonad.Util.EZConfig (additionalKeysP, mkNamedKeymap)
+import XMonad.Util.Hacks (windowedFullscreenFixEventHook, javaHack, trayerAboveXmobarEventHook, trayAbovePanelEventHook, trayerPaddingXmobarEventHook, trayPaddingXmobarEventHook, trayPaddingEventHook)
 import XMonad.Util.NamedActions
 import XMonad.Util.NamedScratchpad
+import XMonad.Util.NamedWindows (getName)
 import XMonad.Util.Run (runProcessWithInput, safeSpawn, spawnPipe)
 import XMonad.Util.SpawnOnce
+
+  -- Colors
+import Colors.DoomOne
 
 myFont :: String
 myFont = "xft:SauceCodePro Nerd Font Mono:regular:size=9:antialias=true:hinting=true"
@@ -135,7 +154,7 @@ myStartupHook = do
   spawn myWallpaperScript -- Set wallpaper
   spawnOnce "picom -b --config ~/.config/picom/picom.conf &" -- Compositor
   spawnOnce "synology-drive &" -- Synology Drive
-  spawnOnce "setxkbmap -option caps:swapescape" -- Swap Escape and CapsLock keys
+  spawnOnce "setxkbmap -option caps:escape" -- Swap Escape and CapsLock keys
   -- spawn "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
   -- spawnOnce "urxvtd -q -o -f &"               -- urxvt daemon for better performance
   -- spawnOnce "nm-applet &"                     -- NetworkManager in tray
@@ -705,14 +724,15 @@ main = do
       ewmh $
         docks $
           def
-            { manageHook = myManageHook <+> manageDocks,
+            { manageHook = myManageHook <+> manageDocks
               -- , handleEventHook    = docks
               -- Uncomment this line to enable fullscreen support on things like YouTube/Netflix.
               -- This works perfect on SINGLE monitor systems. On multi-monitor systems,
               -- it adds a border around the window if screen does not have focus. So, my solution
               -- is to use a keybinding to toggle fullscreen noborders instead.  (M-<Space>)
               -- <+> fullscreenEventHook
-              modMask = myModMask,
+              , handleEventHook    = windowedFullscreenFixEventHook <> swallowEventHook (className =? "Alacritty"  <||> className =? "st-256color" <||> className =? "XTerm") (return True) <> trayerPaddingXmobarEventHook
+              , modMask = myModMask,
               terminal = myTerminal,
               startupHook = myStartupHook,
               layoutHook = showWName' myShowWNameTheme myLayoutHook,

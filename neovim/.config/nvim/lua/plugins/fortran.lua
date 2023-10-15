@@ -1,16 +1,12 @@
 return {
-    -- add rust to treesitter
     {
         "nvim-treesitter/nvim-treesitter",
         opts = function(_, opts)
             table.insert(opts.ensure_installed, "fortran")
         end,
     },
-
-    -- correctly setup lspconfig for Rust 🚀
     {
         "neovim/nvim-lspconfig",
-        dependencies = { "simrat39/rust-tools.nvim" },
         ---@class PluginLspOpts
         opts = {
             ---@type lspconfig.options

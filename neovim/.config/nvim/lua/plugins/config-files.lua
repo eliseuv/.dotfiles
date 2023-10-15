@@ -1,11 +1,5 @@
 return {
 
-    -- -- LaTeX
-    -- {
-    --     "lervag/vimtex",
-    --     ft = "latex",
-    -- },
-
     -- Tridactyl config file syntax
     { "tridactyl/vim-tridactyl" },
 

@@ -1,13 +1,10 @@
 return {
-    -- Add Julia to Treesitter
     {
         "nvim-treesitter/nvim-treesitter",
         opts = function(_, opts)
             table.insert(opts.ensure_installed, "julia")
         end,
     },
-
-    -- Rust LSP config
     {
         "neovim/nvim-lspconfig",
         dependencies = { "JuliaEditorSupport/julia-vim" },

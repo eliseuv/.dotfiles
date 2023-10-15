@@ -51,7 +51,7 @@ bindurl ^https://duckduckgo.com f hint -Jc [data-testid="result-title-a"]
 bindurl ^https://duckduckgo.com F hint -Jbc [data-testid="result-title-a"]
 
 " Search engine
-set searchengine ddg
+set searchengine s
 " set searchurls.s https://search.rhscz.eu/search?q=%s&categories=general&language=en-US
 " set searchurls.s https://searxng.nicfab.eu/searxng/search?q=%s&categories=general&language=en-US
 set searchurls.s https://searx.be/search?q=%s
@@ -66,7 +66,8 @@ set searchurls.anna https://annas-archive.org/search?q=%s
 set searchurls.lib http://libgen.rs/search.php?req=%s
 set searchurls.sci https://sci-hub.se/%s
 set searchurls.wp https://www.wikiwand.com/en/%s?fullSearch=true
-set searchurls.r https://r.nf/search?q=%s
+" set searchurls.r https://r.nf/search?q=%s
+set searchurls.r https://old.reddit.com/search?q=%s
 set searchurls.kym https://knowyourmeme.com/search?q=%s
 set searchurls.t https://nitter.net/search?q=%s
 set searchurls.b https://www.bing.com/search?q=%s
