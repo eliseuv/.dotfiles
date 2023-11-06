@@ -1,8 +1,8 @@
 # Download Znap, if it's not there yet.
-[[ -r ~/.repos/zsh-repos/znap/znap.zsh ]] ||
+[[ -r ~/.znap/znap/znap.zsh ]] ||
     git clone --depth 1 -- \
-        https://github.com/marlonrichert/zsh-snap.git ~/.repos/zsh-repos/znap
-source ~/.repos/zsh-repos/znap/znap.zsh  # Start Znap
+        https://github.com/marlonrichert/zsh-snap.git ~/.znap/znap
+source ~/.znap/znap/znap.zsh  # Start Znap
 
 # Startup command
 neofetch

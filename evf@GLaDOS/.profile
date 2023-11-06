@@ -44,11 +44,21 @@ function pathprepend {
 	done
 }
 
+# Append to MANPATH if not already there
+function manpathappend {
+	for ARG in "$@"; do
+		if [ -d "$ARG" ] && [[ ":$MANPATH:" != *":$ARG:"* ]]; then
+			MANPATH="${MANPATH:+"$MANPATH:"}$ARG"
+		fi
+	done
+}
+
 # System binaries
 pathappend /bin /usr/bin /usr/local/bin /usr/local/sbin
 
 # Custom scripts
 pathprepend ~/.local/bin
+pathprepend ~/bin
 
 # CUDA
 #pathappend /opt/cuda/bin /opt/cuda/nsight_compute /opt/cuda/nsight_systems/bin
@@ -61,6 +71,9 @@ pathappend ~/.local/share/gem/ruby/3.0.0/bin
 
 # DOOM Emacs
 pathappend ~/.config/emacs-doom/bin
+
+# Local man
+manpathappend ~/.local/share/man
 
 ############
 # ENV VARS #
@@ -189,6 +202,9 @@ alias b='bat'
 alias v='nvim'
 alias vr='nvim -R'
 # alias lvimupdate='lvim +LvimUpdate +q'
+
+# Kakoune
+alias k='kak'
 
 # Helix
 alias hx='helix'

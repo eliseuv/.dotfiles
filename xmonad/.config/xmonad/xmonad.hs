@@ -112,6 +112,9 @@ myEditor = myEmacs -- Sets emacs as editor
 myFileManager :: String
 myFileManager = "pcmanfm"
 
+myVideoPlayer :: String
+myVideoPlayer = "mpv"
+
 -- myFileManager = "nautilus"
 
 myBorderWidth :: Dimension
@@ -589,7 +592,8 @@ myKeys c =
             ("M-S-e", addName "Launch Emacs" $ spawn myEmacs),
             ("M-S-v", addName "Launch vim" $ spawn myVim),
             ("M-S-b", addName "Launch web browser" $ spawn myBrowser),
-            ("M-S-f", addName "Launch file manager" $ spawn myFileManager)
+            ("M-S-f", addName "Launch file manager" $ spawn myFileManager),
+            ("M-S-p", addName "Launch video player" $ spawn myVideoPlayer)
           ]
         ^++^ subKeys
           "Shell commands"
@@ -703,7 +707,7 @@ myKeys c =
             ("<Print>", addName "Take screenshot (dmscripts)" $ spawn "dm-maim"),
             ("M-S--", addName "Lower vol" $ spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%"),
             ("M-S-=", addName "Raise vol" $ spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%"),
-            ("M-S-0", addName "Toggle audio mute" $ spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
+            ("M-S-\\", addName "Toggle audio mute" $ spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
           ]
   where
     -- The following lines are needed for named scratchpads.

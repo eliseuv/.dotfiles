@@ -171,11 +171,11 @@ These modules are sorted in categories.
 
 #+name: doom-completion
 #+begin_src emacs-lisp
-(company +childframe)           ; the ultimate code completion backend
+(company +childframe +icons)           ; the ultimate code completion backend
 ;;helm              ; the *other* search engine for love and life
 ;;ido               ; the other *other* search engine...
 ;;ivy               ; a search engine for love and life
-(vertico +icons +childframe)    ; the search engine of the future
+(vertico +childframe +icons)    ; the search engine of the future
 #+end_src
 
 
@@ -191,19 +191,19 @@ doom-quit         ; DOOM quit-message prompts when you quit Emacs
 hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
 ;;hydra
 ;;indent-guides     ; highlighted indent columns
-(ligatures +fira +extra)        ; ligatures and symbols to make your code pretty again
+(ligatures +extra)        ; ligatures and symbols to make your code pretty again
 ;;minimap           ; show a map of the code on the side
 modeline          ; snazzy, Atom-inspired modeline, plus API
 ;;nav-flash         ; blink cursor line after big motions
 ;;neotree           ; a project drawer, like NERDTree for vim
 ophints           ; highlight the region an operation acts on
-(popup +defaults +all)   ; tame sudden yet inevitable temporary windows
+(popup +defaults)   ; tame sudden yet inevitable temporary windows
 ;;tabs              ; a tab bar for Emacs
 (treemacs +lsp)          ; a project drawer, like neotree but cooler
 unicode           ; extended unicode support for various languages
 (vc-gutter +diff-hl +pretty)         ; vcs diff in the fringe
 vi-tilde-fringe   ; fringe tildes to mark beyond EOB
-(window-select +numbers)     ; visually switch windows
+(window-select +numbers +switch-window)     ; visually switch windows
 workspaces        ; tab emulation, persistence & separate workspaces
 ;;zen               ; distraction-free coding or writing
 #+end_src
@@ -255,8 +255,8 @@ vterm             ; the best terminal emulation in Emacs
 
 #+name: doom-checkers
 #+begin_src emacs-lisp
-syntax              ; tasing you for every semicolon you forget
-(spell +aspell +flyspell +everywhere) ; tasing you for misspelling mispelling
+(syntax +childframe)              ; tasing you for every semicolon you forget
+(spell +hunspell +everywhere +flyspell) ; tasing you for misspelling mispelling
 grammar           ; tasing grammar mistake every you make
 #+end_src
 
@@ -267,11 +267,12 @@ grammar           ; tasing grammar mistake every you make
 #+begin_src emacs-lisp
 ;;ansible
 biblio              ; Writes a PhD for you (citation needed)
-;;debugger          ; FIXME stepping through code, to help you add bugs
+;;collab            ; buffers with friends
+(debugger +lsp)          ; FIXME stepping through code, to help you add bugs
 ;;direnv
 ;;docker
 ;;editorconfig      ; let someone else argue about tabs vs spaces
-ein               ; tame Jupyter notebooks with emacs
+;;ein               ; tame Jupyter notebooks with emacs
 (eval +overlay)     ; run code, run (also, repls)
 ;;gist              ; interacting with github gists
 (lookup             ; navigate your code and its documentation
@@ -282,10 +283,10 @@ make              ; run make tasks from Emacs
 (pass +auth)        ; password manager for nerds
 pdf               ; pdf enhancements
 ;;prodigy           ; FIXME managing external services & code builders
-rgb                 ; creating color strings
+;;rgb                 ; creating color strings
 ;;taskrunner        ; taskrunner for all your projects
 ;;terraform         ; infrastructure as code
-;;tmux              ; an API for interacting with tmux
+tmux              ; an API for interacting with tmux
 tree-sitter         ; syntax and parsing, sitting in a tree...
 upload              ; map local to remote projects via ssh/ftp
 #+end_src
@@ -326,7 +327,7 @@ emacs-lisp        ; drown in parentheses
 ;;fsharp            ; ML stands for Microsoft's Language
 ;;fstar             ; (dependent) types and (monadic) effects and Z3
 ;;gdscript          ; the language you waited for
-;;(go +lsp)         ; the hipster dialect
+;;(go +lsp +tree-sitter)         ; the hipster dialect
 ;;(graphql +lsp)    ; Give queries a REST
 (haskell +lsp +tree-sitter)  ; a language that's lazier than I am
 ;;hy                ; readability of scheme w/ speed of python
@@ -348,6 +349,7 @@ markdown          ; writing docs for people to ignore
  ;;+brain               ; org-brain integration
  ;;+contacts            ; org-contacts integration
  +dragndrop             ; drag & drop files/images into org buffers
+ +crypt                 ; encryption and decryption on org files
  +gnuplot               ; who doesn't like pretty pictures
  ;;+hugo                ; use Emacs for hugo blogging
  ;;+journal             ; org-journal integration
@@ -362,7 +364,7 @@ markdown          ; writing docs for people to ignore
 ;;php               ; perl's insecure younger brother
 ;;plantuml          ; diagrams for confusing people more
 ;;purescript        ; javascript, but functional
-(python +conda +lsp +pyright +tree-sitter)            ; beautiful is better than ugly
+(python +conda +cython +lsp +pyright +tree-sitter)            ; beautiful is better than ugly
 ;;qt                ; the 'cutest' gui framework ever
 ;;(racket +lsp +xp)            ; a DSL for DSLs
 ;;raku              ; the artist formerly known as perl6
@@ -379,7 +381,7 @@ markdown          ; writing docs for people to ignore
 ;;terra             ; Earth and Moon in alignment for performance.
 (web +lsp +tree-sitter)               ; the tubes
 (yaml +lsp +tree-sitter)              ; JSON, but readable
-;;zig               ; C, but simpler
+;;(zig +lsp +tree-sitter)               ; C, but simpler
 #+end_src
 
 
@@ -695,6 +697,9 @@ Nested snippets are good, so let's enable that.
   (lsp-eldoc-render-all t)
   (lsp-idle-delay 0.3)
   (lsp-log-io t)
+  (lsp-inlay-hint-enable t)
+  (lsp-auto-guess-root nil)
+  (lsp-inlay-hints-mode t)
   :config
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 #+end_src
@@ -1079,6 +1084,8 @@ Use =elfeed= to read RSS feeds.
 :CUSTOM_ID: org
 :END:
 
+This config for =org-mode= is taken from [[https://tecosaur.github.io/emacs-config/config.html#org][Tecosaur's config]].
+
 #+begin_src emacs-lisp :tangle packages.el
 (unpin! org) ; there be bugs
 (package! org-contrib
@@ -1103,6 +1110,156 @@ Location of files:
 ;;(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 ;; Default folding
 (setq org-startup-folded 'content)
+#+end_src
+
+
+*** Visuals
+
+
+**** Org Modern
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! org-modern :pin "7d037569bc4a05f40262ea110c4cda05c69b5c52")
+#+end_src
+
+...with a touch of configuration...
+
+#+begin_src emacs-lisp :tangle no
+(use-package! org-modern
+  :hook (org-mode . org-modern-mode)
+  :config
+  (setq org-modern-star '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
+        org-modern-table-vertical 1
+        org-modern-table-horizontal 0.2
+        org-modern-list '((43 . "➤")
+                          (45 . "–")
+                          (42 . "•"))
+        org-modern-todo-faces
+        '(("TODO" :inverse-video t :inherit org-todo)
+          ("PROJ" :inverse-video t :inherit +org-todo-project)
+          ("STRT" :inverse-video t :inherit +org-todo-active)
+          ("[-]"  :inverse-video t :inherit +org-todo-active)
+          ("HOLD" :inverse-video t :inherit +org-todo-onhold)
+          ("WAIT" :inverse-video t :inherit +org-todo-onhold)
+          ("[?]"  :inverse-video t :inherit +org-todo-onhold)
+          ("KILL" :inverse-video t :inherit +org-todo-cancel)
+          ("NO"   :inverse-video t :inherit +org-todo-cancel))
+        org-modern-footnote
+        (cons nil (cadr org-script-display))
+        org-modern-block-fringe nil
+        org-modern-block-name
+        '((t . t)
+          ("src" "»" "«")
+          ("example" "»–" "–«")
+          ("quote" "❝" "❞")
+          ("export" "⏩" "⏪"))
+        org-modern-progress nil
+        org-modern-priority nil
+        org-modern-horizontal-rule (make-string 36 ?─)
+        org-modern-keyword
+        '((t . t)
+          ("title" . "𝙏")
+          ("subtitle" . "𝙩")
+          ("author" . "𝘼")
+          ("email" . #("" 0 1 (display (raise -0.14))))
+          ("date" . "𝘿")
+          ("property" . "☸")
+          ("options" . "⌥")
+          ("startup" . "⏻")
+          ("macro" . "𝓜")
+          ("bind" . #("" 0 1 (display (raise -0.1))))
+          ("bibliography" . "")
+          ("print_bibliography" . #("" 0 1 (display (raise -0.1))))
+          ("cite_export" . "⮭")
+          ("print_glossary" . #("ᴬᶻ" 0 1 (display (raise -0.1))))
+          ("glossary_sources" . #("" 0 1 (display (raise -0.14))))
+          ("include" . "⇤")
+          ("setupfile" . "⇚")
+          ("html_head" . "🅷")
+          ("html" . "🅗")
+          ("latex_class" . "🄻")
+          ("latex_class_options" . #("🄻" 1 2 (display (raise -0.14))))
+          ("latex_header" . "🅻")
+          ("latex_header_extra" . "🅻⁺")
+          ("latex" . "🅛")
+          ("beamer_theme" . "🄱")
+          ("beamer_color_theme" . #("🄱" 1 2 (display (raise -0.12))))
+          ("beamer_font_theme" . "🄱𝐀")
+          ("beamer_header" . "🅱")
+          ("beamer" . "🅑")
+          ("attr_latex" . "🄛")
+          ("attr_html" . "🄗")
+          ("attr_org" . "⒪")
+          ("call" . #("" 0 1 (display (raise -0.15))))
+          ("name" . "⁍")
+          ("header" . "›")
+          ("caption" . "☰")
+          ("results" . "🠶")))
+  (custom-set-faces! '(org-modern-statistics :inherit org-checkbox-statistics-todo)))
+#+end_src
+
+Since =org-modern='s tag face supplants Org's tag face, we need to adjust the
+spell-check face ignore list
+
+#+begin_src emacs-lisp
+(after! spell-fu
+  (cl-pushnew 'org-modern-tag (alist-get 'org-mode +spell-excluded-faces-alist)))
+#+end_src
+
+
+**** Symbols
+
+It's also nice to change the character used for collapsed items (by default ~…~),
+I think ~▾~ is better for indicating 'collapsed section'.
+and add an extra ~org-bullet~ to the default list of four.
+
+#+begin_src emacs-lisp
+(setq org-ellipsis " ▾ "
+      org-hide-leading-stars t
+      org-priority-highest ?A
+      org-priority-lowest ?E
+      org-priority-faces
+      '((?A . 'all-the-icons-red)
+        (?B . 'all-the-icons-orange)
+        (?C . 'all-the-icons-yellow)
+        (?D . 'all-the-icons-green)
+        (?E . 'all-the-icons-blue)))
+#+end_src
+
+It's also nice to make use of the =prettify-symbols-mode= for a few Org syntactic
+tokens which we'd like to prettify that aren't covered by =org-modern= or any
+other settings.
+
+#+begin_src emacs-lisp
+(appendq! +ligatures-extra-symbols
+          `(:list_property "∷"
+            :em_dash       "—"
+            :ellipses      "…"
+            :arrow_right   "→"
+            :arrow_left    "←"
+            :arrow_lr      "⟷"
+            :properties    "⚙"
+            :end           "∎"
+            :priority_a   ,(propertize "⚑" 'face 'all-the-icons-red)
+            :priority_b   ,(propertize "⬆" 'face 'all-the-icons-orange)
+            :priority_c   ,(propertize "■" 'face 'all-the-icons-yellow)
+            :priority_d   ,(propertize "⬇" 'face 'all-the-icons-green)
+            :priority_e   ,(propertize "❓" 'face 'all-the-icons-blue)))
+(set-ligatures! 'org-mode
+  :merge t
+  :list_property "::"
+  :em_dash       "---"
+  :ellipsis      "..."
+  :arrow_right   "->"
+  :arrow_left    "<-"
+  :arrow_lr      "<->"
+  :properties    ":PROPERTIES:"
+  :end           ":END:"
+  :priority_a    "[#A]"
+  :priority_b    "[#B]"
+  :priority_c    "[#C]"
+  :priority_d    "[#D]"
+  :priority_e    "[#E]")
 #+end_src
 
 
@@ -1328,156 +1485,6 @@ Now, by default, =LSP=s don't really function at all in ~src~ blocks.
   '("julia" "python" "ipython" "bash" "sh"))
 (dolist (lang org-babel-lang-list)
   (eval `(lsp-org-babel-enable ,lang)))
-#+end_src
-
-
-*** Visuals
-
-
-**** Org Modern
-
-#+begin_src emacs-lisp :tangle packages.el
-(package! org-modern :pin "537e6b75e38bc0eff083c390c257098c9fc9ab49")
-#+end_src
-
-...with a touch of configuration...
-
-#+begin_src emacs-lisp :tangle no
-(use-package! org-modern
-  :hook (org-mode . org-modern-mode)
-  :config
-  (setq org-modern-star '("◉" "○" "✸" "✿" "✤" "✜" "◆" "▶")
-        org-modern-table-vertical 1
-        org-modern-table-horizontal 0.2
-        org-modern-list '((43 . "➤")
-                          (45 . "–")
-                          (42 . "•"))
-        org-modern-todo-faces
-        '(("TODO" :inverse-video t :inherit org-todo)
-          ("PROJ" :inverse-video t :inherit +org-todo-project)
-          ("STRT" :inverse-video t :inherit +org-todo-active)
-          ("[-]"  :inverse-video t :inherit +org-todo-active)
-          ("HOLD" :inverse-video t :inherit +org-todo-onhold)
-          ("WAIT" :inverse-video t :inherit +org-todo-onhold)
-          ("[?]"  :inverse-video t :inherit +org-todo-onhold)
-          ("KILL" :inverse-video t :inherit +org-todo-cancel)
-          ("NO"   :inverse-video t :inherit +org-todo-cancel))
-        org-modern-footnote
-        (cons nil (cadr org-script-display))
-        org-modern-block-fringe nil
-        org-modern-block-name
-        '((t . t)
-          ("src" "»" "«")
-          ("example" "»–" "–«")
-          ("quote" "❝" "❞")
-          ("export" "⏩" "⏪"))
-        org-modern-progress nil
-        org-modern-priority nil
-        org-modern-horizontal-rule (make-string 36 ?─)
-        org-modern-keyword
-        '((t . t)
-          ("title" . "𝙏")
-          ("subtitle" . "𝙩")
-          ("author" . "𝘼")
-          ("email" . #("" 0 1 (display (raise -0.14))))
-          ("date" . "𝘿")
-          ("property" . "☸")
-          ("options" . "⌥")
-          ("startup" . "⏻")
-          ("macro" . "𝓜")
-          ("bind" . #("" 0 1 (display (raise -0.1))))
-          ("bibliography" . "")
-          ("print_bibliography" . #("" 0 1 (display (raise -0.1))))
-          ("cite_export" . "⮭")
-          ("print_glossary" . #("ᴬᶻ" 0 1 (display (raise -0.1))))
-          ("glossary_sources" . #("" 0 1 (display (raise -0.14))))
-          ("include" . "⇤")
-          ("setupfile" . "⇚")
-          ("html_head" . "🅷")
-          ("html" . "🅗")
-          ("latex_class" . "🄻")
-          ("latex_class_options" . #("🄻" 1 2 (display (raise -0.14))))
-          ("latex_header" . "🅻")
-          ("latex_header_extra" . "🅻⁺")
-          ("latex" . "🅛")
-          ("beamer_theme" . "🄱")
-          ("beamer_color_theme" . #("🄱" 1 2 (display (raise -0.12))))
-          ("beamer_font_theme" . "🄱𝐀")
-          ("beamer_header" . "🅱")
-          ("beamer" . "🅑")
-          ("attr_latex" . "🄛")
-          ("attr_html" . "🄗")
-          ("attr_org" . "⒪")
-          ("call" . #("" 0 1 (display (raise -0.15))))
-          ("name" . "⁍")
-          ("header" . "›")
-          ("caption" . "☰")
-          ("RESULTS" . "🠶")))
-  (custom-set-faces! '(org-modern-statistics :inherit org-checkbox-statistics-todo)))
-#+end_src
-
-Since =org-modern='s tag face supplants Org's tag face, we need to adjust the
-spell-check face ignore list
-
-#+begin_src emacs-lisp
-(after! spell-fu
-  (cl-pushnew 'org-modern-tag (alist-get 'org-mode +spell-excluded-faces-alist)))
-#+end_src
-
-
-**** Symbols
-
-It's also nice to change the character used for collapsed items (by default ~…~),
-I think ~▾~ is better for indicating 'collapsed section'.
-and add an extra ~org-bullet~ to the default list of four.
-
-#+begin_src emacs-lisp
-(setq org-ellipsis " ▾ "
-      org-hide-leading-stars t
-      org-priority-highest ?A
-      org-priority-lowest ?E
-      org-priority-faces
-      '((?A . 'all-the-icons-red)
-        (?B . 'all-the-icons-orange)
-        (?C . 'all-the-icons-yellow)
-        (?D . 'all-the-icons-green)
-        (?E . 'all-the-icons-blue)))
-#+end_src
-
-It's also nice to make use of the =prettify-symbols-mode= for a few Org syntactic
-tokens which we'd like to prettify that aren't covered by =org-modern= or any
-other settings.
-
-#+begin_src emacs-lisp
-(appendq! +ligatures-extra-symbols
-          `(:list_property "∷"
-            :em_dash       "—"
-            :ellipses      "…"
-            :arrow_right   "→"
-            :arrow_left    "←"
-            :arrow_lr      "⟷"
-            :properties    "⚙"
-            :end           "∎"
-            :priority_a   ,(propertize "⚑" 'face 'all-the-icons-red)
-            :priority_b   ,(propertize "⬆" 'face 'all-the-icons-orange)
-            :priority_c   ,(propertize "■" 'face 'all-the-icons-yellow)
-            :priority_d   ,(propertize "⬇" 'face 'all-the-icons-green)
-            :priority_e   ,(propertize "❓" 'face 'all-the-icons-blue)))
-(set-ligatures! 'org-mode
-  :merge t
-  :list_property "::"
-  :em_dash       "---"
-  :ellipsis      "..."
-  :arrow_right   "->"
-  :arrow_left    "<-"
-  :arrow_lr      "<->"
-  :properties    ":PROPERTIES:"
-  :end           ":END:"
-  :priority_a    "[#A]"
-  :priority_b    "[#B]"
-  :priority_c    "[#C]"
-  :priority_d    "[#D]"
-  :priority_e    "[#E]")
 #+end_src
 
 

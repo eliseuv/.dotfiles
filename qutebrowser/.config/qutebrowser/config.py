@@ -351,9 +351,10 @@ c.content.blocking.hosts.lists = ['https://raw.githubusercontent.com/StevenBlack
 c.content.blocking.hosts.block_subdomains = True
 
 # Enable dark mode
-c.colors.webpage.preferred_color_scheme = 'dark'
 c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.preferred_color_scheme = 'dark'
 c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
+c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.darkmode.policy.images = 'never'
 c.colors.webpage.darkmode.policy.page = 'smart'
 
