@@ -5,9 +5,7 @@
 
 This is my first attempt on an Emacs literate configuration, mostly based on [[https://tecosaur.github.io/emacs-config/config.html][Tecosaur's config]].
 
-
 * Basic configuration
-
 
 ** Lexical binding
 
@@ -17,14 +15,12 @@ This is my first attempt on an Emacs literate configuration, mostly based on [[h
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 #+end_src
 
-
 ** User info
 
 #+begin_src emacs-lisp
 (setq user-full-name "evf"
       user-mail-address "eliseuv816@gmail.com")
 #+end_src
-
 
 ** Better defaults
 
@@ -59,7 +55,6 @@ Make popups open on the right:
     ("^\\*doom:" :size 0.3 :select t :modeline t :quit t :ttl t :side right)))
 #+end_src
 
-
 *** Auto customization
 
 Add modifications made using the customization to a separate =custom.el= file and load it if it exists.
@@ -69,7 +64,6 @@ Add modifications made using the customization to a separate =custom.el= file an
 (when (file-exists-p custom-file)
   (load custom-file))
 #+end_src
-
 
 *** Windows
 
@@ -88,7 +82,6 @@ Ask which buffer (with preview) to open when the new window is created form the 
   (consult-buffer))
 #+end_src
 
-
 *** Default buffer
 
 Use =org-mode= as default major mode in new buffers:
@@ -97,9 +90,7 @@ Use =org-mode= as default major mode in new buffers:
 (setq-default major-mode 'org-mode)
 #+end_src
 
-
 * DOOM configuration
-
 
 ** Modules
 :PROPERTIES:
@@ -155,7 +146,6 @@ These modules are sorted in categories.
        )
 #+end_src
 
-
 *** Input
 
 #+name: doom-input
@@ -165,7 +155,6 @@ These modules are sorted in categories.
 ;;japanese
 ;;layout            ; auie,ctsrnm is the superior home row
 #+end_src
-
 
 *** Completion
 
@@ -177,7 +166,6 @@ These modules are sorted in categories.
 ;;ivy               ; a search engine for love and life
 (vertico +childframe +icons)    ; the search engine of the future
 #+end_src
-
 
 *** UI
 
@@ -208,7 +196,6 @@ workspaces        ; tab emulation, persistence & separate workspaces
 ;;zen               ; distraction-free coding or writing
 #+end_src
 
-
 *** Editor
 
 #+name: doom-editor
@@ -227,7 +214,6 @@ snippets          ; my elves. They type so I don't have to
 ;;word-wrap         ; soft wrapping with language-aware indent
 #+end_src
 
-
 *** Emacs
 
 #+name: doom-emacs
@@ -239,7 +225,6 @@ electric          ; smarter, keyword-based electric-indent
 vc                ; version-control and Emacs, sitting in a tree
 #+end_src
 
-
 *** Terminal
 
 #+name: doom-term
@@ -250,7 +235,6 @@ vc                ; version-control and Emacs, sitting in a tree
 vterm             ; the best terminal emulation in Emacs
 #+end_src
 
-
 *** Checkers
 
 #+name: doom-checkers
@@ -259,7 +243,6 @@ vterm             ; the best terminal emulation in Emacs
 (spell +hunspell +everywhere +flyspell) ; tasing you for misspelling mispelling
 grammar           ; tasing grammar mistake every you make
 #+end_src
-
 
 *** Tools
 
@@ -291,7 +274,6 @@ tree-sitter         ; syntax and parsing, sitting in a tree...
 upload              ; map local to remote projects via ssh/ftp
 #+end_src
 
-
 *** OS
 
 #+name: doom-os
@@ -299,7 +281,6 @@ upload              ; map local to remote projects via ssh/ftp
 (:if IS-MAC macos)  ; improve compatibility with macOS
 ;;tty               ; improve the terminal Emacs experience
 #+end_src
-
 
 *** Languages
 
@@ -384,7 +365,6 @@ markdown          ; writing docs for people to ignore
 ;;(zig +lsp +tree-sitter)               ; C, but simpler
 #+end_src
 
-
 *** Email
 
 #+name: doom-email
@@ -393,7 +373,6 @@ markdown          ; writing docs for people to ignore
 ;;notmuch
 ;;(wanderlust +gmail)
 #+end_src
-
 
 *** Applications
 
@@ -407,7 +386,6 @@ markdown          ; writing docs for people to ignore
 ;;twitter           ; twitter client https://twitter.com/vnought
 #+end_src
 
-
 *** Config
 
 Enable literate configuration file and DOOM defaults.
@@ -418,9 +396,7 @@ literate
 (default +bindings +smartparens)
 #+end_src
 
-
 ** Visual settings
-
 
 *** Fonts
 
@@ -480,7 +456,6 @@ Change certain keywords to symbols, such as lambda (\lambda):
 (setq global-prettify-symbols-mode t)
 #+end_src
 
-
 *** Theme
 
 My favorite themes:
@@ -499,7 +474,6 @@ Allow bold and italic text:
       doom-themes-enable-italic t)
 #+end_src
 
-
 *** Modeline
 
 Hide encoding if it is the default =LF UTF-8=:
@@ -516,7 +490,6 @@ Hide encoding if it is the default =LF UTF-8=:
 (add-hook 'after-change-major-mode-hook #'doom-modeline-conditional-buffer-encoding)
 #+end_src
 
-
 *** Line numbers
 
 If set to ~t~, line numbers are enabled.
@@ -527,14 +500,12 @@ For relative line numbers, set this to ~relative~.
 (setq display-line-numbers-type 'relative)
 #+end_src
 
-
 *** Default buffer names
 
 #+begin_src emacs-lisp
 (setq doom-fallback-buffer-name "► Doom"
       +doom-dashboard-name "► Doom")
 #+end_src
-
 
 ** Set info directories
 
@@ -543,7 +514,6 @@ Info files:
 #+begin_src emacs-lisp
 (add-to-list 'Info-directory-list "~/.config/doom/info")
 #+end_src
-
 
 ** Allow babel execution in CLI actions
 
@@ -560,7 +530,6 @@ Here we can enable =Org Babel= evaluation.
 (advice-add 'org-babel-execute-src-block :around #'doom-shut-up-a)
 #+end_src
 
-
 * Packages
 :PROPERTIES:
 :header-args:emacs-lisp: :tangle no
@@ -573,9 +542,7 @@ This file shouldn't be byte compiled.
 ;; -*- no-byte-compile: t; -*-
 #+end_src
 
-
 ** Convenience
-
 
 *** Which key
 
@@ -597,9 +564,7 @@ Remove the redundant =evil-= in front of the commands.
    ))
 #+end_src
 
-
 ** Tools
-
 
 *** EVIL
 
@@ -621,7 +586,6 @@ Prevent the installation of the package the escape EVIL mode:
 #+begin_src emacs-lisp :tangle packages.el
 (package! evil-escape :disable t)
 #+end_src
-
 
 *** Company
 
@@ -646,7 +610,6 @@ Remember more from history:
 (setq-default prescient-history-length 1000)
 #+end_src
 
-
 *** Projectile
 
 #+begin_quote
@@ -656,7 +619,8 @@ From the =:core packages= module.
 Prevent projectile from adding directories simply by looking at documentation:
 
 #+begin_src emacs-lisp
-(setq projectile-ignored-projects '("~/" "/tmp" "~/.config/emacs-doom/.local/straight/repos/"))
+(setq projectile-ignored-projects
+      (list "~/" "/tmp" (expand-file-name "straight/repos" doom-local-dir)))
 (defun projectile-ignored-project-function (filepath)
   "Return t if FILEPATH is within any of `projectile-ignored-projects'"
   (or (mapcar (lambda (p) (s-starts-with-p p filepath)) projectile-ignored-projects)))
@@ -667,7 +631,6 @@ Where to look for projects:
 #+begin_src emacs-lisp
 (setq projectile-project-search-path '("~/programs"))
 #+end_src
-
 
 *** YASnippet
 
@@ -680,7 +643,6 @@ Nested snippets are good, so let's enable that.
 #+begin_src emacs-lisp
 (setq yas-triggers-in-field t)
 #+end_src
-
 
 *** LSP
 
@@ -699,7 +661,6 @@ Nested snippets are good, so let's enable that.
   (lsp-log-io t)
   (lsp-inlay-hint-enable t)
   (lsp-auto-guess-root nil)
-  (lsp-inlay-hints-mode t)
   :config
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 #+end_src
@@ -722,14 +683,12 @@ Nested snippets are good, so let's enable that.
 #+end_src
 
 
-
 *** Flycheck
 
 #+begin_src emacs-lisp
 (setq flycheck-check-syntax-automatically '(save idle-change new-line mode-enabled)
       flycheck-idle-change-delay 0.2)
 #+end_src
-
 
 *** vterm
 
@@ -741,16 +700,14 @@ Make open on the right:
 #+end_src
 
 
-
 ** Visuals
-
 
 *** Info colors
 
 This makes manual pages nicer to look at:
 
 #+begin_src emacs-lisp :tangle packages.el
-(package! info-colors :pin "47ee73cc19b1049eef32c9f3e264ea7ef2aaf8a5")
+(package! info-colors :pin "2e237c301ba62f0e0286a27c1abe48c4c8441143")
 #+end_src
 
 To use this we'll just hook it into =Info=.
@@ -761,7 +718,6 @@ To use this we'll just hook it into =Info=.
 
 (add-hook 'Info-selection-hook 'info-colors-fontify-node)
 #+end_src
-
 
 *** Treemacs
 
@@ -826,9 +782,7 @@ Extensions to be ignored:
         "*/_region_.tex"))
 #+end_src
 
-
 ** File types
-
 
 *** Systemd
 
@@ -843,9 +797,7 @@ For editing systemd unit files:
   :defer t)
 #+end_src
 
-
 * Applications
-
 
 ** Newsfeed
 
@@ -854,7 +806,6 @@ From the =:app rss= module.
 #+end_quote
 
 Use =elfeed= to read RSS feeds.
-
 
 *** Keybindings
 
@@ -893,7 +844,6 @@ Use =elfeed= to read RSS feeds.
       :nm "y" #'elfeed-show-yank)
 #+end_src
 
-
 *** Usability enhancements
 
 #+begin_src emacs-lisp
@@ -906,7 +856,6 @@ Use =elfeed= to read RSS feeds.
   (push 'elfeed-show-mode   evil-snipe-disabled-modes)
   (push 'elfeed-search-mode evil-snipe-disabled-modes))
 #+end_src
-
 
 *** Visual enhancements
 
@@ -1026,7 +975,6 @@ Use =elfeed= to read RSS feeds.
   )
 #+end_src
 
-
 *** Functionality enhancements
 
 #+begin_src emacs-lisp
@@ -1076,25 +1024,13 @@ Use =elfeed= to read RSS feeds.
   )
 #+end_src
 
-
 * Languages
 
 ** Org-mode
 :PROPERTIES:
 :CUSTOM_ID: org
 :END:
-
-This config for =org-mode= is taken from [[https://tecosaur.github.io/emacs-config/config.html#org][Tecosaur's config]].
-
-#+begin_src emacs-lisp :tangle packages.el
-(unpin! org) ; there be bugs
-(package! org-contrib
-  :recipe (:host nil :repo "https://git.sr.ht/~bzg/org-contrib"
-           :files ("lisp/*.el"))
-  :pin "c6aef31ccfc7c4418c3b51e98f7c3bd8e255f5e6")
-#+end_src
-
-Location of files:
+*** File locations
 
 #+begin_src emacs-lisp
 (setq org-directory "~/Documents/org/"
@@ -1106,17 +1042,28 @@ Location of files:
       org-hide-emphasis-markers t)
 #+end_src
 
+*** Packages
+**** Basic setup
+
+This config for =org-mode= is taken from [[https://tecosaur.github.io/emacs-config/config.html#org][Tecosaur's config]].
+
+#+begin_src emacs-lisp :tangle packages.el
+(unpin! org) ; there be bugs
+(package! org-contrib
+  :recipe (:host nil :repo "https://git.sr.ht/~bzg/org-contrib"
+           :files ("lisp/*.el"))
+  :pin "6422b265f1150204f024e33d54f2dcfd8323005c")
+#+end_src
+
 #+begin_src emacs-lisp
 ;;(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 ;; Default folding
 (setq org-startup-folded 'content)
 #+end_src
 
+**** Visuals
 
-*** Visuals
-
-
-**** Org Modern
+***** Org Modern
 
 #+begin_src emacs-lisp :tangle packages.el
 (package! org-modern :pin "7d037569bc4a05f40262ea110c4cda05c69b5c52")
@@ -1124,7 +1071,7 @@ Location of files:
 
 ...with a touch of configuration...
 
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
 (use-package! org-modern
   :hook (org-mode . org-modern-mode)
   :config
@@ -1206,8 +1153,62 @@ spell-check face ignore list
   (cl-pushnew 'org-modern-tag (alist-get 'org-mode +spell-excluded-faces-alist)))
 #+end_src
 
+***** Emphasis markers
 
-**** Symbols
+#+call: confpkg("!Pkg org-appear")
+
+While ~org-hide-emphasis-markers~ is very nice, it can sometimes make edits which
+occur at the border a bit more fiddley. We can improve this situation without
+sacrificing visual amenities with the =org-appear= package.
+#+begin_src emacs-lisp :tangle packages.el
+(package! org-appear :recipe (:host github :repo "awth13/org-appear")
+  :pin "eb9f9db40aa529fe4b977235d86494b115281d17")
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package! org-appear
+  :hook (org-mode . org-appear-mode)
+  :config
+  (setq org-appear-autoemphasis t
+        org-appear-autosubmarkers t
+        org-appear-autolinks nil)
+  ;; for proper first-time setup, `org-appear--set-elements'
+  ;; needs to be run after other hooks have acted.
+  (run-at-time nil nil #'org-appear--set-elements))
+#+end_src
+
+***** Heading structure
+
+#+call: confpkg("!Pkg org-ol-tree")
+
+Speaking of headlines, a nice package for viewing and managing the heading
+structure has come to my attention.
+#+begin_src emacs-lisp :tangle packages.el
+(package! org-ol-tree :recipe (:host github :repo "Townk/org-ol-tree")
+  :pin "207c748aa5fea8626be619e8c55bdb1c16118c25")
+#+end_src
+
+We'll bind this to =O= on the org-mode localleader, and manually apply a [[https://github.com/Townk/org-ol-tree/pull/13][PR
+recognising the pgtk window system]].
+
+#+begin_src emacs-lisp
+(use-package! org-ol-tree
+  :commands org-ol-tree
+  :config
+  (setq org-ol-tree-ui-icon-set
+        (if (and (display-graphic-p)
+                 (fboundp 'all-the-icons-material))
+            'all-the-icons
+          'unicode))
+  (org-ol-tree-ui--update-icon-set))
+
+(map! :map org-mode-map
+      :after org
+      :localleader
+      :desc "Outline" "O" #'org-ol-tree)
+#+end_src
+
+***** Symbols
 
 It's also nice to change the character used for collapsed items (by default ~…~),
 I think ~▾~ is better for indicating 'collapsed section'.
@@ -1262,11 +1263,9 @@ other settings.
   :priority_e    "[#E]")
 #+end_src
 
+**** Extra functionality
 
-*** Extra functionality
-
-
-**** Dictionary and thesaurus
+***** Dictionary and thesaurus
 
 #+begin_src emacs-lisp
 (map! :after org
@@ -1275,9 +1274,7 @@ other settings.
       :desc "Thesaurus lookup" "H" #'powerthesaurus-lookup-dwim)
 #+end_src
 
-
-
-**** Julia Support
+***** Julia Support
 
 Org Babel Julia:
 
@@ -1299,8 +1296,7 @@ Org Babel Julia:
           "--banner=no")))
 #+end_src
 
-
-**** LaTeX Support
+***** LaTeX Support
 
 $\LaTeX$ classes:
 
@@ -1360,7 +1356,6 @@ Fix LaTeX export with svg images ([[https://emacs.stackexchange.com/a/47462][Ans
            cmd)))
 #+end_src
 
-
 ***** Subfigures
 
 #+begin_src emacs-lisp :tangle no
@@ -1383,9 +1378,7 @@ Fix LaTeX export with svg images ([[https://emacs.stackexchange.com/a/47462][Ans
                (format "\\subfigure[%s]{\\includegraphics{%s}}" desc file)))))
 #+end_src
 
-
-
-**** Citar
+***** Citar
 
 Use =Zotero= library:
 
@@ -1451,8 +1444,7 @@ Function that attempts to convert =org-ref= citations to =org-cite= forms:
                                  (match-string 2))))))))
 #+end_src
 
-
-**** LSP support in ~src~ blocks
+***** LSP support in ~src~ blocks
 
 Now, by default, =LSP=s don't really function at all in ~src~ blocks.
 
@@ -1487,7 +1479,6 @@ Now, by default, =LSP=s don't really function at all in ~src~ blocks.
   (eval `(lsp-org-babel-enable ,lang)))
 #+end_src
 
-
 *** Roam
 
 Basic configuration
@@ -1507,29 +1498,10 @@ Basic configuration
       )
 #+end_src
 
+That said, if the directory doesn't exist we likely don't want to be using roam.
 
-#+begin_src emacs-lisp :tangle no
-(use-package! org-roam
-  :after org
-  ;; :ensure t
-  :init
-  (setq org-roam-v2-ack t)
-  :custom
-  (org-roam-directory (file-truename "~/Documents/org/roam"))
-  (org-roam-complete-everywhere t)
-  (org-roam-capture-templates
-   '(("d" "default" plain
-      (file "~/Documents/org-roam/templates/default.org")
-      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+TITLE: ${title}\n#+DATE: %U\n#+FILETAGS: \n\n")
-      :unnarrowed t)
-     ("b" "bibliography" plain
-      (file "~/Documents/org-roam/templates/bibliography.org")
-      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+TITLE: ${title}\n#+DATE: %U\n#+FILETAGS: biblio\n\n")
-      :unnarrowed t)))
-  :bind (("C-c n g" . org-roam-ui-mode))
-  :config
-  (org-roam-setup)
-  (org-id-update-id-locations))
+#+begin_src emacs-lisp :noweb-ref none :tangle (if (file-exists-p "~/Documents/org/roam/") "no" "packages.el")
+(package! org-roam :disable t)
 #+end_src
 
 Nicer file names in window titles:
@@ -1544,7 +1516,6 @@ Nicer file names in window titles:
        (subst-char-in-string ?_ ?  buffer-file-name))
     (funcall orig-fun)))
 #+end_src
-
 
 **** Org Roam UI
 
@@ -1572,14 +1543,21 @@ Configure package =Org Roam UI=:
 #+begin_src emacs-lisp
 (use-package! org-roam-ui
   :after org-roam
+  :commands org-roam-ui-open
+  :hook (org-roam . org-roam-ui-mode)
   :config
+  (require 'org-roam) ; in case autoloaded
   (setq org-roam-ui-sync-theme t
         org-roam-ui-follow t
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start t
-        org-roam-ui-browser-function #'browse-url-xdg-open))
+        org-roam-ui-browser-function #'browse-url-xdg-open)
+  (defun org-roam-ui-open ()
+    "Ensure the server is active, then open the roam graph."
+    (interactive)
+    (unless org-roam-ui-mode (org-roam-ui-mode 1))
+    (browse-url-xdg-open (format "http://localhost:%d" org-roam-ui-port))))
 #+end_src
-
 
 ** LaTeX
 
@@ -1624,9 +1602,7 @@ Set default PDF reader:
 (setq +latex-viewers '(zathura pdf-tools evince okular skim sumatrapdf))
 #+end_src
 
-
 *** Snippet helpers
-
 **** Template
 
 For use in the new-file template, let's set out a nice preamble we may want to use.
@@ -1670,7 +1646,6 @@ Then let's bind the content to a function, and define some nice helpers.
   (if (equal tec/yas-latex-class-choice "bmc") 'nil
     (eq (read-char-choice "Include default preamble? [Type y/n]" '(?y ?n)) ?y)))
 #+end_src
-
 
 **** Deliminators
 
@@ -1733,8 +1708,6 @@ Then let's bind the content to a function, and define some nice helpers.
   (defun tec/tex-delim-yas-expand (&optional open-char)
     (yas-expand-snippet (yas-lookup-snippet "_deliminators" 'latex-mode) (point) (+ (point) (if (tec/tex-next-char-smart-close-delim open-char) 2 1)))))
 #+end_src
-
-
 
 *** Editor visuals
 
@@ -1910,10 +1883,7 @@ And enable shell escape for the preview
 preview-default-preamble "\\fi}\"%' \"\\detokenize{\" %t \"}\""))
 #+end_src
 
-
-
 *** Math input
-
 **** CDLaTeX
 
 The symbols and modifies are very nice by default, but could do with a bit of
@@ -1948,7 +1918,6 @@ but more convenient, like =;=.
      (?a    "\\abs"           nil          t    nil  nil))))
 #+end_src
 
-
 **** LAAS
 
 #+call: confpkg("!Pkg LAAS")
@@ -1969,7 +1938,6 @@ This makes use of =aas= (/Auto Activating Snippets/) for CDLaTeX-like symbol inp
   (add-hook 'aas-post-snippet-expand-hook #'laas-tex-fold-maybe))
 #+end_src
 
-
 *** SyncTeX
 
 #+begin_src emacs-lisp
@@ -1978,8 +1946,7 @@ This makes use of =aas= (/Auto Activating Snippets/) for CDLaTeX-like symbol inp
   (add-to-list 'TeX-view-program-selection '(output-pdf "Zathura")))
 #+end_src
 
-
-** PDF viewer
+** PDF
 
 Use dark mode for PDF view.
 
@@ -1990,8 +1957,6 @@ Use dark mode for PDF view.
   :config
   (setq pdf-view-midnight-colors '("#ABB2BF" . "#282C35")))
 #+end_src
-
-
 
 ** Rust
 
@@ -2018,13 +1983,11 @@ Use dark mode for PDF view.
   )
 #+end_src
 
-
 ** Python
 
 #+begin_src emacs-lisp
 ;; (add-hook 'python-mode-hook 'lsp)
 #+end_src
-
 
 *** Anaconda
 
@@ -2038,7 +2001,6 @@ Use dark mode for PDF view.
  conda-env-subdirectory "envs")
 ;; (add-hook 'conda-postactivate-hook 'python-mode)
 #+end_src
-
 
 ** Julia
 
@@ -2060,7 +2022,6 @@ If using =eglot=:
   (setq eglot-jl-language-server-project eglot-jl-base))
 #+end_src
 
-
 *** Julia REPL
 
 #+begin_src emacs-lisp
@@ -2073,7 +2034,6 @@ If using =eglot=:
   (setenv "JULIA_NUM_THREADS" "15"))
 #+end_src
 
-
 *** Julia vterm
 
 #+begin_src emacs-lisp :tangle packages.el
@@ -2085,7 +2045,6 @@ Activate =julia-vterm= minor mode in =julia-mode=.
 #+begin_src emacs-lisp :tangle no
 (add-hook 'julia-mode-hook #'julia-vterm-mode)
 #+end_src
-
 
 *** TODO Julia-snail
 
@@ -2102,7 +2061,6 @@ Activate =julia-vterm= minor mode in =julia-mode=.
 #   :hook (julia-mode . julia-snail-mode))
 # #+end_src
 
-
 ** Haskell
 
 Select =brittany= as formatter:
@@ -2111,7 +2069,6 @@ Select =brittany= as formatter:
 (after! lsp-haskell
   (setq lsp-haskell-formatting-provider "brittany"))
 #+end_src
-
 
 ** Fortran
 
@@ -2131,7 +2088,6 @@ Set =fortls= command:
 #+end_src
 
 
-
 ** Ledger mode
 
 
@@ -2140,7 +2096,6 @@ Set =fortls= command:
   (set-popup-rule! " *Ledger Report*" :size 0.3 :vslot -4 :select t :quit nil :ttl 0 :side 'right))
 #+end_src
 
-
 ** Beancount
 
 #+begin_src emacs-lisp
@@ -2148,7 +2103,6 @@ Set =fortls= command:
 (after! beancount-mode
   (set-popup-rule! "*compilation*" :side 'right :size 0.3 :ttl 0 :quit nil :select nil))
 #+end_src
-
 
 ** GNU APL
 
