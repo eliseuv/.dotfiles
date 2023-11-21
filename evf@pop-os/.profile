@@ -59,6 +59,9 @@ pathappend ~/.local/share/gem/ruby/3.0.0/bin
 # Julia
 pathappend ~/.juliaup/bin/
 
+# bob nvim
+pathappend ~/.local/share/bob/nvim-bin/
+
 # DOOM Emacs
 pathappend ~/.config/emacs/bin
 
@@ -137,12 +140,12 @@ alias c='clear'
 # Show history
 alias h='history -i'
 
-# Changing 'ls' to 'exa'
-alias l='exa --group-directories-first --icons --color=always'
-alias la='exa --all --group-directories-first --icons --color=always --git'
-alias ll='exa --all --long --header --group-directories-first --icons --color=always --git'
-alias lt='exa --all --tree --group-directories-first --icons --ignore-glob=.git --color=always'
-alias l.='exa --all | rg "^\." --git'
+# Changing 'ls' to 'eza'
+alias l='eza --group-directories-first --icons --color=always'
+alias la='eza --all --group-directories-first --icons --color=always --git'
+alias ll='eza --all --long --header --group-directories-first --icons --color=always --git'
+alias lt='eza --all --tree --group-directories-first --icons --ignore-glob=.git --color=always'
+alias l.='eza --all | rg "^\." --git'
 
 # Easier cd
 alias ..='cd ..'
@@ -184,7 +187,7 @@ alias pm='pulsemixer'
 # Resource monitors
 alias ht='htop -d5 -sPERCENT_CPU'
 #alias gt='gotop -p -r 500ms'
-alias bt='btop'
+alias bt='btm'
 
 # n^3 file manager
 alias nn="(export VISUAL='nvim'; nnn)"
@@ -294,7 +297,7 @@ export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f
 
 # Fuzzy search dir navigation
 function fcd {
-	cd "$(find ~ -not -path '*/.*' -type d | fzf --height 50% --reverse --preview 'exa -lah {}')" || return
+	cd "$(find ~ -not -path '*/.*' -type d | fzf --height 50% --reverse --preview 'eza -lah {}')" || return
 }
 
 # Fuzzy search file in dir and open
