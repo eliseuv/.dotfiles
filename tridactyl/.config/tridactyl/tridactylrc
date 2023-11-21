@@ -51,7 +51,7 @@ bindurl ^https://duckduckgo.com f hint -Jc [data-testid="result-title-a"]
 bindurl ^https://duckduckgo.com F hint -Jbc [data-testid="result-title-a"]
 
 " Search engine
-set searchengine s
+set searchengine ddg
 " set searchurls.s https://search.rhscz.eu/search?q=%s&categories=general&language=en-US
 " set searchurls.s https://searxng.nicfab.eu/searxng/search?q=%s&categories=general&language=en-US
 set searchurls.s https://searx.be/search?q=%s

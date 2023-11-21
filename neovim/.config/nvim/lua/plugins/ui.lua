@@ -3,6 +3,11 @@ return {
         "LazyVim/LazyVim",
         opts = {
             colorscheme = "tokyonight-night",
+            transparent = true,
+            styles = {
+                sidebars = "transparent",
+                floats = "transparent",
+            },
             -- colorscheme = "catppuccin-mocha",
         },
     },

@@ -39,7 +39,7 @@ This is my first attempt on an Emacs literate configuration, mostly based on [[h
       scroll-margin 1                             ; It's nice to maintain a little margin
       evil-kill-on-visual-paste nil)              ; Do not substitute clipboard on visual paste
 
-(global-subword-mode t)                           ; Recognize uppercase letters as word boundaries (useful for CamelCase naming)
+(global-subword-mode 1)                           ; Recognize uppercase letters as word boundaries (useful for CamelCase naming)
 (global-visual-line-mode 1)                       ; Line wrapping
 #+end_src
 
@@ -82,17 +82,9 @@ Ask which buffer (with preview) to open when the new window is created form the 
   (consult-buffer))
 #+end_src
 
-*** Default buffer
+** DOOM configuration
 
-Use =org-mode= as default major mode in new buffers:
-
-#+begin_src emacs-lisp
-(setq-default major-mode 'org-mode)
-#+end_src
-
-* DOOM configuration
-
-** Modules
+*** Modules
 :PROPERTIES:
 :header-args:emacs-lisp: :tangle no
 :END:
@@ -146,7 +138,7 @@ These modules are sorted in categories.
        )
 #+end_src
 
-*** Input
+**** Input
 
 #+name: doom-input
 #+begin_src emacs-lisp
@@ -156,7 +148,7 @@ These modules are sorted in categories.
 ;;layout            ; auie,ctsrnm is the superior home row
 #+end_src
 
-*** Completion
+**** Completion
 
 #+name: doom-completion
 #+begin_src emacs-lisp
@@ -167,7 +159,7 @@ These modules are sorted in categories.
 (vertico +childframe +icons)    ; the search engine of the future
 #+end_src
 
-*** UI
+**** UI
 
 #+name: doom-ui
 #+begin_src emacs-lisp
@@ -196,7 +188,7 @@ workspaces        ; tab emulation, persistence & separate workspaces
 ;;zen               ; distraction-free coding or writing
 #+end_src
 
-*** Editor
+**** Editor
 
 #+name: doom-editor
 #+begin_src emacs-lisp
@@ -214,7 +206,7 @@ snippets          ; my elves. They type so I don't have to
 ;;word-wrap         ; soft wrapping with language-aware indent
 #+end_src
 
-*** Emacs
+**** Emacs
 
 #+name: doom-emacs
 #+begin_src emacs-lisp
@@ -225,7 +217,7 @@ electric          ; smarter, keyword-based electric-indent
 vc                ; version-control and Emacs, sitting in a tree
 #+end_src
 
-*** Terminal
+**** Terminal
 
 #+name: doom-term
 #+begin_src emacs-lisp
@@ -235,7 +227,7 @@ vc                ; version-control and Emacs, sitting in a tree
 vterm             ; the best terminal emulation in Emacs
 #+end_src
 
-*** Checkers
+**** Checkers
 
 #+name: doom-checkers
 #+begin_src emacs-lisp
@@ -244,7 +236,7 @@ vterm             ; the best terminal emulation in Emacs
 grammar           ; tasing grammar mistake every you make
 #+end_src
 
-*** Tools
+**** Tools
 
 #+name: doom-tools
 #+begin_src emacs-lisp
@@ -274,7 +266,7 @@ tree-sitter         ; syntax and parsing, sitting in a tree...
 upload              ; map local to remote projects via ssh/ftp
 #+end_src
 
-*** OS
+**** OS
 
 #+name: doom-os
 #+begin_src emacs-lisp
@@ -282,7 +274,7 @@ upload              ; map local to remote projects via ssh/ftp
 ;;tty               ; improve the terminal Emacs experience
 #+end_src
 
-*** Languages
+**** Languages
 
 #+name: doom-lang
 #+begin_src emacs-lisp
@@ -365,7 +357,7 @@ markdown          ; writing docs for people to ignore
 ;;(zig +lsp +tree-sitter)               ; C, but simpler
 #+end_src
 
-*** Email
+**** Email
 
 #+name: doom-email
 #+begin_src emacs-lisp
@@ -374,7 +366,7 @@ markdown          ; writing docs for people to ignore
 ;;(wanderlust +gmail)
 #+end_src
 
-*** Applications
+**** Applications
 
 #+name: doom-app
 #+begin_src emacs-lisp
@@ -386,7 +378,7 @@ markdown          ; writing docs for people to ignore
 ;;twitter           ; twitter client https://twitter.com/vnought
 #+end_src
 
-*** Config
+**** Config
 
 Enable literate configuration file and DOOM defaults.
 
@@ -396,9 +388,9 @@ literate
 (default +bindings +smartparens)
 #+end_src
 
-** Visual settings
+*** Visual settings
 
-*** Fonts
+**** Fonts
 
 Select fonts:
 
@@ -456,7 +448,7 @@ Change certain keywords to symbols, such as lambda (\lambda):
 (setq global-prettify-symbols-mode t)
 #+end_src
 
-*** Theme
+**** Theme
 
 My favorite themes:
 
@@ -474,7 +466,7 @@ Allow bold and italic text:
       doom-themes-enable-italic t)
 #+end_src
 
-*** Modeline
+**** Modeline
 
 Hide encoding if it is the default =LF UTF-8=:
 
@@ -490,7 +482,7 @@ Hide encoding if it is the default =LF UTF-8=:
 (add-hook 'after-change-major-mode-hook #'doom-modeline-conditional-buffer-encoding)
 #+end_src
 
-*** Line numbers
+**** Line numbers
 
 If set to ~t~, line numbers are enabled.
 If set to ~nil~, line numbers are disabled.
@@ -500,22 +492,14 @@ For relative line numbers, set this to ~relative~.
 (setq display-line-numbers-type 'relative)
 #+end_src
 
-*** Default buffer names
+**** Default buffer names
 
 #+begin_src emacs-lisp
 (setq doom-fallback-buffer-name "► Doom"
       +doom-dashboard-name "► Doom")
 #+end_src
 
-** Set info directories
-
-Info files:
-
-#+begin_src emacs-lisp
-(add-to-list 'Info-directory-list "~/.config/doom/info")
-#+end_src
-
-** Allow babel execution in CLI actions
+*** Allow babel execution in CLI actions
 
 The file =$DOOMDIR/cli.el= is sourced every time a =DOOM Emacs= command line command is run.
 Here we can enable =Org Babel= evaluation.
@@ -528,6 +512,14 @@ Here we can enable =Org Babel= evaluation.
   (quiet! (apply orig-fn args)))
 
 (advice-add 'org-babel-execute-src-block :around #'doom-shut-up-a)
+#+end_src
+
+*** Set info directories
+
+Info files:
+
+#+begin_src emacs-lisp
+(add-to-list 'Info-directory-list "~/.config/doom/info")
 #+end_src
 
 * Packages
@@ -632,6 +624,52 @@ Where to look for projects:
 (setq projectile-project-search-path '("~/programs"))
 #+end_src
 
+*** TRAMP
+
+Another lovely Emacs feature, TRAMP stands for /Transparent Remote Access,
+Multiple Protocol/. In brief, it's a lovely way to wander around outside your
+local filesystem.
+
+**** Prompt recognition
+
+Unfortunately, when connecting to remote machines Tramp can be a wee pit picky
+with the prompt format. Let's try to get Bash, and be a bit more permissive with
+prompt recognition.
+
+#+begin_src emacs-lisp
+(after! tramp
+  (setenv "SHELL" "/bin/bash")
+  (setq tramp-shell-prompt-pattern "\\(?:^\\|\n\\|\x0d\\)[^]#$%>\n]*#?[]#$%>] *\\(\e\\[[0-9;]*[a-zA-Z] *\\)*")) ;; default + 
+#+end_src
+
+**** Troubleshooting
+
+In case the remote shell is misbehaving, here are some things to try
+
+***** Zsh
+
+There are some escape code you don't want, let's make it behave more considerately.
+#+begin_src shell :eval no :tangle no
+if [[ "$TERM" == "dumb" ]]; then
+    unset zle_bracketed_paste
+    unset zle
+    PS1='$ '
+    return
+fi
+#+end_src
+*** Auto activating snippets
+
+Sometimes pressing =TAB= is just too much.
+#+begin_src emacs-lisp :tangle packages.el
+(package! aas :recipe (:host github :repo "ymarco/auto-activating-snippets")
+  :pin "e92b5cffa4e87c221c24f3e72ae33959e1ec2b68")
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package! aas
+  :commands aas-mode)
+#+end_src
+
 *** YASnippet
 
 #+begin_quote
@@ -644,10 +682,47 @@ Nested snippets are good, so let's enable that.
 (setq yas-triggers-in-field t)
 #+end_src
 
+*** String inflection
+
+For when you want to change the case pattern for a symbol.
+#+begin_src emacs-lisp :tangle packages.el
+(package! string-inflection :pin "50ad54970b3cc79b6b83979bde9889ad9a9e1a9c")
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package! string-inflection
+  :commands (string-inflection-all-cycle
+             string-inflection-toggle
+             string-inflection-camelcase
+             string-inflection-lower-camelcase
+             string-inflection-kebab-case
+             string-inflection-underscore
+             string-inflection-capital-underscore
+             string-inflection-upcase)
+  :init
+  (map! :leader :prefix ("c~" . "naming convention")
+        :desc "cycle" "~" #'string-inflection-all-cycle
+        :desc "toggle" "t" #'string-inflection-toggle
+        :desc "CamelCase" "c" #'string-inflection-camelcase
+        :desc "downCase" "d" #'string-inflection-lower-camelcase
+        :desc "kebab-case" "k" #'string-inflection-kebab-case
+        :desc "under_score" "_" #'string-inflection-underscore
+        :desc "Upper_Score" "u" #'string-inflection-capital-underscore
+        :desc "UP_CASE" "U" #'string-inflection-upcase)
+  (after! evil
+    (evil-define-operator evil-operator-string-inflection (beg end _type)
+      "Define a new evil operator that cycles symbol casing."
+      :move-point nil
+      (interactive "<R>")
+      (string-inflection-all-cycle)
+      (setq evil-repeat-info '([?g ?~])))
+    (define-key evil-normal-state-map (kbd "g~") 'evil-operator-string-inflection)))
+#+end_src
+
 *** LSP
 
 #+begin_src emacs-lisp :tangle packages.el
-(unpin! lsp-mode) ; there be bugs
+;; (unpin! lsp-mode) ; there be bugs
 #+end_src
 
 #+begin_src emacs-lisp
@@ -682,7 +757,6 @@ Nested snippets are good, so let's enable that.
   (lsp-ui-imenu-enable t))
 #+end_src
 
-
 *** Flycheck
 
 #+begin_src emacs-lisp
@@ -698,7 +772,6 @@ Make open on the right:
 (after! vterm
   (set-popup-rule! "*doom:vterm-popup:main" :size 0.3 :vslot -4 :select t :quit nil :ttl 0 :side 'right))
 #+end_src
-
 
 ** Visuals
 
@@ -1030,17 +1103,6 @@ Use =elfeed= to read RSS feeds.
 :PROPERTIES:
 :CUSTOM_ID: org
 :END:
-*** File locations
-
-#+begin_src emacs-lisp
-(setq org-directory "~/Documents/org/"
-      org-agenda-files '("~/Documents/org/")
-      org-capture-journal-file "~/Documents/org/journal.org"
-      org-use-property-inheritance t       ; It's convenient to have properties inherited.
-      org-log-done 'time                   ; Having the time a item is done sounds convenient.
-      org-catch-invisible-edits 'smart     ; Try not to accidently do weird stuff in invisible regions.
-      org-hide-emphasis-markers t)
-#+end_src
 
 *** Packages
 **** Basic setup
@@ -1048,7 +1110,7 @@ Use =elfeed= to read RSS feeds.
 This config for =org-mode= is taken from [[https://tecosaur.github.io/emacs-config/config.html#org][Tecosaur's config]].
 
 #+begin_src emacs-lisp :tangle packages.el
-(unpin! org) ; there be bugs
+;; (unpin! org) ; there be bugs
 (package! org-contrib
   :recipe (:host nil :repo "https://git.sr.ht/~bzg/org-contrib"
            :files ("lisp/*.el"))
@@ -1062,7 +1124,6 @@ This config for =org-mode= is taken from [[https://tecosaur.github.io/emacs-conf
 #+end_src
 
 **** Visuals
-
 ***** Org Modern
 
 #+begin_src emacs-lisp :tangle packages.el
@@ -1155,8 +1216,6 @@ spell-check face ignore list
 
 ***** Emphasis markers
 
-#+call: confpkg("!Pkg org-appear")
-
 While ~org-hide-emphasis-markers~ is very nice, it can sometimes make edits which
 occur at the border a bit more fiddley. We can improve this situation without
 sacrificing visual amenities with the =org-appear= package.
@@ -1178,8 +1237,6 @@ sacrificing visual amenities with the =org-appear= package.
 #+end_src
 
 ***** Heading structure
-
-#+call: confpkg("!Pkg org-ol-tree")
 
 Speaking of headlines, a nice package for viewing and managing the heading
 structure has come to my attention.
@@ -1208,78 +1265,13 @@ recognising the pgtk window system]].
       :desc "Outline" "O" #'org-ol-tree)
 #+end_src
 
-***** Symbols
-
-It's also nice to change the character used for collapsed items (by default ~…~),
-I think ~▾~ is better for indicating 'collapsed section'.
-and add an extra ~org-bullet~ to the default list of four.
-
-#+begin_src emacs-lisp
-(setq org-ellipsis " ▾ "
-      org-hide-leading-stars t
-      org-priority-highest ?A
-      org-priority-lowest ?E
-      org-priority-faces
-      '((?A . 'all-the-icons-red)
-        (?B . 'all-the-icons-orange)
-        (?C . 'all-the-icons-yellow)
-        (?D . 'all-the-icons-green)
-        (?E . 'all-the-icons-blue)))
-#+end_src
-
-It's also nice to make use of the =prettify-symbols-mode= for a few Org syntactic
-tokens which we'd like to prettify that aren't covered by =org-modern= or any
-other settings.
-
-#+begin_src emacs-lisp
-(appendq! +ligatures-extra-symbols
-          `(:list_property "∷"
-            :em_dash       "—"
-            :ellipses      "…"
-            :arrow_right   "→"
-            :arrow_left    "←"
-            :arrow_lr      "⟷"
-            :properties    "⚙"
-            :end           "∎"
-            :priority_a   ,(propertize "⚑" 'face 'all-the-icons-red)
-            :priority_b   ,(propertize "⬆" 'face 'all-the-icons-orange)
-            :priority_c   ,(propertize "■" 'face 'all-the-icons-yellow)
-            :priority_d   ,(propertize "⬇" 'face 'all-the-icons-green)
-            :priority_e   ,(propertize "❓" 'face 'all-the-icons-blue)))
-(set-ligatures! 'org-mode
-  :merge t
-  :list_property "::"
-  :em_dash       "---"
-  :ellipsis      "..."
-  :arrow_right   "->"
-  :arrow_left    "<-"
-  :arrow_lr      "<->"
-  :properties    ":PROPERTIES:"
-  :end           ":END:"
-  :priority_a    "[#A]"
-  :priority_b    "[#B]"
-  :priority_c    "[#C]"
-  :priority_d    "[#D]"
-  :priority_e    "[#E]")
-#+end_src
-
 **** Extra functionality
-
-***** Dictionary and thesaurus
-
-#+begin_src emacs-lisp
-(map! :after org
-      :map org-mode-map
-      :localleader
-      :desc "Thesaurus lookup" "H" #'powerthesaurus-lookup-dwim)
-#+end_src
-
 ***** Julia Support
 
 Org Babel Julia:
 
 #+begin_src emacs-lisp :tangle packages.el
-(package! ob-julia :recipe (:local-repo "lisp/ob-julia" :files ("*.el" "julia")))
+(package! ob-julia)
 #+end_src
 
 #+begin_src emacs-lisp
@@ -1296,89 +1288,183 @@ Org Babel Julia:
           "--banner=no")))
 #+end_src
 
-***** LaTeX Support
-
-$\LaTeX$ classes:
+**** Tweaking defaults
 
 #+begin_src emacs-lisp
-(require 'ox-latex)
-(unless (boundp 'org-latex-classes)
-  (setq org-latex-classes nil))
-(add-to-list 'org-latex-classes
-             '("note"
-               "\\documentclass{article}[a4]
-                \\usepackage[margin=0.5in]{geometry}"
-               ("\\section{%s}" . "\\section*{%s}")
-               ("\\subsection{%s}" . "\\subsection*{%s}")
-               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-               ("\\paragraph{%s}" . "\\paragraph*{%s}")
-               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+(setq org-directory "~/Documents/org/"                       ; Let's put files here.
+      org-agenda-files (list org-directory)                  ; Seems like the obvious place.
+      org-capture-journal-file "~/Documents/org/journal.org"
+      org-use-property-inheritance t                         ; It's convenient to have properties inherited.
+      org-log-done 'time                                     ; Having the time a item is done sounds convenient.
+      org-list-allow-alphabetical t                          ; Have a. A. a) A) list bullets.
+      org-catch-invisible-edits 'smart                       ; Try not to accidently do weird stuff in invisible regions.
+      org-export-with-sub-superscripts '{}                   ; Don't treat lone _ / ^ as sub/superscripts, require _{} / ^{}.
+      org-export-allow-bind-keywords t                       ; Bind keywords can be handy
+      org-image-actual-width '(0.9)                          ; Make the in-buffer display closer to the exported result..
+      org-hide-emphasis-markers t)
+#+end_src
+I also like the src_elisp{:comments} header-argument, so let's make that a
+default.
+#+begin_src emacs-lisp
+(setq org-babel-default-header-args
+      '((:session . "none")
+        (:results . "replace")
+        (:exports . "code")
+        (:cache . "no")
+        (:noweb . "no")
+        (:hlines . "no")
+        (:tangle . "no")
+        (:comments . "link")))
 #+end_src
 
+By default, ~visual-line-mode~ is turned =on=, and ~auto-fill-mode~ =off= by a hook.
+However this messes with tables in Org-mode, and other plaintext files (e.g.
+markdown, \LaTeX) so I'll turn it off for this, and manually enable it for more
+specific modes as desired.
+#+begin_src emacs-lisp
+(remove-hook 'text-mode-hook #'visual-line-mode)
+(add-hook 'text-mode-hook #'auto-fill-mode)
+#+end_src
 
-Default $\LaTeX$ packages.
+There also seem to be a few keybindings which use =hjkl=, but miss arrow key equivalents.
+#+begin_src emacs-lisp
+(map! :map evil-org-mode-map
+      :after evil-org
+      :n "g <up>" #'org-backward-heading-same-level
+      :n "g <down>" #'org-forward-heading-same-level
+      :n "g <left>" #'org-up-element
+      :n "g <right>" #'org-down-element)
+#+end_src
+**** Extra functionality
+***** List bullet sequence
+
+I think it makes sense to have list bullets change with depth
+#+begin_src emacs-lisp
+(setq org-list-demote-modify-bullet '(("+" . "-") ("-" . "+") ("*" . "+") ("1." . "a.")))
+#+end_src
+***** Citation
+
+#+begin_quote
+Extending the =:tools biblio= module.
+#+end_quote
+
+References in Org are fairly easy now, thanks to =org-cite=. The =:tools biblio=
+module gives a fairly decent basic setup, but it would be nice to take it a bit
+further. This mostly consists of tweaking settings, but there is one extra
+package I'll grab for prettier in-buffer citations.
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! org-cite-csl-activate :recipe (:host github :repo "andras-simonyi/org-cite-csl-activate") :pin "9e68d9204469c674f49a20bdf7ea85da4f4bf720")
+#+end_src
+
+In particular, by setting ~org-cite-csl-activate-use-document-style~, we can have
+the in-buffer displayed citations be the same as the exported form. Isn't that lovely!
+
+Unfortunately, there's currently a potential for undesirable buffer
+modifications, so we'll put all the activation code behind a function we can
+call when we want it.
 
 #+begin_src emacs-lisp
-(setq org-latex-packages-alist '(
-                                 ;; AMS packages
-                                 ("" "amsmath" t)
-                                 ("" "amsthm" t)
-                                 ("" "amssymb" t)
-                                 ;; Extended math
-                                 ("" "mathtools" t)
-                                 ;; Dirac braket notation
-                                 ("" "braket" t)
-                                 ;; Color names
-                                 ("dvipsnames" "xcolor" t)
-                                 ;; Cancel terms
-                                 ("" "cancel" t)))
+(use-package! oc-csl-activate
+  :after oc
+  :config
+  (setq org-cite-csl-activate-use-document-style t)
+  (defun +org-cite-csl-activate/enable ()
+    (interactive)
+    (setq org-cite-activate-processor 'csl-activate)
+    (add-hook! 'org-mode-hook '((lambda () (cursor-sensor-mode 1)) org-cite-csl-activate-render-all))
+    (defadvice! +org-cite-csl-activate-render-all-silent (orig-fn)
+      :around #'org-cite-csl-activate-render-all
+      (with-silent-modifications (funcall orig-fn)))
+    (when (eq major-mode 'org-mode)
+      (with-silent-modifications
+        (save-excursion
+          (goto-char (point-min))
+          (org-cite-activate (point-max)))
+        (org-cite-csl-activate-render-all)))
+    (fmakunbound #'+org-cite-csl-activate/enable)))
 #+end_src
 
-Default bibliography file:
+Now that =oc-csl-activate= is set up, let's go ahead and customise some of the
+packages already loaded. For starters, we can make use of the my Zotero files
+with =citar=, and make the symbols a bit prettier.
 
 #+begin_src emacs-lisp
-(setq reftex-default-bibliography
-      '("~/Storage/Zotero/my_library.bib"))
+(after! citar
+  (setq org-cite-global-bibliography
+        (let ((libfile-search-names '("library.json" "Library.json" "library.bib" "Library.bib"))
+              (libfile-dir "~/Zotero")
+              paths)
+          (dolist (libfile libfile-search-names)
+            (when (and (not paths)
+                       (file-exists-p (expand-file-name libfile libfile-dir)))
+              (setq paths (list (expand-file-name libfile libfile-dir)))))
+          paths)
+        citar-bibliography org-cite-global-bibliography
+        citar-symbols
+        `((file ,(nerd-icons-faicon "nf-fa-file_o" :face 'nerd-icons-green :v-adjust -0.1) . " ")
+          (note ,(nerd-icons-octicon "nf-oct-note" :face 'nerd-icons-blue :v-adjust -0.3) . " ")
+          (link ,(nerd-icons-octicon "nf-oct-link" :face 'nerd-icons-orange :v-adjust 0.01) . " "))))
 #+end_src
 
-Fix LaTeX export with svg images ([[https://emacs.stackexchange.com/a/47462][Answer]]).
+We can also make the Zotero CSL styles available to use.
 
 #+begin_src emacs-lisp
- (setq org-latex-pdf-process
-       (let
-           ((cmd (concat "latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode"
-                 " --synctex=1"
-                 " -output-directory=%o %f")))
-         (list cmd
-           "cd %o; if test -r %b.idx; then makeindex %b.idx; fi"
-           "cd %o; bibtex %b"
-           cmd
-           cmd)))
+(after! oc-csl
+  (setq org-cite-csl-styles-dir "~/Zotero/styles"))
 #+end_src
 
-***** Subfigures
+Since CSL works so nicely everywhere, we might as well use it as the default
+citation export processor for everything.
 
-#+begin_src emacs-lisp :tangle no
-(org-link-set-parameters
- "subfig"
- :follow (lambda (file) (find-file file))
- :face '(:foreground "chocolate" :weight bold :underline t)
- :display 'full
- :export (lambda (file desc backend)
-           (when (eq backend 'latex)
-             (if (string-match ">(\\(.+\\))" desc)
-                 (concat "\\subfigure[" (replace-regexp-in-string "\s+>(.+)" "" desc) "]"
-                         "{\\includegraphics"
-                         "["
-                         (match-string 1 desc)
-                         "]"
-                         "{"
-                         file
-                         "}}")
-               (format "\\subfigure[%s]{\\includegraphics{%s}}" desc file)))))
+#+begin_src emacs-lisp
+(after! oc
+  (setq org-cite-export-processors '((t csl))))
 #+end_src
 
-***** Citar
+Then, for convenience we'll cap things off by putting the citation command under
+Org's localleader.
+
+#+begin_src emacs-lisp
+(map! :after org
+      :map org-mode-map
+      :localleader
+      :desc "Insert citation" "@" #'org-cite-insert)
+#+end_src
+
+Lastly, just in case I come across any old citations of mine, I think it would
+be nice to have a function to convert =org-ref= citations to =org-cite= forms.
+
+#+begin_src emacs-lisp
+(after! oc
+  (defun org-ref-to-org-cite ()
+    "Attempt to convert org-ref citations to org-cite syntax."
+    (interactive)
+    (let* ((cite-conversions '(("cite" . "//b") ("Cite" . "//bc")
+                               ("nocite" . "/n")
+                               ("citep" . "") ("citep*" . "//f")
+                               ("parencite" . "") ("Parencite" . "//c")
+                               ("citeauthor" . "/a/f") ("citeauthor*" . "/a")
+                               ("citeyear" . "/na/b")
+                               ("Citep" . "//c") ("Citealp" . "//bc")
+                               ("Citeauthor" . "/a/cf") ("Citeauthor*" . "/a/c")
+                               ("autocite" . "") ("Autocite" . "//c")
+                               ("notecite" . "/l/b") ("Notecite" . "/l/bc")
+                               ("pnotecite" . "/l") ("Pnotecite" . "/l/bc")))
+           (cite-regexp (rx (regexp (regexp-opt (mapcar #'car cite-conversions) t))
+                            ":" (group (+ (not (any "\n 	,.)]}")))))))
+      (save-excursion
+        (goto-char (point-min))
+        (while (re-search-forward cite-regexp nil t)
+          (message (format "[cite%s:@%s]"
+                                 (cdr (assoc (match-string 1) cite-conversions))
+                                 (match-string 2)))
+          (replace-match (format "[cite%s:@%s]"
+                                 (cdr (assoc (match-string 1) cite-conversions))
+                                 (match-string 2))))))))
+#+end_src
+
+****** Citar
 
 Use =Zotero= library:
 
@@ -1444,6 +1530,106 @@ Function that attempts to convert =org-ref= citations to =org-cite= forms:
                                  (match-string 2))))))))
 #+end_src
 
+***** LaTeX Support
+
+$\LaTeX$ classes:
+
+#+begin_src emacs-lisp
+(require 'ox-latex)
+(unless (boundp 'org-latex-classes)
+  (setq org-latex-classes nil))
+(add-to-list 'org-latex-classes
+             '("note"
+               "\\documentclass{article}[a4]
+                \\usepackage[margin=0.5in]{geometry}"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+#+end_src
+
+
+Default $\LaTeX$ packages.
+
+#+begin_src emacs-lisp
+(setq org-latex-packages-alist '(
+                                 ;; AMS packages
+                                 ("" "amsmath" t)
+                                 ("" "amsthm" t)
+                                 ("" "amssymb" t)
+                                 ;; Extended math
+                                 ("" "mathtools" t)
+                                 ;; Dirac braket notation
+                                 ("" "braket" t)
+                                 ;; Color names
+                                 ("dvipsnames" "xcolor" t)
+                                 ;; Cancel terms
+                                 ("" "cancel" t)))
+#+end_src
+
+Default bibliography file:
+
+#+begin_src emacs-lisp
+(setq reftex-default-bibliography
+      '("~/Storage/Zotero/my_library.bib"))
+#+end_src
+
+Fix LaTeX export with svg images ([[https://emacs.stackexchange.com/a/47462][Answer]]).
+
+#+begin_src emacs-lisp
+ (setq org-latex-pdf-process
+       (let
+           ((cmd (concat "latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode"
+                 " --synctex=1"
+                 " -output-directory=%o %f")))
+         (list cmd
+           "cd %o; if test -r %b.idx; then makeindex %b.idx; fi"
+           "cd %o; bibtex %b"
+           cmd
+           cmd)))
+#+end_src
+
+****** Subfigures
+
+#+begin_src emacs-lisp :tangle no
+(org-link-set-parameters
+ "subfig"
+ :follow (lambda (file) (find-file file))
+ :face '(:foreground "chocolate" :weight bold :underline t)
+ :display 'full
+ :export (lambda (file desc backend)
+           (when (eq backend 'latex)
+             (if (string-match ">(\\(.+\\))" desc)
+                 (concat "\\subfigure[" (replace-regexp-in-string "\s+>(.+)" "" desc) "]"
+                         "{\\includegraphics"
+                         "["
+                         (match-string 1 desc)
+                         "]"
+                         "{"
+                         file
+                         "}}")
+               (format "\\subfigure[%s]{\\includegraphics{%s}}" desc file)))))
+#+end_src
+
+****** cdlatex
+
+It's also nice to be able to use ~cdlatex~.
+#+begin_src emacs-lisp
+(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+#+end_src
+
+It's handy to be able to quickly insert environments with =C-c }=. I almost always
+want to edit them afterwards though, so let's make that happen by default.
+#+begin_src emacs-lisp
+(defadvice! org-edit-latex-emv-after-insert ()
+  :after #'org-cdlatex-environment-indent
+  (org-edit-latex-environment))
+#+end_src
+
+At some point in the future it could be good to investigate [[https://scripter.co/splitting-an-org-block-into-two/][splitting org blocks]].
+Likewise [[https://archive.casouri.cat/note/2020/insert-math-symbol-in-emacs/][this]] looks good for symbols.
+
 ***** LSP support in ~src~ blocks
 
 Now, by default, =LSP=s don't really function at all in ~src~ blocks.
@@ -1474,12 +1660,21 @@ Now, by default, =LSP=s don't really function at all in ~src~ blocks.
                 (format "Prepare local buffer environment for org source block (%s)."
                         (upcase ,lang))))))))
 (defvar org-babel-lang-list
-  '("julia" "python" "ipython" "bash" "sh"))
+  '("go" "python" "ipython" "bash" "sh"))
 (dolist (lang org-babel-lang-list)
   (eval `(lsp-org-babel-enable ,lang)))
 #+end_src
 
-*** Roam
+***** Dictionary and thesaurus
+
+#+begin_src emacs-lisp
+(map! :after org
+      :map org-mode-map
+      :localleader
+      :desc "Thesaurus lookup" "H" #'powerthesaurus-lookup-dwim)
+#+end_src
+
+**** Roam
 
 Basic configuration
 
@@ -1517,7 +1712,7 @@ Nicer file names in window titles:
     (funcall orig-fun)))
 #+end_src
 
-**** Org Roam UI
+***** Org Roam UI
 
 Use the latest version of =Org Roam=:
 
@@ -1557,6 +1752,762 @@ Configure package =Org Roam UI=:
     (interactive)
     (unless org-roam-ui-mode (org-roam-ui-mode 1))
     (browse-url-xdg-open (format "http://localhost:%d" org-roam-ui-port))))
+#+end_src
+
+*** Visuals
+**** Symbols
+
+It's also nice to change the character used for collapsed items (by default ~…~),
+I think ~▾~ is better for indicating 'collapsed section'.
+and add an extra ~org-bullet~ to the default list of four.
+
+#+begin_src emacs-lisp
+(setq org-ellipsis " ▾ "
+      org-hide-leading-stars t
+      org-priority-highest ?A
+      org-priority-lowest ?E
+      org-priority-faces
+      '((?A . 'nerd-icons-red)
+        (?B . 'nerd-icons-orange)
+        (?C . 'nerd-icons-yellow)
+        (?D . 'nerd-icons-green)
+        (?E . 'nerd-icons-blue)))
+#+end_src
+
+It's also nice to make use of the =prettify-symbols-mode= for a few Org syntactic
+tokens which we'd like to prettify that aren't covered by =org-modern= or any
+other settings.
+
+#+begin_src emacs-lisp
+(appendq! +ligatures-extra-symbols
+          (list :list_property "∷"
+                :em_dash       "—"
+                :ellipses      "…"
+                :arrow_right   "→"
+                :arrow_left    "←"
+                :arrow_lr      "↔"
+                :properties    "⚙"
+                :end           "∎"
+                :priority_a    #("⚑" 0 1 (face nerd-icons-red))
+                :priority_b    #("⬆" 0 1 (face nerd-icons-orange))
+                :priority_c    #("■" 0 1 (face nerd-icons-yellow))
+                :priority_d    #("⬇" 0 1 (face nerd-icons-green))
+                :priority_e    #("❓" 0 1 (face nerd-icons-blue))))
+
+(defadvice! +org-init-appearance-h--no-ligatures-a ()
+  :after #'+org-init-appearance-h
+  (set-ligatures! 'org-mode nil)
+  (set-ligatures! 'org-mode
+    :list_property "::"
+    :em_dash       "---"
+    :ellipsis      "..."
+    :arrow_right   "->"
+    :arrow_left    "<-"
+    :arrow_lr      "<->"
+    :properties    ":PROPERTIES:"
+    :end           ":END:"
+    :priority_a    "[#A]"
+    :priority_b    "[#B]"
+    :priority_c    "[#C]"
+    :priority_d    "[#D]"
+    :priority_e    "[#E]"))
+#+end_src
+
+While we're at it we may as well make tags prettier as well 🙂
+#+begin_src emacs-lisp :tangle packages.el
+;; (package! org-pretty-tags :pin "5c7521651b35ae9a7d3add4a66ae8cc176ae1c76")
+#+end_src
+
+#+begin_src emacs-lisp
+;; (use-package org-pretty-tags
+;; :config
+;;  (setq org-pretty-tags-surrogate-strings
+;;        `(("uni"        . ,(all-the-icons-faicon   "graduation-cap" :face 'all-the-icons-purple  :v-adjust 0.01))
+;;          ("ucc"        . ,(all-the-icons-material "computer"       :face 'all-the-icons-silver  :v-adjust 0.01))
+;;          ("assignment" . ,(all-the-icons-material "library_books"  :face 'all-the-icons-orange  :v-adjust 0.01))
+;;          ("test"       . ,(all-the-icons-material "timer"          :face 'all-the-icons-red     :v-adjust 0.01))
+;;          ("lecture"    . ,(all-the-icons-fileicon "keynote"        :face 'all-the-icons-orange  :v-adjust 0.01))
+;;          ("email"      . ,(all-the-icons-faicon   "envelope"       :face 'all-the-icons-blue    :v-adjust 0.01))
+;;          ("read"       . ,(all-the-icons-octicon  "book"           :face 'all-the-icons-lblue   :v-adjust 0.01))
+;;          ("article"    . ,(all-the-icons-octicon  "file-text"      :face 'all-the-icons-yellow  :v-adjust 0.01))
+;;          ("web"        . ,(all-the-icons-faicon   "globe"          :face 'all-the-icons-green   :v-adjust 0.01))
+;;          ("info"       . ,(all-the-icons-faicon   "info-circle"    :face 'all-the-icons-blue    :v-adjust 0.01))
+;;          ("issue"      . ,(all-the-icons-faicon   "bug"            :face 'all-the-icons-red     :v-adjust 0.01))
+;;          ("someday"    . ,(all-the-icons-faicon   "calendar-o"     :face 'all-the-icons-cyan    :v-adjust 0.01))
+;;          ("idea"       . ,(all-the-icons-octicon  "light-bulb"     :face 'all-the-icons-yellow  :v-adjust 0.01))
+;;          ("emacs"      . ,(all-the-icons-fileicon "emacs"          :face 'all-the-icons-lpurple :v-adjust 0.01))))
+;;  (org-pretty-tags-global-mode))
+#+end_src
+**** LaTeX Fragments
+***** Prettier highlighting
+
+First off, we want those fragments to look good.
+#+begin_src emacs-lisp
+(setq org-highlight-latex-and-related '(native script entities))
+#+end_src
+
+However, by using =native= highlighting the =org-block= face is added, and that
+doesn't look too great --- particularly when the fragments are previewed.
+
+Ideally ~org-src-font-lock-fontify-block~ wouldn't add the =org-block= face, but we
+can avoid advising that entire function by just adding another face with
+=:inherit default= which will override the background colour.
+
+Inspecting ~org-do-latex-and-related~ shows that ="latex"= is the language argument
+passed, and so we can override the background as discussed above.
+#+begin_src emacs-lisp
+(require 'org-src)
+(add-to-list 'org-src-block-faces '("latex" (:inherit default :extend t)))
+#+end_src
+
+***** Automatic previewing
+
+It would be nice if fragments could automatically be previewed after being
+typed, and the overlays automatically showed and hidden when moving the point in
+and out of the LaTeX fragments.
+
+Thankfully, all we need to do to make this happen is use ~org-latex-preview-auto-mode~.
+
+#+begin_src emacs-lisp
+(add-hook 'org-mode-hook #'org-latex-preview-auto-mode)
+#+end_src
+
+**** Org Plot
+
+We can use some of the variables in =org-plot= to use the current doom theme
+colours.
+#+begin_src emacs-lisp
+(defvar +org-plot-term-size '(1050 . 650)
+  "The size of the GNUPlot terminal, in the form (WIDTH . HEIGHT).")
+
+(after! org-plot
+  (defun +org-plot-generate-theme (_type)
+    "Use the current Doom theme colours to generate a GnuPlot preamble."
+    (format "
+fgt = \"textcolor rgb '%s'\" # foreground text
+fgat = \"textcolor rgb '%s'\" # foreground alt text
+fgl = \"linecolor rgb '%s'\" # foreground line
+fgal = \"linecolor rgb '%s'\" # foreground alt line
+
+# foreground colors
+set border lc rgb '%s'
+# change text colors of  tics
+set xtics @fgt
+set ytics @fgt
+# change text colors of labels
+set title @fgt
+set xlabel @fgt
+set ylabel @fgt
+# change a text color of key
+set key @fgt
+
+# line styles
+set linetype 1 lw 2 lc rgb '%s' # red
+set linetype 2 lw 2 lc rgb '%s' # blue
+set linetype 3 lw 2 lc rgb '%s' # green
+set linetype 4 lw 2 lc rgb '%s' # magenta
+set linetype 5 lw 2 lc rgb '%s' # orange
+set linetype 6 lw 2 lc rgb '%s' # yellow
+set linetype 7 lw 2 lc rgb '%s' # teal
+set linetype 8 lw 2 lc rgb '%s' # violet
+
+# border styles
+set tics out nomirror
+set border 3
+
+# palette
+set palette maxcolors 8
+set palette defined ( 0 '%s',\
+1 '%s',\
+2 '%s',\
+3 '%s',\
+4 '%s',\
+5 '%s',\
+6 '%s',\
+7 '%s' )
+"
+            (doom-color 'fg)
+            (doom-color 'fg-alt)
+            (doom-color 'fg)
+            (doom-color 'fg-alt)
+            (doom-color 'fg)
+            ;; colours
+            (doom-color 'red)
+            (doom-color 'blue)
+            (doom-color 'green)
+            (doom-color 'magenta)
+            (doom-color 'orange)
+            (doom-color 'yellow)
+            (doom-color 'teal)
+            (doom-color 'violet)
+            ;; duplicated
+            (doom-color 'red)
+            (doom-color 'blue)
+            (doom-color 'green)
+            (doom-color 'magenta)
+            (doom-color 'orange)
+            (doom-color 'yellow)
+            (doom-color 'teal)
+            (doom-color 'violet)))
+
+  (defun +org-plot-gnuplot-term-properties (_type)
+    (format "background rgb '%s' size %s,%s"
+            (doom-color 'bg) (car +org-plot-term-size) (cdr +org-plot-term-size)))
+
+  (setq org-plot/gnuplot-script-preamble #'+org-plot-generate-theme)
+  (setq org-plot/gnuplot-term-extra #'+org-plot-gnuplot-term-properties))
+#+end_src
+*** LaTeX Export
+
+**** Compiling
+
+By default Org uses ~pdflatex~ \times 3 + ~bibtex~. This simply won't do in our
+modern world. ~latexmk~ + ~biber~ (which is used automatically with ~latexmk~) is a
+simply superior combination.
+
+#+begin_src emacs-lisp
+;; org-latex-compilers = ("pdflatex" "xelatex" "lualatex"), which are the possible values for %latex
+(setq org-latex-pdf-process '("LC_ALL=en_US.UTF-8 latexmk -f -pdf -%latex -shell-escape -interaction=nonstopmode -output-directory=%o %f"))
+#+end_src
+
+While ~org-latex-pdf-process~ does support a function, and we could use that
+instead, this would no longer use the log buffer --- it's a bit blind, you give
+it the file name and expect it to do its thing.
+
+The default values of ~org-latex-compilers~ is given in commented form to see how
+~org-latex-pdf-process~ works with them.
+
+While the ~-%latex~ above is slightly hacky (~-pdflatex~ expects to be given a
+value) it allows us to leave ~org-latex-compilers~ unmodified.
+This is nice in case I open an org file that uses =#+LATEX_COMPILER= for example,
+it should still work.
+
+**** Nicer checkboxes
+
+We'll assume that thanks to the clever preamble the various custom =\checkbox...=
+commands below are defined.
+
+#+begin_src emacs-lisp
+(defun +org-export-latex-fancy-item-checkboxes (text backend info)
+  (when (org-export-derived-backend-p backend 'latex)
+    (replace-regexp-in-string
+     "\\\\item\\[{$\\\\\\(\\w+\\)$}\\]"
+     (lambda (fullmatch)
+       (concat "\\\\item[" (pcase (substring fullmatch 9 -3) ; content of capture group
+                             ("square"   "\\\\checkboxUnchecked")
+                             ("boxminus" "\\\\checkboxTransitive")
+                             ("boxtimes" "\\\\checkboxChecked")
+                             (_ (substring fullmatch 9 -3))) "]"))
+     text)))
+
+(add-to-list 'org-export-filter-item-functions
+             '+org-export-latex-fancy-item-checkboxes)
+#+end_src
+
+**** Maths notation conveniences
+:PROPERTIES:
+:header-args:LaTeX: :noweb-ref latex-maths-conveniences
+:END:
+
+Maths has a way of popping up relentlessly. I think this says something both
+about me and the subject itself. While the LaTeX set of commands is quite
+reasonable, we can make a few common bits of notation a tad more convenient.
+
+***** Packages
+
+First, there are a few useful packages we want to use.
+
+#+begin_src LaTeX
+%% Maths-related packages
+% More maths environments, commands, and symbols.
+\usepackage{amsmath, amssymb}
+% Slanted fractions with \sfrac{a}{b}, in text and maths.
+\usepackage{xfrac}
+% Visually cancel expressions with \cancel{value} and \cancelto{expression}{value}
+\usepackage[makeroom]{cancel}
+% Improvements on amsmath and utilities for mathematical typesetting
+\usepackage{mathtools}
+#+end_src
+
+***** Custom delimiters
+
+Next up we want to make the various types of rounding-related and absolute value
+delimitors accessible as commands.
+
+#+begin_src LaTeX
+% Deliminators
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\round}{\lfloor}{\rceil}
+#+end_src
+
+***** Number sets
+
+Then we have the various common number sets, it would be nice to have a
+convenient way of typing them and optionally giving them powers. It's fairly
+easy to support both =\XX= and =\XX[n]=.
+
+#+begin_src LaTeX
+\newcommand{\RR}[1][]{\ensuremath{\ifstrempty{#1}{\mathbb{R}}{\mathbb{R}^{#1}}}} % Real numbers
+\newcommand{\NN}[1][]{\ensuremath{\ifstrempty{#1}{\mathbb{N}}{\mathbb{N}^{#1}}}} % Natural numbers
+\newcommand{\ZZ}[1][]{\ensuremath{\ifstrempty{#1}{\mathbb{Z}}{\mathbb{Z}^{#1}}}} % Integer numbers
+\newcommand{\QQ}[1][]{\ensuremath{\ifstrempty{#1}{\mathbb{Q}}{\mathbb{Q}^{#1}}}} % Rational numbers
+\newcommand{\CC}[1][]{\ensuremath{\ifstrempty{#1}{\mathbb{C}}{\mathbb{C}^{#1}}}} % Complex numbers
+#+end_src
+
+***** Derivatives
+
+Derivatives are actually a bit of a pain to typeset, it would be nice to have a
+=\dv= command that supports:
++ =\dv{x}= for the derivative with respect to =x=
++ =\dv{f}{x}= for the derivative of =f= with respect to =x=
++ =\dv[2]{f}{x}= for the second order derivative of =f= with respect to =x=
+
+Similarly, it would be nice to have a partial derivate counterpart =\pdv= which
+behaves in a similar way, but with the possibility of providing multiple
+comma-delimited variables --- e.g. =\pdv{f}{x,y,z}=.
+
+#+begin_src LaTeX
+% Easy derivatives
+\ProvideDocumentCommand\dv{o m g}{%
+  \IfNoValueTF{#3}{%
+    \dv[#1]{}{#2}}{%
+    \IfNoValueTF{#1}{%
+      \frac{\dd #2}{\dd #3}%
+    }{\frac{\dd[#1] #2}{\dd {#3}^{#1}}}}}
+% Easy partial derivatives
+\ExplSyntaxOn
+\ProvideDocumentCommand\pdv{o m g}{%
+  \IfNoValueTF{#3}{\pdv[#1]{}{#2}}%
+  {\ifnum\clist_count:n{#3}<2
+    \IfValueTF{#1}{\frac{\partial^{#1} #2}{\partial {#3}^{#1}}}%
+    {\frac{\partial #2}{\partial #3}}
+    \else
+    \frac{\IfValueTF{#1}{\partial^{#1}}{\partial^{\clist_count:n{#3}}}#2}%
+    {\clist_map_inline:nn{#3}{\partial ##1 \,}\!}
+    \fi}}
+\ExplSyntaxOff
+#+end_src
+
+***** Common operators
+
+The default set of operators could benefit from a bit of expansion.
+
+#+begin_src LaTeX
+% Laplacian
+\DeclareMathOperator{\Lap}{\mathcal{L}}
+
+% Statistics
+\DeclareMathOperator{\Var}{Var} % varience
+\DeclareMathOperator{\Cov}{Cov} % covarience
+\newcommand{\EE}{\ensuremath{\mathbb{E}}} % expected value
+\DeclareMathOperator{\E}{E} % expected value
+#+end_src
+
+***** Slanted inequalities
+
+As a matter of personal taste, I prefer the slanted less/greater than or equal
+to operators, and would like to use them by default.
+
+#+begin_src LaTeX
+% I prefer the slanted \leq/\geq
+\let\barleq\leq % Save them in case they're every wanted
+\let\bargeq\geq
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+#+end_src
+
+***** Alignment of matrix columns
+
+By default, everything in a matrix is centred, which I actually find often
+undesirable. It would be much nicer to take the alignment as an optional
+argument of the environment, and default to right-alignment.
+
+#+begin_src LaTeX
+% Redefine the matrix environment to allow for alignment
+% via an optional argument, and use r as the default.
+\makeatletter
+\renewcommand*\env@matrix[1][r]{\hskip -\arraycolsep%
+    \let\@ifnextchar\new@ifnextchar
+    \array{*\c@MaxMatrixCols #1}}
+\makeatother
+#+end_src
+
+***** Slanted derivative "d"
+
+Determining an appropriate styling for a derivative "d" (e.g. "dx") is
+surprisingly hard, as the "d" is neither:
++ An operator (which are typeset as upright roman)
++ A variable (which are typeset as italic roman)
+
+The ISO 80000-2 standard (2009) specifies that it should be upright, however (a)
+it is still not an operator, (b) not used in any maths book I've seen, and (c)
+doesn't look very good. I'm not entirely comfortable with the variable styling
+either though, so perhaps something else is in order?
+
+After trying a few different options, I rather like the idea of using a /slanted
+roman "d"/. This stylistically works for me, while being just distinct enough
+from other faces. As long as we are creating a PDF, we can apply a transform
+that slants a "d".
+
+#+begin_src LaTeX
+% Slanted roman "d" for derivatives
+\ifcsname pdfoutput\endcsname
+  \ifnum\pdfoutput>0 % PDF
+    \newsavebox\diffdbox{}
+    \newcommand{\slantedromand}{{\mathpalette\makesl{d}}}
+    \newcommand{\makesl}[2]{%
+      \begingroup
+      \sbox{\diffdbox}{$\mathsurround=0pt#1\mathrm{#2}$}%
+      \pdfsave%
+      \pdfsetmatrix{1 0 0.2 1}%
+      \rlap{\usebox{\diffdbox}}%
+      \pdfrestore%
+      \hskip\wd\diffdbox%
+      \endgroup}
+  \else % DVI
+    \newcommand{\slantedromand}{d} % fallback
+  \fi
+\else % Also DVI
+  \newcommand{\slantedromand}{d} % fallback
+\fi
+#+end_src
+
+Now there's the matter of /placing/ the "d", or rather adjusting the space around
+it. After much fiddling, I've ended up with the following.
+
+#+begin_src LaTeX
+% Derivative d^n, nicely spaced
+\makeatletter
+\newcommand{\dd}[1][]{\mathop{}\!%
+  \expandafter\ifx\expandafter&\detokenize{#1}&% \ifstrempty from etoolbox
+    \slantedromand\@ifnextchar^{\hspace{0.2ex}}{\hspace{0.1ex}}
+  \else
+    \slantedromand\hspace{0.2ex}^{#1}
+  \fi}
+\makeatother
+#+end_src
+
+While =\dd= isn't much effort to type, it would be much cleaner to be able to do
+src_LaTeX{\int x^2 \d x}. The problem with defining =\d= is that it is already used
+for the under-dot accent. However, since this is a text-mode (only) accent, and
+defined with src_LaTeX{\@dec@text@cmd\newcommand} instead of
+src_LaTeX{\DeclareRobustCommand} we can redefine the command to mean =\dd= in
+math-mode.
+
+#+begin_src LaTeX
+\NewCommandCopy{\daccent}{\d}
+\renewcommand{\d}{\ifmmode\dd\else\daccent\fi}
+#+end_src
+
+**** Remove non-ascii chars
+
+When using ~pdflatex~, almost non-ascii characters are generally problematic, and
+don't appear in the pdf. It's preferable to see that there was /some/ character
+which wasn't displayed as opposed to nothing.
+
+We check every non-ascii character to make sure it's not a character encoded by
+the =inputenc= packages when loaded with the =utf8= option. We'll also allow
+box-drawing characters since they can be mostly supported with =pmboxdraw=.
+Finally, we see if we have our own LaTeX conversion we can apply and if there is
+none we replace the non-ascii char with =¿=.
+
+No to make sure we only remove characters that can't be displayed, we check
+=/usr/share/texmf/tex/latex/base/utf8enc.dfu=.
+
+We just need to make sure this is appended to the list of filter functions,
+since we want to let emoji processing occur first.
+
+#+begin_src emacs-lisp
+(defvar +org-pdflatex-inputenc-encoded-chars
+  "[[:ascii:]\u00A0-\u01F0\u0218-\u021BȲȳȷˆˇ˜˘˙˛˝\u0400-\u04FFḂḃẞ\u200B\u200C\u2010-\u201E†‡•…‰‱‹›※‽⁄⁎⁒₡₤₦₩₫€₱℃№℗℞℠™Ω℧℮←↑→↓〈〉␢␣◦◯♪⟨⟩Ḡḡ\uFB00-\uFB06\u2500-\u259F]")
+
+(defun +org-latex-replace-non-ascii-chars (text backend info)
+  "Replace non-ascii chars with \\char\"XYZ forms."
+  (when (and (org-export-derived-backend-p backend 'latex)
+             (string= (plist-get info :latex-compiler) "pdflatex"))
+    (let (case-replace)
+      (replace-regexp-in-string "[^[:ascii:]]"
+                                (lambda (nonascii)
+                                  (if (or (string-match-p +org-pdflatex-inputenc-encoded-chars nonascii)
+                                          (string-match-p org-latex-emoji--rx nonascii))
+                                      nonascii
+                                    (or (cdr (assoc nonascii +org-latex-non-ascii-char-substitutions))
+                                        "¿")))
+                                text))))
+
+(add-to-list 'org-export-filter-plain-text-functions #'+org-latex-replace-non-ascii-chars t)
+#+end_src
+
+Now, there are some symbols that aren't included in =inputenc=, but we should be
+able to handle anyway. For them we define a table of LaTeX translations
+
+#+name: latex-non-ascii-char-substitutions
+| Character | LaTeX |
+|-----------+-------|
+| ɑ         | \(\alpha\) |
+| β         | \(\beta\) |
+| γ         | \(\gamma\) |
+| δ         | \(\delta\) |
+| ε         | \(\epsilon\) |
+| ϵ         | \(\varepsilon\) |
+| ζ         | \(\zeta\) |
+| η         | \(\eta\) |
+| θ         | \(\theta\) |
+| ϑ         | \(\vartheta\) |
+| ι         | \(\iota\) |
+| κ         | \(\kappa\) |
+| λ         | \(\lambda\) |
+| μ         | \(\mu\) |
+| ν         | \(\nu\) |
+| ξ         | \(\xi\) |
+| π         | \(\pi\) |
+| ϖ         | \(\varpi\) |
+| ρ         | \(\rho\) |
+| ϱ         | \(\varrho\) |
+| σ         | \(\sigma\) |
+| ς         | \(\varsigma\) |
+| τ         | \(\tau\) |
+| υ         | \(\upsilon\) |
+| ϕ         | \(\phi\) |
+| φ         | \(\varphi\) |
+| ψ         | \(\psi\) |
+| ω         | \(\omega\) |
+| Γ         | \(\Gamma\) |
+| Δ         | \(\Delta\) |
+| Θ         | \(\Theta\) |
+| Λ         | \(\Lambda\) |
+| Ξ         | \(\Xi\) |
+| Π         | \(\Pi\) |
+| Σ         | \(\Sigma\) |
+| Υ         | \(\Upsilon\) |
+| Φ         | \(\Phi\) |
+| Ψ         | \(\Psi\) |
+| Ω         | \(\Omega\) |
+| א         | \(\aleph\) |
+| ב         | \(\beth\) |
+| ד         | \(\daleth\) |
+| ג         | \(\gimel\) |
+
+#+name: gen-latex-non-ascii-char-substitutions
+#+begin_src emacs-lisp :noweb-ref none :var latex-non-ascii-char-substitutions=latex-non-ascii-char-substitutions
+(replace-regexp-in-string
+ " '((" "\n   '(("
+ (replace-regexp-in-string
+  ") (" ")\n     ("
+  (prin1-to-string
+   `(defvar +org-latex-non-ascii-char-substitutions
+      ',(mapcar
+         (lambda (entry)
+           (cons (car entry) (replace-regexp-in-string "\\\\" "\\\\\\\\" (cadr entry))))
+         latex-non-ascii-char-substitutions)))))
+#+end_src
+
+#+begin_src emacs-lisp :noweb no-export
+<<gen-latex-non-ascii-char-substitutions()>>
+#+end_src
+
+**** Normal spaces after abbreviations
+
+In LaTeX inter-word and sentence spaces are typically of different widths. This
+can be an issue when using abbreviations i.e. e.g. etc. et al..
+This can be corrected by forcing a normal space with src_LaTeX{\ }.
+When exporting Org documents, we can add a filter to check for common
+abbreviations and make the space normal.
+
+#+begin_src emacs-lisp
+(defvar +org-latex-abbreviations
+  '(;; Latin
+    "cf." "e.g." "etc." "et al." "i.e." "v." "vs." "viz." "n.b."
+    ;; Corperate
+    "inc." "govt." "ltd." "pty." "dept."
+    ;; Temporal
+    "est." "c."
+    ;; Honorifics
+    "Prof." "Dr." "Mr." "Mrs." "Ms." "Miss." "Sr." "Jr."
+    ;; Components of a work
+    "ed." "vol." "sec." "chap." "pt." "pp." "op." "no."
+    ;; Common usage
+    "approx." "misc." "min." "max.")
+  "A list of abbreviations that should be spaced correctly when exporting to LaTeX.")
+
+(defun +org-latex-correct-latin-abbreviation-spaces (text backend _info)
+  "Normalise spaces after Latin abbreviations."
+  (when (org-export-derived-backend-p backend 'latex)
+    (replace-regexp-in-string (rx (group (or line-start space)
+                                         (regexp (regexp-opt-group +org-latex-abbreviations)))
+                                  (or line-end space))
+                              "\\1\\\\ "
+                              text)))
+
+(add-to-list 'org-export-filter-paragraph-functions #'+org-latex-correct-latin-abbreviation-spaces t)
+#+end_src
+
+**** Extra special strings
+
+LaTeX already recognises =---= and =--= as em/en-dashes, =\-= as a shy hyphen, and the
+conversion of =...= to =\ldots{}= is hardcoded into ~org-latex-plain-text~ (unlike
+~org-html-plain-text~).
+
+I'd quite like to also recognise =->= and =<-=, so let's set come up with some advice.
+
+#+begin_src emacs-lisp
+(defvar org-latex-extra-special-string-regexps
+  '(("<->" . "\\\\(\\\\leftrightarrow{}\\\\)")
+    ("->" . "\\\\textrightarrow{}")
+    ("<-" . "\\\\textleftarrow{}")))
+
+(defun org-latex-convert-extra-special-strings (string)
+  "Convert special characters in STRING to LaTeX."
+  (dolist (a org-latex-extra-special-string-regexps string)
+    (let ((re (car a))
+          (rpl (cdr a)))
+      (setq string (replace-regexp-in-string re rpl string t)))))
+
+(defadvice! org-latex-plain-text-extra-special-a (orig-fn text info)
+  "Make `org-latex-plain-text' handle some extra special strings."
+  :around #'org-latex-plain-text
+  (let ((output (funcall orig-fn text info)))
+    (when (plist-get info :with-special-strings)
+      (setq output (org-latex-convert-extra-special-strings output)))
+    output))
+#+end_src
+
+**** Make verbatim different to code
+
+Since have just gone to so much effort above let's make the most of it by making
+=verbatim= use ~verb~ instead of ~protectedtexttt~ (default).
+
+This gives the same advantages as mentioned in the [[*Make verbatim different to code][HTML export section]].
+
+#+begin_src emacs-lisp
+(setq org-latex-text-markup-alist
+      '((bold . "\\textbf{%s}")
+        (code . protectedtexttt)
+        (italic . "\\emph{%s}")
+        (strike-through . "\\sout{%s}")
+        (underline . "\\uline{%s}")
+        (verbatim . verb)))
+#+end_src
+
+**** Check for required packages
+
+For how I've setup Org's LaTeX export, the following packages are needed:
+#+name: org-latex-required-packages-list
+| Package    | Description                                           |
+|------------+-------------------------------------------------------|
+| adjustbox  | Adjust general LaTeX material in like includegraphics |
+| amsmath    | A near-essential maths package                        |
+| booktabs   | Nice horizontal lines in tables                       |
+| cancel     | Cancel terms in equations                             |
+| capt-of    | Captions outside floats                               |
+| caption    | Finer control over captions                           |
+| cleveref   | Easy cross-referencing                                |
+| embedall   | Embed files in the document                           |
+| float      | Floating environments                                 |
+| fontenc    | Font encodings                                        |
+| fvextra    | Enhanced verbatim environments                        |
+| graphicx   | An extended graphics package                          |
+| hanging    | Used by oc-csl                                        |
+| hyperref   | Links                                                 |
+| inputenc   | Input file encodings                                  |
+| longtable  | Multi-page tables                                     |
+| mathalpha  | Set extended math alphabet fonts                      |
+| mathtools  | Typesetting tools for maths                           |
+| microtype  | Microtypography                                       |
+| pdfx       | Create pdf/a- and pdf/x- compatible documents         |
+| pifont     | A collection of symbols                               |
+| preview    | Needed for AUCTeX and ob-latex                        |
+| scrbase    | KOMA classes and more                                 |
+| siunitx    | Proper unit support                                   |
+| soul       | Strikethrough and underline, flexibly                 |
+| subcaption | Form subfigures and subcaptions                       |
+| svg        | Insert SVG images                                     |
+| tikz       | Generally handy, as a dependancy and for graphics     |
+| tcolorbox  | Nice boxes for code                                   |
+| textcomp   | Font encodings                                        |
+| xcolor     | Colours                                               |
+| xparse     | Extended command/env definition forms                 |
+| xcoffins   | Manipulate coffins (boxes) for typesetting            |
+
+Then for the various fontsets:
+#+name: org-latex-font-packages-list
++ Alegreya
++ arev
++ biolinum
++ FiraMono
++ FiraSans
++ fourier
++ gillius
++ kpfonts
++ libertine
++ newpxmath
++ newpxtext
++ newtxmath
++ newtxtext
++ newtxsf
++ noto
++ plex-mono
++ plex-sans
++ plex-serif
++ sourcecodepro
++ sourcesanspro
++ sourceserifpro
+
+We can write a function which will check for each of these packages with
+=kpsewhich=, and then if any of them are missing we'll inject some advice into the
+generated config that gets a list of missing packages and warns us every time we
+export to a PDF.
+
+#+name: org-missing-latex-packages
+#+begin_src emacs-lisp :noweb-ref none :var org-latex-required-packages-list=org-latex-required-packages-list[,0] :var org-latex-font-packages-list=org-latex-font-packages-list
+(setq org-required-latex-packages
+      (append org-latex-required-packages-list
+              org-latex-font-packages-list))
+
+(defun check-for-latex-packages (packages)
+  (delq nil (mapcar (lambda (package)
+                      (unless
+                          (= 0 (call-process "kpsewhich" nil nil nil (concat package ".sty")))
+                        package))
+                    packages)))
+
+(if-let ((missing-pkgs (check-for-latex-packages org-required-latex-packages)))
+    (concat
+     (pp-to-string `(setq org-required-latex-packages ',org-required-latex-packages))
+     (message ";; Detected missing LaTeX packages: %s\n" (mapconcat #'identity missing-pkgs ", "))
+     (pp-to-string
+      '(defun check-for-latex-packages (packages)
+         (delq nil (mapcar (lambda (package)
+                             (unless
+                                 (= 0 (call-process "kpsewhich" nil nil nil (concat package ".sty")))
+                               package))
+                           packages))))
+     (pp-to-string
+      '(defun +org-warn-about-missing-latex-packages (&rest _)
+         (message "Checking for missing LaTeX packages...")
+         (sleep-for 0.4)
+         (if-let (missing-pkgs (check-for-latex-packages org-required-latex-packages))
+             (message "%s You are missing the following LaTeX packages: %s."
+                      (propertize "Warning!" 'face '(bold warning))
+                      (mapconcat (lambda (pkg) (propertize pkg 'face 'font-lock-variable-name-face))
+                                 missing-pkgs
+                                 ", "))
+           (message "%s You have all the required LaTeX packages. Run %s to make this message go away."
+                    (propertize "Success!" 'face '(bold success))
+                    (propertize "doom sync" 'face 'font-lock-keyword-face))
+           (advice-remove 'org-latex-export-to-pdf #'+org-warn-about-missing-latex-packages))
+         (sleep-for 1)))
+     (pp-to-string
+      '(advice-add 'org-latex-export-to-pdf :before #'+org-warn-about-missing-latex-packages)))
+  ";; No missing LaTeX packags detected")
+#+end_src
+
+#+begin_src emacs-lisp :noweb no-export
+<<org-missing-latex-packages()>>
 #+end_src
 
 ** LaTeX
@@ -1918,26 +2869,6 @@ but more convenient, like =;=.
      (?a    "\\abs"           nil          t    nil  nil))))
 #+end_src
 
-**** LAAS
-
-#+call: confpkg("!Pkg LAAS")
-
-This makes use of =aas= (/Auto Activating Snippets/) for CDLaTeX-like symbol input.
-
-#+begin_src emacs-lisp :tangle packages.el
-(package! laas :recipe (:local-repo "lisp/LaTeX-auto-activating-snippets"))
-#+end_src
-
-#+begin_src emacs-lisp
-(use-package! laas
-  :hook (LaTeX-mode . laas-mode)
-  :config
-  (defun laas-tex-fold-maybe ()
-    (unless (equal "/" aas-transient-snippet-key)
-      (+latex-fold-last-macro-a)))
-  (add-hook 'aas-post-snippet-expand-hook #'laas-tex-fold-maybe))
-#+end_src
-
 *** SyncTeX
 
 #+begin_src emacs-lisp
@@ -2086,7 +3017,6 @@ Set =fortls= command:
                                   "--enable_code_actions"
                                   )))
 #+end_src
-
 
 ** Ledger mode
 

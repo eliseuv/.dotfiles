@@ -72,6 +72,9 @@ pathappend ~/.local/share/gem/ruby/3.0.0/bin
 # DOOM Emacs
 pathappend ~/.config/emacs-doom/bin
 
+# Neovim bob
+pathappend ~/.local/share/bob/nvim-bin
+
 # Local man
 manpathappend ~/.local/share/man
 
@@ -120,6 +123,9 @@ export LOVELACE_DATA="eliseuvf@$LOVELACE:/home_tmp/eliseuvf/"
 # hledger
 export LEDGER_FILE=~/Documents/finances/home-ledger/home.ledger
 
+# GTK Themo
+export GTK_THEME=Adwaita-dark
+
 # Spotify API keys
 export $(xargs -d '\n' <"$HOME/Documents/personal/api_keys/spotify.txt")
 
@@ -162,11 +168,12 @@ alias c='clear'
 alias h='history -i'
 
 # Changing 'ls' to 'lsd'
-alias l='exa --group-directories-first --icons --color=always'
-alias la='exa --all --group-directories-first --icons --color=always'
-alias ll='exa --all --long --header --git --group-directories-first --icons --color=always'
-alias lt='exa --all --tree --group-directories-first --icons --ignore-glob=.git --color=always'
-alias l.='exa --all | rg "^\."'
+alias l='eza --group-directories-first --icons --color=always'
+alias la='eza --all --group-directories-first --icons --color=always'
+alias ll='eza --all --long --header --git --group-directories-first --icons --color=always'
+alias lt='eza --all --tree --group-directories-first --icons --ignore-glob=.git --color=always'
+alias llt='eza --all --long --header --tree --git --group-directories-first --icons --ignore-glob=.git --color=always'
+alias l.='eza --all | rg "^\."'
 # alias l='lsd --group-directories-first --icon=always --color=always --hyperlink=always'
 # alias la='lsd --almost-all --group-directories-first --icon=always --color=always --hyperlink=always'
 # alias ll="lsd --almost-all --long --header --group-directories-first --icon=always --color=always --hyperlink=always --date '+%Y-%m-%d %H:%M'"
@@ -188,7 +195,7 @@ alias rm='rm -i'
 # Grep
 alias grep='grep --color'
 
-# stow: never fold
+# stow
 alias stow='stow --no-folding'
 
 # Watch with 1s refresh
@@ -218,7 +225,7 @@ alias pm='pulsemixer'
 # Resource monitors
 alias ht='htop -d5 -sPERCENT_CPU'
 #alias gt='gotop -p -r 500ms'
-alias bt='btop'
+alias bt='btm'
 
 # n^3 file manager
 alias nn="(export VISUAL='nvim'; nnn)"
@@ -330,7 +337,7 @@ export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f
 
 # Fuzzy search dir navigation
 function fcd {
-	cd "$(find ~ -not -path '*/.*' -type d | fzf --height 50% --reverse --preview 'exa -lah {}')" || return
+	cd "$(find ~ -not -path '*/.*' -type d | fzf --height 50% --reverse --preview 'eza -lah {}')" || return
 }
 
 # Fuzzy search file in dir and open
@@ -380,6 +387,7 @@ alias tl='tmux list-sessions'
 
 # Rust backtrace
 export RUST_BACKTRACE=1
+export RUSTC_WRAPPER=~/.cargo/bin/sccache
 
 # Update cargo binaries
 # https://crates.io/crates/cargo-update
@@ -649,6 +657,8 @@ function update {
 	condaupdate
 	printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
 	doom upgrade --force
+	printf "\n${GREEN}Updating NeoVim...${RESET}\n\n"
+	bob update --all
 	printf "\n${GREEN}Custom check...${RESET}\n"
 	customcheck
 	printf "\n"

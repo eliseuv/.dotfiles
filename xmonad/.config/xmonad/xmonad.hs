@@ -110,7 +110,8 @@ myEditor = myEmacs -- Sets emacs as editor
 -- myEditor = myTerminal ++ " -e hx "    -- Sets helix as editor
 
 myFileManager :: String
-myFileManager = "pcmanfm"
+myFileManager = "nautilus"
+-- myFileManager = "pcmanfm"
 
 myVideoPlayer :: String
 myVideoPlayer = "mpv"
@@ -597,7 +598,7 @@ myKeys c =
           ]
         ^++^ subKeys
           "Shell commands"
-          [ ("M-M1-h", addName "Launch btop" $ spawn (myTerminalCommand "btop")),
+          [ ("M-M1-h", addName "Launch bottom" $ spawn (myTerminalCommand "btm")),
             ("M-M1-m", addName "Launch pulsemixer" $ spawn (myTerminalCommand "pulsemixer")),
             ("M-M1-n", addName "Launch neonmodem" $ spawn (myAlacrittyCommand "neonmodem")),
             ("M-M1-u", addName "Update system" $ spawn (myTerminalCommand " ~/.local/bin/update"))
