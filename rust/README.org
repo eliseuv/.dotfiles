@@ -60,6 +60,12 @@ eza
 bat
 #+END_SRC
 
++ =zoxide=
+  https://github.com/ajeetdsouza/zoxide
+#+BEGIN_SRC txt :tangle rust_tools.txt :comments no :padline no
+zoxide
+#+END_SRC
+
 + =fd=
   https://github.com/sharkdp/fd
 #+BEGIN_SRC txt :tangle rust_tools.txt :comments no :padline no

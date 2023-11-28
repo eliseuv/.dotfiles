@@ -1679,7 +1679,7 @@ Now, by default, =LSP=s don't really function at all in ~src~ blocks.
 Basic configuration
 
 #+begin_src emacs-lisp
-(setq org-roam-directory (file-truename "~/Documents/org/roam")
+(setq org-roam-directory "~/Documents/org/roam/"
       org-roam-complete-everywhere t
       org-roam-capture-templates
       '(("d" "default" plain
@@ -1693,7 +1693,7 @@ Basic configuration
       )
 #+end_src
 
-That said, if the directory doesn't exist we likely don't want to be using roam.
+If the directory doesn't exist we don't want to use roam.
 
 #+begin_src emacs-lisp :noweb-ref none :tangle (if (file-exists-p "~/Documents/org/roam/") "no" "packages.el")
 (package! org-roam :disable t)
@@ -1716,14 +1716,19 @@ Nicer file names in window titles:
 
 Use the latest version of =Org Roam=:
 
-#+begin_src emacs-lisp :tangle packages.el
+#+begin_src emacs-lisp :tangle no
 (unpin! org-roam)
 #+end_src
 
 Install =Org Roam UI=
 
-#+begin_src emacs-lisp :tangle packages.el
+#+begin_src emacs-lisp :tangle no
 (package! org-roam-ui)
+#+end_src
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! org-roam-ui :recipe (:host github :repo "org-roam/org-roam-ui" :files ("*.el" "out")) :pin "5ac74960231db0bf7783c2ba7a19a60f582e91ab")
+(package! websocket :pin "82b370602fa0158670b1c6c769f223159affce9b") ; dependency of `org-roam-ui'
 #+end_src
 
 Install dependencies:
@@ -1868,7 +1873,7 @@ and out of the LaTeX fragments.
 
 Thankfully, all we need to do to make this happen is use ~org-latex-preview-auto-mode~.
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (add-hook 'org-mode-hook #'org-latex-preview-auto-mode)
 #+end_src
 

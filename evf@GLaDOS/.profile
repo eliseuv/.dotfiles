@@ -387,7 +387,7 @@ alias tl='tmux list-sessions'
 
 # Rust backtrace
 export RUST_BACKTRACE=1
-export RUSTC_WRAPPER=~/.cargo/bin/sccache
+export RUSTC_WRAPPER=sccache
 
 # Update cargo binaries
 # https://crates.io/crates/cargo-update

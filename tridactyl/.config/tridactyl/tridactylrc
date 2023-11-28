@@ -68,6 +68,7 @@ set searchurls.sci https://sci-hub.se/%s
 set searchurls.wp https://www.wikiwand.com/en/%s?fullSearch=true
 " set searchurls.r https://r.nf/search?q=%s
 set searchurls.r https://old.reddit.com/search?q=%s
+set searchurls.sdb https://steamdb.info/search/?a=all&q=%s
 set searchurls.kym https://knowyourmeme.com/search?q=%s
 set searchurls.t https://nitter.net/search?q=%s
 set searchurls.x https://twitter.com/search?q=%s
