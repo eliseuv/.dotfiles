@@ -60,6 +60,9 @@ pathappend /bin /usr/bin /usr/local/bin /usr/local/sbin
 pathprepend ~/.local/bin
 pathprepend ~/bin
 
+# bob nvim
+pathappend ~/.local/share/bob/nvim-bin
+
 # Local man
 manpathappend ~/.local/share/man
 
@@ -74,7 +77,7 @@ manpathappend ~/.local/share/man
 export TERM='kitty'
 
 # Text editors
-export EDITOR='vim'
+export EDITOR='nvim'
 # export VISUAL='emacsclient -c -a emacs'
 
 # Bat
@@ -137,7 +140,7 @@ alias b='bat'
 alias t='zellij'
 
 # NeoVim
-alias v='vim'
+alias v='nvim'
 
 # Resource monitors
 alias ht='htop -d5 -sPERCENT_CPU'
