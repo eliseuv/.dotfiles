@@ -2886,7 +2886,7 @@ but more convenient, like =;=.
 
 Use dark mode for PDF view.
 
-#+begin_src emacs-lisp package.el
+#+begin_src emacs-lisp
 (use-package! pdf-view
   :hook (pdf-tools-enabled . pdf-view-midnight-minor-mode)
   :hook (pdf-tools-enabled . hide-mode-line-mode)
@@ -2917,6 +2917,12 @@ Use dark mode for PDF view.
   ;; (setq rustic-analyzer-command '("rustup run stable rust-analyzer"))
   (setq rustic-format-on-save 't)
   )
+#+end_src
+
+Use =Justfile= mode.
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! just-mode)
 #+end_src
 
 ** Python

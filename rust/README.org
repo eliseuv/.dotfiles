@@ -46,6 +46,13 @@ cargo-info
 cargo-generate
 #+END_SRC
 
++ =cargo-nextest=
+  https://nexte.st/
+#+BEGIN_SRC txt :tangle rust_tools.txt :comments no :padline no
+cargo-nextets
+#+END_SRC
+
+
 * Essential
 
 + =eza=
@@ -133,6 +140,12 @@ hyperfine
   https://github.com/flamegraph-rs/flamegraph
 #+BEGIN_SRC txt :tangle rust_tools.txt :comments no :padline no
 flamegraph
+#+END_SRC
+
++ =just=
+  https://github.com/casey/just
+#+BEGIN_SRC txt :tangle rust_tools.txt :comments no :padline no
+just
 #+END_SRC
 
 * Other stuff

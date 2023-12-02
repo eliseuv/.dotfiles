@@ -1,10 +1,12 @@
 return {
+    -- Tree-sitter
     {
         "nvim-treesitter/nvim-treesitter",
         opts = function(_, opts)
             table.insert(opts.ensure_installed, "rust")
         end,
     },
+    -- LSP
     {
         "neovim/nvim-lspconfig",
         ---@class PluginLspOpts
@@ -18,4 +20,6 @@ return {
             },
         },
     },
+    -- Just config lang syntax highlighting
+    { "IndianBoy42/tree-sitter-just" },
 }
