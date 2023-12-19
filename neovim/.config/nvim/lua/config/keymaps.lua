@@ -7,3 +7,9 @@ vim.keymap.set("n", "<C-h>", "<cmd> TmuxNavigateLeft <cr>", { desc = "Pane left"
 vim.keymap.set("n", "<C-l>", "<cmd> TmuxNavigateRight <cr>", { desc = "Pane right" })
 vim.keymap.set("n", "<C-j>", "<cmd> TmuxNavigateDown <cr>", { desc = "Pane down" })
 vim.keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp <cr>", { desc = "Pane up" })
+
+if vim.lsp.inlay_hint then
+    vim.keymap.set("n", "<leader>ch", function()
+        vim.lsp.inlay_hint(0, nil)
+    end, { desc = "Toggle Inlay Hints" })
+end
