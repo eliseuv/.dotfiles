@@ -23,19 +23,24 @@ return {
                                 chainingHints = {
                                     enable = true,
                                 },
+                                closingBraceHints = {
+                                    enable = true,
+                                    minLines = 20,
+                                },
                                 closureCaptureHints = {
                                     enable = true,
                                 },
                                 closureReturnTypeHints = {
                                     enable = "always",
                                 },
+                                closureStyle = "impl_fn",
                                 discriminantHints = {
-                                    enable = "fieldless",
+                                    enable = "always",
                                 },
                                 expressionAdjustmentHints = {
                                     enable = "reborrow",
                                     hideOutsideUnsafe = false,
-                                    mode = "prefer_prefix",
+                                    mode = "prefix",
                                 },
                                 implicitDrops = {
                                     enable = true,
@@ -44,6 +49,7 @@ return {
                                     enable = "skip_trivial",
                                     useParameterNames = true,
                                 },
+                                maxLength = 25,
                                 parameterHints = {
                                     enable = true,
                                 },
@@ -52,6 +58,35 @@ return {
                                     enable = true,
                                     hideClosureInitialization = false,
                                     hideNamedConstructor = false,
+                                },
+                            },
+                            lens = {
+                                forceCustomCommands = true,
+                                implementations = {
+                                    enable = true,
+                                },
+                                enable = true,
+                                debug = {
+                                    enable = true,
+                                },
+                                location = "above_name",
+                                references = {
+                                    enable = true,
+                                    enumVariant = {
+                                        enable = true,
+                                    },
+                                    method = {
+                                        enable = true,
+                                    },
+                                    trait = {
+                                        enable = true,
+                                    },
+                                    adt = {
+                                        enable = true,
+                                    },
+                                },
+                                run = {
+                                    enable = true,
                                 },
                             },
                             interpret = {
