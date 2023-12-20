@@ -35,7 +35,7 @@ return {
                                 },
                                 closureStyle = "impl_fn",
                                 discriminantHints = {
-                                    enable = "always",
+                                    enable = "fieldless",
                                 },
                                 expressionAdjustmentHints = {
                                     enable = "reborrow",
@@ -101,6 +101,19 @@ return {
             },
         },
     },
+
+    -- Rust tools
+    {
+        "simrat39/rust-tools.nvim",
+        opts = {
+            tools = {
+                inlay_hints = {
+                    auto = false,
+                },
+            },
+        },
+    },
+
     -- Just config lang syntax highlighting
     { "IndianBoy42/tree-sitter-just" },
 }

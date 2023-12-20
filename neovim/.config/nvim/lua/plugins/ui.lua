@@ -27,9 +27,9 @@ return {
     {
         "LazyVim/LazyVim",
         opts = {
-            colorscheme = "tokyonight-night",
+            -- colorscheme = "tokyonight-night",
             -- colorscheme = "midnight",
-            -- colorscheme = "catppuccin-mocha",
+            colorscheme = "catppuccin-mocha",
         },
     },
 
@@ -71,19 +71,19 @@ return {
                 },
                 config = {
                     header = vim.split(logo, "\n"),
-            -- stylua: ignore
-            center = {
-              { action = "Telescope find_files",                                     desc = " Find file",       icon = " ", key = "f" },
-              { action = "ene | startinsert",                                        desc = " New file",        icon = " ", key = "n" },
-              { action = "Telescope oldfiles",                                       desc = " Recent files",    icon = " ", key = "r" },
-              { action = "Telescope live_grep",                                      desc = " Find text",       icon = " ", key = "g" },
-              { action = [[lua require("lazyvim.util").telescope.config_files()()]], desc = " Config",          icon = " ", key = "c" },
-              { action = "Telescope find_files search_dirs=~/.dotfiles find_command=rg,--hidden,--files", desc = " Browse Dotfiles", icon = " ", key = "d" },
-              { action = 'lua require("persistence").load()',                        desc = " Restore Session", icon = " ", key = "s" },
-              { action = "LazyExtras",                                               desc = " Lazy Extras",     icon = " ", key = "x" },
-              { action = "Lazy",                                                     desc = " Lazy",            icon = "󰒲 ", key = "l" },
-              { action = "qa",                                                       desc = " Quit",            icon = " ", key = "q" },
-            },
+                    -- stylua: ignore
+                    center = {
+                      { action = "Telescope find_files",                                     desc = " Find file",       icon = " ", key = "f" },
+                      { action = "ene | startinsert",                                        desc = " New file",        icon = " ", key = "n" },
+                      { action = "Telescope oldfiles",                                       desc = " Recent files",    icon = " ", key = "r" },
+                      { action = "Telescope live_grep",                                      desc = " Find text",       icon = " ", key = "g" },
+                      { action = [[lua require("lazyvim.util").telescope.config_files()()]], desc = " Config",          icon = " ", key = "c" },
+                      { action = "Telescope find_files search_dirs=~/.dotfiles find_command=rg,--hidden,--files", desc = " Browse Dotfiles", icon = " ", key = "d" },
+                      { action = 'lua require("persistence").load()',                        desc = " Restore Session", icon = " ", key = "s" },
+                      { action = "LazyExtras",                                               desc = " Lazy Extras",     icon = " ", key = "x" },
+                      { action = "Lazy",                                                     desc = " Lazy",            icon = "󰒲 ", key = "l" },
+                      { action = "qa",                                                       desc = " Quit",            icon = " ", key = "q" },
+                    },
                     footer = function()
                         local stats = require("lazy").stats()
                         local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
