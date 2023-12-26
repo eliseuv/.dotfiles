@@ -72,6 +72,7 @@ manpathappend ~/.local/share/man
 # export COLORTERM='truecolor'
 # export TERM='xterm-256color'
 export TERM='kitty'
+export TERMINAL='kitty'
 
 # Text editors
 export EDITOR='vim'
