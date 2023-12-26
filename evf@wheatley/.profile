@@ -60,6 +60,9 @@ pathappend /bin /usr/bin /usr/local/bin /usr/local/sbin
 pathprepend ~/.local/bin
 pathprepend ~/bin
 
+# bob nvim
+pathappend ~/.local/share/bob/nvim-bin
+
 # Local man
 manpathappend ~/.local/share/man
 
@@ -71,11 +74,10 @@ manpathappend ~/.local/share/man
 #export TERM='rxvt-unicode-256color'
 # export COLORTERM='truecolor'
 # export TERM='xterm-256color'
-export TERM='kitty'
 export TERMINAL='kitty'
 
 # Text editors
-export EDITOR='vim'
+export EDITOR='nvim'
 # export VISUAL='emacsclient -c -a emacs'
 
 # Bat
@@ -134,11 +136,17 @@ alias watch='watch -tc -n 1 '
 # Use 'bat' instead of 'cat'
 alias b='bat'
 
-# Zellij
-alias t='zellij'
+########
+# tmux #
+########
+
+alias t='tmux attach || tmux new-session'
+alias ta='tmux attach -t'
+alias tn='tmux new-session'
+alias tl='tmux list-sessions'
 
 # NeoVim
-alias v='vim'
+alias v='nvim'
 
 # Resource monitors
 alias ht='htop -d5 -sPERCENT_CPU'
@@ -165,6 +173,12 @@ alias ssh-restart='killall ssh-agent; eval `ssh-agent`; ssh-add'
 
 # Stage, commit and push changes with default commit message
 alias git-push="git add . && git commit -m 'update' && git push"
+
+############
+# Keyboard #
+############
+
+setxkbmap -option caps:escape
 
 ########
 # Rust #
@@ -196,15 +210,28 @@ function cargocleanup {
 	cargo-gc
 }
 
+###########
+# Haskell #
+###########
+
+# Put GHCup path at the start
+pathprepend "$HOME/.ghcup/bin"
+
+# Add the -dynamic flag to every invocation of GHC
+alias cabal-install='cabal install --ghc-options=-dynamic'
+
+# GHCup env
+[ -f "/home/evf/.ghcup/env" ] && source "/home/evf/.ghcup/env"
+
 #######
 # APT #
 #######
 
 # Pacman
 # Fuzzy search on available packages and install
-alias apts="apt search . | rg \^\\\\w\+\.\*/ | awk -F/ '{print \$1}' | fzf --multi --preview 'apt show {1}' --reverse | xargs -ro sudo apt install"
+alias apts="apt search . | rg \^\\\\w\+\.\*/ | awk -F/ '{print \$1}' | fzf --multi --preview 'nala show {1}' --reverse | xargs -ro sudo nala install"
 # Fuzzy search on installed packacges and remove
-alias aptremove="apt list --installed | rg \^\\\\w\+\.\*/ | awk -F/ '{print \$1}' | fzf --multi --preview 'apt show {1}' --reverse | xargs -ro sudo apt remove --purge"
+alias aptremove="apt list --installed | rg \^\\\\w\+\.\*/ | awk -F/ '{print \$1}' | fzf --multi --preview 'nala show {1}' --reverse | xargs -ro sudo nala purge"
 
 # Ubuntu cleanup
 function ubuntucleanup {
