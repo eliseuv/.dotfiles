@@ -73,11 +73,12 @@ bindkey  "^[[3~"  delete-char
 # Open in editor
 autoload -z edit-command-line
 vim-command-line () {
-  local VISUAL='nvim'
+  local VISUAL='nvim-lazy'
   edit-command-line
 }
 zle -N vim-command-line
 bindkey "^x^e" vim-command-line
+bindkey -s ^v "nvims\n"
 
 # Zoxide
 eval "$(zoxide init zsh)"
