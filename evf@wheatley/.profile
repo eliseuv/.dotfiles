@@ -136,8 +136,14 @@ alias watch='watch -tc -n 1 '
 # Use 'bat' instead of 'cat'
 alias b='bat'
 
-# Zellij
-alias t='zellij'
+########
+# tmux #
+########
+
+alias t='tmux attach || tmux new-session'
+alias ta='tmux attach -t'
+alias tn='tmux new-session'
+alias tl='tmux list-sessions'
 
 # NeoVim
 alias v='nvim'
@@ -167,6 +173,12 @@ alias ssh-restart='killall ssh-agent; eval `ssh-agent`; ssh-add'
 
 # Stage, commit and push changes with default commit message
 alias git-push="git add . && git commit -m 'update' && git push"
+
+############
+# Keyboard #
+############
+
+setxkbmap -option caps:escape
 
 ########
 # Rust #
@@ -198,15 +210,28 @@ function cargocleanup {
 	cargo-gc
 }
 
+###########
+# Haskell #
+###########
+
+# Put GHCup path at the start
+pathprepend "$HOME/.ghcup/bin"
+
+# Add the -dynamic flag to every invocation of GHC
+alias cabal-install='cabal install --ghc-options=-dynamic'
+
+# GHCup env
+[ -f "/home/evf/.ghcup/env" ] && source "/home/evf/.ghcup/env"
+
 #######
 # APT #
 #######
 
 # Pacman
 # Fuzzy search on available packages and install
-alias apts="apt search . | rg \^\\\\w\+\.\*/ | awk -F/ '{print \$1}' | fzf --multi --preview 'apt show {1}' --reverse | xargs -ro sudo apt install"
+alias apts="apt search . | rg \^\\\\w\+\.\*/ | awk -F/ '{print \$1}' | fzf --multi --preview 'nala show {1}' --reverse | xargs -ro sudo nala install"
 # Fuzzy search on installed packacges and remove
-alias aptremove="apt list --installed | rg \^\\\\w\+\.\*/ | awk -F/ '{print \$1}' | fzf --multi --preview 'apt show {1}' --reverse | xargs -ro sudo apt remove --purge"
+alias aptremove="apt list --installed | rg \^\\\\w\+\.\*/ | awk -F/ '{print \$1}' | fzf --multi --preview 'nala show {1}' --reverse | xargs -ro sudo nala purge"
 
 # Ubuntu cleanup
 function ubuntucleanup {
