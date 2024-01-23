@@ -18,9 +18,8 @@ import qualified XMonad.Actions.Search as S
 
     -- Data
 import Data.Char (isSpace, toUpper)
-import Data.Maybe (fromJust)
+import Data.Maybe ( fromJust, isJust )
 import Data.Monoid
-import Data.Maybe (isJust)
 import Data.Tree
 import qualified Data.Map as M
 
@@ -159,7 +158,7 @@ myStartupHook = do
   spawnOnce "picom -b --config ~/.config/picom/picom.conf &" -- Compositor
   spawnOnce "synology-drive &" -- Synology Drive
   spawnOnce "setxkbmap -option caps:escape" -- Swap Escape and CapsLock keys
-  -- spawn "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
+  spawnOnce "emacs --daemon" -- emacs daemon for the emacsclient
   -- spawnOnce "urxvtd -q -o -f &"               -- urxvt daemon for better performance
   -- spawnOnce "nm-applet &"                     -- NetworkManager in tray
   -- spawnOnce "volumeicon &"                    -- Volume controls in tray
