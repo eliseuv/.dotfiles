@@ -520,9 +520,11 @@ alias aptremove="apt list --installed | rg \^\\\\w\+\.\*/ | awk -F/ '{print \$1}
 # Pacman cleanup
 function poposcleanup {
 	printf "\n${BLUE}Removing orphaned packages...${RESET}\n\n"
-	sudo apt autoremove --purge --yes
+	# sudo apt autoremove --purge --yes
+	sudo nala autopurge
 	printf "\n${BLUE}Cleaning packages and install scripts...${RESET}\n\n"
-	sudo apt clean --yes
+	# sudo apt clean --yes
+	sudo nala clean
 }
 
 #######################
@@ -534,7 +536,8 @@ function update {
 	[[ -f /tmp/update.lock ]] && exit 1
 	touch /tmp/update.lock
 	printf "\n${GREEN}Updating PopOS!...${RESET}\n\n"
-	sudo apt update --yes && sudo apt upgrade --yes
+	# sudo apt update --yes && sudo apt upgrade --yes
+	sudo nala upgrade
 	printf "\n${GREEN}Updating Rust...${RESET}\n\n"
 	rust-update
 	printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"
