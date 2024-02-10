@@ -158,7 +158,7 @@ myStartupHook = do
   spawnOnce "picom -b --config ~/.config/picom/picom.conf &" -- Compositor
   spawnOnce "synology-drive &" -- Synology Drive
   spawnOnce "setxkbmap -option caps:escape" -- Swap Escape and CapsLock keys
-  spawnOnce "emacs --daemon" -- emacs daemon for the emacsclient
+  -- spawnOnce "emacs --daemon" -- emacs daemon for the emacsclient
   -- spawnOnce "urxvtd -q -o -f &"               -- urxvt daemon for better performance
   -- spawnOnce "nm-applet &"                     -- NetworkManager in tray
   -- spawnOnce "volumeicon &"                    -- Volume controls in tray
