@@ -507,6 +507,34 @@ export GEM_HOME="$HOME/gems"
 # Add Ruby Gems bin to path
 pathprepend "$GEM_HOME/bin"
 
+##########
+# NeoVim #
+##########
+
+# NeoVim version multiplexer
+pathappend ~/.local/share/bob/nvim-bin
+
+# NeoVim config switcher
+function nvims() {
+	items=("LazyVim" "EruditeNvim" "AstroNvim" "NvChad" "default")
+	config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+	if [[ -z $config ]]; then
+		echo "Nothing selected"
+		return 0
+	elif [[ $config == "default" ]]; then
+		config=""
+	fi
+	NVIM_APPNAME=$config nvim "$@"
+}
+
+# NeoVim
+alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
+alias nvim-erudite="NVIM_APPNAME=EruditeNvim nvim"
+alias nvim-chad="NVIM_APPNAME=NvChad nvim"
+alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
+alias v='nvim-lazy'
+alias vr='nvim-lazy -R'
+
 #######
 # APT #
 #######
@@ -520,9 +548,11 @@ alias aptremove="apt list --installed | rg \^\\\\w\+\.\*/ | awk -F/ '{print \$1}
 # Pacman cleanup
 function poposcleanup {
 	printf "\n${BLUE}Removing orphaned packages...${RESET}\n\n"
-	sudo apt autoremove --purge --yes
+	# sudo apt autoremove --purge --yes
+	sudo nala autopurge
 	printf "\n${BLUE}Cleaning packages and install scripts...${RESET}\n\n"
-	sudo apt clean --yes
+	# sudo apt clean --yes
+	sudo nala clean
 }
 
 #######################
@@ -534,7 +564,8 @@ function update {
 	[[ -f /tmp/update.lock ]] && exit 1
 	touch /tmp/update.lock
 	printf "\n${GREEN}Updating PopOS!...${RESET}\n\n"
-	sudo apt update --yes && sudo apt upgrade --yes
+	# sudo apt update --yes && sudo apt upgrade --yes
+	sudo nala upgrade
 	printf "\n${GREEN}Updating Rust...${RESET}\n\n"
 	rust-update
 	printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"
