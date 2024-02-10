@@ -74,6 +74,7 @@ manpathappend ~/.local/share/man
 #export TERM='rxvt-unicode-256color'
 # export COLORTERM='truecolor'
 # export TERM='xterm-256color'
+export TERM='kitty'
 export TERMINAL='kitty'
 
 # Text editors
