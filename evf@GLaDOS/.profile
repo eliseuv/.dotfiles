@@ -72,9 +72,6 @@ pathappend ~/.local/share/gem/ruby/3.0.0/bin
 # DOOM Emacs
 pathappend ~/.config/emacs-doom/bin
 
-# Neovim bob
-pathappend ~/.local/share/bob/nvim-bin
-
 # Local man
 manpathappend ~/.local/share/man
 
@@ -204,11 +201,6 @@ alias watch='watch -tc -n 1 '
 
 # Use 'bat' instead of 'cat'
 alias b='bat'
-
-# NeoVim
-alias v='nvim'
-alias vr='nvim -R'
-# alias lvimupdate='lvim +LvimUpdate +q'
 
 # Kakoune
 alias k='kak'
@@ -560,6 +552,34 @@ function condacleanup {
 export GEM_HOME="$HOME/gems"
 
 pathappend "$GEM_HOME/bin"
+
+##########
+# NeoVim #
+##########
+
+# NeoVim version multiplexer
+pathappend ~/.local/share/bob/nvim-bin
+
+# NeoVim config switcher
+function nvims() {
+	items=("LazyVim" "EruditeNvim" "AstroNvim" "NvChad" "default")
+	config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+	if [[ -z $config ]]; then
+		echo "Nothing selected"
+		return 0
+	elif [[ $config == "default" ]]; then
+		config=""
+	fi
+	NVIM_APPNAME=$config nvim "$@"
+}
+
+# NeoVim
+alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
+alias nvim-erudite="NVIM_APPNAME=EruditeNvim nvim"
+alias nvim-chad="NVIM_APPNAME=NvChad nvim"
+alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
+alias v='nvim-lazy'
+alias vr='nvim-lazy -R'
 
 ##########
 # PACMAN #

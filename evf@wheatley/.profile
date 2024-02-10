@@ -60,9 +60,6 @@ pathappend /bin /usr/bin /usr/local/bin /usr/local/sbin
 pathprepend ~/.local/bin
 pathprepend ~/bin
 
-# bob nvim
-pathappend ~/.local/share/bob/nvim-bin
-
 # Local man
 manpathappend ~/.local/share/man
 
@@ -223,6 +220,34 @@ alias cabal-install='cabal install --ghc-options=-dynamic'
 
 # GHCup env
 [ -f "/home/evf/.ghcup/env" ] && source "/home/evf/.ghcup/env"
+
+##########
+# NeoVim #
+##########
+
+# NeoVim version multiplexer
+pathappend ~/.local/share/bob/nvim-bin
+
+# NeoVim config switcher
+function nvims() {
+	items=("LazyVim" "EruditeNvim" "AstroNvim" "NvChad" "default")
+	config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+	if [[ -z $config ]]; then
+		echo "Nothing selected"
+		return 0
+	elif [[ $config == "default" ]]; then
+		config=""
+	fi
+	NVIM_APPNAME=$config nvim "$@"
+}
+
+# NeoVim
+alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
+alias nvim-erudite="NVIM_APPNAME=EruditeNvim nvim"
+alias nvim-chad="NVIM_APPNAME=NvChad nvim"
+alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
+alias v='nvim-lazy'
+alias vr='nvim-lazy -R'
 
 #######
 # APT #

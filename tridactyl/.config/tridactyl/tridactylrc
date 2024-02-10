@@ -37,16 +37,18 @@ bind z fillcmdline bmarks
 " YouTube
 alias umpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('umpv ' + url))
 alias mpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('mpv ' + url))
+alias ytdlpsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('yt-dlp ' + url))
 bindurl youtube.com ,p hint -c [id="video-title-link"],[id="video-title"] -W umpvsafe
 bindurl youtube.com ;p hint -c [id="video-title-link"],[id="video-title"] -W mpvsafe
+bindurl youtube.com ,d hint -c [id="video-title-link"],[id="video-title"] -W ytdlpsafe
 bindurl twitch.com ,p hint -c [class="tw-image"] -W mpvsafe
 bindurl piped.video ,p hint -c [class="focus:underline hover:underline inline-block w-full"] -W umpvsafe
 bindurl piped.video ;p hint -c [class="focus:underline hover:underline inline-block w-full"] -W mpvsafe
 bind ;P composite js document.location.href.replace('https://', 'ytdl://') | shellescape | js -p 'PATH="$PATH:/usr/local/bin" mpv ' + JS_ARG | !s
 
 " Only hint search results on Google and DDG
-bindurl www.google.com f hint -Jc #search div:not(.action-menu) > a
-bindurl www.google.com F hint -Jbc #search div:not(.action-menu) > a
+" bindurl www.google.com f hint -Jc #search div:not(.action-menu) > a
+" bindurl www.google.com F hint -Jbc #search div:not(.action-menu) > a
 bindurl ^https://duckduckgo.com f hint -Jc [data-testid="result-title-a"]
 bindurl ^https://duckduckgo.com F hint -Jbc [data-testid="result-title-a"]
 
@@ -70,7 +72,7 @@ set searchurls.wp https://www.wikiwand.com/en/%s?fullSearch=true
 set searchurls.r https://old.reddit.com/search?q=%s
 set searchurls.sdb https://steamdb.info/search/?a=all&q=%s
 set searchurls.kym https://knowyourmeme.com/search?q=%s
-set searchurls.t https://nitter.net/search?q=%s
+set searchurls.t https://twitter.com/search?q=%s
 set searchurls.x https://twitter.com/search?q=%s
 set searchurls.b https://www.bing.com/search?q=%s
 set searchurls.yd https://yandex.com/search/?text=%s
@@ -82,6 +84,7 @@ set searchurls.gd https://datasetsearch.research.google.com/search?query=%s
 set searchurls.gh https://github.com/search?q=%s
 set searchurls.h https://hoogle.haskell.org/?hoogle=%s
 set searchurls.rs https://crates.io/search?q=%s
+set searchurls.docs https://docs.rs/releases/search?query=%s
 set searchurls.w https://en.wikipedia.org/w/index.php?search=%s
 set searchurls.mw https://www.merriam-webster.com/dictionary/%s
 set searchurls.th https://www.thesaurus.com/browse/%s
@@ -104,7 +107,7 @@ set searchurls.sc https://www.shellcheck.net/wiki/SC%s
 colorscheme shydactyl
 
 " Redirects
-autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
+autocmddelete DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
 
 " Stop using wikiwand
 autocmddelete DocStart ^http(s?)://\w\+.wikipedia.org js tri.excmds.urlmodify("-t", "wikipedia", "wikiwand")

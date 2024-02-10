@@ -84,7 +84,7 @@ bin/julia:
 	chmod +x $@
 
 clean:
-	rm -rf $(SYSIMAGE) packagecompiler bin
+	rm -rf $(SYSIMAGE) packagecompiler bin Manifest.toml Project.toml
 
 .PHONY: clean default
 
