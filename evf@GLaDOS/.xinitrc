@@ -6,7 +6,7 @@
 #xrandr --auto
 
 # Locate Xprofile file
-#[ -f ~/.xprofile ] && . ~/.xprofile
+[ -f ~/.xprofile ] && . ~/.xprofile
 
 # Start WM
-#exec xmonad
+exec xmonad

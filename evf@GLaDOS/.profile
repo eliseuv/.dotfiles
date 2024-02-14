@@ -87,7 +87,8 @@ export TERMINAL='kitty'
 
 # Text editors
 export EDITOR='nvim'
-export VISUAL='emacsclient -c -a emacs'
+# export VISUAL='emacsclient -c -a emacs'
+export VISUAL='nvim'
 
 # DOOM Emacs
 export EMACSDIR="$HOME/.config/emacs-doom"
