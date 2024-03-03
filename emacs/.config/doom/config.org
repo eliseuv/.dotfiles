@@ -152,7 +152,7 @@ These modules are sorted in categories.
 
 #+name: doom-completion
 #+begin_src emacs-lisp
-(company +childframe +icons)           ; the ultimate code completion backend
+(company +childframe)           ; the ultimate code completion backend
 ;;helm              ; the *other* search engine for love and life
 ;;ido               ; the other *other* search engine...
 ;;ivy               ; a search engine for love and life
@@ -231,7 +231,7 @@ vterm             ; the best terminal emulation in Emacs
 
 #+name: doom-checkers
 #+begin_src emacs-lisp
-(syntax +childframe)              ; tasing you for every semicolon you forget
+(syntax +childframe +flymake)              ; tasing you for every semicolon you forget
 (spell +hunspell +everywhere +flyspell) ; tasing you for misspelling mispelling
 grammar           ; tasing grammar mistake every you make
 #+end_src
@@ -245,7 +245,7 @@ biblio              ; Writes a PhD for you (citation needed)
 ;;collab            ; buffers with friends
 (debugger +lsp)          ; FIXME stepping through code, to help you add bugs
 ;;direnv
-;;docker
+(docker +lsp)
 ;;editorconfig      ; let someone else argue about tabs vs spaces
 ;;ein               ; tame Jupyter notebooks with emacs
 (eval +overlay)     ; run code, run (also, repls)
@@ -254,7 +254,7 @@ biblio              ; Writes a PhD for you (citation needed)
  +dictionary)       ; dictionary/thesaurus is nice
 (lsp +peek)         ; M-x vscode
 magit             ; a git porcelain for Emacs
-make              ; run make tasks from Emacs
+;;make              ; run make tasks from Emacs
 (pass +auth)        ; password manager for nerds
 pdf               ; pdf enhancements
 ;;prodigy           ; FIXME managing external services & code builders
@@ -270,7 +270,7 @@ upload              ; map local to remote projects via ssh/ftp
 
 #+name: doom-os
 #+begin_src emacs-lisp
-(:if IS-MAC macos)  ; improve compatibility with macOS
+(:if (featurep :system 'macos) macos)  ; improve compatibility with macOS
 ;;tty               ; improve the terminal Emacs experience
 #+end_src
 
@@ -283,7 +283,7 @@ upload              ; map local to remote projects via ssh/ftp
 (cc +lsp +tree-sitter)           ; C > C++ == 1
 ;;clojure           ; java with a lisp
 ;;common-lisp       ; if you've seen one lisp, you've seen them all
-;;coq               ; proofs-as-programs
+coq               ; proofs-as-programs
 ;;crystal           ; ruby at the speed of c
 ;;csharp            ; unity, .NET, and mono shenanigans
 data              ; config/data formats
@@ -300,7 +300,7 @@ emacs-lisp        ; drown in parentheses
 ;;fsharp            ; ML stands for Microsoft's Language
 ;;fstar             ; (dependent) types and (monadic) effects and Z3
 ;;gdscript          ; the language you waited for
-;;(go +lsp +tree-sitter)         ; the hipster dialect
+(go +lsp +tree-sitter)         ; the hipster dialect
 ;;(graphql +lsp)    ; Give queries a REST
 (haskell +lsp +tree-sitter)  ; a language that's lazier than I am
 ;;hy                ; readability of scheme w/ speed of python
@@ -313,11 +313,11 @@ emacs-lisp        ; drown in parentheses
 (latex +cdlatex +fold +latexmk +lsp)             ; writing papers in Emacs has never been so fun
 ;;lean              ; for folks with too much to prove
 ledger            ; be audit you can be
-;;lua               ; one-based indices? one-based indices
+(lua +lsp +tree-sitter)               ; one-based indices? one-based indices
 markdown          ; writing docs for people to ignore
 ;;nim               ; python + lisp at the speed of c
 ;;nix               ; I hereby declare "nix geht mehr!"
-;;(ocaml +lsp +tree-sitter)             ; an objective camel
+(ocaml +lsp +tree-sitter)             ; an objective camel
 (org                    ; organize your plain life in plain text
  ;;+brain               ; org-brain integration
  ;;+contacts            ; org-contacts integration
@@ -354,7 +354,7 @@ markdown          ; writing docs for people to ignore
 ;;terra             ; Earth and Moon in alignment for performance.
 (web +lsp +tree-sitter)               ; the tubes
 (yaml +lsp +tree-sitter)              ; JSON, but readable
-;;(zig +lsp +tree-sitter)               ; C, but simpler
+(zig +lsp +tree-sitter)               ; C, but simpler
 #+end_src
 
 **** Email

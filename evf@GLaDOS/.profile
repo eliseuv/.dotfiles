@@ -80,15 +80,17 @@ manpathappend ~/.local/share/man
 ############
 
 # Terminal emulator
-#export TERM='rxvt-unicode-256color'
 # export COLORTERM='truecolor'
-# export TERM='xterm-256color'
-export TERMINAL='kitty'
+#export TERM='rxvt-unicode-256color'
+export TERM='xterm-256color'
+# export TERMINAL='kitty'
+export TERMINAL='alacritty'
 
 # Text editors
 export EDITOR='nvim'
-# export VISUAL='emacsclient -c -a emacs'
-export VISUAL='nvim'
+export VISUAL='emacsclient -c -a emacs'
+# export VISUAL=$EDITOR
+# export SUDO_EDITOR=$EDITOR
 
 # DOOM Emacs
 export EMACSDIR="$HOME/.config/emacs-doom"
@@ -271,6 +273,16 @@ alias vpn-ufrgs="sudo openvpn --config ~/.config/openvpn/vpn-ufrgs.ovpn"
 # FUNCTIONS #
 #############
 
+# yazi wrapper
+function ya() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
 # Print csv file
 function pcsv {
 	sed 's/,,/, ,/g;s/,,/, ,/g' "$1" | column -s, -t | less -#2 -N -S
@@ -301,7 +313,7 @@ function ex {
 
 # YouTube MP3
 function ytmp3 {
-	yt-dlp -f 'ba' -x --audio-format mp3 "$1" -o "$HOME/Storage/Music/_unsorted/%(title)s.%(ext)s"
+	yt-dlp -f 'ba' -x --audio-format mp3 "$1" -o "$HOME/Storage/CompanionCube/music/_unsorted/%(title)s.%(ext)s"
 }
 
 # Add spacing left of text
@@ -352,7 +364,8 @@ function fif {
 		echo "Need a string to search for!"
 		return 1
 	fi
-	rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
+	FILE=$(rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}")
+	nvim "$FILE"
 }
 
 # Fuzzy search music library

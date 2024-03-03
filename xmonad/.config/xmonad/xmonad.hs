@@ -79,9 +79,15 @@ myFont = "xft:SauceCodePro Nerd Font Mono:regular:size=9:antialias=true:hinting=
 myModMask :: KeyMask
 myModMask = mod4Mask -- Sets modkey to super/windows key
 
+myKitty :: String
+myKitty = "kitty --single-instance"
+
+myAlacritty :: String
+myAlacritty = "alacritty msg create-window || alacritty"
+
+ -- Sets default terminal
 myTerminal :: String
-myTerminal = "kitty --single-instance" -- Sets default terminal
--- myTerminal = "alacritty msg create-window || alacritty" -- Sets default terminal
+myTerminal = myAlacritty
 
 myKittyCommand :: String -> String
 myKittyCommand cmd = "kitty --single-instance -e " ++ cmd
@@ -90,7 +96,7 @@ myAlacrittyCommand :: String -> String
 myAlacrittyCommand cmd = "alacritty msg create-window -e " ++ cmd ++ " || alacritty -e " ++ cmd
 
 myTerminalCommand :: String -> String
-myTerminalCommand = myKittyCommand
+myTerminalCommand = myAlacrittyCommand
 
 myBrowser :: String
 myBrowser = "firefox" -- Sets default browser
@@ -100,8 +106,6 @@ myEmacs = "emacsclient -nc -a 'emacs' " -- Makes emacs keybindings easier to typ
 
 myVim :: String
 myVim = "neovide"
-
--- myVim = "kitty -e nvim "
 
 myEditor :: String
 myEditor = myEmacs -- Sets emacs as editor
@@ -114,8 +118,6 @@ myFileManager = "nautilus"
 
 myVideoPlayer :: String
 myVideoPlayer = "mpv"
-
--- myFileManager = "nautilus"
 
 myBorderWidth :: Dimension
 myBorderWidth = 1 -- Sets border width for windows
@@ -159,14 +161,11 @@ myStartupHook = do
   spawnOnce "synology-drive &" -- Synology Drive
   spawnOnce "setxkbmap -option caps:escape" -- Swap Escape and CapsLock keys
   -- spawnOnce "emacs --daemon" -- emacs daemon for the emacsclient
-  -- spawnOnce "urxvtd -q -o -f &"               -- urxvt daemon for better performance
   -- spawnOnce "nm-applet &"                     -- NetworkManager in tray
   -- spawnOnce "volumeicon &"                    -- Volume controls in tray
   -- spawn ("sleep 2 && conky -c $HOME/.config/conky/xmonad/" ++ colorScheme ++ "-01.conkyrc")
   -- spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 22")
   -- spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"
-  -- spawnOnce "~/.fehbg &"  -- set last saved feh wallpaper
-  -- spawnOnce "feh --randomize --bg-fill /usr/share/backgrounds/dtos-backgrounds/*"  -- feh set random wallpaper
   -- spawnOnce "nitrogen --restore &"   -- if you prefer nitrogen to feh
   setWMName "LG3D"
 

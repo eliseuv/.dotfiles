@@ -5,7 +5,8 @@
 #xrandr --setprovideroutputsource modesetting NVIDA-0
 #xrandr --auto
 
-# Locate Xprofile file
+# Xprofile
+[ -f /etc/xprofile ] && . /etc/xprofile
 [ -f ~/.xprofile ] && . ~/.xprofile
 
 # Start WM

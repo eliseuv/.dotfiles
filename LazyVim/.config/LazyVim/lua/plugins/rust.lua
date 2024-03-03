@@ -43,7 +43,7 @@ return {
                                     mode = "prefix",
                                 },
                                 implicitDrops = {
-                                    enable = true,
+                                    enable = false,
                                 },
                                 lifetimeElisionHints = {
                                     enable = "skip_trivial",
