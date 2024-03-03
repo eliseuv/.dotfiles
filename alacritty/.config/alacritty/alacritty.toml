@@ -1,0 +1,14 @@
+import = ["~/.config/alacritty/themes/catppuccin_mocha.toml"]
+
+live_config_reload = true
+
+[window]
+opacity = 0.98
+blur = true
+
+[font]
+normal = { family = "Iosevka Term Nerd Font", style = "Regular" }
+size = 9.5
+
+[debug]
+#render_timer = true
