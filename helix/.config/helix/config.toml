@@ -6,11 +6,11 @@ auto-completion = true
 auto-info = true
 idle-timeout = 100
 true-color = true
+line-number = "relative"
+bufferline = "multiple"
 
 [editor.cursor-shape]
-normal = "block"
 insert = "bar"
-select = "block"
 
 [editor.statusline]
 left = ["mode", "spinner"]
@@ -27,4 +27,3 @@ display-inlay-hints = true
 
 [editor.file-picker]
 hidden = false
-

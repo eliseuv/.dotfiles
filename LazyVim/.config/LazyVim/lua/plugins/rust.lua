@@ -17,6 +17,7 @@ return {
                     settings = {
                         ["rust-analyzer"] = {
                             inlayHints = {
+                                enable = true,
                                 bindingModeHints = {
                                     enable = true,
                                 },
@@ -61,12 +62,11 @@ return {
                                 },
                             },
                             lens = {
-                                forceCustomCommands = true,
-                                implementations = {
-                                    enable = true,
-                                },
                                 enable = true,
                                 debug = {
+                                    enable = true,
+                                },
+                                implementations = {
                                     enable = true,
                                 },
                                 location = "above_name",
@@ -88,6 +88,7 @@ return {
                                 run = {
                                     enable = true,
                                 },
+                                -- forceCustomCommands = true,
                             },
                             interpret = {
                                 tests = true,
