@@ -42,6 +42,9 @@ pathappend ~/bin
 # Julia
 pathappend ~/.juliaup/bin
 
+# Lovelace utils
+pathappend ~/lovelace-tools/utils
+
 ############
 # ENV VARS #
 ############
@@ -52,7 +55,7 @@ export TERM='linux'
 #export TERMINAL='alacritty'
 
 # Text editors
-export EDITOR='nvim'
+export EDITOR='vim'
 #export VISUAL='emacsclient -c -a emacs'
 # PDF Reader
 #export READER='zathura'
