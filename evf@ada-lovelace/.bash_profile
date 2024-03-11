@@ -57,6 +57,9 @@ export EDITOR='nvim'
 # PDF Reader
 #export READER='zathura'
 
+export HISTSIZE=2000
+export HISTFILESIZE=-1
+
 # Bat
 export BAT_THEME='Dracula'
 
