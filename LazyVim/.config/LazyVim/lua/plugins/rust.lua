@@ -7,6 +7,6 @@ return {
         end,
     },
 
-    -- Just config lang syntax highlighting
+    -- Just grammar
     { "IndianBoy42/tree-sitter-just" },
 }
