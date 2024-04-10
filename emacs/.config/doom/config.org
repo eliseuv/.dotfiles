@@ -1393,7 +1393,7 @@ with =citar=, and make the symbols a bit prettier.
 (after! citar
   (setq org-cite-global-bibliography
         (let ((libfile-search-names '("library.json" "Library.json" "library.bib" "Library.bib"))
-              (libfile-dir "~/Zotero")
+              (libfile-dir "~/Storage/Zotero")
               paths)
           (dolist (libfile libfile-search-names)
             (when (and (not paths)
