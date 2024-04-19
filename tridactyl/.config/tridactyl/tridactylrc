@@ -97,7 +97,9 @@ set searchurls.ny https://nyaa.si/?f=0&c=0_0&q=%s
 set searchurls.wa https://www.wolframalpha.com/input/?i=%s
 set searchurls.amz https://www.amazon.com.br/s?k=%s
 set searchurls.hltv https://www.hltv.org/search?query=%s
+set searchurls.maps https://www.google.com/maps/search/%s
 set searchurls.keepa https://keepa.com/#!search/12-%s
+set searchurls.docker https://hub.docker.com/search?q=%s
 set searchurls.color https://www.color-hex.com/color/%s
 set searchurls.sc https://www.shellcheck.net/wiki/SC%s
 

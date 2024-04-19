@@ -73,7 +73,7 @@ pathappend ~/.local/share/gem/ruby/3.0.0/bin
 pathappend ~/.config/emacs-doom/bin
 
 # Local man
-manpathappend ~/.local/share/man
+# manpathappend ~/.local/share/man
 
 ############
 # ENV VARS #
@@ -155,7 +155,7 @@ gpgconf --launch gpg-agent
 #########
 
 # Swap Esc and Caps Lock
-setxkbmap -option caps:swapescape
+setxkbmap -option caps:escape
 
 ###########
 # ALIASES #
@@ -618,7 +618,7 @@ function mirror {
 # Pacman
 # Fuzzy search on available packages and install
 function pac {
-	pacman -Sl | awk '{print $2($4=="" ? "" : " *")}' | fzf --multi --preview 'pacman -Sii {1}' --reverse | xargs -ro sudo pacman -S
+	pacman -Sl | awk '{print $2($4=="" ? "" : " *")}' | fzf --multi --preview 'pacman -Sii {1}' --reverse | tr -d '*' | xargs -ro sudo pacman -S
 }
 # Fuzzy search on installed packacges and remove
 alias pacremove="pacman -Qettq | fzf --multi --preview 'pacman -Qii {1}' --reverse | xargs -ro sudo pacman -Rns"
@@ -635,7 +635,7 @@ function pacupdate {
 # paru
 # Fuzzy search on available packages and install
 function par {
-	paru -Sl | awk '{print $2($4=="" ? "" : " *")}' | fzf --multi --preview 'paru -Si {1}' --reverse | xargs -ro paru -S
+	paru -Sl | awk '{print $2($4=="" ? "" : " *")}' | fzf --multi --preview 'paru -Si {1}' --reverse | tr -d '*' | xargs -ro paru -S
 }
 # Fuzzy search on installed packacges and remove
 alias parremove="paru -Qeq | fzf --multi --preview 'paru -Qi {1}' --reverse| xargs -ro paru -Rns"

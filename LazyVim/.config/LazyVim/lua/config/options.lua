@@ -8,6 +8,10 @@ vim.opt.tabstop = 4 -- Number of spaces tabs count for
 vim.opt.shiftwidth = 4 -- Size of an indent
 vim.opt.wrap = true
 
+-- Spelling
+vim.opt.spelllang = "en_us"
+vim.opt.spell = true
+
 -- GUI config
 vim.opt.guifont = "Fira Code:h9"
 if vim.g.neovide then
