@@ -35,12 +35,24 @@ return {
                     --- See [Tinymist Server Configuration](https://github.com/Myriad-Dreamin/tinymist/blob/main/Configuration.md) for references.
                     settings = {
                         outputPath = "$root/target/$dir/$name",
-                        exportPdf = "onType",
+                        exportPdf = "onSave",
                         formatterMode = "typstyle",
                     },
                 },
             },
         },
+    },
+
+    -- Typst preview
+    {
+        "chomosuke/typst-preview.nvim",
+        lazy = false,
+        version = "0.2.*",
+        ft = "typst",
+        invert_colors = "auto",
+        build = function()
+            require("typst-preview").update()
+        end,
     },
 
     -- -- Typst LSP
