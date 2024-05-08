@@ -10,7 +10,7 @@ return {
         "williamboman/mason.nvim",
         opts = {
             ensure_installed = {
-                "yamlls",
+                "yaml-language-server",
             },
         },
     },
