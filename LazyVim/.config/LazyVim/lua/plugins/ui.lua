@@ -1,4 +1,13 @@
 return {
+
+    -- oil.nvim
+    {
+        "stevearc/oil.nvim",
+        opts = {},
+        -- Optional dependencies
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
+
     -- Tokyo Night
     {
         "folke/tokyonight.nvim",

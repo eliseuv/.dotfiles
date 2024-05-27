@@ -691,8 +691,8 @@ function update {
 	condaupdate
 	printf "\n${GREEN}Updating NeoVim...${RESET}\n\n"
 	bob update --all
-	printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
-	doom upgrade --force
+	# printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
+	# doom upgrade --force
 	printf "\n${GREEN}Custom check...${RESET}\n"
 	customcheck
 	printf "\n"
@@ -712,9 +712,9 @@ function cleanup {
 	cargocleanup
 	printf "\n${GREEN}Go cleanup...${RESET}\n\n"
 	gocleanup
-	printf "\n${GREEN}DOOM cleanup...${RESET}\n\n"
-	doom sync
-	doom gc
+	# printf "\n${GREEN}DOOM cleanup...${RESET}\n\n"
+	# doom sync
+	# doom gc
 }
 
 function customcheck {
