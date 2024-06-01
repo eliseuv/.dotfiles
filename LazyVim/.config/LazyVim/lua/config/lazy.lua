@@ -13,9 +13,18 @@ require("lazy").setup({
         -- import any extras modules here
         -- { import = "lazyvim.plugins.extras.lang.json" },
         -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
-        { import = "lazyvim.plugins.extras.dap.core" },
-        { import = "lazyvim.plugins.extras.editor.harpoon2" },
+        -- Editor
+        { import = "lazyvim.plugins.extras.coding.mini-surround" },
+        { import = "lazyvim.plugins.extras.coding.yanky" },
+        { import = "lazyvim.plugins.extras.editor.dial" },
         { import = "lazyvim.plugins.extras.formatting.prettier" },
+        -- Debugging
+        { import = "lazyvim.plugins.extras.dap.core" },
+        { import = "lazyvim.plugins.extras.dap.nlua" },
+        { import = "lazyvim.plugins.extras.test.core" },
+        -- Utils
+        { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
+        -- Languages
         { import = "lazyvim.plugins.extras.lang.clangd" },
         -- { import = "lazyvim.plugins.extras.lang.docker" },
         -- { import = "lazyvim.plugins.extras.lang.go" },
@@ -23,6 +32,7 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.lang.python" },
         { import = "lazyvim.plugins.extras.lang.rust" },
         { import = "lazyvim.plugins.extras.lang.tex" },
+        { import = "lazyvim.plugins.extras.lang.toml" },
         -- { import = "lazyvim.plugins.extras.lang.typescript" },
         -- import/override with your plugins
         { import = "plugins" },
