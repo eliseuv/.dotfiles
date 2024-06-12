@@ -5,6 +5,6 @@ return {
         opts.view = {
             entries = { name = "custom", selection_order = "near_cursor" },
         }
-        table.insert(opts.sources, { name = "spell" })
+        -- table.insert(opts.sources, { name = "spell" })
     end,
 }

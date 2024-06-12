@@ -448,35 +448,36 @@ myManageHook =
         , title =? "Oracle VM VirtualBox Manager" --> doFloat
         , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat -- Float Firefox Dialog
         , isFullscreen --> doFullFloat
-        , -- Programming
-          className =? "Emacs" --> doShift (myWorkspaces !! 1)
+        -- Programming
+        , className =? "Emacs" --> doShift (myWorkspaces !! 1)
         , className =? "code-oss" --> doShift (myWorkspaces !! 1)
-        , -- Web Browsers
-          (className =? "firefox" <&&> title =? "Picture-in-Picture") --> doShift (myWorkspaces !! 4)
+        -- Web Browsers
+        , (className =? "firefox" <&&> title =? "Picture-in-Picture") --> doShift (myWorkspaces !! 4)
         , title =? "Mozilla Firefox" --> doShift (myWorkspaces !! 2)
         , className =? "Navigator" --> doShift (myWorkspaces !! 2)
         , className =? "firefox" --> doShift (myWorkspaces !! 2)
         , className =? "Brave-browser" --> doShift (myWorkspaces !! 2)
         , className =? "brave-browser" --> doShift (myWorkspaces !! 2)
         , className =? "qutebrowser" --> doShift (myWorkspaces !! 2)
-        , -- Music
-          className =? "freezer" --> doShift (myWorkspaces !! 3)
-        , -- Video
-          className =? "mpv" --> doShift (myWorkspaces !! 4)
+        -- Music
+        , className =? "Spotify" --> doShift (myWorkspaces !! 3)
+        , className =? "freezer" --> doShift (myWorkspaces !! 3)
+        -- Video
+        , className =? "mpv" --> doShift (myWorkspaces !! 4)
         , className =? "FreeTube" --> doShift (myWorkspaces !! 4)
-        , -- Documents
-          className =? "Zathura" --> doShift (myWorkspaces !! 5)
+        -- Documents
+        , className =? "Zathura" --> doShift (myWorkspaces !! 5)
         , className =? "calibre" --> doShift (myWorkspaces !! 5)
         , className =? "Zotero" --> doShift (myWorkspaces !! 5)
-        , -- Notebooks
-          title =? "Chromium" --> doShift (myWorkspaces !! 6)
-        , -- Chats
-          className =? "TelegramDesktop" --> doShift (myWorkspaces !! 7)
+        -- Notebooks
+        , title =? "Chromium" --> doShift (myWorkspaces !! 6)
+        -- Chats
+        , className =? "TelegramDesktop" --> doShift (myWorkspaces !! 7)
         , className =? "discord" --> doShift (myWorkspaces !! 7)
-        , -- Torrent
-          className =? "qBittorrent" --> doShift (myWorkspaces !! 8)
-        , -- VM Manager
-          className =? "Virt-manager" --> doShift (myWorkspaces !! 9)
+        -- Torrent
+        , className =? "qBittorrent" --> doShift (myWorkspaces !! 8)
+         -- VM Manager
+        , className =? "Virt-manager" --> doShift (myWorkspaces !! 9)
         ]
         <+> namedScratchpadManageHook myScratchPads
 

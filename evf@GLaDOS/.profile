@@ -274,8 +274,8 @@ alias vpn-ufrgs="sudo openvpn --config ~/.config/openvpn/vpn-ufrgs.ovpn"
 #############
 
 # yazi wrapper
-function ya() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
 	yazi "$@" --cwd-file="$tmp"
 	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
 		cd -- "$cwd"
