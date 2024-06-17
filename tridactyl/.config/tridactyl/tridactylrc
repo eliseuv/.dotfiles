@@ -67,7 +67,8 @@ set searchurls.bt https://btdig.com/search?q=%s
 set searchurls.anna https://annas-archive.org/search?q=%s
 set searchurls.lib http://libgen.rs/search.php?req=%s
 set searchurls.sci https://sci-hub.se/%s
-set searchurls.wp https://www.wikiwand.com/en/%s?fullSearch=true
+" set searchurls.wp https://www.wikiwand.com/en/%s?fullSearch=true
+set searchurls.wp https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch&ns0=1
 " set searchurls.r https://r.nf/search?q=%s
 set searchurls.r https://old.reddit.com/search?q=%s
 set searchurls.sdb https://steamdb.info/search/?a=all&q=%s

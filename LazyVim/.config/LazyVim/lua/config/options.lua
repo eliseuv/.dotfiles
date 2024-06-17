@@ -9,8 +9,8 @@ vim.opt.shiftwidth = 4 -- Size of an indent
 vim.opt.wrap = true
 
 -- Spelling
-vim.opt.spelllang = "en_us"
 vim.opt.spell = true
+vim.opt.spelllang = { "en_us" }
 
 -- GUI config
 vim.opt.guifont = "Fira Code:h9"
