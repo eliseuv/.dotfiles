@@ -44,7 +44,7 @@ return {
 
     {
         "nvimdev/dashboard-nvim",
-        event = "VimEnter",
+        lazy = false,
         opts = function()
             local logo = [[
     =================     ===============     ===============   ========  ========
@@ -82,16 +82,16 @@ return {
                     header = vim.split(logo, "\n"),
                     -- stylua: ignore
                     center = {
-                      { action = "Telescope find_files",                                     desc = " Find file",       icon = " ", key = "f" },
-                      { action = "ene | startinsert",                                        desc = " New file",        icon = " ", key = "n" },
-                      { action = "Telescope oldfiles",                                       desc = " Recent files",    icon = " ", key = "r" },
-                      { action = "Telescope live_grep",                                      desc = " Find text",       icon = " ", key = "g" },
-                      { action = [[lua require("lazyvim.util").telescope.config_files()()]], desc = " Config",          icon = " ", key = "c" },
-                      { action = "Telescope find_files search_dirs=~/.dotfiles find_command=rg,--hidden,--files", desc = " Browse Dotfiles", icon = " ", key = "d" },
-                      { action = 'lua require("persistence").load()',                        desc = " Restore Session", icon = " ", key = "s" },
-                      { action = "LazyExtras",                                               desc = " Lazy Extras",     icon = " ", key = "x" },
-                      { action = "Lazy",                                                     desc = " Lazy",            icon = "󰒲 ", key = "l" },
-                      { action = "qa",                                                       desc = " Quit",            icon = " ", key = "q" },
+                        { action = 'lua LazyVim.pick()()',                           desc = " Find File",       icon = " ", key = "f" },
+                        { action = "ene | startinsert",                              desc = " New File",        icon = " ", key = "n" },
+                        { action = 'lua LazyVim.pick("oldfiles")()',                 desc = " Recent Files",    icon = " ", key = "r" },
+                        { action = 'lua LazyVim.pick("live_grep")()',                desc = " Find Text",       icon = " ", key = "g" },
+                        { action = 'lua LazyVim.pick.config_files()()',              desc = " Config",          icon = " ", key = "c" },
+                        { action = "Telescope find_files search_dirs=~/.dotfiles find_command=rg,--hidden,--files", desc = " Browse Dotfiles", icon = " ", key = "d" },
+                        { action = 'lua require("persistence").load()',              desc = " Restore Session", icon = " ", key = "s" },
+                        { action = "LazyExtras",                                     desc = " Lazy Extras",     icon = " ", key = "x" },
+                        { action = "Lazy",                                           desc = " Lazy",            icon = "󰒲 ", key = "l" },
+                        { action = function() vim.api.nvim_input("<cmd>qa<cr>") end, desc = " Quit",            icon = " ", key = "q" },
                     },
                     footer = function()
                         local stats = require("lazy").stats()
@@ -122,42 +122,4 @@ return {
             return opts
         end,
     },
-
-    -- Alpha dashboard
-    --     {
-    --         "goolord/alpha-nvim",
-    --         opts = function()
-    --             local dashboard = require("alpha.themes.dashboard")
-    --             local logo = [[
-    -- =================     ===============     ===============   ========  ========
-    -- \\ . . . . . . .\\   //. . . . . . .\\   //. . . . . . .\\  \\. . .\\// . . //
-    -- ||. . ._____. . .|| ||. . ._____. . .|| ||. . ._____. . .|| || . . .\/ . . .||
-    -- || . .||   ||. . || || . .||   ||. . || || . .||   ||. . || ||. . . . . . . ||
-    -- ||. . ||   || . .|| ||. . ||   || . .|| ||. . ||   || . .|| || . | . . . . .||
-    -- || . .||   ||. _-|| ||-_ .||   ||. . || || . .||   ||. _-|| ||-_.|\ . . . . ||
-    -- ||. . ||   ||-'  || ||  `-||   || . .|| ||. . ||   ||-'  || ||  `|\_ . .|. .||
-    -- || . _||   ||    || ||    ||   ||_ . || || . _||   ||    || ||   |\ `-_/| . ||
-    -- ||_-' ||  .|/    || ||    \|.  || `-_|| ||_-' ||  .|/    || ||   | \  / |-_.||
-    -- ||    ||_-'      || ||      `-_||    || ||    ||_-'      || ||   | \  / |  `||
-    -- ||    `'         || ||         `'    || ||    `'         || ||   | \  / |   ||
-    -- ||            .===' `===.         .==='.`===.         .===' /==. |  \/  |   ||
-    -- ||         .=='   \_|-_ `===. .==='   _|_   `===. .===' _-|/   `==  \/  |   ||
-    -- ||      .=='    _-'    `-_  `='    _-'   `-_    `='  _-'   `-_  /|  \/  |   ||
-    -- ||   .=='    _-'          '-__\._-'         '-_./__-'         `' |. /|  |   ||
-    -- ||.=='    _-'                                                     `' |  /==.||
-    -- =='    _-'                        N E O V I M                         \/   `==
-    -- \   _-'                                                                `-_   /
-    --  `''                                                                      ``'
-    --                 ]]
-    --             dashboard.section.header.val = vim.split(logo, "\n")
-    --
-    --             table.insert(
-    --                 dashboard.section.buttons.val,
-    --                 5,
-    --                 dashboard.button("d", " " .. " Dotfiles", ":e ~/.dotfiles/ <CR>")
-    --             )
-    --
-    --             return dashboard
-    --         end,
-    --     },
 }
