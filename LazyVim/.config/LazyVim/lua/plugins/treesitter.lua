@@ -2,7 +2,7 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         opts = {
-            -- add more treesitter parsers
+            -- add more tree-sitter parsers
             ensure_installed = {
                 "asm",
                 "bash",

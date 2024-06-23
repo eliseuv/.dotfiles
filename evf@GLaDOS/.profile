@@ -485,6 +485,11 @@ alias cabal-install='cabal install --ghc-options=-dynamic'
 # GHCup env
 [ -f "/home/evf/.ghcup/env" ] && source "/home/evf/.ghcup/env"
 
+########
+# Lean #
+########
+export PATH="$HOME/.elan/bin:$PATH"
+
 #############
 # Miniconda #
 #############

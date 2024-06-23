@@ -311,7 +311,7 @@ emacs-lisp        ; drown in parentheses
 (julia +lsp +tree-sitter +snail)             ; a better, faster MATLAB
 ;;kotlin            ; a better, slicker Java(Script)
 (latex +cdlatex +fold +latexmk +lsp)             ; writing papers in Emacs has never been so fun
-lean              ; for folks with too much to prove
+;;lean              ; for folks with too much to prove
 ledger            ; be audit you can be
 ;; (lua +lsp +tree-sitter)               ; one-based indices? one-based indices
 markdown          ; writing docs for people to ignore
@@ -3040,6 +3040,17 @@ Set =fortls= command:
 (after! ledger-mode
   (set-popup-rule! " *Ledger Report*" :size 0.3 :vslot -4 :select t :quit nil :ttl 0 :side 'right))
 #+end_src
+
+
+** Lean
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! lean4-mode :recipe
+  (:host github
+   :repo "leanprover/lean4-mode"
+   :files ("*.el" "data")))
+#+end_src
+
 
 ** Beancount
 
