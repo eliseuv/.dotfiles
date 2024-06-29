@@ -18,9 +18,10 @@ atreplinit() do repl
         else
             # If on terminal, use NeoVim
             @eval using InteractiveUtils
+            ENV["NVIM_APPNAME"] = "LazyVim"
             ENV["JULIA_EDITOR"] = "nvim"
             InteractiveUtils.define_editor(
-                r"nvim", wait=true) do cmd, path, line
+                r"NVIM_APPNAME=LazyVim nvim", wait=true) do cmd, path, line
                 `$cmd +$line $path`
             end
         end
@@ -33,4 +34,10 @@ atreplinit() do repl
     catch e
         @warn "Error initializing Revise" exception = (e, catch_backtrace())
     end
+    # # Load OhMyREPL.jl
+    # try
+    #     @eval using OhMyREPL
+    # catch e
+    #     @warn "Error initializing OhMyREPL" exception = (e, catch_backtrace())
+    # end
 end
