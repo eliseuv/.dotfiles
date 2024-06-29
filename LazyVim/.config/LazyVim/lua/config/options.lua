@@ -12,6 +12,10 @@ vim.opt.wrap = true
 vim.opt.spell = true
 vim.opt.spelllang = { "en_us" }
 
+-- Python
+vim.g.lazyvim_python_lsp = "pyright"
+vim.g.lazyvim_python_ruff = "ruff_lsp"
+
 -- GUI config
 vim.opt.guifont = "Fira Code:h9"
 if vim.g.neovide then

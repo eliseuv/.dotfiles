@@ -47,7 +47,7 @@ return {
     {
         "chomosuke/typst-preview.nvim",
         lazy = false,
-        version = "0.2.*",
+        version = "0.3.*",
         ft = "typst",
         invert_colors = "auto",
         build = function()

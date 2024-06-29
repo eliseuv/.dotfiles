@@ -39,6 +39,10 @@ This is my first attempt on an Emacs literate configuration, mostly based on [[h
       scroll-margin 1                             ; It's nice to maintain a little margin
       evil-kill-on-visual-paste nil)              ; Do not substitute clipboard on visual paste
 
+; Split windows vertically
+(setq split-height-threshold nil
+      split-width-threshold 0)
+
 (global-subword-mode 1)                           ; Recognize uppercase letters as word boundaries (useful for CamelCase naming)
 (global-visual-line-mode 1)                       ; Line wrapping
 #+end_src
