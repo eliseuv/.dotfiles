@@ -94,3 +94,5 @@ fpath+=~/.zfunc
 fpath+=~/.zsh/completion
 compinit
 
+
+export PATH=$PATH:/home/evf/.spicetify
