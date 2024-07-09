@@ -667,8 +667,8 @@ myKeys c =
           ]
         ^++^ subKeys
           "Monitors"
-          [ ("M-.", addName "Switch focus to next monitor" nextScreen)
-          -- , ("M-,", addName "Switch focus to prev monitor" $ prevScreen)
+          [ ("M-l", addName "Switch focus to prev monitor" prevScreen),
+            ("M-h", addName "Switch focus to next monitor" nextScreen)
           ]
         -- Switch layouts
         ^++^ subKeys
@@ -680,10 +680,10 @@ myKeys c =
         -- Window resizing
         ^++^ subKeys
           "Window resizing"
-          [ ("M-h", addName "Shrink window" $ sendMessage Shrink),
-            ("M-l", addName "Expand window" $ sendMessage Expand),
-            ("M-M1-j", addName "Shrink window vertically" $ sendMessage MirrorShrink),
-            ("M-M1-k", addName "Expand window vertically" $ sendMessage MirrorExpand)
+          [ ("M-,", addName "Shrink window" $ sendMessage Shrink),
+            ("M-.", addName "Expand window" $ sendMessage Expand),
+            ("M-M1-,", addName "Shrink window vertically" $ sendMessage MirrorShrink),
+            ("M-M1-.", addName "Expand window vertically" $ sendMessage MirrorExpand)
           ]
         -- Floating windows
         ^++^ subKeys
