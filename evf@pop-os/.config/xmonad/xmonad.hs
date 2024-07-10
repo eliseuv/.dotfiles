@@ -476,8 +476,8 @@ myLayoutHook =
 
 -- myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
 myWorkspaces =
-  [ " dev ", -- 0
-    " sh ", -- 1
+  [ " sys ", -- 0
+    " dev ", -- 1
     " www ", -- 2
     " mus ", -- 3
     " vid ", -- 4
@@ -516,8 +516,8 @@ myManageHook =
       (className =? "firefox" <&&> resource =? "Dialog") --> doFloat, -- Float Firefox Dialog
       isFullscreen --> doFullFloat,
       -- Programming
-      className =? "Emacs" --> doShift (myWorkspaces !! 0),
-      className =? "code-oss" --> doShift (myWorkspaces !! 0),
+      className =? "Emacs" --> doShift (myWorkspaces !! 1),
+      className =? "code-oss" --> doShift (myWorkspaces !! 1),
       -- Web Browsers
       title =? "Mozilla Firefox" --> doShift (myWorkspaces !! 2),
       title =? "Chromium" --> doShift (myWorkspaces !! 2),
