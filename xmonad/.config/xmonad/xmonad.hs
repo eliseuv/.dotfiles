@@ -169,7 +169,7 @@ myStartupHook = do
     -- spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 22")
     -- spawnOnce "xargs xwallpaper --stretch < ~/.cache/wall"
     -- spawnOnce "nitrogen --restore &"   -- if you prefer nitrogen to feh
-    setWMName "LG3D"
+    setWMName "xmonad"
 
 myNavigation :: TwoD a (Maybe a)
 myNavigation = makeXEventhandler $ shadowWithKeymap navKeyMap navDefaultHandler
@@ -521,6 +521,7 @@ myKeys c =
             , ("M-S-q", addName "Kill focused window" kill1)
             , ("M-S-a", addName "Kill all windows on WS" killAll)
             , ("M-S-<Return>", addName "Run prompt" $ spawn "rofi -show combi")
+            -- , ("M-S-<Return>", addName "Run prompt" $ spawn "ulauncher")
             -- , ("M-/",                 addName "DTOS Help"                 $ spawn "dtos-help")
             ]
             ^++^ subKeys

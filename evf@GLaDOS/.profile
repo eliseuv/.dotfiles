@@ -28,29 +28,29 @@ BLUE_BG="\e[0;104m${EXPAND_BG}"
 
 # Append to PATH if not already there
 function pathappend {
-	for ARG in "$@"; do
-		if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
-			PATH="${PATH:+"$PATH:"}$ARG"
-		fi
-	done
+    for ARG in "$@"; do
+        if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
+            PATH="${PATH:+"$PATH:"}$ARG"
+        fi
+    done
 }
 
 # Append to PATH if not already there
 function pathprepend {
-	for ARG in "$@"; do
-		if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
-			PATH="$ARG${PATH:+":$PATH"}"
-		fi
-	done
+    for ARG in "$@"; do
+        if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
+            PATH="$ARG${PATH:+":$PATH"}"
+        fi
+    done
 }
 
 # Append to MANPATH if not already there
 function manpathappend {
-	for ARG in "$@"; do
-		if [ -d "$ARG" ] && [[ ":$MANPATH:" != *":$ARG:"* ]]; then
-			MANPATH="${MANPATH:+"$MANPATH:"}$ARG"
-		fi
-	done
+    for ARG in "$@"; do
+        if [ -d "$ARG" ] && [[ ":$MANPATH:" != *":$ARG:"* ]]; then
+            MANPATH="${MANPATH:+"$MANPATH:"}$ARG"
+        fi
+    done
 }
 
 # System binaries
@@ -139,8 +139,8 @@ export $(xargs -d '\n' <"$HOME/Documents/personal/api_keys/spotify.txt")
 # Let GPG manage SSH
 unset SSH_AGENT_PID
 if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-	SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-	export SSH_AUTH_SOCK
+    SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+    export SSH_AUTH_SOCK
 fi
 
 # Configure pinentry to use the correct tty
@@ -269,65 +269,68 @@ alias git-push="git add . && git commit -m 'update' && git push"
 # Connect to UFRGS VPN
 alias vpn-ufrgs="sudo openvpn --config ~/.config/openvpn/vpn-ufrgs.ovpn"
 
+# ytfzf
+alias yt="ytfzf"
+
 #############
 # FUNCTIONS #
 #############
 
 # yazi wrapper
 function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+    yazi "$@" --cwd-file="$tmp"
+    if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
 }
 
 # Print csv file
 function pcsv {
-	sed 's/,,/, ,/g;s/,,/, ,/g' "$1" | column -s, -t | less -#2 -N -S
+    sed 's/,,/, ,/g;s/,,/, ,/g' "$1" | column -s, -t | less -#2 -N -S
 }
 
 # ex - archive extractor
 # usage: ex <file>
 function ex {
-	if [ -f "$1" ]; then
-		case "$1" in
-		*.tar.bz2) tar xjf "$1" ;;
-		*.tar.gz) tar xzf "$1" ;;
-		*.bz2) bunzip2 "$1" ;;
-		*.rar) unrar x "$1" ;;
-		*.gz) gunzip "$1" ;;
-		*.tar) tar xf "$1" ;;
-		*.tbz2) tar xjf "$1" ;;
-		*.tgz) tar xzf "$1" ;;
-		*.zip) unzip "$1" ;;
-		*.Z) uncompress "$1" ;;
-		*.7z) 7z x "$1" ;;
-		*) echo "'$1' cannot be extracted via ex()" ;;
-		esac
-	else
-		echo "'$1' is not a valid file"
-	fi
+    if [ -f "$1" ]; then
+        case "$1" in
+        *.tar.bz2) tar xjf "$1" ;;
+        *.tar.gz) tar xzf "$1" ;;
+        *.bz2) bunzip2 "$1" ;;
+        *.rar) unrar x "$1" ;;
+        *.gz) gunzip "$1" ;;
+        *.tar) tar xf "$1" ;;
+        *.tbz2) tar xjf "$1" ;;
+        *.tgz) tar xzf "$1" ;;
+        *.zip) unzip "$1" ;;
+        *.Z) uncompress "$1" ;;
+        *.7z) 7z x "$1" ;;
+        *) echo "'$1' cannot be extracted via ex()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
 }
 
 # YouTube MP3
 function ytmp3 {
-	yt-dlp -f 'ba' -x --audio-format mp3 "$1" -o "$HOME/Storage/CompanionCube/music/_unsorted/%(title)s.%(ext)s"
+    yt-dlp -f 'ba' -x --audio-format mp3 "$1" -o "$HOME/Storage/CompanionCube/music/_unsorted/%(title)s.%(ext)s"
 }
 
 # Add spacing left of text
 # Pipe to it to to add spacing to the beginning of outpu
 # COMMAND | tab
 function tab {
-	while read -r LINE; do
-		echo "${LINE//^/  }"
-	done
+    while read -r LINE; do
+        echo "${LINE//^/  }"
+    done
 }
 
 # Cheat sheet
 function cheat {
-	curl cheat.sh/"$*" | bat
+    curl https://cheat.sh/"$*" | bat
 }
 
 #######
@@ -342,36 +345,36 @@ export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f
 
 # Fuzzy search dir navigation
 function fcd {
-	cd "$(find ~ -not -path '*/.*' -type d | fzf --height 50% --reverse --preview 'eza -lah {}')" || return
+    cd "$(find ~ -not -path '*/.*' -type d | fzf --height 50% --reverse --preview 'eza -lah {}')" || return
 }
 
 # Fuzzy search file in dir and open
 function fop {
-	local filename
-	filename=$(find . -type f | fzf --reverse --preview 'bat {} --color always')
-	if [ -f "$filename" ]; then
-		local filetype
-		filetype=$(xdg-mime query filetype "$filename")
-		echo "Opening file " "$filename" " of type " "$filetype" " with " "$(xdg-mime query default "$filetype")"
-		xdg-open "$filename" &
-	fi
+    local filename
+    filename=$(find . -type f | fzf --reverse --preview 'bat {} --color always')
+    if [ -f "$filename" ]; then
+        local filetype
+        filetype=$(xdg-mime query filetype "$filename")
+        echo "Opening file " "$filename" " of type " "$filetype" " with " "$(xdg-mime query default "$filetype")"
+        xdg-open "$filename" &
+    fi
 }
 
 # using ripgrep combined with preview
 # find-in-file - usage: fif <searchTerm>
 function fif {
-	if [ ! "$#" -gt 0 ]; then
-		echo "Need a string to search for!"
-		return 1
-	fi
-	FILE=$(rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}")
-	nvim "$FILE"
+    if [ ! "$#" -gt 0 ]; then
+        echo "Need a string to search for!"
+        return 1
+    fi
+    FILE=$(rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}")
+    nvim "$FILE"
 }
 
 # Fuzzy search music library
 function fmp {
-	local FORMAT="[%file%]"
-	mpc listall -f "$FORMAT" | fzf --multi --preview 'mediainfo ~/Storage/Music/{}' | mpc add
+    local FORMAT="[%file%]"
+    mpc listall -f "$FORMAT" | fzf --multi --preview 'mediainfo ~/Storage/Music/{}' | mpc add
 }
 
 ########
@@ -407,10 +410,10 @@ alias cargo-cleanup='cargo cache --autoclean'
 alias cargo-gc='cargo cache --gc'
 
 function cargocleanup {
-	printf "${BLUE}Removing crate source checkouts and git repos checkouts...${RESET}\n"
-	cargo-cleanup
-	printf "\n${BLUE}Recompressing git repos...${RESET}\n"
-	cargo-gc
+    printf "${BLUE}Removing crate source checkouts and git repos checkouts...${RESET}\n"
+    cargo-cleanup
+    printf "\n${BLUE}Recompressing git repos...${RESET}\n"
+    cargo-gc
 }
 
 ######
@@ -431,10 +434,10 @@ pathappend "$GOBIN"
 alias go-update='gup update'
 
 function gocleanup {
-	printf "${BLUE}Removing build cache...${RESET}\n"
-	go clean -cache
-	printf "\n${BLUE}Removing module download cache...${RESET}\n"
-	go clean -modcache
+    printf "${BLUE}Removing build cache...${RESET}\n"
+    go clean -cache
+    printf "\n${BLUE}Removing module download cache...${RESET}\n"
+    go clean -modcache
 }
 
 #########
@@ -452,12 +455,12 @@ export JULIA_EDITOR=nvim
 
 # Enqueue Julia scripts as jobs
 jlargs() {
-	printf "\nSubmitting script $1\n\n"
-	while IFS= read -r line; do
-		echo "Args = $line"
-		COMMAND="tsp julia $1 $line"
-		eval "$COMMAND"
-	done <<<"$(julia --startup-file=no "$2")"
+    printf "\nSubmitting script $1\n\n"
+    while IFS= read -r line; do
+        echo "Args = $line"
+        COMMAND="tsp julia $1 $line"
+        eval "$COMMAND"
+    done <<<"$(julia --startup-file=no "$2")"
 }
 
 # Julia with precompiled Revise.jl and OhMyREPL
@@ -498,14 +501,14 @@ export PATH="$HOME/.elan/bin:$PATH"
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/evf/miniconda3/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
 if [ $? -eq 0 ]; then
-	eval "$__conda_setup"
+    eval "$__conda_setup"
 else
-	if [ -f "/home/evf/miniconda3/etc/profile.d/conda.sh" ]; then
-		. "/home/evf/miniconda3/etc/profile.d/conda.sh"
-	else
-		# export PATH="/home/evf/miniconda3/bin:$PATH"
-		pathprepend "$HOME/miniconda3/bin"
-	fi
+    if [ -f "/home/evf/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/evf/miniconda3/etc/profile.d/conda.sh"
+    else
+        # export PATH="/home/evf/miniconda3/bin:$PATH"
+        pathprepend "$HOME/miniconda3/bin"
+    fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
@@ -519,48 +522,48 @@ export CONDA_AUTO_ACTIVATE_BASE=false
 
 # Activate an env (with fzf)
 function condaenv {
-	local ENVS_LIST=("base")
-	local ENVS_LIST=("${ENVS_LIST[@]}" "$(ls "$CONDA_ENVS_DIR")")
-	conda activate "$(printf "%s\n" "${ENVS_LIST[@]}" | fzf)"
+    local ENVS_LIST=("base")
+    local ENVS_LIST=("${ENVS_LIST[@]}" "$(ls "$CONDA_ENVS_DIR")")
+    conda activate "$(printf "%s\n" "${ENVS_LIST[@]}" | fzf)"
 }
 
 # List explicitly installed packages
 alias conda-list='conda env export --from-history'
 
 function condaupdate {
-	printf "${BLUE}Updating base env...${RESET}\n\n"
-	conda activate base
-	sh -c 'conda update --all --yes'
-	conda deactivate
-	# explicitly set IFS to contain only a line feed
-	IFS='
+    printf "${BLUE}Updating base env...${RESET}\n\n"
+    conda activate base
+    sh -c 'conda update --all --yes'
+    conda deactivate
+    # explicitly set IFS to contain only a line feed
+    IFS='
     '
-	for ENV_DIR in "$CONDA_ENVS_DIR"/*; do
-		[[ -e "$ENV_DIR" ]] || break
-		ENV="$(basename "$ENV_DIR")"
-		printf "\n${BLUE}Updating $ENV env...${RESET}\n\n"
-		conda activate "$ENV"
-		conda upgrade --all --yes
-		conda deactivate
-	done
+    for ENV_DIR in "$CONDA_ENVS_DIR"/*; do
+        [[ -e "$ENV_DIR" ]] || break
+        ENV="$(basename "$ENV_DIR")"
+        printf "\n${BLUE}Updating $ENV env...${RESET}\n\n"
+        conda activate "$ENV"
+        conda upgrade --all --yes
+        conda deactivate
+    done
 }
 
 function condacleanup {
-	printf "${BLUE}Cleaning up base env...${RESET}\n\n"
-	conda activate base
-	conda clean --all --yes
-	conda deactivate
-	# explicitly set IFS to contain only a line feed
-	IFS='
+    printf "${BLUE}Cleaning up base env...${RESET}\n\n"
+    conda activate base
+    conda clean --all --yes
+    conda deactivate
+    # explicitly set IFS to contain only a line feed
+    IFS='
     '
-	for ENV_DIR in "$CONDA_ENVS_DIR"/*; do
-		[[ -e "$ENV_DIR" ]] || break
-		ENV="$(basename "$ENV_DIR")"
-		printf "\n${BLUE}Cleaning up $ENV env...${RESET}\n\n"
-		conda activate "$ENV"
-		conda clean --all --yes
-		conda deactivate
-	done
+    for ENV_DIR in "$CONDA_ENVS_DIR"/*; do
+        [[ -e "$ENV_DIR" ]] || break
+        ENV="$(basename "$ENV_DIR")"
+        printf "\n${BLUE}Cleaning up $ENV env...${RESET}\n\n"
+        conda activate "$ENV"
+        conda clean --all --yes
+        conda deactivate
+    done
 }
 
 ########
@@ -581,15 +584,15 @@ pathappend ~/.local/share/bob/nvim-bin
 
 # NeoVim config switcher
 function nvims() {
-	items=("LazyVim" "EruditeNvim" "AstroNvim" "NvChad" "default")
-	config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
-	if [[ -z $config ]]; then
-		echo "Nothing selected"
-		return 0
-	elif [[ $config == "default" ]]; then
-		config=""
-	fi
-	NVIM_APPNAME=$config nvim "$@"
+    items=("LazyVim" "EruditeNvim" "AstroNvim" "NvChad" "default")
+    config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+    if [[ -z $config ]]; then
+        echo "Nothing selected"
+        return 0
+    elif [[ $config == "default" ]]; then
+        config=""
+    fi
+    NVIM_APPNAME=$config nvim "$@"
 }
 
 # NeoVim
@@ -612,18 +615,18 @@ alias mirrors='sudo reflector --verbose --protocol https --latest 50 --number 20
 alias mirrora='sudo reflector --verbose --protocol https --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist'
 
 function mirror {
-	local TMPFILE
-	TMPFILE="$(mktemp)"
-	sudo true
-	rate-mirrors --save="$TMPFILE" arch --max-delay=43200
-	sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup
-	sudo mv "$TMPFILE" /etc/pacman.d/mirrorlist
+    local TMPFILE
+    TMPFILE="$(mktemp)"
+    sudo true
+    rate-mirrors --save="$TMPFILE" arch --max-delay=43200
+    sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup
+    sudo mv "$TMPFILE" /etc/pacman.d/mirrorlist
 }
 
 # Pacman
 # Fuzzy search on available packages and install
 function pac {
-	pacman -Sl | awk '{print $2($4=="" ? "" : " *")}' | fzf --multi --preview 'pacman -Sii {1}' --reverse | tr -d '*' | xargs -ro sudo pacman -S
+    pacman -Sl | awk '{print $2($4=="" ? "" : " *")}' | fzf --multi --preview 'pacman -Sii {1}' --reverse | tr -d '*' | xargs -ro sudo pacman -S
 }
 # Fuzzy search on installed packacges and remove
 alias pacremove="pacman -Qettq | fzf --multi --preview 'pacman -Qii {1}' --reverse | xargs -ro sudo pacman -Rns"
@@ -633,14 +636,14 @@ alias pacsyu='sudo pacman -Syu'
 alias pacunlock='sudo rm /var/lib/pacman/db.lck'
 
 function pacupdate {
-	printf "\n${BLUE}Pacman update...${RESET}\n\n"
-	pacsyu --noconfirm
+    printf "\n${BLUE}Pacman update...${RESET}\n\n"
+    pacsyu --noconfirm
 }
 
 # paru
 # Fuzzy search on available packages and install
 function par {
-	paru -Sl | awk '{print $2($4=="" ? "" : " *")}' | fzf --multi --preview 'paru -Si {1}' --reverse | tr -d '*' | xargs -ro paru -S
+    paru -Sl | awk '{print $2($4=="" ? "" : " *")}' | fzf --multi --preview 'paru -Si {1}' --reverse | tr -d '*' | xargs -ro paru -S
 }
 # Fuzzy search on installed packacges and remove
 alias parremove="paru -Qeq | fzf --multi --preview 'paru -Qi {1}' --reverse| xargs -ro paru -Rns"
@@ -650,21 +653,21 @@ alias parsyu='paru -Syu'
 alias parsua='paru -Sua'
 
 function parupdate {
-	printf "\n${BLUE}Pacman + AUR update...${RESET}\n\n"
-	parsyu --noconfirm
-	printf "\n${BLUE}Detecting necessary rebuilds...${RESET}\n\n"
-	checkrebuild -v
+    printf "\n${BLUE}Pacman + AUR update...${RESET}\n\n"
+    parsyu --noconfirm
+    printf "\n${BLUE}Detecting necessary rebuilds...${RESET}\n\n"
+    checkrebuild -v
 }
 
 # Pacman cleanup
 function paccleanup {
-	printf "\n${BLUE}Pacman cache cleanup...${RESET}\n\n"
-	paccache -rk1
-	paccache -ruk0
-	printf "\n${BLUE}Paru AUR cache cleanup...${RESET}\n\n"
-	paru -Scca --noconfirm
-	printf "\n${BLUE}Removing orphaned packages...${RESET}\n\n"
-	pacman -Qdtq | xargs -ro sudo pacman -Rns --noconfirm
+    printf "\n${BLUE}Pacman cache cleanup...${RESET}\n\n"
+    paccache -rk1
+    paccache -ruk0
+    printf "\n${BLUE}Paru AUR cache cleanup...${RESET}\n\n"
+    paru -Scca --noconfirm
+    printf "\n${BLUE}Removing orphaned packages...${RESET}\n\n"
+    pacman -Qdtq | xargs -ro sudo pacman -Rns --noconfirm
 }
 
 #######################
@@ -673,60 +676,60 @@ function paccleanup {
 
 # Update system
 function update {
-	local LOCK_FILE=/tmp/update.lock
-	if [ -f "$LOCK_FILE" ]; then
-		printf "${RED}Error: Lock file $LOCK_FILE found. ${RESET}\n"
-		return 1
-	fi
-	touch "$LOCK_FILE"
-	printf "\n${GREEN}Updating Arch...${RESET}\n\n"
-	parupdate
-	printf "\n${GREEN}Updating xmonad...${RESET}\n\n"
-	update-xmonad
-	printf "\n${GREEN}Updating Rust...${RESET}\n\n"
-	rustup update
-	printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"
-	cargo-update
-	printf "\n${GREEN}Updating Go bins...${RESET}\n\n"
-	go-update
-	printf "\n${GREEN}Updating Julia...${RESET}\n\n"
-	juliaup update
-	julia-env-update
-	printf "\n${GREEN}Updating Miniconda...${RESET}\n\n"
-	condaupdate
-	printf "\n${GREEN}Updating NeoVim...${RESET}\n\n"
-	bob update --all
-	# printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
-	# doom upgrade --force
-	printf "\n${GREEN}Custom check...${RESET}\n"
-	customcheck
-	printf "\n"
-	rm -f /tmp/update.lock
+    local LOCK_FILE=/tmp/update.lock
+    if [ -f "$LOCK_FILE" ]; then
+        printf "${RED}Error: Lock file $LOCK_FILE found. ${RESET}\n"
+        return 1
+    fi
+    touch "$LOCK_FILE"
+    printf "\n${GREEN}Updating Arch...${RESET}\n\n"
+    parupdate
+    printf "\n${GREEN}Updating xmonad...${RESET}\n\n"
+    update-xmonad
+    printf "\n${GREEN}Updating Rust...${RESET}\n\n"
+    rustup update
+    printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"
+    cargo-update
+    printf "\n${GREEN}Updating Go bins...${RESET}\n\n"
+    go-update
+    printf "\n${GREEN}Updating Julia...${RESET}\n\n"
+    juliaup update
+    julia-env-update
+    printf "\n${GREEN}Updating Miniconda...${RESET}\n\n"
+    condaupdate
+    printf "\n${GREEN}Updating NeoVim...${RESET}\n\n"
+    bob update --all
+    # printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
+    # doom upgrade --force
+    printf "\n${GREEN}Custom check...${RESET}\n"
+    customcheck
+    printf "\n"
+    rm -f /tmp/update.lock
 }
 
 # Cleanup
 function cleanup {
-	printf "\n${GREEN}Pacman cleanup...${RESET}\n"
-	paccleanup
-	printf "\n${GREEN}Julia cleanup...${RESET}\n\n"
-	juliaup gc
-	julia-env-cleanup
-	printf "\n${GREEN}Miniconda cleanup...${RESET}\n\n"
-	condacleanup
-	printf "\n${GREEN}Cargo cleanup...${RESET}\n\n"
-	cargocleanup
-	printf "\n${GREEN}Go cleanup...${RESET}\n\n"
-	gocleanup
-	# printf "\n${GREEN}DOOM cleanup...${RESET}\n\n"
-	# doom sync
-	# doom gc
+    printf "\n${GREEN}Pacman cleanup...${RESET}\n"
+    paccleanup
+    printf "\n${GREEN}Julia cleanup...${RESET}\n\n"
+    juliaup gc
+    julia-env-cleanup
+    printf "\n${GREEN}Miniconda cleanup...${RESET}\n\n"
+    condacleanup
+    printf "\n${GREEN}Cargo cleanup...${RESET}\n\n"
+    cargocleanup
+    printf "\n${GREEN}Go cleanup...${RESET}\n\n"
+    gocleanup
+    # printf "\n${GREEN}DOOM cleanup...${RESET}\n\n"
+    # doom sync
+    # doom gc
 }
 
 function customcheck {
-	printf "\n  ${GREEN}✓ ${BLUE}No custom checks${RESET}\n"
+    printf "\n  ${GREEN}✓ ${BLUE}No custom checks${RESET}\n"
 
-	# printf "\n${BLUE}Checking if Emacs with native compilation is available...${RESET}\n"
-	# pacman -Si emacs-nativecomp
+    # printf "\n${BLUE}Checking if Emacs with native compilation is available...${RESET}\n"
+    # pacman -Si emacs-nativecomp
 }
 
 # Update and cleanup
