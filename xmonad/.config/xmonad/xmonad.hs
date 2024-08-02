@@ -1,10 +1,9 @@
 -- Base
-
 import System.Directory
 import System.Exit (exitSuccess)
 import System.IO (hClose, hPutStr, hPutStrLn)
 import XMonad
-import qualified XMonad.StackSet as W
+import XMonad.StackSet qualified as W
 
 -- Actions
 import XMonad.Actions.CopyWindow (kill1)
@@ -13,13 +12,13 @@ import XMonad.Actions.GridSelect
 import XMonad.Actions.MouseResize
 import XMonad.Actions.Promote
 import XMonad.Actions.RotSlaves (rotAllDown, rotSlavesDown)
-import qualified XMonad.Actions.Search as S
+import XMonad.Actions.Search qualified as S
 import XMonad.Actions.WindowGo (runOrRaise)
 import XMonad.Actions.WithAll (killAll, sinkAll)
 
 -- Data
 import Data.Char (isSpace, toUpper)
-import qualified Data.Map as M
+import Data.Map qualified as M
 import Data.Maybe (fromJust, isJust)
 import Data.Monoid
 import Data.Tree
@@ -49,7 +48,7 @@ import XMonad.Layout.ThreeColumns
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.LimitWindows (decreaseLimit, increaseLimit, limitWindows)
 import XMonad.Layout.MultiToggle (EOT (EOT), mkToggle, single, (??))
-import qualified XMonad.Layout.MultiToggle as MT (Toggle (..))
+import XMonad.Layout.MultiToggle qualified as MT (Toggle (..))
 import XMonad.Layout.MultiToggle.Instances (StdTransformers (MIRROR, NBFULL, NOBORDERS))
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Renamed
@@ -57,7 +56,7 @@ import XMonad.Layout.ShowWName
 import XMonad.Layout.Simplest
 import XMonad.Layout.Spacing
 import XMonad.Layout.SubLayouts
-import qualified XMonad.Layout.ToggleLayouts as T (ToggleLayout (Toggle), toggleLayouts)
+import XMonad.Layout.ToggleLayouts qualified as T (ToggleLayout (Toggle), toggleLayouts)
 import XMonad.Layout.WindowArranger (WindowArrangerMsg (..), windowArrange)
 import XMonad.Layout.WindowNavigation
 
@@ -125,12 +124,12 @@ myBorderWidth :: Dimension
 myBorderWidth = 1 -- Sets border width for windows
 
 myNormColor :: String -- Border color of normal windows
-myNormColor = colorBack -- This variable is imported from Colors.THEME
--- myNormColor = "#282c34"
+myNormColor = "#282c34"
+-- myNormColor = colorBack -- This variable is imported from Colors.THEME
 
 myFocusColor :: String -- Border color of focused windows
-myFocusColor = color15 -- This variable is imported from Colors.THEME
--- myFocusColor = "#1A2772"
+myFocusColor = "#993399"
+-- myFocusColor = color06 -- This variable is imported from Colors.THEME
 
 -- mySoundPlayer :: String
 -- mySoundPlayer = "ffplay -nodisp -autoexit " -- The program that will play system sounds
@@ -448,36 +447,37 @@ myManageHook =
         , title =? "Oracle VM VirtualBox Manager" --> doFloat
         , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat -- Float Firefox Dialog
         , isFullscreen --> doFullFloat
-        -- Programming
+         -- Programming
         , className =? "Emacs" --> doShift (myWorkspaces !! 1)
+        , className =? "dev.zed.Zed" --> doShift (myWorkspaces !! 1)
         , className =? "code-oss" --> doShift (myWorkspaces !! 1)
-        -- Web Browsers
-        , (className =? "firefox" <&&> title =? "Picture-in-Picture") --> doShift (myWorkspaces !! 4)
+         -- Web Browsers
+        ,(className =? "firefox" <&&> title =? "Picture-in-Picture") --> doShift (myWorkspaces !! 4)
         , title =? "Mozilla Firefox" --> doShift (myWorkspaces !! 2)
         , className =? "Navigator" --> doShift (myWorkspaces !! 2)
         , className =? "firefox" --> doShift (myWorkspaces !! 2)
         , className =? "Brave-browser" --> doShift (myWorkspaces !! 2)
         , className =? "brave-browser" --> doShift (myWorkspaces !! 2)
         , className =? "qutebrowser" --> doShift (myWorkspaces !! 2)
-        -- Music
-        , className =? "Spotify" --> doShift (myWorkspaces !! 3)
+        , -- Music
+          className =? "Spotify" --> doShift (myWorkspaces !! 3)
         , className =? "freezer" --> doShift (myWorkspaces !! 3)
-        -- Video
-        , className =? "mpv" --> doShift (myWorkspaces !! 4)
+        , -- Video
+          className =? "mpv" --> doShift (myWorkspaces !! 4)
         , className =? "FreeTube" --> doShift (myWorkspaces !! 4)
-        -- Documents
-        , className =? "Zathura" --> doShift (myWorkspaces !! 5)
+        , -- Documents
+          className =? "Zathura" --> doShift (myWorkspaces !! 5)
         , className =? "calibre" --> doShift (myWorkspaces !! 5)
         , className =? "Zotero" --> doShift (myWorkspaces !! 5)
-        -- Notebooks
-        , title =? "Chromium" --> doShift (myWorkspaces !! 6)
-        -- Chats
-        , className =? "TelegramDesktop" --> doShift (myWorkspaces !! 7)
+        , -- Notebooks
+          title =? "Chromium" --> doShift (myWorkspaces !! 6)
+        , -- Chats
+          className =? "TelegramDesktop" --> doShift (myWorkspaces !! 7)
         , className =? "discord" --> doShift (myWorkspaces !! 7)
-        -- Torrent
-        , className =? "qBittorrent" --> doShift (myWorkspaces !! 8)
-         -- VM Manager
-        , className =? "Virt-manager" --> doShift (myWorkspaces !! 9)
+        , -- Torrent
+          className =? "qBittorrent" --> doShift (myWorkspaces !! 8)
+        , -- VM Manager
+          className =? "Virt-manager" --> doShift (myWorkspaces !! 9)
         ]
         <+> namedScratchpadManageHook myScratchPads
 

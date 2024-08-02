@@ -34,6 +34,9 @@ bind ,g js let uri = document.location.href.replace(/https?:\/\//,"git@").replac
 " Open bookmarks
 bind z fillcmdline bmarks
 
+" Hint open in private window
+bind ;f hint -wp
+
 " YouTube
 alias umpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('umpv ' + url))
 alias mpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('mpv ' + url))
