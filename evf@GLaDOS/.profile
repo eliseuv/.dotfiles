@@ -580,7 +580,7 @@ pathappend "$GEM_HOME/bin"
 ##########
 
 # NeoVim version multiplexer
-pathappend ~/.local/share/bob/nvim-bin
+pathprepend ~/.local/share/bob/nvim-bin
 
 # NeoVim config switcher
 function nvims() {
@@ -602,6 +602,9 @@ alias nvim-chad="NVIM_APPNAME=NvChad nvim"
 alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
 alias v='nvim-lazy'
 alias vr='nvim-lazy -R'
+
+# LazyVim update
+alias nvim-lazy-update="nvim-lazy --headless \"+Lazy! sync\" +qa"
 
 ##########
 # PACMAN #
@@ -699,8 +702,9 @@ function update {
     condaupdate
     printf "\n${GREEN}Updating NeoVim...${RESET}\n\n"
     bob update --all
-    # printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
-    # doom upgrade --force
+    nvim-lazy-update
+    printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
+    doom upgrade --force --verbose
     printf "\n${GREEN}Custom check...${RESET}\n"
     customcheck
     printf "\n"
@@ -720,9 +724,8 @@ function cleanup {
     cargocleanup
     printf "\n${GREEN}Go cleanup...${RESET}\n\n"
     gocleanup
-    # printf "\n${GREEN}DOOM cleanup...${RESET}\n\n"
-    # doom sync
-    # doom gc
+    printf "\n${GREEN}DOOM cleanup...${RESET}\n\n"
+    doom gc --force --verbose
 }
 
 function customcheck {
