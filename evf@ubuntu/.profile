@@ -123,13 +123,6 @@ gpg-connect-agent updatestartuptty /bye >/dev/null
 # Launch GPG Agnet
 gpgconf --launch gpg-agent
 
-#########
-# INPUT #
-#########
-
-# Swap Esc and Caps Lock
-setxkbmap -option caps:swapescape
-
 ###########
 # ALIASES #
 ###########
