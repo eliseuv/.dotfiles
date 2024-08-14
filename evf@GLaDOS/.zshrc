@@ -5,7 +5,7 @@
 source ~/.znap/znap/znap.zsh  # Start Znap
 
 # Startup command
-neofetch
+fastfetch
 
 # # Theme
 # znap prompt romkatv/powerlevel10k
