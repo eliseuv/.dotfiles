@@ -344,8 +344,8 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 export FZF_DEFAULT_OPTS='--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4'
 
 # Fuzzy search dir navigation
-function fcd {
-    cd "$(find ~ -not -path '*/.*' -type d | fzf --height 50% --reverse --preview 'eza -lah {}')" || return
+function cdf {
+    cd "$(fd --type d --hidden --ignore | fzf --height 50% --reverse --preview 'eza -lah {}')" || return
 }
 
 # Fuzzy search file in dir and open
@@ -360,31 +360,77 @@ function fop {
     fi
 }
 
-# using ripgrep combined with preview
-# find-in-file - usage: fif <searchTerm>
-function fif {
+# Search file in dir and open in editor
+function f {
+    IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0 --preview 'bat {} --color always'))
+    [[ -n "$files" ]] && ${EDITOR:-nvim} "${files[@]}"
+}
+
+# Search for string inside files in current dir
+function frg {
     if [ ! "$#" -gt 0 ]; then
-        echo "Need a string to search for!"
+        # echo "Need a string to search for!"
         return 1
     fi
     FILE=$(rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}")
-    nvim "$FILE"
+    [[ -n "$FILE" ]] && "$EDITOR" "$FILE"
 }
 
-# Fuzzy search music library
-function fmp {
-    local FORMAT="[%file%]"
+# Search music library and add to playlist
+function fm {
+    local FORMAT="[[%artist% - ]%title%]|[%file%]"
     mpc listall -f "$FORMAT" | fzf --multi --preview 'mediainfo ~/Storage/Music/{}' | mpc add
+    mpc play
+}
+
+# Kill processes - list only the ones you can kill
+fkill() {
+    local pid
+    if [ "$UID" != "0" ]; then
+        pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
+    else
+        pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+    fi
+
+    if [ "x$pid" != "x" ]; then
+        echo $pid | xargs kill -${1:-9}
+    fi
+}
+
+alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an" "$@"'
+_gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
+_viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show --color=always % | diff-so-fancy'"
+
+# fshow - git commit browser
+fshow() {
+    glNoGraph |
+        fzf --no-sort --reverse --tiebreak=index --no-multi \
+            --ansi --preview="$_viewGitLogLine" \
+            --header "enter to view, alt-y to copy hash" \
+            --bind "enter:execute:$_viewGitLogLine   | less -R" \
+            --bind "alt-y:execute:$_gitLogLineToHash | xclip"
 }
 
 ########
 # tmux #
 ########
 
-alias t='tmux attach || tmux new-session'
+# alias t='tmux attach || tmux new-session'
 alias ta='tmux attach -t'
 alias tn='tmux new-session'
 alias tl='tmux list-sessions'
+
+# t - create new tmux session, or switch to existing one. Works from within tmux too. (@bag-man)
+# `t` will allow you to select your tmux session via fzf.
+# `t irc` will attach to the irc session (if it exists), else it will create it.
+t() {
+    [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
+    if [ $1 ]; then
+        tmux $change -t "$1" 2>/dev/null || (tmux new-session -d -s $1 && tmux $change -t "$1")
+        return
+    fi
+    session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) && tmux $change -t "$session" || echo "No sessions found."
+}
 
 ########
 # Rust #
@@ -595,7 +641,6 @@ function nvims() {
     NVIM_APPNAME=$config nvim "$@"
 }
 
-# NeoVim
 alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
 alias nvim-erudite="NVIM_APPNAME=EruditeNvim nvim"
 alias nvim-chad="NVIM_APPNAME=NvChad nvim"
@@ -605,6 +650,9 @@ alias vr='nvim-lazy -R'
 
 # LazyVim update
 alias nvim-lazy-update="nvim-lazy --headless \"+Lazy! sync\" +qa"
+
+# Use LazyVim as default
+export NVIM_APPNAME="LazyVim"
 
 ##########
 # PACMAN #

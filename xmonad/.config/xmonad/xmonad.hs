@@ -105,7 +105,7 @@ myEmacs :: String
 myEmacs = "emacsclient -nc -a 'emacs' " -- Makes emacs keybindings easier to type
 
 myVim :: String
-myVim = "neovide"
+myVim = "NVIM_APPNAME=LazyVim neovide"
 
 myEditor :: String
 myEditor = myEmacs -- Sets emacs as editor
