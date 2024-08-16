@@ -29,6 +29,6 @@ if vim.g.neovide then
     vim.g.neovide_transparency = 0.95
     -- Particle effects
     vim.g.neovide_cursor_vfx_mode = "pixiedust"
-    vim.g.neovide_cursor_vfx_particle_lifetime = 3.0
-    vim.g.neovide_cursor_vfx_particle_density = 20.0
+    vim.g.neovide_cursor_vfx_particle_lifetime = 5.0
+    vim.g.neovide_cursor_vfx_particle_density = 35.0
 end

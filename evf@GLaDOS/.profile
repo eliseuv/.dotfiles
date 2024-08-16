@@ -83,8 +83,8 @@ pathappend ~/.config/emacs-doom/bin
 # export COLORTERM='truecolor'
 #export TERM='rxvt-unicode-256color'
 export TERM='xterm-256color'
-# export TERMINAL='kitty'
-export TERMINAL='alacritty'
+export TERMINAL='kitty'
+# export TERMINAL='alacritty'
 
 # Text editors
 export EDITOR='nvim'
@@ -415,22 +415,22 @@ fshow() {
 # tmux #
 ########
 
-# alias t='tmux attach || tmux new-session'
+alias t='tmux attach || tmux new-session'
 alias ta='tmux attach -t'
 alias tn='tmux new-session'
 alias tl='tmux list-sessions'
 
-# t - create new tmux session, or switch to existing one. Works from within tmux too. (@bag-man)
-# `t` will allow you to select your tmux session via fzf.
-# `t irc` will attach to the irc session (if it exists), else it will create it.
-t() {
-    [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
-    if [ $1 ]; then
-        tmux $change -t "$1" 2>/dev/null || (tmux new-session -d -s $1 && tmux $change -t "$1")
-        return
-    fi
-    session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) && tmux $change -t "$session" || echo "No sessions found."
-}
+# # t - create new tmux session, or switch to existing one. Works from within tmux too. (@bag-man)
+# # `t` will allow you to select your tmux session via fzf.
+# # `t irc` will attach to the irc session (if it exists), else it will create it.
+# t() {
+#     [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
+#     if [ $1 ]; then
+#         tmux $change -t "$1" 2>/dev/null || (tmux new-session -d -s $1 && tmux $change -t "$1")
+#         return
+#     fi
+#     session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) && tmux $change -t "$session" || echo "No sessions found."
+# }
 
 ########
 # Rust #
@@ -454,12 +454,16 @@ alias cargo-update='cargo install-update --all'
 alias cargo-cleanup='cargo cache --autoclean'
 # Recompress git repos
 alias cargo-gc='cargo cache --gc'
+# Cargo clean projects
+alias cargo-clean-all='cargo clean-recursive ~/programs/'
 
 function cargocleanup {
     printf "${BLUE}Removing crate source checkouts and git repos checkouts...${RESET}\n"
     cargo-cleanup
     printf "\n${BLUE}Recompressing git repos...${RESET}\n"
     cargo-gc
+    printf "\n${BLUE}Cargo clean on projects...${RESET}\n"
+    cargo-clean-all
 }
 
 ######
