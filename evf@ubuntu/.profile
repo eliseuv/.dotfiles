@@ -520,7 +520,6 @@ function nvims() {
     NVIM_APPNAME=$config nvim "$@"
 }
 
-# NeoVim
 alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
 alias nvim-erudite="NVIM_APPNAME=EruditeNvim nvim"
 alias nvim-chad="NVIM_APPNAME=NvChad nvim"
@@ -530,6 +529,9 @@ alias vr='nvim-lazy -R'
 
 # LazyVim update
 alias nvim-lazy-update="nvim-lazy --headless \"+Lazy! sync\" +qa"
+
+# Use LazyVim as default
+export NVIM_APPNAME="LazyVim"
 
 #######
 # APT #
@@ -570,10 +572,13 @@ function update {
     go-update
     printf "\n${GREEN}Updating Julia...${RESET}\n\n"
     julia-update
-    printf "\n${GREEN}Updating Miniconda...${RESET}\n\n"
-    condaupdate
-    printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
-    doom upgrade --force
+    # printf "\n${GREEN}Updating Miniconda...${RESET}\n\n"
+    # condaupdate
+    printf "\n${GREEN}Updating NeoVim...${RESET}\n\n"
+    bob update --all
+    nvim-lazy-update
+    # printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
+    # doom upgrade --force
     printf "\n${GREEN}Custom check...${RESET}\n"
     customcheck
     printf "\n"
@@ -586,16 +591,14 @@ function cleanup {
     poposcleanup
     printf "\n${GREEN}Julia cleanup...${RESET}\n\n"
     julia-cleanup
-    printf "\n${GREEN}Miniconda cleanup...${RESET}\n\n"
-    condacleanup
+    # printf "\n${GREEN}Miniconda cleanup...${RESET}\n\n"
+    # condacleanup
     printf "\n${GREEN}Cargo cleanup...${RESET}\n\n"
     cargocleanup
-    # printf "\n${GREEN}Go cleanup...${RESET}\n\n"
-    # gocleanup
-    printf "\n${GREEN}DOOM purge...${RESET}\n\n"
-    doom sync
-    doom purge
-    doom clean
+    printf "\n${GREEN}Go cleanup...${RESET}\n\n"
+    gocleanup
+    # printf "\n${GREEN}DOOM cleanup...${RESET}\n\n"
+    # doom gc --force --verbose
 }
 
 function customcheck {
