@@ -625,6 +625,16 @@ export GEM_HOME="$HOME/gems"
 
 pathappend "$GEM_HOME/bin"
 
+#######
+# npm #
+#######
+
+export NPM_PACKAGES="$HOME/.npm-packages"
+
+pathappend "$NPM_PACKAGES/bin"
+
+manpathappend "$NPM_PACKAGES/share/man"
+
 ##########
 # NeoVim #
 ##########

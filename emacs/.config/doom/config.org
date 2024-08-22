@@ -1403,3 +1403,62 @@ Use =Justfile= mode.
 #+begin_src emacs-lisp :tangle packages.el
 (package! just-mode)
 #+end_src
+
+** Julia
+
+If using =lsp-julia=:
+
+#+begin_src emacs-lisp
+;; Do not use built-in package
+(setq lsp-julia-package-dir nil)
+;; Select Julia environment
+(setq lsp-julia-default-environment "~/.julia/environments/v1.10")
+#+end_src
+
+If using =eglot=:
+
+#+begin_src emacs-lisp :tangle no
+(setq eglot-connect-timeout 600)
+(setq eglot-jl-language-server-project "~/.julia/environments/v1.10")
+(after! eglot-jl
+  (setq eglot-jl-language-server-project eglot-jl-base))
+#+end_src
+
+*** Julia REPL
+
+#+begin_src emacs-lisp
+(after! julia-repl
+  ;; Use vterm
+  (julia-repl-set-terminal-backend 'vterm)
+  ;; Open REPL at the right side
+  (set-popup-rule! "*julia:\*" :side 'right :size 0.3 :ttl 0 :quit nil :select nil)
+  ;; Set environment variables
+  (setenv "JULIA_NUM_THREADS" "15"))
+#+end_src
+
+*** Julia vterm
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! julia-vterm)
+#+end_src
+
+Activate =julia-vterm= minor mode in =julia-mode=.
+
+#+begin_src emacs-lisp :tangle no
+(add-hook 'julia-mode-hook #'julia-vterm-mode)
+#+end_src
+
+*** TODO Julia-snail
+
+# Install =Julia Snail=:
+
+# #+begin_src emacs-lisp :tangle packages.el
+# (package! julia-snail)
+# #+end_src
+
+
+# #+begin_src emacs-lisp
+# (use-package! julia-snail
+#   :ensure t
+#   :hook (julia-mode . julia-snail-mode))
+# #+end_src
