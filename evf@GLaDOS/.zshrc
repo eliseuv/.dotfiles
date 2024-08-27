@@ -94,8 +94,3 @@ compinit
 
 # Load profile
 source ~/.profile
-
-# opam configuration
-[[ ! -r /home/evf/.opam/opam-init/init.zsh ]] || source /home/evf/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-
-export PATH=$PATH:/home/evf/.spicetify

@@ -1462,3 +1462,14 @@ Activate =julia-vterm= minor mode in =julia-mode=.
 #   :ensure t
 #   :hook (julia-mode . julia-snail-mode))
 # #+end_src
+
+** uiua
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! uiua-ts-mode)
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package! uiua-ts-mode
+  :mode "\\.ua//'")
+#+end_src

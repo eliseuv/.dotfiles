@@ -462,8 +462,8 @@ function cargocleanup {
     cargo-cleanup
     printf "\n${BLUE}Recompressing git repos...${RESET}\n"
     cargo-gc
-    printf "\n${BLUE}Cargo clean on projects...${RESET}\n"
-    cargo-clean-all
+    # printf "\n${BLUE}Cargo clean on projects...${RESET}\n"
+    # cargo-clean-all
 }
 
 ######
@@ -538,9 +538,16 @@ alias cabal-install='cabal install --ghc-options=-dynamic'
 # GHCup env
 [ -f "/home/evf/.ghcup/env" ] && source "/home/evf/.ghcup/env"
 
+#########
+# OCaml #
+#########
+
+[[ ! -r /home/evf/.opam/opam-init/init.zsh ]] || source /home/evf/.opam/opam-init/init.zsh >/dev/null 2>/dev/null
+
 ########
 # Lean #
 ########
+
 export PATH="$HOME/.elan/bin:$PATH"
 
 #############
@@ -629,11 +636,11 @@ pathappend "$GEM_HOME/bin"
 # npm #
 #######
 
-export NPM_PACKAGES="$HOME/.npm-packages"
-
-pathappend "$NPM_PACKAGES/bin"
-
-manpathappend "$NPM_PACKAGES/share/man"
+# export NPM_PACKAGES="$HOME/.npm-packages"
+#
+# pathappend "$NPM_PACKAGES/bin"
+#
+# manpathappend "$NPM_PACKAGES/share/man"
 
 ##########
 # NeoVim #
