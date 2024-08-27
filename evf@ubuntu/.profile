@@ -589,14 +589,14 @@ function update {
 function cleanup {
     printf "\n${GREEN}PopOS! cleanup...${RESET}\n"
     poposcleanup
-    printf "\n${GREEN}Julia cleanup...${RESET}\n\n"
-    julia-cleanup
-    # printf "\n${GREEN}Miniconda cleanup...${RESET}\n\n"
-    # condacleanup
     printf "\n${GREEN}Cargo cleanup...${RESET}\n\n"
     cargocleanup
     printf "\n${GREEN}Go cleanup...${RESET}\n\n"
     gocleanup
+    printf "\n${GREEN}Julia cleanup...${RESET}\n\n"
+    julia-cleanup
+    # printf "\n${GREEN}Miniconda cleanup...${RESET}\n\n"
+    # condacleanup
     # printf "\n${GREEN}DOOM cleanup...${RESET}\n\n"
     # doom gc --force --verbose
 }
