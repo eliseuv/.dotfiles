@@ -79,9 +79,6 @@ vim-command-line () {
 zle -N vim-command-line
 bindkey "^x^e" vim-command-line
 
-# Load profile
-source ~/.profile
-
 # Zoxide
 eval "$(zoxide init zsh)"
 
@@ -93,3 +90,6 @@ autoload -Uz compinit
 fpath+=~/.zfunc
 fpath+=~/.zsh/completion
 compinit
+
+# Load profile
+source ~/.profile
