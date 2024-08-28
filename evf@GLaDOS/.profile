@@ -272,6 +272,9 @@ alias vpn-ufrgs="sudo openvpn --config ~/.config/openvpn/vpn-ufrgs.ovpn"
 # ytfzf
 alias yt="ytfzf"
 
+# Spicetify update
+alias spicetify-update="spicetify update; spicetify restore backup; spicetify backup apply;"
+
 #############
 # FUNCTIONS #
 #############
