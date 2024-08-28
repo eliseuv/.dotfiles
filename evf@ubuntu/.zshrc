@@ -1,8 +1,8 @@
 # Download Znap, if it's not there yet.
-[[ -r ~/.repos/zsh-repos/znap/znap.zsh ]] ||
+[[ -r ~/.znap/znap/znap.zsh ]] ||
     git clone --depth 1 -- \
-        https://github.com/marlonrichert/zsh-snap.git ~/.repos/zsh-repos/znap
-source ~/.repos/zsh-repos/znap/znap.zsh  # Start Znap
+        https://github.com/marlonrichert/zsh-snap.git ~/.znap/znap
+source ~/.znap/znap/znap.zsh  # Start Znap
 
 # Startup command
 #neofetch
@@ -73,11 +73,12 @@ source /usr/share/doc/fzf/examples/completion.zsh
 # Open in editor
 autoload -z edit-command-line
 vim-command-line () {
-  local VISUAL='nvim'
+  local VISUAL='nvim-lazy'
   edit-command-line
 }
 zle -N vim-command-line
 bindkey "^x^e" vim-command-line
+# bindkey -s ^v "nvims\n"
 
 # Zoxide
 eval "$(zoxide init zsh)"

@@ -78,7 +78,7 @@ vim-command-line () {
 }
 zle -N vim-command-line
 bindkey "^x^e" vim-command-line
-bindkey -s ^v "nvims\n"
+# bindkey -s ^v "nvims\n"
 
 # Zoxide
 eval "$(zoxide init zsh)"
