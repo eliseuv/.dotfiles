@@ -581,9 +581,10 @@ function update {
     printf "\n${GREEN}Updating Go bins...${RESET}\n\n"
     go-update
     printf "\n${GREEN}Updating Julia...${RESET}\n\n"
+    juliaup update
     julia-update
-    # printf "\n${GREEN}Updating Miniconda...${RESET}\n\n"
-    # condaupdate
+    printf "\n${GREEN}Updating Anaconda...${RESET}\n\n"
+    condaupdate
     printf "\n${GREEN}Updating NeoVim...${RESET}\n\n"
     bob update --all
     nvim-lazy-update
@@ -605,8 +606,8 @@ function cleanup {
     gocleanup
     printf "\n${GREEN}Julia cleanup...${RESET}\n\n"
     julia-cleanup
-    # printf "\n${GREEN}Miniconda cleanup...${RESET}\n\n"
-    # condacleanup
+    printf "\n${GREEN}Anaconda cleanup...${RESET}\n\n"
+    condacleanup
     # printf "\n${GREEN}DOOM cleanup...${RESET}\n\n"
     # doom gc --force --verbose
 }
