@@ -13,9 +13,7 @@ return {
 
         -- see details below for full configuration options
         opts = {
-            lsp = {
-                on_attach = on_attach,
-            },
+            lsp = {},
             mappings = true,
         },
     },

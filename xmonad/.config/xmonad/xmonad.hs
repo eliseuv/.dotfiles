@@ -395,16 +395,16 @@ myLayoutHook =
                     mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
   where
     myDefaultLayout =
-        withBorder myBorderWidth grid
+        noBorders tabs
+            |||withBorder myBorderWidth grid
+            ||| threeCol
+            ||| threeRow
             ||| tall
             ||| noBorders monocle
             ||| spirals
-            ||| floats
-            ||| threeCol
-            ||| threeRow
-            ||| tallAccordion
-            ||| wideAccordion
-            ||| noBorders tabs
+            -- ||| floats
+            -- ||| tallAccordion
+            -- ||| wideAccordion
 
 -- myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
 myWorkspaces =

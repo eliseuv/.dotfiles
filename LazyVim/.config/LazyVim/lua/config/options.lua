@@ -16,8 +16,8 @@ vim.opt.spell = true
 vim.opt.spelllang = { "en_us" }
 
 -- Python
-vim.g.lazyvim_python_lsp = "pyright"
-vim.g.lazyvim_python_ruff = "ruff_lsp"
+vim.g.lazyvim_python_lsp = "basedpyright"
+vim.g.lazyvim_python_ruff = "ruff"
 
 -- GUI config
 if vim.g.neovide then

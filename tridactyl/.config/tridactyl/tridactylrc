@@ -56,29 +56,26 @@ bindurl ^https://duckduckgo.com f hint -Jc [data-testid="result-title-a"]
 bindurl ^https://duckduckgo.com F hint -Jbc [data-testid="result-title-a"]
 
 " Search engine
-set searchengine ddg
+set searchengine d
 set searchurls.s https://searx.be/search?q=%s
 " set searchurls.s https://search.rhscz.eu/search?q=%s&categories=general&language=en-US
 " set searchurls.s https://searxng.nicfab.eu/searxng/search?q=%s&categories=general&language=en-US
 set searchurls.g https://www.google.com/search?&q=%s
 set searchurls.d https://duckduckgo.com/?q=%s&ia=web
+set searchurls.b https://www.bing.com/search?q=%s
+set searchurls.w https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch&ns0=1
+set searchurls.r https://old.reddit.com/search?q=%s
 set searchurls.p https://piped.video/results?search_query=%s
+set searchurls.h https://hoogle.haskell.org/?hoogle=%s
+set searchurls.x https://twitter.com/search?q=%s
 set searchurls.yt https://www.youtube.com/results?search_query=%s
 set searchurls.gh https://github.com/search?q=%s
 set searchurls.jl https://docs.julialang.org/en/v1/search/?q=%s
 set searchurls.bt https://btdig.com/search?q=%s
 set searchurls.anna https://annas-archive.org/search?q=%s
-set searchurls.lib http://libgen.rs/search.php?req=%s
-set searchurls.sci https://sci-hub.se/%s
-" set searchurls.wp https://www.wikiwand.com/en/%s?fullSearch=true
-set searchurls.wp https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch&ns0=1
-" set searchurls.r https://r.nf/search?q=%s
-set searchurls.r https://old.reddit.com/search?q=%s
+set searchurls.sci https://annas-archive.org/scidb/%s
 set searchurls.sdb https://steamdb.info/search/?a=all&q=%s
 set searchurls.kym https://knowyourmeme.com/search?q=%s
-set searchurls.t https://twitter.com/search?q=%s
-set searchurls.x https://twitter.com/search?q=%s
-set searchurls.b https://www.bing.com/search?q=%s
 set searchurls.yd https://yandex.com/search/?text=%s
 set searchurls.gm https://www.google.com/maps/search/%s
 set searchurls.sp https://www.startpage.com/sp/search?query=%s
@@ -86,15 +83,13 @@ set searchurls.tw https://www.twitch.tv/search?term=%s
 set searchurls.gs https://scholar.google.com/scholar?hl=en&q=%s
 set searchurls.gd https://datasetsearch.research.google.com/search?query=%s
 set searchurls.gh https://github.com/search?q=%s
-set searchurls.h https://hoogle.haskell.org/?hoogle=%s
 set searchurls.rs https://crates.io/search?q=%s
 set searchurls.docs https://docs.rs/releases/search?query=%s
-set searchurls.w https://en.wikipedia.org/w/index.php?search=%s
 set searchurls.mw https://www.merriam-webster.com/dictionary/%s
 set searchurls.th https://www.thesaurus.com/browse/%s
 set searchurls.so https://stackoverflow.com/search?q=%s,
 set searchurls.arch https://wiki.archlinux.org/index.php?search=%s
-set searchurls.apkg https://archlinux.org/packages/?sort=&q=%s&maintainer=&flagged=
+set searchurls.pac https://archlinux.org/packages/?sort=&q=%s&maintainer=&flagged=
 set searchurls.aur https://aur.archlinux.org/packages?O=0&K=%s
 set searchurls.gentoo https://wiki.gentoo.org/index.php?search=%s
 set searchurls.tpb https://thepiratebay.org/search.php?q=%s&all=on&search=Pirate+Search&

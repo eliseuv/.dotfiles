@@ -532,14 +532,11 @@ alias pluto-start="julia --eval 'using Pluto ; Pluto.run(launch_browser=false)'"
 # Haskell #
 ###########
 
-# Put GHCup path at the start
-pathprepend "$HOME/.ghcup/bin"
+# GHCup env
+[ -f "/home/evf/.ghcup/env" ] && source "/home/evf/.ghcup/env"
 
 # Add the -dynamic flag to every invocation of GHC
 alias cabal-install='cabal install --ghc-options=-dynamic'
-
-# GHCup env
-[ -f "/home/evf/.ghcup/env" ] && source "/home/evf/.ghcup/env"
 
 #########
 # OCaml #
