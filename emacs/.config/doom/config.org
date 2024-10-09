@@ -451,17 +451,22 @@ Change certain keywords to symbols, such as lambda (\lambda):
 
 **** Theme
 
-My favorite themes:
+Install =Catppuccin= theme:
+#+begin_src emacs-lisp :tangle packages.el
+(package! catppuccin-theme)
+#+end_src
 
+Select theme:
 #+begin_src emacs-lisp
-;;(setq doom-theme 'doom-vibrant)
-;;(setq doom-theme 'doom-dracula)
-;;(setq doom-theme 'doom-outrun-electric)
+;; (setq doom-theme 'doom-vibrant)
+;; (setq doom-theme 'doom-dracula)
+;; (setq doom-theme 'doom-outrun-electric)
 (setq doom-theme 'doom-tokyo-night)
+;; (setq catppuccin-flavor 'mocha) ;; 'latte, 'frappe, 'macchiato or 'mocha
+;; (setq doom-theme 'catppuccin)
 #+end_src
 
 Allow bold and italic text:
-
 #+begin_src emacs-lisp
 (setq doom-themes-enable-bold t
       doom-themes-enable-italic t)
@@ -1377,6 +1382,41 @@ Configure package =Org Roam UI=:
 (setq TeX-command-default "LaTeXMk")
 #+end_src
 
+** Typst
+
+#+begin_src emacs-lisp :tangle no
+(add-to-list 'treesit-language-source-alist
+             '(typst "https://github.com/uben0/tree-sitter-typst"))
+(treesit-install-language-grammar 'typst)
+#+end_src
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! typst-ts-mode :recipe
+  (:type git
+   :host sourcehut
+   :repo "meow_king/typst-ts-mode"
+   :files (:defaults "*.el")))
+#+end_src
+
+#+begin_src emacs-lisp
+(after! typst-ts-mode
+  ;; don't add "--open" if you'd like `watch` to be an error detector
+  (setq typst-ts-mode-watch-options "--open"
+  ;; experimental settings (I'm the main dev, so I enable these)
+        typst-ts-mode-enable-raw-blocks-highlight t
+        typst-ts-mode-highlight-raw-blocks-at-startup t)
+  )
+#+end_src
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! org-typst-preview :recipe
+  (:type git
+   :host github
+   :repo "remimimimimi/org-typst-preview.el"
+   :files ("org-typst-preview.el")))
+#+end_src
+
+
 ** Rust
 
 #+begin_src emacs-lisp
@@ -1398,6 +1438,7 @@ Configure package =Org Roam UI=:
   (setq lsp-rust-analyzer-closure-return-type-hints "with_block"))
 #+end_src
 
+
 Use =Justfile= mode.
 
 #+begin_src emacs-lisp :tangle packages.el
@@ -1412,14 +1453,14 @@ If using =lsp-julia=:
 ;; Do not use built-in package
 (setq lsp-julia-package-dir nil)
 ;; Select Julia environment
-(setq lsp-julia-default-environment "~/.julia/environments/v1.10")
+(setq lsp-julia-default-environment "~/.julia/environments/emacs-lsp")
 #+end_src
 
 If using =eglot=:
 
 #+begin_src emacs-lisp :tangle no
 (setq eglot-connect-timeout 600)
-(setq eglot-jl-language-server-project "~/.julia/environments/v1.10")
+(setq eglot-jl-language-server-project "~/.julia/environments/emacs-lsp")
 (after! eglot-jl
   (setq eglot-jl-language-server-project eglot-jl-base))
 #+end_src

@@ -35,7 +35,7 @@ function pathappend {
     done
 }
 
-# Append to PATH if not already there
+# Prepend to PATH if not already there
 function pathprepend {
     for ARG in "$@"; do
         if [ -d "$ARG" ] && [[ ":$PATH:" != *":$ARG:"* ]]; then
@@ -522,8 +522,26 @@ alias jl='julia --sysimage=/home/evf/.julia/config/sysimages/revise-omr_sysimage
 # Update Julia packages
 alias julia-env-update='julia -e "using Pkg; Pkg.update()"'
 
+# Complete Julia update
+function juliaupdate {
+    printf "\n${BLUE}Updating juliaup...${RESET}\n\n"
+    juliaup self update
+    printf "\n${BLUE}Updating Julia...${RESET}\n\n"
+    juliaup update
+    printf "\n${BLUE}Updating Julia environments...${RESET}\n\n"
+    julia-env-update
+}
+
 # Julia package manager garbage collection
 alias julia-env-cleanup='julia -e "using Pkg; Pkg.gc()"'
+
+# Complete Julia cleanup
+function juliacleanup {
+    printf "\n${BLUE}Cleaning juliaup...${RESET}\n\n"
+    juliaup gc
+    printf "\n${BLUE}Cleaning Julia environments...${RESET}\n\n"
+    julia-env-cleanup
+}
 
 # Run Julia Pluto
 alias pluto-start="julia --eval 'using Pluto ; Pluto.run(launch_browser=false)'"
@@ -550,78 +568,9 @@ alias cabal-install='cabal install --ghc-options=-dynamic'
 
 export PATH="$HOME/.elan/bin:$PATH"
 
-#############
-# Miniconda #
-#############
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/evf/miniconda3/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/evf/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/evf/miniconda3/etc/profile.d/conda.sh"
-    else
-        # export PATH="/home/evf/miniconda3/bin:$PATH"
-        pathprepend "$HOME/miniconda3/bin"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-# Conda directories
-export CONDA_BASE_DIR="$HOME/miniconda3"
-export CONDA_ENVS_DIR="$CONDA_BASE_DIR/envs"
-
-# Conda options
-export CONDA_AUTO_ACTIVATE_BASE=false
-
-# Activate an env (with fzf)
-function condaenv {
-    local ENVS_LIST=("base")
-    local ENVS_LIST=("${ENVS_LIST[@]}" "$(ls "$CONDA_ENVS_DIR")")
-    conda activate "$(printf "%s\n" "${ENVS_LIST[@]}" | fzf)"
-}
-
-# List explicitly installed packages
-alias conda-list='conda env export --from-history'
-
-function condaupdate {
-    printf "${BLUE}Updating base env...${RESET}\n\n"
-    conda activate base
-    sh -c 'conda update --all --yes'
-    conda deactivate
-    # explicitly set IFS to contain only a line feed
-    IFS='
-    '
-    for ENV_DIR in "$CONDA_ENVS_DIR"/*; do
-        [[ -e "$ENV_DIR" ]] || break
-        ENV="$(basename "$ENV_DIR")"
-        printf "\n${BLUE}Updating $ENV env...${RESET}\n\n"
-        conda activate "$ENV"
-        conda upgrade --all --yes
-        conda deactivate
-    done
-}
-
-function condacleanup {
-    printf "${BLUE}Cleaning up base env...${RESET}\n\n"
-    conda activate base
-    conda clean --all --yes
-    conda deactivate
-    # explicitly set IFS to contain only a line feed
-    IFS='
-    '
-    for ENV_DIR in "$CONDA_ENVS_DIR"/*; do
-        [[ -e "$ENV_DIR" ]] || break
-        ENV="$(basename "$ENV_DIR")"
-        printf "\n${BLUE}Cleaning up $ENV env...${RESET}\n\n"
-        conda activate "$ENV"
-        conda clean --all --yes
-        conda deactivate
-    done
-}
+##########
+# Python #
+##########
 
 ########
 # Ruby #
@@ -765,10 +714,7 @@ function update {
     printf "\n${GREEN}Updating Go bins...${RESET}\n\n"
     go-update
     printf "\n${GREEN}Updating Julia...${RESET}\n\n"
-    juliaup update
-    julia-env-update
-    printf "\n${GREEN}Updating Miniconda...${RESET}\n\n"
-    condaupdate
+    juliaupdate
     printf "\n${GREEN}Updating NeoVim...${RESET}\n\n"
     bob update --all
     nvim-lazy-update
@@ -785,10 +731,7 @@ function cleanup {
     printf "\n${GREEN}Pacman cleanup...${RESET}\n"
     paccleanup
     printf "\n${GREEN}Julia cleanup...${RESET}\n\n"
-    juliaup gc
-    julia-env-cleanup
-    printf "\n${GREEN}Miniconda cleanup...${RESET}\n\n"
-    condacleanup
+    juliacleanup
     printf "\n${GREEN}Cargo cleanup...${RESET}\n\n"
     cargocleanup
     printf "\n${GREEN}Go cleanup...${RESET}\n\n"

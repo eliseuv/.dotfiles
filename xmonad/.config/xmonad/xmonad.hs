@@ -158,7 +158,7 @@ myStartupHook = do
     -- spawn "killall trayer"  -- kill current trayer on each restart
 
     spawn myWallpaperScript -- Set wallpaper
-    spawnOnce "picom -b --config ~/.config/picom/picom.conf &" -- Compositor
+    -- spawnOnce "picom -b --config ~/.config/picom/picom.conf &" -- Compositor
     spawnOnce "synology-drive &" -- Synology Drive
     spawnOnce "setxkbmap -option caps:escape" -- Swap Escape and CapsLock keys
     -- spawnOnce "emacs --daemon" -- emacs daemon for the emacsclient
