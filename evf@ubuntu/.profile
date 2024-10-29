@@ -621,3 +621,5 @@ function customcheck {
 
 # Update and cleanup
 alias up='update'
+
+export PATH="$HOME/.elan/bin:$PATH"
