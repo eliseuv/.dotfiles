@@ -35,7 +35,7 @@ return {
                     --- See [Tinymist Server Configuration](https://github.com/Myriad-Dreamin/tinymist/blob/main/Configuration.md) for references.
                     settings = {
                         outputPath = "$root/target/$dir/$name",
-                        exportPdf = "onType",
+                        exportPdf = "onDocumentHasTitle",
                         formatterMode = "typstyle",
                     },
                 },
@@ -47,9 +47,11 @@ return {
     {
         "chomosuke/typst-preview.nvim",
         lazy = false,
-        version = "0.3.*",
+        version = "1.*",
         ft = "typst",
-        invert_colors = "auto",
+        follow_cursor = true,
+        invert_colors = "always",
+        open_cmd = "firefox %s -P typst-preview --class typst-preview",
         build = function()
             require("typst-preview").update()
         end,
