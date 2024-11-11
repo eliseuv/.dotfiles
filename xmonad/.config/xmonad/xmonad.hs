@@ -158,9 +158,10 @@ myStartupHook = do
     -- spawn "killall trayer"  -- kill current trayer on each restart
 
     spawn myWallpaperScript -- Set wallpaper
+    spawnOnce "setxkbmap -option caps:escape" -- Swap Escape and CapsLock keys
+    spawnOnce "$HOME/.local/bin/wacom2monitor HEAD-0" -- Map tablet to main monitor
     -- spawnOnce "picom -b --config ~/.config/picom/picom.conf &" -- Compositor
     spawnOnce "synology-drive &" -- Synology Drive
-    spawnOnce "setxkbmap -option caps:escape" -- Swap Escape and CapsLock keys
     -- spawnOnce "emacs --daemon" -- emacs daemon for the emacsclient
     -- spawnOnce "nm-applet &"                     -- NetworkManager in tray
     -- spawnOnce "volumeicon &"                    -- Volume controls in tray
@@ -471,13 +472,15 @@ myManageHook =
         , className =? "Zotero" --> doShift (myWorkspaces !! 5)
         , -- Notebooks
           title =? "Chromium" --> doShift (myWorkspaces !! 6)
-        , -- Chats
-          className =? "TelegramDesktop" --> doShift (myWorkspaces !! 7)
+         -- Chats
+        , className =? "TelegramDesktop" --> doShift (myWorkspaces !! 7)
         , className =? "discord" --> doShift (myWorkspaces !! 7)
-        , -- Torrent
-          className =? "qBittorrent" --> doShift (myWorkspaces !! 8)
-        , -- VM Manager
-          className =? "Virt-manager" --> doShift (myWorkspaces !! 9)
+         -- Board
+        ,  className =? "com.github.xournalpp.xournalpp" --> doShift (myWorkspaces !! 8)
+        ,  className =? "rnote" --> doShift (myWorkspaces !! 8)
+          -- className =? "qBittorrent" --> doShift (myWorkspaces !! 8)
+         -- VM Manager
+        , className =? "Virt-manager" --> doShift (myWorkspaces !! 9)
         ]
         <+> namedScratchpadManageHook myScratchPads
 
