@@ -125,10 +125,12 @@ myBorderWidth = 1 -- Sets border width for windows
 
 myNormColor :: String -- Border color of normal windows
 myNormColor = "#282c34"
+
 -- myNormColor = colorBack -- This variable is imported from Colors.THEME
 
 myFocusColor :: String -- Border color of focused windows
 myFocusColor = "#993399"
+
 -- myFocusColor = color06 -- This variable is imported from Colors.THEME
 
 -- mySoundPlayer :: String
@@ -158,8 +160,6 @@ myStartupHook = do
     -- spawn "killall trayer"  -- kill current trayer on each restart
 
     spawn myWallpaperScript -- Set wallpaper
-    spawnOnce "setxkbmap -option caps:escape" -- Swap Escape and CapsLock keys
-    spawnOnce "$HOME/.local/bin/wacom2monitor HEAD-0" -- Map tablet to main monitor
     -- spawnOnce "picom -b --config ~/.config/picom/picom.conf &" -- Compositor
     spawnOnce "synology-drive &" -- Synology Drive
     -- spawnOnce "emacs --daemon" -- emacs daemon for the emacsclient
@@ -397,15 +397,16 @@ myLayoutHook =
   where
     myDefaultLayout =
         noBorders tabs
-            |||withBorder myBorderWidth grid
+            ||| withBorder myBorderWidth grid
             ||| threeCol
             ||| threeRow
             ||| tall
             ||| noBorders monocle
             ||| spirals
-            -- ||| floats
-            -- ||| tallAccordion
-            -- ||| wideAccordion
+
+-- \||| floats
+-- \||| tallAccordion
+-- \||| wideAccordion
 
 -- myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
 myWorkspaces =
@@ -448,12 +449,12 @@ myManageHook =
         , title =? "Oracle VM VirtualBox Manager" --> doFloat
         , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat -- Float Firefox Dialog
         , isFullscreen --> doFullFloat
-         -- Programming
-        , className =? "Emacs" --> doShift (myWorkspaces !! 1)
+        , -- Programming
+          className =? "Emacs" --> doShift (myWorkspaces !! 1)
         , className =? "dev.zed.Zed" --> doShift (myWorkspaces !! 1)
         , className =? "code-oss" --> doShift (myWorkspaces !! 1)
-         -- Web Browsers
-        ,(className =? "firefox" <&&> title =? "Picture-in-Picture") --> doShift (myWorkspaces !! 4)
+        , -- Web Browsers
+          (className =? "firefox" <&&> title =? "Picture-in-Picture") --> doShift (myWorkspaces !! 4)
         , title =? "Mozilla Firefox" --> doShift (myWorkspaces !! 2)
         , className =? "Navigator" --> doShift (myWorkspaces !! 2)
         , className =? "firefox" --> doShift (myWorkspaces !! 2)
@@ -472,15 +473,15 @@ myManageHook =
         , className =? "Zotero" --> doShift (myWorkspaces !! 5)
         , -- Notebooks
           title =? "Chromium" --> doShift (myWorkspaces !! 6)
-         -- Chats
-        , className =? "TelegramDesktop" --> doShift (myWorkspaces !! 7)
+        , -- Chats
+          className =? "TelegramDesktop" --> doShift (myWorkspaces !! 7)
         , className =? "discord" --> doShift (myWorkspaces !! 7)
-         -- Board
-        ,  className =? "com.github.xournalpp.xournalpp" --> doShift (myWorkspaces !! 8)
-        ,  className =? "rnote" --> doShift (myWorkspaces !! 8)
-          -- className =? "qBittorrent" --> doShift (myWorkspaces !! 8)
-         -- VM Manager
-        , className =? "Virt-manager" --> doShift (myWorkspaces !! 9)
+        , -- Board
+          className =? "com.github.xournalpp.xournalpp" --> doShift (myWorkspaces !! 8)
+        , className =? "rnote" --> doShift (myWorkspaces !! 8)
+        , -- className =? "qBittorrent" --> doShift (myWorkspaces !! 8)
+          -- VM Manager
+          className =? "Virt-manager" --> doShift (myWorkspaces !! 9)
         ]
         <+> namedScratchpadManageHook myScratchPads
 

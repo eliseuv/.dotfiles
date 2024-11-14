@@ -474,7 +474,7 @@ function cargocleanup {
 ######
 
 # Go path
-export GOPATH=$HOME/go
+export GOPATH=$HOME/.go
 
 # Go binaries
 export GOBIN=$GOPATH/bin

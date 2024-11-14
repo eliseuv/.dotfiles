@@ -601,7 +601,7 @@ Prevent projectile from adding directories simply by looking at documentation:
 Where to look for projects:
 
 #+begin_src emacs-lisp
-(setq projectile-project-search-path '("~/programs"))
+(setq projectile-project-search-path '("~/Projects"))
 #+end_src
 
 *** Auto activating snippets

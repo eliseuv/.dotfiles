@@ -5,7 +5,7 @@ add_newline = true
 
 [directory.substitutions]
 "Documents" = "󰈙 "
-"programs" = "</>"
+"Projects" = "</>"
 "Downloads" = " "
 "Music" = " "
 "Pictures" = " "

@@ -6,8 +6,14 @@
 # Locate Xresources file
 [ -f ~/.Xresources ] && xrdb -merge ~/.Xresources
 
-# Hide mouse cursor
-unclutter &
+# Map tablet to main monitor
+[ -f ~/.local/bin/wacom2monitor ] && ~/.local/bin/wacom2monitor "HEAD-0"
 
 # Turn NumLock on
 numlockx on
+
+# Use Caps Lock as additional Escape key
+setxkbmap -option caps:escape
+
+# Hide mouse cursor
+unclutter &
