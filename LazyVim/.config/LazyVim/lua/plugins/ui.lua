@@ -1,17 +1,14 @@
 return {
 
-    -- oil.nvim
+    -- Themes
     {
-        "stevearc/oil.nvim",
-        ---@module 'oil'
-        ---@type oil.SetupOpts
-        opts = {},
-        -- Optional dependencies
-        dependencies = { { "echasnovski/mini.icons", opts = {} } },
-        -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+        "catppuccin/nvim",
+        name = "catppuccin",
+        opts = {
+            transparent_background = true,
+        },
     },
-
-    -- Tokyo Night
+    { "dasupradyumna/midnight.nvim", opts = {} },
     {
         "folke/tokyonight.nvim",
         opts = {
@@ -24,108 +21,58 @@ return {
         },
         dim_inactive = true,
     },
-
-    -- Catppuccin
-    {
-        "catppuccin/nvim",
-        name = "catppuccin",
-        opts = {
-            transparent_background = true,
-        },
-    },
-
-    -- Midnight colorscheme
-    { "dasupradyumna/midnight.nvim", opts = {} },
-
-    -- Select theme
     {
         "LazyVim/LazyVim",
         opts = {
-            colorscheme = "tokyonight",
-            -- colorscheme = "midnight",
             -- colorscheme = "catppuccin-mocha",
+            -- colorscheme = "midnight",
+            colorscheme = "tokyonight",
         },
     },
 
+    -- Dashboard
     {
-        "nvimdev/dashboard-nvim",
-        lazy = false,
-        opts = function()
-            local logo = [[
-    =================     ===============     ===============   ========  ========
-    \\ . . . . . . .\\   //. . . . . . .\\   //. . . . . . .\\  \\. . .\\// . . //
-    ||. . ._____. . .|| ||. . ._____. . .|| ||. . ._____. . .|| || . . .\/ . . .||
-    || . .||   ||. . || || . .||   ||. . || || . .||   ||. . || ||. . . . . . . ||
-    ||. . ||   || . .|| ||. . ||   || . .|| ||. . ||   || . .|| || . | . . . . .||
-    || . .||   ||. _-|| ||-_ .||   ||. . || || . .||   ||. _-|| ||-_.|\ . . . . ||
-    ||. . ||   ||-'  || ||  `-||   || . .|| ||. . ||   ||-'  || ||  `|\_ . .|. .||
-    || . _||   ||    || ||    ||   ||_ . || || . _||   ||    || ||   |\ `-_/| . ||
-    ||_-' ||  .|/    || ||    \|.  || `-_|| ||_-' ||  .|/    || ||   | \  / |-_.||
-    ||    ||_-'      || ||      `-_||    || ||    ||_-'      || ||   | \  / |  `||
-    ||    `'         || ||         `'    || ||    `'         || ||   | \  / |   ||
-    ||            .===' `===.         .==='.`===.         .===' /==. |  \/  |   ||
-    ||         .=='   \_|-_ `===. .==='   _|_   `===. .===' _-|/   `==  \/  |   ||
-    ||      .=='    _-'    `-_  `='    _-'   `-_    `='  _-'   `-_  /|  \/  |   ||
-    ||   .=='    _-'          '-__\._-'         '-_./__-'         `' |. /|  |   ||
-    ||.=='    _-'                                                     `' |  /==.||
-    =='    _-'                        N E O V I M                         \/   `==
-    \   _-'                                                                `-_   /
-     `''                                                                      ``'
-                    ]]
-
-            logo = string.rep("\n", 8) .. logo .. "\n\n"
-
-            -- local opts = {}
-            local opts = {
-                theme = "doom",
-                hide = {
-                    -- this is taken care of by lualine
-                    -- enabling this messes up the actual laststatus setting after loading a file
-                    statusline = false,
-                },
-                config = {
-                    header = vim.split(logo, "\n"),
+        "folke/snacks.nvim",
+        opts = {
+            dashboard = {
+                preset = {
+                    header = [[
+=================     ===============     ===============   ========  ========
+\\ . . . . . . .\\   //. . . . . . .\\   //. . . . . . .\\  \\. . .\\// . . //
+||. . ._____. . .|| ||. . ._____. . .|| ||. . ._____. . .|| || . . .\/ . . .||
+|| . .||   ||. . || || . .||   ||. . || || . .||   ||. . || ||. . . . . . . ||
+||. . ||   || . .|| ||. . ||   || . .|| ||. . ||   || . .|| || . | . . . . .||
+|| . .||   ||. _-|| ||-_ .||   ||. . || || . .||   ||. _-|| ||-_.|\ . . . . ||
+||. . ||   ||-'  || ||  `-||   || . .|| ||. . ||   ||-'  || ||  `|\_ . .|. .||
+|| . _||   ||    || ||    ||   ||_ . || || . _||   ||    || ||   |\ `-_/| . ||
+||_-' ||  .|/    || ||    \|.  || `-_|| ||_-' ||  .|/    || ||   | \  / |-_.||
+||    ||_-'      || ||      `-_||    || ||    ||_-'      || ||   | \  / |  `||
+||    `'         || ||         `'    || ||    `'         || ||   | \  / |   ||
+||            .===' `===.         .==='.`===.         .===' /==. |  \/  |   ||
+||         .=='   \_|-_ `===. .==='   _|_   `===. .===' _-|/   `==  \/  |   ||
+||      .=='    _-'    `-_  `='    _-'   `-_    `='  _-'   `-_  /|  \/  |   ||
+||   .=='    _-'          '-__\._-'         '-_./__-'         `' |. /|  |   ||
+||.=='    _-'                                                     `' |  /==.||
+=='    _-'                        N E O V I M                         \/   `==
+\   _-'                                                                `-_   /
+ `''                                                                      ``']],
                     -- stylua: ignore
-                    center = {
-                        { action = 'lua LazyVim.pick()()',                           desc = " Find File",       icon = " ", key = "f" },
-                        { action = "ene | startinsert",                              desc = " New File",        icon = " ", key = "n" },
-                        { action = 'lua LazyVim.pick("oldfiles")()',                 desc = " Recent Files",    icon = " ", key = "r" },
-                        { action = 'lua LazyVim.pick("live_grep")()',                desc = " Find Text",       icon = " ", key = "g" },
-                        { action = 'lua LazyVim.pick.config_files()()',              desc = " Config",          icon = " ", key = "c" },
-                        { action = "Telescope find_files search_dirs=~/.dotfiles find_command=rg,--hidden,--files", desc = " Browse Dotfiles", icon = " ", key = "d" },
-                        { action = 'lua require("persistence").load()',              desc = " Restore Session", icon = " ", key = "s" },
-                        { action = "LazyExtras",                                     desc = " Lazy Extras",     icon = " ", key = "x" },
-                        { action = "Lazy",                                           desc = " Lazy",            icon = "󰒲 ", key = "l" },
-                        { action = function() vim.api.nvim_input("<cmd>qa<cr>") end, desc = " Quit",            icon = " ", key = "q" },
+                    ---@type snacks.dashboard.Item[]
+                    keys = {
+                        { icon = " ", key = "n", desc = "New File",        action = ":ene | startinsert" },
+                        { icon = " ", key = "r", desc = "Recent Files",    action = ":lua Snacks.dashboard.pick('oldfiles')" },
+                        { icon = " ", key = "f", desc = "Find File",       action = ":lua Snacks.dashboard.pick('files')" },
+                        { icon = " ", key = "g", desc = "Find Text",       action = ":lua Snacks.dashboard.pick('live_grep')" },
+                        { icon = " ", key = "d", desc = "Dotfiles",        action = ":lua Snacks.dashboard.pick('files', {cwd = \"~/.dotfiles/\"})" },
+                        { icon = " ", key = "c", desc = "Config",          action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+                        { icon = "󰒲 ", key = "l", desc = "Lazy",            action = ":Lazy" },
+                        { icon = " ", key = "x", desc = "Lazy Extras",     action = ":LazyExtras" },
+                        { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+                        { icon = " ", key = "q", desc = "Quit",            action = ":qa" },
                     },
-                    footer = function()
-                        local stats = require("lazy").stats()
-                        local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-                        return {
-                            "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms",
-                        }
-                    end,
                 },
-            }
-
-            for _, button in ipairs(opts.config.center) do
-                button.desc = button.desc .. string.rep(" ", 43 - #button.desc)
-                button.key_format = "  %s"
-            end
-
-            -- close Lazy and re-open when the dashboard is ready
-            if vim.o.filetype == "lazy" then
-                vim.cmd.close()
-                vim.api.nvim_create_autocmd("User", {
-                    pattern = "DashboardLoaded",
-                    callback = function()
-                        require("lazy").show()
-                    end,
-                })
-            end
-
-            return opts
-        end,
+            },
+        },
     },
 
     -- Minimap
@@ -170,5 +117,16 @@ return {
                 end,
             }
         end,
+    },
+
+    -- oil.nvim
+    {
+        "stevearc/oil.nvim",
+        ---@module 'oil'
+        ---@type oil.SetupOpts
+        opts = {},
+        -- Optional dependencies
+        dependencies = { { "echasnovski/mini.icons", opts = {} } },
+        -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
     },
 }
