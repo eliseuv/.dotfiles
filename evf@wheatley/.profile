@@ -134,6 +134,20 @@ alias watch='watch -tc -n 1 '
 # Use 'bat' instead of 'cat'
 alias b='bat'
 
+#############
+# FUNCTIONS #
+#############
+
+# yazi wrapper
+function y() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+    yazi "$@" --cwd-file="$tmp"
+    if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
+}
+
 ########
 # tmux #
 ########
