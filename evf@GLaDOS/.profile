@@ -560,7 +560,7 @@ alias cabal-install='cabal install --ghc-options=-dynamic'
 # OCaml #
 #########
 
-[[ ! -r /home/evf/.opam/opam-init/init.zsh ]] || source /home/evf/.opam/opam-init/init.zsh >/dev/null 2>/dev/null
+[[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" >/dev/null 2>/dev/null
 
 ########
 # Lean #

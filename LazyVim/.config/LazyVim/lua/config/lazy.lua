@@ -24,6 +24,7 @@ require("lazy").setup({
         -- Editor
         { import = "lazyvim.plugins.extras.coding.mini-surround" },
         { import = "lazyvim.plugins.extras.coding.yanky" },
+        { import = "lazyvim.plugins.extras.coding.luasnip" },
         { import = "lazyvim.plugins.extras.editor.dial" },
         { import = "lazyvim.plugins.extras.formatting.prettier" },
         -- { import = "lazyvim.plugins.extras.editor.harpoon2" },
@@ -41,6 +42,7 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.lang.haskell" },
         { import = "lazyvim.plugins.extras.lang.lean" },
         { import = "lazyvim.plugins.extras.lang.markdown" },
+        { import = "lazyvim.plugins.extras.lang.ocaml" },
         { import = "lazyvim.plugins.extras.lang.python" },
         { import = "lazyvim.plugins.extras.lang.rust" },
         { import = "lazyvim.plugins.extras.lang.tex" },

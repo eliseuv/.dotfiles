@@ -59,10 +59,10 @@ return {
                     -- stylua: ignore
                     ---@type snacks.dashboard.Item[]
                     keys = {
-                        { icon = " ", key = "n", desc = "New File",        action = ":ene | startinsert" },
-                        { icon = " ", key = "r", desc = "Recent Files",    action = ":lua Snacks.dashboard.pick('oldfiles')" },
                         { icon = " ", key = "f", desc = "Find File",       action = ":lua Snacks.dashboard.pick('files')" },
+                        { icon = " ", key = "r", desc = "Recent Files",    action = ":lua Snacks.dashboard.pick('oldfiles')" },
                         { icon = " ", key = "g", desc = "Find Text",       action = ":lua Snacks.dashboard.pick('live_grep')" },
+                        { icon = " ", key = "n", desc = "New File",        action = ":ene | startinsert" },
                         { icon = " ", key = "d", desc = "Dotfiles",        action = ":lua Snacks.dashboard.pick('files', {cwd = \"~/.dotfiles/\"})" },
                         { icon = " ", key = "c", desc = "Config",          action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
                         { icon = "󰒲 ", key = "l", desc = "Lazy",            action = ":Lazy" },

@@ -458,8 +458,6 @@ myManageHook =
         , title =? "Mozilla Firefox" --> doShift (myWorkspaces !! 2)
         , className =? "Navigator" --> doShift (myWorkspaces !! 2)
         , className =? "firefox" --> doShift (myWorkspaces !! 2)
-        , className =? "Brave-browser" --> doShift (myWorkspaces !! 2)
-        , className =? "brave-browser" --> doShift (myWorkspaces !! 2)
         , className =? "qutebrowser" --> doShift (myWorkspaces !! 2)
         , -- Music
           className =? "Spotify" --> doShift (myWorkspaces !! 3)
@@ -467,6 +465,8 @@ myManageHook =
         , -- Video
           className =? "mpv" --> doShift (myWorkspaces !! 4)
         , className =? "FreeTube" --> doShift (myWorkspaces !! 4)
+        , className =? "Brave-browser" --> doShift (myWorkspaces !! 4)
+        , className =? "brave-browser" --> doShift (myWorkspaces !! 4)
         , -- Documents
           className =? "Zathura" --> doShift (myWorkspaces !! 5)
         , className =? "calibre" --> doShift (myWorkspaces !! 5)
