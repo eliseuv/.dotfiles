@@ -305,6 +305,8 @@ function update {
     rustup update
     printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"
     cargo-update
+    printf "\n${GREEN}Updating Go bins...${RESET}\n\n"
+    go-update
     printf "\n${GREEN}Updating NeoVim...${RESET}\n\n"
     bob update --all
     # printf "\n${GREEN}Custom check...${RESET}\n"
@@ -319,6 +321,8 @@ function cleanup {
     ubuntucleanup
     printf "\n${GREEN}Cargo cleanup...${RESET}\n\n"
     cargocleanup
+    printf "\n${GREEN}Go cleanup...${RESET}\n\n"
+    gocleanup
 }
 
 function customcheck {
