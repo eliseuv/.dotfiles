@@ -7,7 +7,3 @@ vim.keymap.set("n", "<C-h>", "<cmd> TmuxNavigateLeft <cr>", { desc = "Pane Left"
 vim.keymap.set("n", "<C-l>", "<cmd> TmuxNavigateRight <cr>", { desc = "Pane Right" })
 vim.keymap.set("n", "<C-j>", "<cmd> TmuxNavigateDown <cr>", { desc = "Pane Down" })
 vim.keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp <cr>", { desc = "Pane Up" })
-
-vim.keymap.set("n", "<leader>rcu", function()
-    require("crates").upgrade_all_crates()
-end, { desc = "Update All Crates" })

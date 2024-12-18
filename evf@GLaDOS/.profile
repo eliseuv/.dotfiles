@@ -707,6 +707,9 @@ function update {
     parupdate
     printf "\n${GREEN}Updating xmonad...${RESET}\n\n"
     update-xmonad
+    printf "\n${GREEN}Updating NeoVim...${RESET}\n\n"
+    bob update --all
+    nvim-lazy-update
     printf "\n${GREEN}Updating Rust...${RESET}\n\n"
     rustup update
     printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"
@@ -715,9 +718,6 @@ function update {
     go-update
     printf "\n${GREEN}Updating Julia...${RESET}\n\n"
     juliaupdate
-    printf "\n${GREEN}Updating NeoVim...${RESET}\n\n"
-    bob update --all
-    nvim-lazy-update
     printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
     doom upgrade --force --verbose
     printf "\n${GREEN}Custom check...${RESET}\n"
