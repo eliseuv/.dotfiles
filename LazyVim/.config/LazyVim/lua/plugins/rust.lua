@@ -6,6 +6,6 @@ return {
         ft = { "just" },
     },
 
-    -- Just grammar
+    -- Justfile grammar
     { "IndianBoy42/tree-sitter-just" },
 }

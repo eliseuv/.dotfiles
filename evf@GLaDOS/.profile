@@ -446,6 +446,7 @@ alias tl='tmux list-sessions'
 # Rust backtrace
 export RUST_BACKTRACE=1
 export RUSTC_WRAPPER=sccache
+export RUST_LOG=debug
 
 # Update cargo binaries
 # https://crates.io/crates/cargo-update
@@ -474,7 +475,7 @@ function cargocleanup {
 ######
 
 # Go path
-export GOPATH=$HOME/go
+export GOPATH=$HOME/.go
 
 # Go binaries
 export GOBIN=$GOPATH/bin
@@ -560,7 +561,7 @@ alias cabal-install='cabal install --ghc-options=-dynamic'
 # OCaml #
 #########
 
-[[ ! -r /home/evf/.opam/opam-init/init.zsh ]] || source /home/evf/.opam/opam-init/init.zsh >/dev/null 2>/dev/null
+[[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" >/dev/null 2>/dev/null
 
 ########
 # Lean #
@@ -707,6 +708,9 @@ function update {
     parupdate
     printf "\n${GREEN}Updating xmonad...${RESET}\n\n"
     update-xmonad
+    printf "\n${GREEN}Updating NeoVim...${RESET}\n\n"
+    bob update --all
+    nvim-lazy-update
     printf "\n${GREEN}Updating Rust...${RESET}\n\n"
     rustup update
     printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"
@@ -715,9 +719,6 @@ function update {
     go-update
     printf "\n${GREEN}Updating Julia...${RESET}\n\n"
     juliaupdate
-    printf "\n${GREEN}Updating NeoVim...${RESET}\n\n"
-    bob update --all
-    nvim-lazy-update
     printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
     doom upgrade --force --verbose
     printf "\n${GREEN}Custom check...${RESET}\n"
