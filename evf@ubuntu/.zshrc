@@ -94,3 +94,5 @@ compinit
 
 # Load profile
 source ~/.profile
+
+export PATH=$PATH:/home/evf/.spicetify

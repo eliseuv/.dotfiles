@@ -574,6 +574,9 @@ function update {
     printf "\n${GREEN}Updating PopOS!...${RESET}\n\n"
     # sudo apt update --yes && sudo apt upgrade --yes
     sudo nala upgrade
+    printf "\n${GREEN}Updating NeoVim...${RESET}\n\n"
+    bob update --all
+    nvim-lazy-update
     printf "\n${GREEN}Updating Rust...${RESET}\n\n"
     rust-update
     printf "\n${GREEN}Updating Cargo bins...${RESET}\n\n"
@@ -585,9 +588,6 @@ function update {
     julia-update
     printf "\n${GREEN}Updating Anaconda...${RESET}\n\n"
     condaupdate
-    printf "\n${GREEN}Updating NeoVim...${RESET}\n\n"
-    bob update --all
-    nvim-lazy-update
     # printf "\n${GREEN}Updating DOOM Emacs...${RESET}\n\n"
     # doom upgrade --force
     printf "\n${GREEN}Custom check...${RESET}\n"
