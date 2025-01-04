@@ -2,28 +2,23 @@ theme = "tokyonight"
 
 [editor]
 mouse = false
-auto-completion = true
-auto-info = true
-idle-timeout = 100
-true-color = true
 line-number = "relative"
+idle-timeout = 100
+completion-replace = true
+true-color = true
 bufferline = "multiple"
+# end-of-line-diagnostics = "hint"
 
 [editor.cursor-shape]
 insert = "bar"
 
-[editor.statusline]
-left = ["mode", "spinner"]
-center = ["file-name", "file-type", "file-encoding", "file-line-ending"]
-right = ["diagnostics", "selections", "position"]
-separator = "|"
-
-[editor.indent-guides]
-render = true
+[editor.file-picker]
+hidden = false
 
 [editor.lsp]
 display-messages = true
 display-inlay-hints = true
 
-[editor.file-picker]
-hidden = false
+# [editor.inline-diagnostics]
+# cursor-line = "hint"
+# other-lines = "warning"
