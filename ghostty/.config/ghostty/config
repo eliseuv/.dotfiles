@@ -1,0 +1,18 @@
+theme = tokyonight
+
+font-family = Iosevka Nerd Font
+font-size = 10
+bold-is-bright = true
+
+cursor-style = block
+
+mouse-hide-while-typing = true
+
+title = ghostty
+class = ghostty
+
+window-decoration = false
+resize-overlay = "never"
+
+gtk-single-instance = true
+gtk-titlebar = false
