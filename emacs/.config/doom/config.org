@@ -59,6 +59,21 @@ Make popups open on the right:
     ("^\\*doom:" :size 0.3 :select t :modeline t :quit t :ttl t :side right)))
 #+end_src
 
+Open YouTube links in mpv:
+
+#+begin_src emacs-lisp
+(defun mpv-play-url (url &rest args)
+  ""
+  (interactive)
+  (start-process "mpv" nil "mpv" url))
+
+(setq browse-url-handlers
+      (quote
+       (("youtu\\.?be" . mpv-play-url)
+        ("." . eww-browse-url))))
+#+end_src
+
+
 *** Auto customization
 
 Add modifications made using the customization to a separate =custom.el= file and load it if it exists.

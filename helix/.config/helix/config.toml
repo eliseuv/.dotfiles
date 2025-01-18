@@ -4,10 +4,11 @@ theme = "tokyonight"
 mouse = false
 line-number = "relative"
 idle-timeout = 100
+completion-timeout = 100
 completion-replace = true
 true-color = true
 bufferline = "multiple"
-# end-of-line-diagnostics = "hint"
+end-of-line-diagnostics = "hint"
 
 [editor.cursor-shape]
 insert = "bar"
@@ -19,6 +20,6 @@ hidden = false
 display-messages = true
 display-inlay-hints = true
 
-# [editor.inline-diagnostics]
-# cursor-line = "hint"
-# other-lines = "warning"
+[editor.inline-diagnostics]
+cursor-line = "hint"
+other-lines = "warning"

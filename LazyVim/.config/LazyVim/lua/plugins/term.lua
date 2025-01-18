@@ -18,14 +18,4 @@ return {
             { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
         },
     },
-
-    -- Toggleterm
-    {
-        "akinsho/toggleterm.nvim",
-        version = "*",
-        config = true,
-        keys = {
-            { "<c-/>", "<cmd>ToggleTerm direction=float<cr>" },
-        },
-    },
 }

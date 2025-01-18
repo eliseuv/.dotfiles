@@ -94,3 +94,5 @@ compinit
 
 # Load profile
 source ~/.profile
+
+source /home/evf/.config/broot/launcher/bash/br

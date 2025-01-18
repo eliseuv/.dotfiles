@@ -85,9 +85,12 @@ myKitty = "kitty --single-instance"
 myAlacritty :: String
 myAlacritty = "alacritty msg create-window || alacritty"
 
+myGhostty :: String
+myGhostty = "ghostty"
+
 -- Sets default terminal
 myTerminal :: String
-myTerminal = myKitty
+myTerminal = myGhostty
 
 myKittyCommand :: String -> String
 myKittyCommand cmd = "kitty --single-instance -e " ++ cmd
@@ -95,8 +98,11 @@ myKittyCommand cmd = "kitty --single-instance -e " ++ cmd
 myAlacrittyCommand :: String -> String
 myAlacrittyCommand cmd = "alacritty msg create-window -e " ++ cmd ++ " || alacritty -e " ++ cmd
 
+myGhosttyCommand :: String -> String
+myGhosttyCommand cmd = "ghostty -e " ++ cmd
+
 myTerminalCommand :: String -> String
-myTerminalCommand = myKittyCommand
+myTerminalCommand = myGhosttyCommand
 
 myBrowser :: String
 myBrowser = "firefox" -- Sets default browser
