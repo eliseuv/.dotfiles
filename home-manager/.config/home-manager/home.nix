@@ -137,6 +137,8 @@
       ta = "tmux attach -t";
       tn = "tmux new-session";
       tl = "tmux list-sessions";
+      
+      stow = "stow --no-folding";
 
       up = "nixos-rebuild switch --use-remote-sudo";
     };
