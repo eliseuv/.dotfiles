@@ -107,15 +107,14 @@
     userName = "evf";
     userEmail = "eliseuv816@gmail.com";
   };
-    home.shellAliases = {
-        git-push = "git add .; git commit -m \"update\"; git push";
-    };
+  home.shellAliases = {
+    git-push = "git add .; git commit -m \"update\"; git push";
+  };
 
   # Ghostty terminal
   programs.ghostty = {
     enable = true;
     settings = {
-
       theme = "tokyonight";
       font-family = "Iosevka Nerd Font";
       font-size = 10;
@@ -124,9 +123,10 @@
       mouse-hide-while-typing = true;
       title = "ghostty";
       class = "ghostty";
-      #window-decoration = false;
-      resize-overlay = "never";
+      fullscreen = true;
       gtk-single-instance = true;
+      adw-toolbar-style = "raised";
+      #window-decoration = false;
       #gtk-titlebar = false;
     };
   };
@@ -187,7 +187,13 @@
   # Terminal multiplexer
   programs.tmux = {
     enable = true;
-
+    keyMode = "vi";
+    baseIndex = 1;
+    clock24 = true;
+    historyLimit = 10000;
+    newSession = true;
+    # Fix Neovim colors
+    terminal = ",xterm*:Tc";
     plugins = with pkgs; [
       tmuxPlugins.sensible
       tmuxPlugins.vim-tmux-navigator
@@ -195,13 +201,10 @@
       tmuxPlugins.tmux-floax
       tmuxPlugins.catppuccin
     ];
-
     extraConfig = ''
       # Fix Neovim colors
-      set-option -sa terminal-overrides ",xterm*:Tc"
+      # set-option -sa terminal-overrides ",xterm*:Tc"
 
-      # set vi-mode
-      set-window-option -g mode-keys vi
       # keybindings
       bind-key -T copy-mode-vi v send-keys -X begin-selection
       bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
@@ -215,7 +218,6 @@
       set -g status-position top
 
       # Start windows and panes at 1, not 0
-      set -g base-index 1
       set -g pane-base-index 1
       set-window-option -g pane-base-index 1
       set-option -g renumber-windows on
