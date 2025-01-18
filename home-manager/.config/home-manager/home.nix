@@ -132,8 +132,27 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    autosuggestion.enable = true;
+    enableVteIntegration = true;
+    autosuggestion = {
+      enable = true;
+      strategy = [ "history" "completion" ];
+    };
     syntaxHighlighting.enable = true;
+    defaultKeymap = "emacs";
+    history = {
+      append = true;
+      expireDuplicatesFirst = true;
+      ignoreAllDups = true;
+      ignoreSpace = true;
+      save = 1000000;
+      size = 1000000;
+    };
+    initExtra = ''
+      bindkey '^ ' autosuggest-accept
+      bindkey  "^[[H"   beginning-of-line
+      bindkey  "^[[F"   end-of-line
+      bindkey  "^[[3~"  delete-char
+    '';
 
     oh-my-zsh = {
       enable = true;
@@ -251,6 +270,10 @@
       header = "#6272a4";
     };
     tmux.enableShellIntegration = true;
+  };
+
+  programs.zoxide = {
+    enable = true;
   };
 
   # System monitor
