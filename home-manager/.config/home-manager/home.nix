@@ -114,32 +114,7 @@
 
   programs = {
 
-<<<<<<< HEAD
     neovim = {
-=======
-      l = "eza --group-directories-first --icons --color=always";
-      la = "eza - -all - -group-directories-first - -icons - -color=always";
-      ll = "eza --all --long --header --git --group-directories-first --icons --color=always";
-      lt = "eza --all --tree --group-directories-first --icons --ignore-glob=.git --color=always";
-      llt = "eza --all --long --header --tree --git --group-directories-first --icons --ignore-glob=.git --color=always";
-
-      bt = "btm";
-
-      rs = "rsync -Pazvhm";
-      rsmv = "rsync -Pazvhm --remove-source-files";
-
-      t = "tmux attach || tmux new-session";
-      ta = "tmux attach -t";
-      tn = "tmux new-session";
-      tl = "tmux list-sessions";
-      
-      stow = "stow --no-folding";
-
-      up = "nixos-rebuild switch --use-remote-sudo";
-    };
-
-    oh-my-zsh = {
->>>>>>> b184dcb1cdda11e098d224dc0950c77efdc70e50
       enable = true;
     };
 
@@ -175,6 +150,8 @@
         ta = "tmux attach -t";
         tn = "tmux new-session";
         tl = "tmux list-sessions";
+
+        stow = "stow --no-folding";
 
         up = "nixos-rebuild switch --use-remote-sudo";
       };
