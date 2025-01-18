@@ -1,0 +1,1 @@
+$ /nix/store/09lshns3b6wlmz6wzpkik8rp9w16fd5b-ghc-9.6.6-with-packages/bin/ghc --make xmonad.hs -i -ilib -fforce-recomp -main-is main -v0 -outputdir /home/evf/.xmonad/build-x86_64-linux -o /home/evf/.xmonad/xmonad-x86_64-linux

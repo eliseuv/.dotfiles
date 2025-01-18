@@ -35,6 +35,19 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
 
+    # Terminal
+    pkgs.ghostty
+
+    # Utils
+    pkgs.unzip
+    pkgs.stow
+    pkgs.fzf
+    pkgs.bat
+    pkgs.eza
+    pkgs.yazi
+    pkgs.fd
+    pkgs.bottom
+
     # PDF reader
     pkgs.zathura
 
@@ -49,19 +62,6 @@
 
     # Rust
     pkgs.rustup
-
-    # Utils
-    pkgs.unzip
-    pkgs.stow
-    pkgs.fzf
-    pkgs.bat
-    pkgs.eza
-    pkgs.yazi
-    pkgs.fd
-    pkgs.bottom
-
-    # Terminal
-    pkgs.ghostty
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -111,101 +111,169 @@
     };
   };
 
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
 
-    shellAliases = {
-      c = "clear";
-      b = "bat";
-      v = "nvim";
+  programs = {
 
-      l = "eza --group-directories-first --icons --color=always";
-      la = "eza - -all - -group-directories-first - -icons - -color=always";
-      ll = "eza --all --long --header --git --group-directories-first --icons --color=always";
-      lt = "eza --all --tree --group-directories-first --icons --ignore-glob=.git --color=always";
-      llt = "eza --all --long --header --tree --git --group-directories-first --icons --ignore-glob=.git --color=always";
-
-      bt = "btm";
-
-      rs = "rsync -Pazvhm";
-      rsmv = "rsync -Pazvhm --remove-source-files";
-
-      t = "tmux attach || tmux new-session";
-      ta = "tmux attach -t";
-      tn = "tmux new-session";
-      tl = "tmux list-sessions";
-
-      up = "nixos-rebuild switch --use-remote-sudo";
-    };
-
-    oh-my-zsh = {
+    neovim = {
       enable = true;
-      plugins = [ "git" ];
+    };
+
+    git = {
+      enable = true;
+      userName = "evf";
+      userEmail = "eliseuv816@gmail.com";
+    };
+
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
+
+      shellAliases = {
+        c = "clear";
+        b = "bat";
+        v = "nvim";
+
+        l = "eza --group-directories-first --icons --color=always";
+        la = "eza - -all - -group-directories-first - -icons - -color=always";
+        ll = "eza --all --long --header --git --group-directories-first --icons --color=always";
+        lt = "eza --all --tree --group-directories-first --icons --ignore-glob=.git --color=always";
+        llt = "eza --all --long --header --tree --git --group-directories-first --icons --ignore-glob=.git --color=always";
+
+        bt = "btm";
+
+        rs = "rsync -Pazvhm";
+        rsmv = "rsync -Pazvhm --remove-source-files";
+
+        t = "tmux attach || tmux new-session";
+        ta = "tmux attach -t";
+        tn = "tmux new-session";
+        tl = "tmux list-sessions";
+
+        up = "nixos-rebuild switch --use-remote-sudo";
+      };
+
+      oh-my-zsh = {
+        enable = true;
+        plugins = [ "git" ];
+      };
+    };
+
+    starship = {
+      enable = true;
+      settings = {
+        add_newline = true;
+        character.success_symbol = "[λ](bold green)";
+      };
+    };
+
+    tmux = {
+      enable = true;
+
+      plugins = with pkgs; [
+        tmuxPlugins.sensible
+        tmuxPlugins.vim-tmux-navigator
+        tmuxPlugins.yank
+        tmuxPlugins.catppuccin
+      ];
+
+      extraConfig = ''
+        # Fix Neovim colors
+        set-option -sa terminal-overrides ",xterm*:Tc"
+
+        # set vi-mode
+        set-window-option -g mode-keys vi
+        # keybindings
+        bind-key -T copy-mode-vi v send-keys -X begin-selection
+        bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+        bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+
+        # Open new windows and panes in cwd
+        bind c new-window -c "#{pane_current_path}"
+        bind % split-window -h -c "#{pane_current_path}"
+        bind '"' split-window -v -c "#{pane_current_path}"
+
+        set -g status-position top
+
+        # Start windows and panes at 1, not 0
+        set -g base-index 1
+        set -g pane-base-index 1
+        set-window-option -g pane-base-index 1
+        set-option -g renumber-windows on
+
+        # Shift Alt vim keys to switch windows
+        bind -n M-H previous-window
+        bind -n M-L next-window
+
+        set -g @catppuccin_flavour 'mocha'
+        set -g @catppuccin_window_status_style "rounded"
+      '';
+    };
+
+    # Menu
+    rofi = {
+      enable = true;
+      font = "hack 12";
+      extraConfig = {
+        modi = "combi";
+        combi-modi = "window,drun,ssh";
+        kb-remove-char-forward = "Delete";
+        kb-remove-char-back = "BackSpace,Shift+BackSpace";
+        kb-remove-to-eol = "Control+d";
+        kb-accept-entry = "Control+m,Return,KP_Enter";
+        kb-mode-complete = "Control+l";
+        kb-row-left = "Control+h";
+        kb-row-up = "Up,Control+k,Control+p";
+        kb-row-down = "Down,Control+j,Control+n";
+      };
+      terminal = "ghostty";
+      theme = "tokyonight";
+    };
+
+    # Music player
+    ncmpcpp = {
+      enable = true;
+      bindings = [
+        { key = "j"; command = "scroll_down"; }
+        { key = "k"; command = "scroll_up"; }
+        { key = "h"; command = "previous_column"; }
+        { key = "l"; command = "next_column"; }
+        { key = "h"; command = "jump_to_parent_directory"; }
+        { key = "l"; command = "enter_directory"; }
+        { key = "J"; command = [ "select_item" "scroll_down" ]; }
+        { key = "K"; command = [ "select_item" "scroll_up" ]; }
+        { key = "ctrl-j"; command = "move_selected_items_up"; }
+        { key = "ctrl-k"; command = "move_selected_items_down"; }
+        # { key = "U"; command = "update_database"; }
+      ];
     };
   };
 
-  programs.starship = {
-    enable = true;
-    settings = {
-      add_newline = true;
-      character.success_symbol = "[λ](bold green)";
+  services = {
+
+    # Music player daemon
+    mpd = {
+      enable = true;
+      musicDirectory = "/run/media/evf/Storage/CompanionCube/music";
+      playlistDirectory = "/run/media/evf/Storage/CompanionCube/music/playlists";
+
+      extraConfig = ''
+        audio_output {
+            type    "pulse"
+            name    "pulse"
+        }
+
+        audio_output {
+            type    "fifo"
+            name    "Visualizer feed"
+            path    "/tmp/mpd.fifo"
+            format  "44100:16:2"
+        }
+      '';
+
     };
-  };
 
-  programs.tmux = {
-    enable = true;
-
-    plugins = with pkgs; [
-      tmuxPlugins.sensible
-      tmuxPlugins.vim-tmux-navigator
-      tmuxPlugins.yank
-      tmuxPlugins.catppuccin
-    ];
-
-    extraConfig = ''
-      # Fix Neovim colors
-      set-option -sa terminal-overrides ",xterm*:Tc"
-
-      # set vi-mode
-      set-window-option -g mode-keys vi
-      # keybindings
-      bind-key -T copy-mode-vi v send-keys -X begin-selection
-      bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
-      bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
-
-      # Open new windows and panes in cwd
-      bind c new-window -c "#{pane_current_path}"
-      bind % split-window -h -c "#{pane_current_path}"
-      bind '"' split-window -v -c "#{pane_current_path}"
-
-      set -g status-position top
-
-      # Start windows and panes at 1, not 0
-      set -g base-index 1
-      set -g pane-base-index 1
-      set-window-option -g pane-base-index 1
-      set-option -g renumber-windows on
-
-      # Shift Alt vim keys to switch windows
-      bind -n M-H previous-window
-      bind -n M-L next-window
-
-      set -g @catppuccin_flavour 'mocha'
-      set -g @catppuccin_window_status_style "rounded"
-    '';
-  };
-
-  programs.neovim = {
-    enable = true;
-  };
-
-  programs.git = {
-    enable = true;
-    userName = "evf";
-    userEmail = "eliseuv816@gmail.com";
   };
 
   xdg.mimeApps.defaultApplications = {
