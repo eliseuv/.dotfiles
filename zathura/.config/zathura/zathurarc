@@ -1,5 +1,0 @@
-# Keybindings
-map <C-i> recolor
-
-# Open in night mode
-set recolor true

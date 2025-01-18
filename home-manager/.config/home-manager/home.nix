@@ -18,14 +18,23 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
+    # Utils
+    pkgs.unzip
+    pkgs.stow
+
+    # Programming
+    pkgs.clang
+    pkgs.rustup
+
+    # Web browser
+    pkgs.brave
+    pkgs.chromium
+
+    # Image viewer
+    pkgs.sxiv
+
+    # Nerd Fonts
     (pkgs.nerdfonts.override { fonts = [ "Iosevka" "IosevkaTerm" "FiraCode" ]; })
 
     # # You can also create simple shell scripts directly inside your
@@ -34,34 +43,6 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-
-    # Terminal
-    pkgs.ghostty
-
-    # Utils
-    pkgs.unzip
-    pkgs.stow
-    pkgs.fzf
-    pkgs.bat
-    pkgs.eza
-    pkgs.yazi
-    pkgs.fd
-    pkgs.bottom
-
-    # PDF reader
-    pkgs.zathura
-
-    # Image viewer
-    pkgs.sxiv
-
-    # Video player
-    pkgs.mpv
-
-    # Compilers
-    pkgs.clang
-
-    # Rust
-    pkgs.rustup
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -100,7 +81,6 @@
     sessionPath = [
       "$HOME/.local/bin"
     ];
-
     sessionVariables = {
       EDITOR = "nvim";
 
@@ -109,147 +89,377 @@
       RUSTC_WRAPPER = "sccache";
       RUST_LOG = "debug";
     };
+    shellAliases = {
+      c = "clear";
+
+      rs = "rsync -Pazvhm";
+      rsmv = "rsync -Pazvhm --remove-source-files";
+
+      stow = "stow --no-folding";
+
+      up = "nixos-rebuild switch --use-remote-sudo";
+    };
   };
 
+  # Git
+  programs.git = {
+    enable = true;
+    userName = "evf";
+    userEmail = "eliseuv816@gmail.com";
+  };
 
-  programs = {
+  # Ghostty terminal
+  programs.ghostty = {
+    enable = true;
+    settings = {
 
-    neovim = {
-      enable = true;
-    };
-
-    git = {
-      enable = true;
-      userName = "evf";
-      userEmail = "eliseuv816@gmail.com";
-    };
-
-    zsh = {
-      enable = true;
-      enableCompletion = true;
-      autosuggestion.enable = true;
-      syntaxHighlighting.enable = true;
-
-      shellAliases = {
-        c = "clear";
-        b = "bat";
-        v = "nvim";
-
-        l = "eza --group-directories-first --icons --color=always";
-        la = "eza - -all - -group-directories-first - -icons - -color=always";
-        ll = "eza --all --long --header --git --group-directories-first --icons --color=always";
-        lt = "eza --all --tree --group-directories-first --icons --ignore-glob=.git --color=always";
-        llt = "eza --all --long --header --tree --git --group-directories-first --icons --ignore-glob=.git --color=always";
-
-        bt = "btm";
-
-        rs = "rsync -Pazvhm";
-        rsmv = "rsync -Pazvhm --remove-source-files";
-
-        t = "tmux attach || tmux new-session";
-        ta = "tmux attach -t";
-        tn = "tmux new-session";
-        tl = "tmux list-sessions";
-
-        stow = "stow --no-folding";
-
-        up = "nixos-rebuild switch --use-remote-sudo";
-      };
-
-      oh-my-zsh = {
-        enable = true;
-        plugins = [ "git" ];
-      };
-    };
-
-    starship = {
-      enable = true;
-      settings = {
-        add_newline = true;
-        character.success_symbol = "[λ](bold green)";
-      };
-    };
-
-    tmux = {
-      enable = true;
-
-      plugins = with pkgs; [
-        tmuxPlugins.sensible
-        tmuxPlugins.vim-tmux-navigator
-        tmuxPlugins.yank
-        tmuxPlugins.catppuccin
-      ];
-
-      extraConfig = ''
-        # Fix Neovim colors
-        set-option -sa terminal-overrides ",xterm*:Tc"
-
-        # set vi-mode
-        set-window-option -g mode-keys vi
-        # keybindings
-        bind-key -T copy-mode-vi v send-keys -X begin-selection
-        bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
-        bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
-
-        # Open new windows and panes in cwd
-        bind c new-window -c "#{pane_current_path}"
-        bind % split-window -h -c "#{pane_current_path}"
-        bind '"' split-window -v -c "#{pane_current_path}"
-
-        set -g status-position top
-
-        # Start windows and panes at 1, not 0
-        set -g base-index 1
-        set -g pane-base-index 1
-        set-window-option -g pane-base-index 1
-        set-option -g renumber-windows on
-
-        # Shift Alt vim keys to switch windows
-        bind -n M-H previous-window
-        bind -n M-L next-window
-
-        set -g @catppuccin_flavour 'mocha'
-        set -g @catppuccin_window_status_style "rounded"
-      '';
-    };
-
-    # Menu
-    rofi = {
-      enable = true;
-      font = "hack 12";
-      extraConfig = {
-        modi = "combi";
-        combi-modi = "window,drun,ssh";
-        kb-remove-char-forward = "Delete";
-        kb-remove-char-back = "BackSpace,Shift+BackSpace";
-        kb-remove-to-eol = "Control+d";
-        kb-accept-entry = "Control+m,Return,KP_Enter";
-        kb-mode-complete = "Control+l";
-        kb-row-left = "Control+h";
-        kb-row-up = "Up,Control+k,Control+p";
-        kb-row-down = "Down,Control+j,Control+n";
-      };
-      terminal = "ghostty";
       theme = "tokyonight";
+      font-family = "Iosevka Nerd Font";
+      font-size = 10;
+      bold-is-bright = true;
+      cursor-style = "block";
+      mouse-hide-while-typing = true;
+      title = "ghostty";
+      class = "ghostty";
+      #window-decoration = false;
+      resize-overlay = "never";
+      gtk-single-instance = true;
+      #gtk-titlebar = false;
     };
+  };
 
-    # Music player
-    ncmpcpp = {
+  # ZSH shell
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+
+    oh-my-zsh = {
       enable = true;
-      bindings = [
-        { key = "j"; command = "scroll_down"; }
-        { key = "k"; command = "scroll_up"; }
-        { key = "h"; command = "previous_column"; }
-        { key = "l"; command = "next_column"; }
-        { key = "h"; command = "jump_to_parent_directory"; }
-        { key = "l"; command = "enter_directory"; }
-        { key = "J"; command = [ "select_item" "scroll_down" ]; }
-        { key = "K"; command = [ "select_item" "scroll_up" ]; }
-        { key = "ctrl-j"; command = "move_selected_items_up"; }
-        { key = "ctrl-k"; command = "move_selected_items_down"; }
-        # { key = "U"; command = "update_database"; }
-      ];
+      plugins = [ "git" ];
     };
+  };
+
+  # Starship prompt
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = true;
+      character.success_symbol = "[λ](bold green)";
+      directory = {
+        truncation_length = 5;
+        truncation_symbol = ".../";
+        read_only = " 󰌾";
+        substitutions = {
+          "Documents" = "󰈙 ";
+          "Projects" = "</>";
+          "Downloads" = " ";
+          "Music" = " ";
+          "Pictures" = " ";
+        };
+      };
+    };
+  };
+
+  # Terminal multiplexer
+  programs.tmux = {
+    enable = true;
+
+    plugins = with pkgs; [
+      tmuxPlugins.sensible
+      tmuxPlugins.vim-tmux-navigator
+      tmuxPlugins.yank
+      tmuxPlugins.tmux-floax
+      tmuxPlugins.catppuccin
+    ];
+
+    extraConfig = ''
+      # Fix Neovim colors
+      set-option -sa terminal-overrides ",xterm*:Tc"
+
+      # set vi-mode
+      set-window-option -g mode-keys vi
+      # keybindings
+      bind-key -T copy-mode-vi v send-keys -X begin-selection
+      bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+      bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+
+      # Open new windows and panes in cwd
+      bind c new-window -c "#{pane_current_path}"
+      bind % split-window -h -c "#{pane_current_path}"
+      bind '"' split-window -v -c "#{pane_current_path}"
+
+      set -g status-position top
+
+      # Start windows and panes at 1, not 0
+      set -g base-index 1
+      set -g pane-base-index 1
+      set-window-option -g pane-base-index 1
+      set-option -g renumber-windows on
+
+      # Shift Alt vim keys to switch windows
+      bind -n M-H previous-window
+      bind -n M-L next-window
+
+      set -g @catppuccin_flavour 'mocha'
+      set -g @catppuccin_window_status_style "rounded"
+    '';
+  };
+  home.shellAliases = {
+    t = "tmux attach || tmux new-session";
+    ta = "tmux attach -t";
+    tn = "tmux new-session";
+    tl = "tmux list-sessions";
+  };
+
+  # Another terminal multiplexer
+  programs.zellij = {
+    enable = true;
+    settings = {
+      theme = "Catppuccin Mocha";
+    };
+  };
+
+  # Rusty find
+  programs.fd = {
+    enable = true;
+  };
+
+  # Rusty grep
+  programs.ripgrep = {
+    enable = true;
+
+  };
+
+  # Fuzzy finder
+  programs.fzf = {
+    enable = true;
+    defaultCommand = "rg --files --no-ignore --hidden --follow --glob \"!.git/*\"";
+    colors = {
+      fg = "#f8f8f2";
+      bg = "#282a36";
+      hl = "#bd93f9";
+      "fg+" = "#f8f8f2";
+      "bg+" = "#44475a";
+      "hl+" = "#bd93f9";
+      info = "#ffb86c";
+      prompt = "#50fa7b";
+      pointer = "#ff79c6";
+      marker = "#ff79c6";
+      spinner = "#ffb86c";
+      header = "#6272a4";
+    };
+    tmux.enableShellIntegration = true;
+  };
+
+  # System monitor
+  programs.bottom = {
+    enable = true;
+    settings = {
+      flags = {
+        hide_avg_cpu = true;
+        rate = 500;
+        unnormalized_cpu = true;
+        disable_click = true;
+        process_memory_as_value = true;
+      };
+      process = {
+        columns = [ "PID" "Name" "User" "State" "CPU%" "Mem%" "R/s" "W/s" "GPU%" "GMem%" "T.Read" "T.Write" ];
+      };
+      styles = {
+        memory = {
+          ram_color = "cyan";
+          swap_color = "blue";
+        };
+        network = {
+          rx_color = "light green";
+          tx_color = "light red";
+        };
+
+        tables = {
+          headers = {
+            color = "blue";
+            bold = true;
+          };
+        };
+
+        graphs = {
+          graph_color = "dark gray";
+        };
+
+        widgets = {
+          border_color = "dark gray";
+          selected_border_color = "magenta";
+          selected_text = {
+            color = "black";
+            bg_color = "cyan";
+          };
+        };
+
+      };
+
+    };
+  };
+  home.shellAliases = {
+    bt = "btm";
+  };
+
+  # NeoVim
+  programs.neovim = {
+    enable = true;
+  };
+  home.shellAliases = {
+    v = "nvim";
+  };
+
+  # Zed
+  programs.zed-editor = {
+    enable = true;
+    extensions = [ "catppuccin" "tokyo-night" "nix" "just" ];
+    userSettings = {
+      base_keymap = "VSCode";
+      telemetry = { diagnostics = false; metrics = false; };
+      format_on_save = "prettier";
+      # Buffer font
+      buffer_font_family = "Iosevka";
+      buffer_font_size = 12;
+      # UI
+      ui_font_size = 14;
+      theme = {
+        mode = "dark";
+        light = "Andromeda";
+        dark = "Tokyo Night";
+      };
+      # Terminal
+      terminal = {
+        dock = "right";
+        font_size = 12;
+        font_family = "Iosevka";
+      };
+      # Vim
+      vim_mode = true;
+      vim = {
+        use_multiline_find = true;
+        use_smartcase_find = true;
+        use_system_clipboard = "always";
+      };
+      # Inlay hints
+      inlayHints = {
+        maxLength = null;
+        lifetimeElisionHints = {
+          useParameterNames = true;
+          enable = "skip_trivial";
+        };
+        closureReturnTypeHints = {
+          "enable" = "always";
+        };
+      };
+    };
+  };
+
+  # Menu
+  programs.rofi = {
+    enable = true;
+    font = "hack 12";
+    extraConfig = {
+      modi = "combi";
+      combi-modi = "window,drun,ssh";
+      kb-remove-char-forward = "Delete";
+      kb-remove-char-back = "BackSpace,Shift+BackSpace";
+      kb-remove-to-eol = "Control+d";
+      kb-accept-entry = "Control+m,Return,KP_Enter";
+      kb-mode-complete = "Control+l";
+      kb-row-left = "Control+h";
+      kb-row-up = "Up,Control+k,Control+p";
+      kb-row-down = "Down,Control+j,Control+n";
+    };
+    terminal = "ghostty";
+    theme = "tokyonight";
+  };
+
+  # Rusty cat
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "TwoDark";
+    };
+  };
+  home.shellAliases = {
+    b = "bat";
+  };
+
+  # Rusty ls
+  programs.eza = {
+    enable = true;
+    git = true;
+  };
+  home.shellAliases = {
+    l = "eza --group-directories-first --icons --color = always ";
+    la = "
+          eza - -all - -group-directories-first - -icons - -color=always";
+    ll = "eza --all --long --header --git --group-directories-first --icons --color=always";
+    lt = "eza --all --tree --group-directories-first --icons --ignore-glob=.git --color=always";
+    llt = "eza --all --long --header --tree --git --group-directories-first --icons --ignore-glob=.git --color=always";
+  };
+
+  # Rusty TUI file manager
+  programs.yazi = {
+    enable = true;
+  };
+  home.shellAliases = {
+    y = "yazi";
+  };
+
+  # Music player
+  programs.ncmpcpp = {
+    enable = true;
+    bindings = [
+      { key = "j"; command = "scroll_down"; }
+      { key = "k"; command = "scroll_up"; }
+      { key = "h"; command = "previous_column"; }
+      { key = "l"; command = "next_column"; }
+      { key = "h"; command = "jump_to_parent_directory"; }
+      { key = "l"; command = "enter_directory"; }
+      { key = "J"; command = [ "select_item" "scroll_down" ]; }
+      { key = "K"; command = [ "select_item" "scroll_up" ]; }
+      { key = "ctrl-j"; command = "move_selected_items_up"; }
+      { key = "ctrl-k"; command = "move_selected_items_down"; }
+      # { key = "U"; command = "update_database"; }
+    ];
+  };
+
+  # Firefox web browser
+  programs.firefox = {
+    enable = true;
+    nativeMessagingHosts = [
+      pkgs.tridactyl-native
+    ];
+  };
+
+  # PDF reader
+  programs.zathura = {
+    enable = true;
+    mappings = { "<C-i>" = "recolor"; };
+    extraConfig = ''
+      set recolor true
+    '';
+  };
+
+  # Video player
+  programs.mpv = {
+    enable = true;
+    bindings = {
+      "Alt+=" = "add video-zoom 0.1";
+      "Alt+-" = "add video-zoom -0.1";
+      "-" = "add volume -2";
+      "=" = "add volume 2";
+    };
+    config = {
+      hwdec = "auto";
+      ytdl-raw-options = "force-ipv4=";
+    };
+    scripts = [ pkgs.mpvScripts.thumbfast pkgs.mpvScripts.mpv-playlistmanager ];
   };
 
   services = {
@@ -287,3 +497,4 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
+
