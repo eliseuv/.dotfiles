@@ -107,6 +107,9 @@
     userName = "evf";
     userEmail = "eliseuv816@gmail.com";
   };
+    home.shellAliases = {
+        git-push = "git add .; git commit -m \"update\"; git push";
+    };
 
   # Ghostty terminal
   programs.ghostty = {
