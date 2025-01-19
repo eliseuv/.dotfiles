@@ -15,6 +15,8 @@
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
+  fonts.fontconfig.enable = true;
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
@@ -22,6 +24,7 @@
     # Utils
     pkgs.unzip
     pkgs.stow
+    pkgs.xclip
 
     # Programming
     pkgs.clang
@@ -37,8 +40,8 @@
     # Telegram
     pkgs.telegram-desktop
 
-    # Nerd Fonts
-    (pkgs.nerdfonts.override { fonts = [ "Iosevka" "IosevkaTerm" "FiraCode" ]; })
+    # Fonts
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "Hack" "Iosevka" "IosevkaTerm" ]; })
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -126,11 +129,9 @@
       mouse-hide-while-typing = true;
       title = "ghostty";
       class = "ghostty";
-      # fullscreen = true;
       gtk-single-instance = true;
       adw-toolbar-style = "raised";
-      # window-decoration = false;
-      # gtk-titlebar = false;
+      window-decoration = false;
     };
   };
 
@@ -392,7 +393,7 @@
   # Menu
   programs.rofi = {
     enable = true;
-    font = "hack 12";
+    font = "Hack Nerd Font 12";
     extraConfig = {
       modi = "combi";
       combi-modi = "window,drun,ssh";
@@ -426,9 +427,8 @@
     git = true;
   };
   home.shellAliases = {
-    l = "eza --group-directories-first --icons --color = always ";
-    la = "
-          eza - -all - -group-directories-first - -icons - -color=always";
+    l = "eza --group-directories-first --icons --color=always ";
+    la = "eza - -all - -group-directories-first - -icons - -color=always";
     ll = "eza --all --long --header --git --group-directories-first --icons --color=always";
     lt = "eza --all --tree --group-directories-first --icons --ignore-glob=.git --color=always";
     llt = "eza --all --long --header --tree --git --group-directories-first --icons --ignore-glob=.git --color=always";
