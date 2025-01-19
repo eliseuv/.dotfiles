@@ -34,6 +34,9 @@
     # Image viewer
     pkgs.sxiv
 
+    # Telegram
+    pkgs.telegram-desktop
+
     # Nerd Fonts
     (pkgs.nerdfonts.override { fonts = [ "Iosevka" "IosevkaTerm" "FiraCode" ]; })
 
@@ -193,7 +196,7 @@
     historyLimit = 10000;
     newSession = true;
     # Fix Neovim colors
-    terminal = ",xterm*:Tc";
+    # terminal = ",xterm*:Tc";
     plugins = with pkgs; [
       tmuxPlugins.sensible
       tmuxPlugins.vim-tmux-navigator
@@ -203,7 +206,7 @@
     ];
     extraConfig = ''
       # Fix Neovim colors
-      # set-option -sa terminal-overrides ",xterm*:Tc"
+      set-option -sa terminal-overrides ",xterm*:Tc"
 
       # keybindings
       bind-key -T copy-mode-vi v send-keys -X begin-selection
