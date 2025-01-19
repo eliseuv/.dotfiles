@@ -123,11 +123,11 @@
       mouse-hide-while-typing = true;
       title = "ghostty";
       class = "ghostty";
-      fullscreen = true;
+      # fullscreen = true;
       gtk-single-instance = true;
       adw-toolbar-style = "raised";
-      #window-decoration = false;
-      #gtk-titlebar = false;
+      # window-decoration = false;
+      # gtk-titlebar = false;
     };
   };
 
