@@ -283,13 +283,12 @@
       save = 1000000;
       size = 1000000;
     };
-    initExtraFirst = ''
+    initExtra = ''
       bindkey '^ ' autosuggest-accept
       bindkey  "^[[H"   beginning-of-line
       bindkey  "^[[F"   end-of-line
       bindkey  "^[[3~"  delete-char
-    '';
-    initExtra = ''
+
       fastfetch
     '';
 
