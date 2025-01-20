@@ -1,5 +1,0 @@
-#!/bin/bash
-
-pacman -Qdtq | xargs -ro sudo pacman -Rns --noconfirm
-paru -Sc --noconfirm
-paccache -rk1

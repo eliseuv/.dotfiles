@@ -1,6 +1,0 @@
-[Unit]
-Description=Copy synced content to backup
-
-[Service]
-Type=simple
-ExecStart=/run/media/evf/Storage/Backup/make_backups.sh
