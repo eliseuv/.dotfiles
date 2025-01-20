@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-SINK_NUM=$(pactl list sinks short | sed -e 's,^\([0-9][0-9]*\)[^0-9].*,\1,' | head -n 1)
-MUTE_STATUS=$(pactl list sinks | grep '^[[:space:]]Mute:' | awk 'NR == $SINK_NUM+1' | sed -e 's,[[:space:]]\+Mute: \([a-z]\+\)$,\1,')
-VOLUME=$(pactl list sinks | grep '^[[:space:]]Volume:' | awk 'NR == $SINK_NUM+1' | sed -e 's,.* \([0-9]\+\)%.*,\1,')
+SINK_NUM=$(wpctl list sinks short | sed -e 's,^\([0-9][0-9]*\)[^0-9].*,\1,' | head -n 1)
+MUTE_STATUS=$(wpctl list sinks | grep '^[[:space:]]Mute:' | awk 'NR == $SINK_NUM+1' | sed -e 's,[[:space:]]\+Mute: \([a-z]\+\)$,\1,')
+VOLUME=$(wpctl list sinks | grep '^[[:space:]]Volume:' | awk 'NR == $SINK_NUM+1' | sed -e 's,.* \([0-9]\+\)%.*,\1,')
 
 # Mute
 MUTE_ICON="<fn=1>婢 </fn>"
@@ -40,6 +40,6 @@ elif [[ $VOLUME -lt $HIGH_THRES ]]; then
 # High volume
 elif [[ $VOLUME -lt 101 ]]; then
     echo "<fc=${HIGH_COLOR}> ${HIGH_ICON} ${VOLUME}% </fc>"
-else 
+else
     echo "<fc=${BOOST_COLOR}> ${BOOST_ICON} ${VOLUME}% </fc>"
 fi

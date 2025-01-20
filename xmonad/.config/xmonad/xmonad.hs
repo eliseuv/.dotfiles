@@ -718,9 +718,9 @@ myKeys c =
                 , ("<XF86Calculator>", addName "Calculator" $ runOrRaise "qalculate-gtk" (resource =? "qalculate-gtk"))
                 , ("<XF86Eject>", addName "Eject /dev/cdrom" $ spawn "eject /dev/cdrom")
                 , ("<Print>", addName "Take screenshot (dmscripts)" $ spawn "dm-maim")
-                , ("M-S--", addName "Lower vol" $ spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
-                , ("M-S-=", addName "Raise vol" $ spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
-                , ("M-S-\\", addName "Toggle audio mute" $ spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
+                , ("M--", addName "Lower vol" $ spawn "wpctl set-volume @DEFAULT_SINK@ 5%-")
+                , ("M-=", addName "Raise vol" $ spawn "wpctl set-volume @DEFAULT_SINK@ 5%+")
+                , ("M-\\", addName "Toggle audio mute" $ spawn "wpctl set-mute @DEFAULT_SINK@ toggle")
                 ]
   where
     -- The following lines are needed for named scratchpads.
