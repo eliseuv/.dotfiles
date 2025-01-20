@@ -49,5 +49,5 @@ Config
         -- Layout
         , sepChar =     "%"     -- delineator between plugin names and straight text
         , alignSep =    "}{"    -- separator between left-right alignment
-        , template = "   <fc=#1793d0> <fn=2> </fn> </fc> %UnsafeStdinReader% }{ <fc=#b3afc2>%user%</fc> <fn=1> | </fn> <fc=#b3afc2><fn=1> </fn>%uname%</fc> <fn=1> | </fn> <fc=#ff6c6b>%cpu%</fc> <fn=1> | </fn> <fc=#ecbe7b>%memory%</fc> <fn=1> | </fn> <fc=#51afef>%disku%</fc> <fn=1> | </fn> <fc=#98be65>%enp4s0%</fc> <fn=1> | </fn> %volume% <fn=1> | </fn> <fc=#c678dd>%date% </fc>   "
+        , template = "   <fc=#1793d0> <fn=2> </fn> </fc> %UnsafeStdinReader% }{ <fc=#b3afc2>%user%</fc> <fn=1> | </fn> <fc=#b3afc2><fn=1> </fn>%uname%</fc> <fn=1> | </fn> <fc=#ff6c6b>%cpu%</fc> <fn=1> | </fn> <fc=#ecbe7b>%memory%</fc> <fn=1> | </fn> <fc=#51afef>%disku%</fc> <fn=1> | </fn> <fc=#98be65>%enp4s0%</fc> <fn=1> | </fn> %volume% <fn=1> | </fn> <fc=#c678dd>%date% </fc>   "
 }

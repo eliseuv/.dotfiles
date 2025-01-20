@@ -1,11 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = "evf";
-  home.homeDirectory = "/home/evf";
-
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -15,20 +10,33 @@
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
+  home = {
+    username = "evf";
+    homeDirectory = "/home/evf";
+  };
+
   fonts.fontconfig.enable = true;
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
 
-    # Utils
+    # CLI utils
+    pkgs.bc
+    pkgs.jq
     pkgs.unzip
     pkgs.stow
     pkgs.xclip
 
+    # Disk utils
+    pkgs.cryptsetup
+
     # Programming
     pkgs.clang
     pkgs.rustup
+
+    # File manager
+    pkgs.nautilus
 
     # Web browser
     pkgs.brave
@@ -41,7 +49,11 @@
     pkgs.telegram-desktop
 
     # Fonts
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "Hack" "Iosevka" "IosevkaTerm" ]; })
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "Hack" "Iosevka" "IosevkaTerm" "Ubuntu" ]; })
+    pkgs.fira-code
+    pkgs.hack-font
+    pkgs.iosevka
+    pkgs.ubuntu-classic
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -107,6 +119,123 @@
     };
   };
 
+  # Fetch program
+  programs.fastfetch = {
+    enable = true;
+    settings = {
+      "$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
+      logo = {
+        padding = {
+          top = 2;
+        };
+      };
+      display = {
+        color = {
+          keys = "green";
+          title = "blue";
+        };
+        percent = {
+          type = 9;
+        };
+        separator = " 󰁔 ";
+      };
+      modules =
+        [
+          {
+            type = "custom";
+            outputColor = "blue";
+            format = ''┌──────────── OS Information ────────────┐'';
+          }
+          {
+            type = "title";
+            key = " ╭─ ";
+            keyColor = "green";
+            color = {
+              user = "green";
+              host = "green";
+            };
+          }
+          {
+            type = "os";
+            key = " ├─ ";
+            keyColor = "green";
+          }
+          {
+            type = "kernel";
+            key = " ├─ ";
+            keyColor = "green";
+          }
+          {
+            type = "packages";
+            key = " ├─ ";
+            keyColor = "green";
+          }
+          {
+            type = "shell";
+            key = " ╰─  ";
+            keyColor = "green";
+          }
+          {
+            type = "custom";
+            outputColor = "blue";
+            format = ''├───────── Hardware Information ─────────┤'';
+          }
+          {
+            type = "display";
+            key = " ╭─ 󰍹 ";
+            keyColor = "blue";
+            compactType = "original-with-refresh-rate";
+          }
+          {
+            type = "cpu";
+            key = " ├─ 󰍛 ";
+            keyColor = "blue";
+          }
+          {
+            type = "gpu";
+            key = " ├─  ";
+            keyColor = "blue";
+          }
+          {
+            type = "disk";
+            key = " ├─ 󱛟 ";
+            keyColor = "blue";
+          }
+          {
+            type = "memory";
+            key = " ╰─  ";
+            keyColor = "blue";
+          }
+          {
+            type = "custom";
+            outputColor = "blue";
+            format = ''├───────── Software Information ─────────┤'';
+          }
+          {
+            type = "wm";
+            key = " ╭─  ";
+            keyColor = "yellow";
+          }
+          {
+            type = "terminal";
+            key = " ├─  ";
+            keyColor = "yellow";
+          }
+          {
+            type = "font";
+            key = " ╰─  ";
+            keyColor = "yellow";
+          }
+          {
+            type = "custom";
+            outputColor = "blue";
+            format = ''└────────────────────────────────────────┘'';
+          }
+          "break"
+        ];
+    };
+  };
+
   # Git
   programs.git = {
     enable = true;
@@ -154,11 +283,14 @@
       save = 1000000;
       size = 1000000;
     };
-    initExtra = ''
+    initExtraFirst = ''
       bindkey '^ ' autosuggest-accept
       bindkey  "^[[H"   beginning-of-line
       bindkey  "^[[F"   end-of-line
       bindkey  "^[[3~"  delete-char
+    '';
+    initExtra = ''
+      fastfetch
     '';
 
     oh-my-zsh = {
@@ -393,7 +525,7 @@
   # Menu
   programs.rofi = {
     enable = true;
-    font = "Hack Nerd Font 12";
+    font = "hack 12";
     extraConfig = {
       modi = "combi";
       combi-modi = "window,drun,ssh";
@@ -442,6 +574,28 @@
     y = "yazi";
   };
 
+  # Firefox web browser
+  programs.firefox = {
+    enable = true;
+    nativeMessagingHosts = [
+      pkgs.tridactyl-native
+    ];
+  };
+
+  # PDF reader
+  programs.zathura = {
+    enable = true;
+    mappings = { "<C-i>" = "recolor"; };
+    extraConfig = ''
+      set recolor true
+    '';
+  };
+
+  # Image viewer
+  programs.feh = {
+    enable = true;
+  };
+
   # Music player
   programs.ncmpcpp = {
     enable = true;
@@ -460,23 +614,6 @@
     ];
   };
 
-  # Firefox web browser
-  programs.firefox = {
-    enable = true;
-    nativeMessagingHosts = [
-      pkgs.tridactyl-native
-    ];
-  };
-
-  # PDF reader
-  programs.zathura = {
-    enable = true;
-    mappings = { "<C-i>" = "recolor"; };
-    extraConfig = ''
-      set recolor true
-    '';
-  };
-
   # Video player
   programs.mpv = {
     enable = true;
@@ -493,7 +630,33 @@
     scripts = [ pkgs.mpvScripts.thumbfast pkgs.mpvScripts.mpv-playlistmanager ];
   };
 
+  # Gnupg
+  programs.gpg = {
+    enable = true;
+    settings = { };
+  };
+  services.gpg-agent = {
+    enable = true;
+    enableZshIntegration = true;
+    enableSshSupport = true;
+    defaultCacheTtl = 3600;
+    maxCacheTtl = 3600;
+    defaultCacheTtlSsh = 3600;
+    maxCacheTtlSsh = 3600;
+    pinentryPackage = pkgs.pinentry-gtk2;
+  };
+
   services = {
+
+    # Automount volumes
+    udiskie = {
+      enable = true;
+      automount = true;
+      tray = "never";
+    };
+
+    # Hide mouse
+    unclutter.enable = true;
 
     # Music player daemon
     mpd = {
@@ -514,18 +677,37 @@
             format  "44100:16:2"
         }
       '';
+    };
 
+    # File syncronization
+    syncthing = {
+      enable = true;
     };
 
   };
 
+  # Mime apps
   xdg.mimeApps.defaultApplications = {
     "application/pdf" = [ "zathura.desktop" ];
     "image/*" = [ "sxiv.desktop" ];
     "video/*" = [ "mpv.desktop" ];
   };
 
+  # GTK config
+  gtk.enable = true;
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      gtk-theme = "Adwaita-dark";
+      color-scheme = "prefer-dark";
+    };
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  # Auto-update Home Manager
+  services.home-manager.autoUpgrade = {
+    enable = true;
+    frequency = "weekly";
+  };
 }
 
