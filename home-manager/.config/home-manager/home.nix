@@ -22,20 +22,34 @@
   # environment.
   home.packages = [
 
-    # CLI utils
+    # Simple calculator
     pkgs.bc
+    # JSON parser
     pkgs.jq
+    # Unzip
     pkgs.unzip
+    # GNU stow
     pkgs.stow
+    # X Clipboard
     pkgs.xclip
-
+    # Rusty sed
+    pkgs.sd
     # Disk utils
-    pkgs.udiskie
     pkgs.cryptsetup
+    pkgs.udiskie
+    # Disk usage analyzer
+    pkgs.dua
 
-    # Programming
+    # Programming languages
     pkgs.clang
     pkgs.rustup
+    # Build tool
+    pkgs.just
+    # Benchmarking
+    pkgs.hyperfine
+
+    # Document typesseting
+    pkgs.typst
 
     # File manager
     pkgs.nautilus
@@ -249,6 +263,7 @@
     enable = true;
     userName = "evf";
     userEmail = "eliseuv816@gmail.com";
+    delta.enable = true;
   };
   home.shellAliases = {
     git-push = "git add .; git commit -m \"update\"; git push";
@@ -587,6 +602,53 @@
     };
   };
 
+  # Rusty cat
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "TwoDark";
+    };
+  };
+  home.shellAliases = {
+    b = "bat";
+  };
+
+  # Rusty ls
+  programs.eza = {
+    enable = true;
+    colors = "auto";
+    git = true;
+    icons = "auto";
+    extraOptions = [ "--group-directories-first" ];
+  };
+  home.shellAliases = {
+    l = "eza";
+    la = "eza --all";
+    ll = "eza --all --long --header";
+    lt = "eza --all --tree --ignore-glob=.git";
+    llt = "eza --all --long --header --tree --ignore-glob=.git";
+  };
+
+  # Rusty TUI file manager
+  programs.yazi.enable = true;
+  home.shellAliases.y = "yazi";
+
+  # Rusty TUI file manager
+  programs.broot = {
+    enable = true;
+    settings = {
+      modal = true;
+    };
+  };
+
+  # Rust bacon
+  programs.bacon = {
+    enable = true;
+    settings = {
+      default_job = "clippy-all";
+    };
+  };
+
   # Menu
   programs.rofi = {
     enable = true;
@@ -605,38 +667,6 @@
     };
     terminal = "ghostty";
     theme = "tokyonight";
-  };
-
-  # Rusty cat
-  programs.bat = {
-    enable = true;
-    config = {
-      theme = "TwoDark";
-    };
-  };
-  home.shellAliases = {
-    b = "bat";
-  };
-
-  # Rusty ls
-  programs.eza = {
-    enable = true;
-    git = true;
-  };
-  home.shellAliases = {
-    l = "eza --group-directories-first --icons --color=always ";
-    la = "eza - -all - -group-directories-first - -icons - -color=always";
-    ll = "eza --all --long --header --git --group-directories-first --icons --color=always";
-    lt = "eza --all --tree --group-directories-first --icons --ignore-glob=.git --color=always";
-    llt = "eza --all --long --header --tree --git --group-directories-first --icons --ignore-glob=.git --color=always";
-  };
-
-  # Rusty TUI file manager
-  programs.yazi = {
-    enable = true;
-  };
-  home.shellAliases = {
-    y = "yazi";
   };
 
   # Firefox web browser
