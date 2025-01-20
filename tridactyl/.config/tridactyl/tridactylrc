@@ -55,54 +55,66 @@ bind ;P composite js document.location.href.replace('https://', 'ytdl://') | she
 bindurl ^https://duckduckgo.com f hint -Jc [data-testid="result-title-a"]
 bindurl ^https://duckduckgo.com F hint -Jbc [data-testid="result-title-a"]
 
-" Search engine
+" Search engines
 set searchengine d
+" General
 set searchurls.s https://searx.be/search?q=%s
 " set searchurls.s https://search.rhscz.eu/search?q=%s&categories=general&language=en-US
 " set searchurls.s https://searxng.nicfab.eu/searxng/search?q=%s&categories=general&language=en-US
 set searchurls.g https://www.google.com/search?&q=%s
 set searchurls.d https://duckduckgo.com/?q=%s&ia=web
 set searchurls.b https://www.bing.com/search?q=%s
-set searchurls.w https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch&ns0=1
-set searchurls.r https://old.reddit.com/search?q=%s
-set searchurls.p https://piped.video/results?search_query=%s
-set searchurls.h https://hoogle.haskell.org/?hoogle=%s
-set searchurls.x https://twitter.com/search?q=%s
-set searchurls.yt https://www.youtube.com/results?search_query=%s
-set searchurls.gh https://github.com/search?q=%s
-set searchurls.jl https://docs.julialang.org/en/v1/search/?q=%s
-set searchurls.bt https://btdig.com/search?q=%s
-set searchurls.anna https://annas-archive.org/search?q=%s
-set searchurls.sci https://annas-archive.org/scidb/%s
-set searchurls.sdb https://steamdb.info/search/?a=all&q=%s
-set searchurls.kym https://knowyourmeme.com/search?q=%s
 set searchurls.yd https://yandex.com/search/?text=%s
-set searchurls.gm https://www.google.com/maps/search/%s
 set searchurls.sp https://www.startpage.com/sp/search?query=%s
+" Wikipedia
+set searchurls.w https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch&ns0=1
+" Videos
+set searchurls.yt https://www.youtube.com/results?search_query=%s
 set searchurls.tw https://www.twitch.tv/search?term=%s
-set searchurls.gs https://scholar.google.com/scholar?hl=en&q=%s
-set searchurls.gd https://datasetsearch.research.google.com/search?query=%s
+set searchurls.p https://piped.video/results?search_query=%s
+" Programming
 set searchurls.gh https://github.com/search?q=%s
-set searchurls.rs https://crates.io/search?q=%s
-set searchurls.docs https://docs.rs/releases/search?query=%s
-set searchurls.mw https://www.merriam-webster.com/dictionary/%s
-set searchurls.th https://www.thesaurus.com/browse/%s
+set searchurls.cargo https://crates.io/search?q=%s
+set searchurls.rs https://docs.rs/releases/search?query=%s
+set searchurls.h https://hoogle.haskell.org/?hoogle=%s
+set searchurls.jl https://docs.julialang.org/en/v1/search/?q=%s
 set searchurls.so https://stackoverflow.com/search?q=%s,
+set searchurls.docker https://hub.docker.com/search?q=%s
+set searchurls.sc https://www.shellcheck.net/wiki/SC%s
+" Social
+set searchurls.r https://old.reddit.com/search?q=%s
+set searchurls.x https://twitter.com/search?q=%s
+" Linux
 set searchurls.arch https://wiki.archlinux.org/index.php?search=%s
+set searchurls.nix https://nixos.wiki/index.php?search=%s&go=Go
+set searchurls.gentoo https://wiki.gentoo.org/index.php?search=%s
+set searchurls.np https://search.nixos.org/packages?channel=unstable&query=%s
 set searchurls.pac https://archlinux.org/packages/?sort=&q=%s&maintainer=&flagged=
 set searchurls.aur https://aur.archlinux.org/packages?O=0&K=%s
-set searchurls.gentoo https://wiki.gentoo.org/index.php?search=%s
+" Torrent
+set searchurls.bt https://btdig.com/search?q=%s
 set searchurls.tpb https://thepiratebay.org/search.php?q=%s&all=on&search=Pirate+Search&
 set searchurls.ny https://nyaa.si/?f=0&c=0_0&q=%s
-set searchurls.wa https://www.wolframalpha.com/input/?i=%s
-set searchurls.amz https://www.amazon.com.br/s?k=%s
+" Games
+set searchurls.sdb https://steamdb.info/search/?a=all&q=%s
 set searchurls.hltv https://www.hltv.org/search?query=%s
-set searchurls.maps https://www.google.com/maps/search/%s
-set searchurls.keepa https://keepa.com/#!search/12-%s
-set searchurls.docker https://hub.docker.com/search?q=%s
 set searchurls.mine https://minecraft.wiki/w/Special:Search?search=%s
+" Books/papers
+set searchurls.anna https://annas-archive.org/search?q=%s
+set searchurls.sci https://annas-archive.org/scidb/%s
+set searchurls.gs https://scholar.google.com/scholar?hl=en&q=%s
+set searchurls.gd https://datasetsearch.research.google.com/search?query=%s
+" Language
+set searchurls.mw https://www.merriam-webster.com/dictionary/%s
+set searchurls.th https://www.thesaurus.com/browse/%s
+" Shopping"
+set searchurls.amz https://www.amazon.com.br/s?k=%s
+set searchurls.keepa https://keepa.com/#!search/12-%s
+" Other
+set searchurls.maps https://www.google.com/maps/search/%s
+set searchurls.wa https://www.wolframalpha.com/input/?i=%s
 set searchurls.color https://www.color-hex.com/color/%s
-set searchurls.sc https://www.shellcheck.net/wiki/SC%s
+set searchurls.kym https://knowyourmeme.com/search?q=%s
 
 " Misc
 

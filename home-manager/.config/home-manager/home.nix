@@ -29,6 +29,7 @@
     pkgs.xclip
 
     # Disk utils
+    pkgs.udiskie
     pkgs.cryptsetup
 
     # Programming
