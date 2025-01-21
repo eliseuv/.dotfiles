@@ -102,6 +102,10 @@
       source = ./neovim;
       recursive = true;
     };
+    ".config/doom" = {
+      source = ./doom-emacs;
+      recursive = true;
+    };
   };
 
   # Home Manager can also manage your environment variables through
