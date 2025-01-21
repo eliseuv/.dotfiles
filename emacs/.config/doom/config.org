@@ -230,7 +230,7 @@ snippets          ; my elves. They type so I don't have to
 
 #+name: doom-emacs
 #+begin_src emacs-lisp
-(dired +icons +ranger)            ; making dired pretty [functional]
+(dired +icons +dirvish)            ; making dired pretty [functional]
 electric          ; smarter, keyword-based electric-indent
 (ibuffer +icons)         ; interactive buffer management
 (undo +tree)              ; persistent, smarter undo for your inevitable mistakes
@@ -333,7 +333,7 @@ lean              ; for folks with too much to prove
 ;;(lua +lsp +tree-sitter)               ; one-based indices? one-based indices
 ;;markdown          ; writing docs for people to ignore
 ;;nim               ; python + lisp at the speed of c
-;;(nix +lsp +tree-sitter)               ; I hereby declare "nix geht mehr!"
+(nix +lsp +tree-sitter)               ; I hereby declare "nix geht mehr!"
 (ocaml +lsp +tree-sitter)             ; an objective camel
 (org                    ; organize your plain life in plain text
  ;;+brain               ; org-brain integration
