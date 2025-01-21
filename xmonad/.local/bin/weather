@@ -184,7 +184,7 @@ function setIcons {
         # Few clouds
         if [ "$DATE" -ge "$SUNRISE" ] && [ "$DATE" -le "$SUNSET" ]; then
             ICON_COLOR=$COLOR_SUN
-            ICON="杖"
+            ICON="󰖕"
         else
             ICON_COLOR=$COLOR_MOON
             ICON=""
@@ -207,9 +207,9 @@ function setIcons {
     if [ "$UNITS" = "metric" ]; then
         TEMP_ICON="󰔄"
     elif [ "$UNITS" = "imperial" ]; then
-        TEMP_ICON="宅"
+        TEMP_ICON="󰔅"
     else
-        TEMP_ICON="洞"
+        TEMP_ICON="󰔆"
     fi
     TEMP=$(echo "$TEMP" | cut -d "." -f 1)
     if [ "$TEMP" -le $COLD_TEMP ]; then
@@ -226,13 +226,13 @@ function setIcons {
     WINDFORCE=$(echo "$RESPONSE" | jq .wind.speed)
     if [ $USE_KNOTS = "yes" ]; then
         case $UNITS in
-            "imperial")
-                # The division by one is necessary because scale works only for divisions. bc is stupid.
-                WINDFORCE=$(echo "scale=$DECIMALS;$WINDFORCE * 0.8689762419 / 1" | bc)
-                ;;
-            *)
-                WINDFORCE=$(echo "scale=$DECIMALS;$WINDFORCE * 1.943844 / 1" | bc)
-                ;;
+        "imperial")
+            # The division by one is necessary because scale works only for divisions. bc is stupid.
+            WINDFORCE=$(echo "scale=$DECIMALS;$WINDFORCE * 0.8689762419 / 1" | bc)
+            ;;
+        *)
+            WINDFORCE=$(echo "scale=$DECIMALS;$WINDFORCE * 1.943844 / 1" | bc)
+            ;;
         esac
     else
         if [ $UNITS != "imperial" ]; then
