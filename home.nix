@@ -97,7 +97,11 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
 
-    ".config/tridactyl/tridactylrc".source = tridactyl/tridactylrc;
+    ".config/tridactyl/tridactylrc".source = ./tridactyl/tridactylrc;
+    ".config/nvim" = {
+      source = ./neovim;
+      recursive = true;
+    };
   };
 
   # Home Manager can also manage your environment variables through
