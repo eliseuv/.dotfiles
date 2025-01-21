@@ -71,13 +71,17 @@
     pkgs.spotify
 
     # Fonts
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "Hack" "Iosevka" "IosevkaTerm" "Ubuntu" ]; })
     pkgs.alegreya
+    pkgs.nerd-fonts.fira-code
     pkgs.fira-code
+    pkgs.nerd-fonts.hack
     pkgs.hack-font
     pkgs.ibm-plex
+    pkgs.nerd-fonts.iosevka
+    pkgs.nerd-fonts.iosevka-term
     pkgs.iosevka
     pkgs.symbola
+    pkgs.nerd-fonts.ubuntu
     pkgs.ubuntu-classic
 
     # # You can also create simple shell scripts directly inside your
