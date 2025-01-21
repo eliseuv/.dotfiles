@@ -148,6 +148,7 @@ in
     # Keyboard options
     kanata
 
+    # XMonad bar
     xmobar
   ];
 
