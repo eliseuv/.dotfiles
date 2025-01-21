@@ -107,7 +107,7 @@ in
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -130,7 +130,6 @@ in
     isNormalUser = true;
     description = "evf";
     extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.zsh;
     packages = with pkgs; [
       #  thunderbird
     ];
@@ -153,6 +152,8 @@ in
   ];
 
   # Use ZSH
+  environment.shells = with pkgs; [ zsh ];
+  users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
   # Install firefox.

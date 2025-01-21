@@ -1,15 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "24.11"; # Please read the comment before changing.
-
   home = {
     username = "evf";
     homeDirectory = "/home/evf";
@@ -139,13 +130,9 @@
     };
     shellAliases = {
       c = "clear";
-
       rs = "rsync -Pazvhm";
       rsmv = "rsync -Pazvhm --remove-source-files";
-
       stow = "stow --no-folding";
-
-      up = "nixos-rebuild switch --use-remote-sudo";
     };
   };
 
@@ -828,5 +815,14 @@
     enable = true;
     frequency = "weekly";
   };
+
+  # This value determines the Home Manager release that your configuration is
+  # compatible with. This helps avoid breakage when a new Home Manager release
+  # introduces backwards incompatible changes.
+  #
+  # You should not change this value, even if you update Home Manager. If you do
+  # want to update the value, then make sure to first check the Home Manager
+  # release notes.
+  home.stateVersion = "24.11"; # Please read the comment before changing.
 }
 
