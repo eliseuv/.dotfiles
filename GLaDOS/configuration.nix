@@ -1,15 +1,14 @@
 { config, pkgs, ... }:
 
 let
-  # Not using 'pkgs.fetchgit' because as that would cause an infinite recursion
   nix-gc-env = builtins.fetchGit {
     url = "https://github.com/Julow/nix-gc-env";
     rev = "4753f3c95891b711e29cb6a256807d22e16cf9cd";
   };
 in {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    # Nix GC
     (import "${nix-gc-env}/nix_gc_env.nix")
   ];
 
@@ -27,8 +26,7 @@ in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "GLaDOS"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.hostName = "GLaDOS";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -107,18 +105,12 @@ in {
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # User accounts
   users.users.evf = {
     isNormalUser = true;
     description = "evf";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs;
-      [
-        #  thunderbird
-      ];
+    packages = with pkgs; [ ];
   };
 
   # Allow unfree packages
@@ -132,9 +124,6 @@ in {
 
     # Keyboard options
     kanata
-
-    # XMonad bar
-    xmobar
   ];
 
   # Use ZSH
@@ -144,9 +133,6 @@ in {
 
   # Install firefox.
   programs.firefox.enable = true;
-
-  # Start SSH agent
-  programs.ssh.startAgent = true;
 
   # Apply custom keyboard config
   services.kanata = {
@@ -164,6 +150,7 @@ in {
     };
   };
 
+  # Automount
   services.udisks2.enable = true;
 
   # Virtual Machines
