@@ -7,6 +7,8 @@
     jq
     # Audio
     pulsemixer
+    # xmobar
+    xmobar
 
     # Fonts
     fira-code
@@ -16,6 +18,21 @@
     hack-font
     nerd-fonts.hack
   ];
+
+  # Copy config files
+  home.file = {
+    ".config/xmonad" = {
+      source = ./xmonad/xmonad;
+      recursive = true;
+    };
+    ".config/xmobar" = {
+      source = ./xmonad/xmobar;
+      recursive = true;
+    };
+  };
+
+  # Hide mouse
+  services.unclutter.enable = true;
 
   # Menu
   programs.rofi = {

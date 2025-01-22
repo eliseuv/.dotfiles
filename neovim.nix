@@ -1,18 +1,25 @@
 { config, pkgs, ... }: {
 
-  home.packages = with pkgs; [ xclip ];
+  home.packages = with pkgs; [
+    # Clipboard integration
+    xclip
+    # Nix LSP
+    nixd
+  ];
 
+  home.shellAliases = { v = "nvim"; };
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
+
+  # Copy lua config
   home.file = {
     ".config/nvim" = {
       source = ./neovim;
       recursive = true;
     };
   };
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-  };
-  home.shellAliases = { v = "nvim"; };
 
 }

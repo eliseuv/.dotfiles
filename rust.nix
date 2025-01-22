@@ -1,7 +1,14 @@
 { config, pkgs, ... }: {
 
   home.packages = with pkgs; [
+    # Rust installer
     rustup
+    # Compilation cache
+    sccache
+    # Build tool
+    just
+    # Benchmarking
+    hyperfine
   ];
 
   home.sessionVariables = {
@@ -12,9 +19,7 @@
 
   programs.bacon = {
     enable = true;
-    settings = {
-      default_job = "clippy-all";
-    };
+    settings = { default_job = "clippy-all"; };
   };
 
 }

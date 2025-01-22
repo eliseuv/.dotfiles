@@ -6,18 +6,15 @@ let
     url = "https://github.com/Julow/nix-gc-env";
     rev = "4753f3c95891b711e29cb6a256807d22e16cf9cd";
   };
-in
-{
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      (import "${nix-gc-env}/nix_gc_env.nix")
-    ];
+in {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    (import "${nix-gc-env}/nix_gc_env.nix")
+  ];
 
   # Nix Flakes support
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
 
   # Automatic garbage collection
   nix.gc = {
@@ -61,6 +58,7 @@ in
   services.displayManager.defaultSession = "none+xmonad";
   services.xserver.displayManager = {
     lightdm.enable = true;
+    # Setup multiple monitors
     sessionCommands = ''
       ${pkgs.xorg.xrandr}/bin/xrandr \
         --output HDMI-1 --primary --mode 1920x1080 --rate 240 --pos 1080x1080 --rotate normal \
@@ -72,22 +70,15 @@ in
     '';
   };
 
-
   services.xserver = {
     # Enable the X11 windowing system.
     enable = true;
-
-    # # Enable the GNOME Desktop Environment.
-    # displayManager.gdm.enable = true;
-    # desktopManager.gnome.enable = true;
 
     # XMonad
     windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
-      extraPackages = hpkgs: [
-        hpkgs.xmobar
-      ];
+      extraPackages = hpkgs: [ hpkgs.xmobar ];
     };
 
     # Configure keymap in X11
@@ -97,7 +88,6 @@ in
       options = "caps:escape";
     };
   };
-
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -126,9 +116,10 @@ in
     isNormalUser = true;
     description = "evf";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      #  thunderbird
-    ];
+    packages = with pkgs;
+      [
+        #  thunderbird
+      ];
   };
 
   # Allow unfree packages
