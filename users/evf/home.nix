@@ -33,7 +33,6 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   services.home-manager.autoUpgrade = {
     enable = true;

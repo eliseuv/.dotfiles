@@ -1,5 +1,4 @@
 { config, pkgs, ... }:
-
 let
   nix-gc-env = builtins.fetchGit {
     url = "https://github.com/Julow/nix-gc-env";
@@ -26,14 +25,12 @@ in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Networking
   networking.hostName = "GLaDOS";
-
+  networking.networkmanager.enable = true;
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
@@ -133,6 +130,9 @@ in {
 
   # Install firefox.
   programs.firefox.enable = true;
+
+  # Enable SSH agent
+  programs.ssh.startAgent = true;
 
   # Apply custom keyboard config
   services.kanata = {

@@ -1,47 +1,42 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
-
 let
   # Not using 'pkgs.fetchgit' because as that would cause an infinite recursion
   nix-gc-env = builtins.fetchGit {
     url = "https://github.com/Julow/nix-gc-env";
     rev = "4753f3c95891b711e29cb6a256807d22e16cf9cd";
   };
-
 in {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      (import "${nix-gc-env}/nix_gc_env.nix")
-    ];
-    
-    # Enable Flakes
-    nix.settings.experimental-features = [ "nix-command" "flakes"];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    # Nix GC
+    (import "${nix-gc-env}/nix_gc_env.nix")
+  ];
 
-        # Automatic garbage collection
-        nix.gc = {
-            automatic= true;
-            dates = "daily";
-            delete_generations = "+8";
-        };
+  # Enable Flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # Automatic garbage collection
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    delete_generations = "+8";
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-2ac9cd27-6ff4-4407-9808-c63a5251c44c".device = "/dev/disk/by-uuid/2ac9cd27-6ff4-4407-9808-c63a5251c44c";
-  networking.hostName = "tardis"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # Disk encryption
+  boot.initrd.luks.devices."luks-2ac9cd27-6ff4-4407-9808-c63a5251c44c".device =
+    "/dev/disk/by-uuid/2ac9cd27-6ff4-4407-9808-c63a5251c44c";
 
+  # Networking
+  networking.hostName = "tardis"; # Define your hostname.
+  networking.networkmanager.enable = true;
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
@@ -102,10 +97,7 @@ in {
     isNormalUser = true;
     description = "evf";
     extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.zsh;
-    packages = with pkgs; [
-    #  thunderbird
-    ];
+    packages = with pkgs; [ ];
   };
 
   # Allow unfree packages
@@ -114,15 +106,17 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     # Text editor
-     vim
-     
-     # Keyboard config
-     kanata
+    # Text editor
+    vim
+
+    # Keyboard config
+    kanata
   ];
 
-    # Install ZSH
-    programs.zsh.enable = true;
+  # Use ZSH
+  environment.shells = with pkgs; [ zsh ];
+  users.defaultUserShell = pkgs.zsh;
+  programs.zsh.enable = true;
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -135,18 +129,18 @@ in {
     enable = true;
     keyboards = {
       "onboard".config = ''
-(defsrc
-  caps
-)
-(deflayer base
-  esc
-)
+        (defsrc
+          caps
+        )
+        (deflayer base
+          esc
+        )
       '';
     };
   };
-    
-    # Automount
-    services.udisks2.enable =true;
+
+  # Automount
+  services.udisks2.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
