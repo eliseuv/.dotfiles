@@ -9,8 +9,9 @@
     ./rust.nix
     ./emacs.nix
     ./ncmpcpp.nix
-    ./firefox.nix
     ./fastfetch.nix
+    ./firefox.nix
+    ./zed.nix
   ];
 
   home = {
@@ -44,9 +45,6 @@
     telegram-desktop
     # Music
     spotify
-    # Fonts
-    nerd-fonts.hack
-    hack-font
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -275,51 +273,6 @@
     };
   };
 
-  # Zed
-  programs.zed-editor = {
-    enable = true;
-    extensions = [ "catppuccin" "tokyo-night" "nix" "just" ];
-    userSettings = {
-      base_keymap = "VSCode";
-      telemetry = { diagnostics = false; metrics = false; };
-      format_on_save = "prettier";
-      # Buffer font
-      buffer_font_family = "Iosevka";
-      buffer_font_size = 12;
-      # UI
-      ui_font_size = 14;
-      theme = {
-        mode = "dark";
-        light = "Andromeda";
-        dark = "Tokyo Night";
-      };
-      # Terminal
-      terminal = {
-        dock = "right";
-        font_size = 12;
-        font_family = "Iosevka";
-      };
-      # Vim
-      vim_mode = true;
-      vim = {
-        use_multiline_find = true;
-        use_smartcase_find = true;
-        use_system_clipboard = "always";
-      };
-      # Inlay hints
-      inlayHints = {
-        maxLength = null;
-        lifetimeElisionHints = {
-          useParameterNames = true;
-          enable = "skip_trivial";
-        };
-        closureReturnTypeHints = {
-          "enable" = "always";
-        };
-      };
-    };
-  };
-
   # PDF reader
   programs.zathura = {
     enable = true;
@@ -408,4 +361,3 @@
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
 }
-

@@ -9,10 +9,12 @@
     pulsemixer
 
     # Fonts
-    nerd-fonts.fira-code
     fira-code
-    nerd-fonts.ubuntu
+    nerd-fonts.fira-code
     ubuntu-classic
+    nerd-fonts.ubuntu
+    hack-font
+    nerd-fonts.hack
   ];
 
   # Menu
