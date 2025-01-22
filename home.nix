@@ -1,19 +1,23 @@
-{ config, pkgs, ... }:
-
-{
+{ config, pkgs, ... }: {
   imports = [
-    ./xmonad.nix
-    ./ghostty.nix
-    ./tmux.nix
-    ./sh.nix
-    ./ssh-gpg.nix
-    ./neovim.nix
-    ./rust.nix
-    ./ncmpcpp.nix
-    ./emacs.nix
-    ./zed.nix
-    ./firefox.nix
-    ./fastfetch.nix
+    ./programs/shell/flake.nix
+    ./programs/terminal/ghostty/flake.nix
+    ./programs/editors/neovim/flake.nix
+    ./programs/editors/emacs/flake.nix
+    ./programs/editors/helix/flake.nix
+    ./programs/editors/zed/flake.nix
+    ./programs/browsers/firefox/flake.nix
+    ./programs/browsers/chromium/flake.nix
+    ./programs/browsers/brave/flake.nix
+    ./programs/communication/telegram/flake.nix
+    ./programs/communication/discord/flake.nix
+    ./programs/documents/zathura/flake.nix
+    ./programs/media/sxiv/flake.nix
+    ./programs/media/ncmpcpp/flake.nix
+    ./programs/media/mpv/flake.nix
+    ./programs/media/spotify/flake.nix
+    ./desktops/xmonad/flake.nix
+    ./languages/rust.nix
   ];
 
   home = {
@@ -22,58 +26,12 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-  home.packages = with pkgs; [
-    # Disks
-    cryptsetup
-    udiskie
-    # File manager
-    nautilus
-    # Web browsers
-    brave
-    chromium
-    # Image viewer
-    sxiv
-    # Telegram
-    telegram-desktop
-    # Music
-    spotify
-  ];
+  home.packages = with pkgs; [ cryptsetup udiskie nautilus ];
 
   fonts.fontconfig.enable = true;
 
-  # Another terminal multiplexer
-  programs.zellij = {
-    enable = true;
-    settings = { theme = "Catppuccin Mocha"; };
-  };
-
-  # PDF reader
-  programs.zathura = {
-    enable = true;
-    mappings = { "<C-i>" = "recolor"; };
-    extraConfig = ''
-      set recolor true
-    '';
-  };
-
   # Image viewer
   programs.feh = { enable = true; };
-
-  # Video player
-  programs.mpv = {
-    enable = true;
-    bindings = {
-      "Alt+=" = "add video-zoom 0.1";
-      "Alt+-" = "add video-zoom -0.1";
-      "-" = "add volume -2";
-      "=" = "add volume 2";
-    };
-    config = {
-      hwdec = "auto";
-      ytdl-raw-options = "force-ipv4=";
-    };
-    scripts = [ pkgs.mpvScripts.thumbfast pkgs.mpvScripts.mpv-playlistmanager ];
-  };
 
   services = {
 
@@ -95,11 +53,69 @@
 
   };
 
-  # Mime apps
-  xdg.mimeApps.defaultApplications = {
-    "application/pdf" = [ "zathura.desktop" ];
-    "image/*" = [ "sxiv.desktop" ];
-    "video/*" = [ "mpv.desktop" ];
+  programs.ssh = {
+    enable = true;
+    compression = true;
+    addKeysToAgent = "yes";
+    forwardAgent = true;
+    serverAliveInterval = 240;
+    matchBlocks = {
+      # Alpine Linux VM
+      "alpine-vm" = {
+        hostname = "alpine-vm.local";
+        user = "evf";
+      };
+      # Personal computer at IF-UFRGS
+      "if-ufrgs" = {
+        hostname = "143.54.45.50";
+        user = "evf";
+        proxyJump = "alpine-vm";
+      };
+      # LIEF
+      "lief" = {
+        hostname = "lief.if.ufrgs.br";
+        user = "eliseuvf";
+        proxyJump = "alpine-vm";
+      };
+      # Ada Lovelace cluster
+      "lovelace" = {
+        hostname = "lovelace.if.ufrgs.br";
+        user = "eliseuvf";
+        proxyJump = "alpine-vm";
+      };
+      # Ada Lovelace cluster
+      "ada" = {
+        hostname = "lovelace.if.ufrgs.br";
+        user = "eliseuvf";
+        proxyJump = "alpine-vm";
+      };
+    };
+  };
+
+  programs.gpg = {
+    enable = true;
+    settings = { };
+  };
+  services.gpg-agent = {
+    enable = true;
+    enableZshIntegration = true;
+    enableSshSupport = true;
+    defaultCacheTtl = 3600;
+    maxCacheTtl = 3600;
+    defaultCacheTtlSsh = 3600;
+    maxCacheTtlSsh = 3600;
+    pinentryPackage = pkgs.pinentry-gtk2;
+  };
+
+  # Git
+  programs.git = {
+    enable = true;
+    userName = "evf";
+    userEmail = "eliseuv816@gmail.com";
+    delta.enable = true;
+  };
+  home.shellAliases = {
+    git-push = ''git add .; git commit -m "update"; git push'';
   };
 
   # Let Home Manager install and manage itself.
