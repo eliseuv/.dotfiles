@@ -10,12 +10,11 @@
       system = "x86_64-linux";
       lib = nixpkgs.lib;
       pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
+    in {
       nixosConfigurations = {
         GLaDOS = lib.nixosSystem {
           inherit system;
-          modules = [ ./configuration.nix ];
+          modules = [ ./GLaDOS/configuration.nix ];
         };
       };
       homeConfigurations = {

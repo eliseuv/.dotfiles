@@ -7,6 +7,7 @@
     ./ghostty.nix
     ./xmonad.nix
     ./rust.nix
+    ./neovim.nix
     ./emacs.nix
     ./ncmpcpp.nix
     ./fastfetch.nix
@@ -88,9 +89,7 @@
   #  /etc/profiles/per-user/evf/etc/profile.d/hm-session-vars.sh
 
   home = {
-    sessionPath = [
-      "$HOME/.local/bin"
-    ];
+    sessionPath = [ "$HOME/.local/bin" ];
     sessionVariables = { };
     shellAliases = {
       c = "clear";
@@ -108,19 +107,15 @@
     delta.enable = true;
   };
   home.shellAliases = {
-    git-push = "git add .; git commit -m \"update\"; git push";
+    git-push = ''git add .; git commit -m "update"; git push'';
   };
 
   # Rusty cat
   programs.bat = {
     enable = true;
-    config = {
-      theme = "TwoDark";
-    };
+    config = { theme = "TwoDark"; };
   };
-  home.shellAliases = {
-    b = "bat";
-  };
+  home.shellAliases = { b = "bat"; };
 
   # Rusty ls
   programs.eza = {
@@ -139,14 +134,10 @@
   };
 
   # Rusty find
-  programs.fd = {
-    enable = true;
-  };
+  programs.fd = { enable = true; };
 
   # Rusty grep
-  programs.ripgrep = {
-    enable = true;
-  };
+  programs.ripgrep = { enable = true; };
 
   # Rusty TUI file manager
   programs.yazi.enable = true;
@@ -155,9 +146,7 @@
   # Rusty TUI file manager
   programs.broot = {
     enable = true;
-    settings = {
-      modal = true;
-    };
+    settings = { modal = true; };
   };
 
   # Rusty System monitor
@@ -172,7 +161,20 @@
         process_memory_as_value = true;
       };
       process = {
-        columns = [ "PID" "Name" "User" "State" "CPU%" "Mem%" "R/s" "W/s" "GPU%" "GMem%" "T.Read" "T.Write" ];
+        columns = [
+          "PID"
+          "Name"
+          "User"
+          "State"
+          "CPU%"
+          "Mem%"
+          "R/s"
+          "W/s"
+          "GPU%"
+          "GMem%"
+          "T.Read"
+          "T.Write"
+        ];
       };
       styles = {
         memory = {
@@ -191,9 +193,7 @@
           };
         };
 
-        graphs = {
-          graph_color = "dark gray";
-        };
+        graphs = { graph_color = "dark gray"; };
 
         widgets = {
           border_color = "dark gray";
@@ -208,14 +208,13 @@
 
     };
   };
-  home.shellAliases = {
-    bt = "btm";
-  };
+  home.shellAliases = { bt = "btm"; };
 
   # Fuzzy finder
   programs.fzf = {
     enable = true;
-    defaultCommand = "rg --files --no-ignore --hidden --follow --glob \"!.git/*\"";
+    defaultCommand =
+      ''rg --files --no-ignore --hidden --follow --glob "!.git/*"'';
     colors = {
       fg = "#f8f8f2";
       bg = "#282a36";
@@ -236,9 +235,7 @@
   # Another terminal multiplexer
   programs.zellij = {
     enable = true;
-    settings = {
-      theme = "Catppuccin Mocha";
-    };
+    settings = { theme = "Catppuccin Mocha"; };
   };
 
   # Helix
@@ -256,12 +253,8 @@
         bufferline = "multiple";
         end-of-line-diagnostics = "hint";
       };
-      editor.cursor-shape = {
-        insert = "bar";
-      };
-      editor.file-picker = {
-        hidden = false;
-      };
+      editor.cursor-shape = { insert = "bar"; };
+      editor.file-picker = { hidden = false; };
       editor.lsp = {
         display-messages = true;
         display-inlay-hints = true;
@@ -283,9 +276,7 @@
   };
 
   # Image viewer
-  programs.feh = {
-    enable = true;
-  };
+  programs.feh = { enable = true; };
 
   # Video player
   programs.mpv = {
@@ -332,9 +323,7 @@
     unclutter.enable = true;
 
     # File syncronization
-    syncthing = {
-      enable = true;
-    };
+    syncthing = { enable = true; };
 
   };
 

@@ -1,5 +1,14 @@
 { config, pkgs, ... }: {
 
+  home.packages = with pkgs; [
+    # Nix support
+    nil
+    nixd
+    nixfmt-classic
+    # Fonts
+    nerd-fonts.zed-mono
+  ];
+
   programs.zed-editor = {
     enable = true;
     extensions = [ "catppuccin" "zed-tokyo-night" "nix" "just" ];
@@ -50,14 +59,6 @@
         };
       };
     };
-    extraPackages = with pkgs; [
-      # Nix support
-      nil
-      nixd
-      nixfmt-classic
-      # Fonts
-      nerd-fonts.zed-mono
-    ];
   };
 
 }

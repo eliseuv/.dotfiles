@@ -1,13 +1,10 @@
 { config, pkgs, ... }: {
 
-  home.packages = with pkgs; [
-    # Fonts
-    nerd-fonts.iosevka
-    nerd-fonts.iosevka-term
-  ];
+  home.packages = with pkgs; [ nerd-fonts.iosevka-term ];
 
   programs.ghostty = {
     enable = true;
+    enableZshIntegration = true;
     settings = {
       theme = "tokyonight";
       font-family = "IosevkaTerm Nerd Font";
@@ -15,9 +12,9 @@
       bold-is-bright = true;
       cursor-style = "block";
       mouse-hide-while-typing = true;
-      # gtk-single-instance = true;
-      # adw-toolbar-style = "raised";
-      # window-decoration = false;
+      gtk-single-instance = true;
+      adw-toolbar-style = "raised";
+      window-decoration = false;
     };
   };
 

@@ -1,11 +1,6 @@
 { config, pkgs, ... }: {
 
-  home.packages = with pkgs; [
-    unzip
-    xclip
-    clang
-    npm
-  ];
+  home.packages = with pkgs; [ xclip ];
 
   home.file = {
     ".config/nvim" = {
@@ -14,17 +9,10 @@
     };
   };
 
-  home.
-  sessionVariables = {
-    EDITOR = "nvim";
-  };
-
   programs.neovim = {
     enable = true;
     defaultEditor = true;
   };
-  home.shellAliases = {
-    v = "nvim";
-  };
+  home.shellAliases = { v = "nvim"; };
 
 }
