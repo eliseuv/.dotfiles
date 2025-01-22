@@ -22,7 +22,7 @@ Config {
                       -- Time and date
                       Run Date " <fn=1> </fn>%Y-%m-%d %H:%M " "date" 60
                       -- Volume
-                    , Run Com "sh" ["-c", "./volume"] "volume" 10
+                    , Run Com "sh" ["-c", "echo $(volume)"] "volume" 10
                       -- Prints out the left side items such as workspaces, layout, etc.
                       -- The workspaces are 'clickable' in my configs.
                     , Run UnsafeStdinReader

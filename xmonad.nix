@@ -37,7 +37,7 @@
   # Menu
   programs.rofi = {
     enable = true;
-    font = "hack 12";
+    font = "Hack Nerd Font 12";
     extraConfig = {
       modi = "combi";
       combi-modi = "window,drun,ssh";

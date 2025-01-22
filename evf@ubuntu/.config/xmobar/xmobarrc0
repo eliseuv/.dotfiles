@@ -9,7 +9,7 @@ Config
        , bgColor = "#242730"
        , fgColor = "#666666"
        , position = Static { xpos = 1280 , ypos = 0, width = 1920, height = 26 }
-       , iconRoot = "/home/evf/.config/xmobar/xpm/" -- default: "."
+       , iconRoot = "./xpm/" -- default: "."
 
        -- Behaviour
        , lowerOnStart = True    -- send to bottom of window stack on start
@@ -35,8 +35,6 @@ Config
                                 , ("/run/media/evf/Storage", "<fn=1>\xf0a0 </fn><usedp>%")
                                 ]
                                 ["-L", "20", "-H", "50", "-m", "1", "-p", "3"] 60
-                      -- Runs custom script to check for pacman updates.
-                    , Run Com "sh" ["-c", "echo $(checkupdatescount)"] "updates" 900
                       -- Weather
                     , Run Com "sh" ["-c", "echo $(weather)"] "weather" 900
                       -- Volume
