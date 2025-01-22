@@ -16,6 +16,10 @@
           inherit system;
           modules = [ ./GLaDOS/configuration.nix ];
         };
+        tardis = lib.nixosSystem {
+          inherit system;
+          modules = [ ./tardis/configuration.nix ];
+        };
       };
       homeConfigurations = {
         evf = home-manager.lib.homeManagerConfiguration {
