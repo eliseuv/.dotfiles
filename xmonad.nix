@@ -53,5 +53,11 @@
     terminal = "ghostty";
     theme = "tokyonight";
   };
+  home.file = {
+    ".config/rofi/themes" = {
+      source = ./rofi/themes;
+      recursive = true;
+    };
+  };
 
 }
