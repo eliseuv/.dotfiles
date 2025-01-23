@@ -28,6 +28,7 @@
     ./modules/languages/rust.nix
     ./modules/languages/haskell.nix
     ./modules/languages/c.nix
+    ./modules/languages/go.nix
     ./modules/languages/tools.nix
   ];
 

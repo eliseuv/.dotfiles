@@ -9,6 +9,13 @@
     kitty
   ];
 
+  services.hyprpaper = { enable = true; };
+  # Copy Wallpapers
+  home.file."wallpapers" = {
+    source = ../wallpapers;
+    recursive = true;
+  };
+
   programs.waybar = {
     enable = true;
     systemd.enable = false;
