@@ -6,6 +6,7 @@
     ./git.nix
     ./files.nix
     ../../desktops/xmonad/flake.nix
+    ../../desktops/hyprland/flake.nix
     ../../programs/shell/flake.nix
     ../../programs/terminal/ghostty/flake.nix
     ../../programs/editors/neovim/flake.nix
