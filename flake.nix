@@ -24,7 +24,7 @@
       homeConfigurations = {
         evf = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ ./users/evf/home.nix ];
+          modules = [ ./home.nix ];
         };
       };
     };

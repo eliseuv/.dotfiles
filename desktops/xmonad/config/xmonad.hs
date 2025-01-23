@@ -143,7 +143,7 @@ myFocusColor = "#993399"
 -- mySoundPlayer = "ffplay -nodisp -autoexit " -- The program that will play system sounds
 
 myWallpaperScript :: String
-myWallpaperScript = "$HOME/.config/xmonad/.fehbg"
+myWallpaperScript = "$HOME/.xmonad/.fehbg"
 
 windowCount :: X (Maybe String)
 windowCount =

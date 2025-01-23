@@ -7,7 +7,7 @@ let
   };
 in {
   imports = [ # Include the results of the hardware scan.
-    ./hardware-configuration.nix
+    ./hardware.nix
     # Nix GC
     (import "${nix-gc-env}/nix_gc_env.nix")
   ];
@@ -31,11 +31,11 @@ in {
       delete_generations = "+8";
     };
 
+    # Hyprland
     programs.hyprland = {
-      # Install the packages from nixpkgs
       enable = true;
-      # Whether to enable XWayland
       xwayland.enable = true;
+      withUWSM = true;
     };
 
     # Bootloader.

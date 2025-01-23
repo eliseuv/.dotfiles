@@ -21,6 +21,7 @@
     source = ../wallpapers;
     recursive = true;
   };
+  home.file.".xmonad/.fehbg".source = ./config/.fehbg;
 
   # Hide mouse
   services.unclutter.enable = true;

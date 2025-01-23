@@ -40,7 +40,10 @@
   programs.ripgrep = { enable = true; };
 
   # TUI file manager
-  programs.yazi.enable = true;
+  programs.yazi = {
+    enable = true;
+    settings = { manager = { show_hidden = true; }; };
+  };
   home.shellAliases.y = "yazi";
 
   # TUI file manager
