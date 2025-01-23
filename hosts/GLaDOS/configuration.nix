@@ -1,9 +1,9 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
 
   imports = [
     ./hardware.nix
-    ../bootloader.nix
     ../garbage-collection.nix
+    ../bootloader.nix
     ../user.nix
     ../keyboard.nix
     ../audio.nix
