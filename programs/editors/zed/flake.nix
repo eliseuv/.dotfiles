@@ -1,13 +1,10 @@
 { config, pkgs, ... }: {
 
-  home.packages = with pkgs; [
-    # Nix support
-    nil
-    nixd
-    nixfmt-classic
-    # Fonts
-    nerd-fonts.zed-mono
-  ];
+  home.packages = with pkgs;
+    [
+      # Fonts
+      nerd-fonts.zed-mono
+    ];
 
   programs.zed-editor = {
     enable = true;

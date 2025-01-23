@@ -1,11 +1,10 @@
 { config, pkgs, ... }: {
 
-  home.packages = with pkgs; [
-    # Clipboard integration
-    xclip
-    # Nix LSP
-    nixd
-  ];
+  home.packages = with pkgs;
+    [
+      # Clipboard integration
+      xclip
+    ];
 
   home.shellAliases = { v = "nvim"; };
 
