@@ -22,7 +22,7 @@ in {
   };
 
   # Kernel version
-  book.kernelPackages = pkgs.linuxKernel.packages.linux_6_6;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_6;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
