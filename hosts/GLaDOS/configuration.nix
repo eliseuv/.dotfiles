@@ -32,12 +32,9 @@ in {
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Set your time zone.
+  # Locale
   time.timeZone = "America/Sao_Paulo";
-
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
     LC_IDENTIFICATION = "en_US.UTF-8";
@@ -50,23 +47,25 @@ in {
     LC_TIME = "en_US.UTF-8";
   };
 
+  # Desktop
   services.displayManager.defaultSession = "none+xmonad";
-  services.xserver.displayManager = {
-    lightdm.enable = true;
-    # Setup multiple monitors
-    sessionCommands = ''
-      ${pkgs.xorg.xrandr}/bin/xrandr \
-        --output HDMI-1 --primary --mode 1920x1080 --rate 240 --pos 1080x1080 --rotate normal \
-        --output DP-3 --mode 2560x1080 --rate 75 --pos 440x0 --rotate normal \
-        --output DP-1 --mode 1920x1080 --pos 0x1080 --rotate left \
-        --output DP-2 --off \
-        --output DP-4 --off \
-    '';
-  };
-
   services.xserver = {
     # Enable the X11 windowing system.
     enable = true;
+
+    # Display Manager
+    displayManager = {
+      lightdm.enable = true;
+      # Setup multiple monitors
+      sessionCommands = ''
+        ${pkgs.xorg.xrandr}/bin/xrandr \
+          --output HDMI-1 --primary --mode 1920x1080 --rate 240 --pos 1080x1080 --rotate normal \
+          --output DP-3 --mode 2560x1080 --rate 75 --pos 440x0 --rotate normal \
+          --output DP-1 --mode 1920x1080 --pos 0x1080 --rotate left \
+          --output DP-2 --off \
+          --output DP-4 --off \
+      '';
+    };
 
     # XMonad
     windowManager.xmonad = {
