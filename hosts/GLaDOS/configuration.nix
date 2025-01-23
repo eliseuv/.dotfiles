@@ -21,6 +21,9 @@ in {
     delete_generations = "+8";
   };
 
+  # Kernel version
+  book.kernelPackages = pkgs.linuxKernel.linux_6_6;
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
