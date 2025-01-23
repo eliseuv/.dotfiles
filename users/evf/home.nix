@@ -26,7 +26,7 @@
     ../../programs/communication/discord/flake.nix
     ../../languages/nix.nix
     ../../languages/rust.nix
-
+    ../../languages/haskell.nix
     ../../languages/c.nix
     ../../languages/tools.nix
   ];
