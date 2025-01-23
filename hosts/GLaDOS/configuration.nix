@@ -63,9 +63,9 @@ in {
       sessionCommands = ''
         ${pkgs.xorg.xrandr}/bin/xrandr \
           --output HDMI-1 --primary --mode 1920x1080 --rate 240 --pos 1080x1080 --rotate normal \
-          --output DP-3 --mode 2560x1080 --rate 75 --pos 440x0 --rotate normal \
-          --output DP-1 --mode 1920x1080 --pos 0x1080 --rotate left \
-          --output DP-2 --off \
+          --output DP-2 --mode 2560x1080 --rate 75 --pos 440x0 --rotate normal \
+          --output DP-3 --mode 1920x1080 --pos 0x1080 --rotate left \
+          --output DP-1 --off \
           --output DP-4 --off \
       '';
     };
