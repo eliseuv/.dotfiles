@@ -1,6 +1,11 @@
 { config, pkgs, ... }: {
 
-  home.packages = with pkgs; [ cryptsetup udiskie nautilus ];
+  home.packages = with pkgs; [
+    # Disk encryption
+    cryptsetup
+    # File manager
+    nautilus
+  ];
 
   services = {
 

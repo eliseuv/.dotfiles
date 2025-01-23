@@ -1,6 +1,13 @@
 { ... }: {
 
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+      autoNumlock = true;
+    };
+  };
 
   programs.hyprland = {
     enable = true;

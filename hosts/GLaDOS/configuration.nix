@@ -16,7 +16,7 @@
     ../zsh.nix
     ../gpg.nix
     ../packages.nix
-    ../xmonad.nix
+    ../hyprland.nix
   ];
 
   # Flakes support

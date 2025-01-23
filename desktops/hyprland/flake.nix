@@ -2,19 +2,20 @@
 
   imports = [ ];
 
-  home.packages = with pkgs;
-    [
-      # Menu
-      wofi
-    ];
+  home.packages = with pkgs; [
+    # Menu
+    wofi
+    # Default terminal
+    kitty
+  ];
 
   programs.waybar = {
     enable = true;
-    systemd.enable = true;
+    systemd.enable = false;
   };
 
   wayland.windowManager.hyprland = {
-    enable = true;
+    enable = false;
     settings = {
       # Monitors
       # monitor = "eDP-1,1920x1080@60,0x0,1";
