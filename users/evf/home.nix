@@ -24,7 +24,9 @@
     ../../programs/media/spotify/flake.nix
     ../../programs/communication/telegram/flake.nix
     ../../programs/communication/discord/flake.nix
+    ../../languages/tools.nix
     ../../languages/rust.nix
+    ../../languages/c.nix
   ];
 
   home = {

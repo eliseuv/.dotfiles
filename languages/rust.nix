@@ -5,10 +5,6 @@
     rustup
     # Compilation cache
     sccache
-    # Build tool
-    just
-    # Benchmarking
-    hyperfine
   ];
 
   home.sessionVariables = {
