@@ -15,8 +15,8 @@
     ../printing.nix
     ../zsh.nix
     ../gpg.nix
-    ../xmonad.nix
     ../packages.nix
+    ../xmonad.nix
   ];
 
   # Flakes support
