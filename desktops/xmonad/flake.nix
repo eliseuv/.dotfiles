@@ -2,16 +2,18 @@
 
   imports = [ ./xmobar/flake.nix ./rofi/flake.nix ];
 
-  home.packages = with pkgs;
-    [
-      # Audio mixer
-      pulsemixer
-    ];
+  home.packages = with pkgs; [
+    # Status bar
+    xmobar
+    # Audio mixer
+    pulsemixer
+  ];
 
-  # Copy config files
-  home.file.".config/xmonad" = {
-    source = ./xmonad;
-    recursive = true;
+  xsession.windowManager.xmonad = {
+    enable = true;
+    enableContribAndExtras = true;
+    config = ./config/xmonad.hs;
+    libFiles = { "Colors/DoomOne.hs" = ./config/lib/Colors/DoomOne.hs; };
   };
 
   # Copy Wallpapers
