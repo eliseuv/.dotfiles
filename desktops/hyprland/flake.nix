@@ -18,7 +18,7 @@
 
   programs.waybar = {
     enable = true;
-    systemd.enable = false;
+    systemd.enable = true;
   };
 
   wayland.windowManager.hyprland = {

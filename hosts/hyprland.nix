@@ -1,14 +1,12 @@
 { ... }: {
 
   # Display Manager
-  services.xserver = {
+  services.xserver.enable = true;
+  services.displayManager.sddm = {
     enable = true;
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-      autoNumlock = true;
-      settings = { general.numlock = true; };
-    };
+    wayland.enable = true;
+    autoNumlock = true;
+    settings = { general.numlock = true; };
   };
 
   # Hyprland
@@ -17,5 +15,8 @@
     xwayland.enable = true;
     withUWSM = true;
   };
+
+  # Status bar
+  programs.waybar.enable = true;
 
 }
