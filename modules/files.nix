@@ -1,10 +1,12 @@
 { config, pkgs, ... }: {
 
   home.packages = with pkgs; [
-    # Disk encryption
+    # LUKS
     cryptsetup
     # File manager
     nautilus
+    # Encryption
+    veracrypt
   ];
 
   services = {
