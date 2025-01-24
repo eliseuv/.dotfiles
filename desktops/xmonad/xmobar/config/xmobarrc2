@@ -36,7 +36,7 @@ Config
                                 ]
                                 ["-L", "20", "-H", "50", "-m", "1", "-p", "3"] 60
                       -- Volume
-                    , Run Com "sh" ["-c", "./volume"] "volume" 10
+                    , Run Com "sh" ["-c", "~/.config/xmobar/volume"] "volume" 10
                       -- user@hostname
                     , Run Com "sh" ["-c", "echo $(whoami)@$(hostname)"] "user" 0
                       -- Runs a standard shell command 'uname -r' to get kernel version
