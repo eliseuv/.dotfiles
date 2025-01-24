@@ -13,7 +13,7 @@
           top = 2;
           left = 4;
         };
-        height = 16;
+        height = 18;
       };
       display = {
         color = {
@@ -24,75 +24,77 @@
         separator = " 󰁔 ";
       };
       modules = [
+        "break"
         {
           type = "title";
           color = {
-            user = "magenta";
-            host = "blue";
+            user = "cyan";
+            at = "blue";
+            host = "cyan";
           };
         }
         "break"
         {
           type = "os";
           key = " ╭─  ";
-          keyColor = "cyan";
+          keyColor = "blue";
         }
         {
           type = "kernel";
           key = " ├─  ";
-          keyColor = "cyan";
+          keyColor = "blue";
         }
         {
           type = "packages";
           key = " ├─  ";
-          keyColor = "cyan";
+          keyColor = "blue";
         }
         {
           type = "wm";
           key = " ├─  ";
-          keyColor = "cyan";
+          keyColor = "blue";
         }
         {
           type = "terminal";
           key = " ├─  ";
-          keyColor = "cyan";
+          keyColor = "blue";
         }
         {
           type = "shell";
           key = " ╰─  ";
-          keyColor = "cyan";
+          keyColor = "blue";
         }
         "break"
         {
           type = "host";
           key = " ╭─  ";
-          keyColor = "blue";
+          keyColor = "magenta";
         }
         {
           type = "cpu";
           key = " ├─ 󰍛 ";
-          keyColor = "blue";
+          keyColor = "magenta";
         }
         {
           type = "memory";
           key = " ├─  ";
-          keyColor = "blue";
+          keyColor = "magenta";
         }
         {
           type = "disk";
           key = " ├─ 󱛟 ";
-          keyColor = "blue";
+          keyColor = "magenta";
           format = "{name}: {size-total} ({size-percentage})";
         }
         {
           type = "gpu";
           key = " ├─  ";
-          keyColor = "blue";
+          keyColor = "magenta";
         }
         {
           type = "display";
           key = " ╰─ 󰍹 ";
-          keyColor = "blue";
+          keyColor = "magenta";
           compactType = "original-with-refresh-rate";
         }
         "break"
