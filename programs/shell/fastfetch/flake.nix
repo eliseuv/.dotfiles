@@ -9,7 +9,10 @@
       logo = {
         type = "kitty";
         source = "~/.config/fastfetch/nixos.png";
-        padding = { left = 2; };
+        padding = {
+          top = 2;
+          left = 4;
+        };
         height = 16;
       };
       display = {
