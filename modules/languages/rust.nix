@@ -5,6 +5,8 @@
     rustup
     # Compilation cache
     sccache
+    # OpenSSL needed by some crates
+    openssl
   ];
 
   home.sessionVariables = {

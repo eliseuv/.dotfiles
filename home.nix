@@ -5,8 +5,19 @@
     ./modules/gpg.nix
     ./modules/git.nix
     ./modules/files.nix
-    ./desktops/xmonad/flake.nix
-    ./desktops/hyprland/flake.nix
+    ./modules/tools.nix
+    ./modules/languages/nix.nix
+    ./modules/languages/rust.nix
+    ./modules/languages/haskell.nix
+    ./modules/languages/c.nix
+    ./modules/languages/go.nix
+    ./modules/languages/zig.nix
+    ./modules/languages/python.nix
+    ./modules/languages/fortran.nix
+    ./modules/languages/julia.nix
+    ./modules/languages/ocaml.nix
+    ./modules/languages/lean.nix
+    ./modules/languages/web.nix
     ./programs/shell/flake.nix
     ./programs/terminal/ghostty/flake.nix
     ./programs/editors/neovim/flake.nix
@@ -24,12 +35,8 @@
     ./programs/media/spotify/flake.nix
     ./programs/communication/telegram/flake.nix
     ./programs/communication/discord/flake.nix
-    ./modules/languages/nix.nix
-    ./modules/languages/rust.nix
-    ./modules/languages/haskell.nix
-    ./modules/languages/c.nix
-    ./modules/languages/go.nix
-    ./modules/languages/tools.nix
+    ./desktops/xmonad/flake.nix
+    ./desktops/hyprland/flake.nix
   ];
 
   home = {
