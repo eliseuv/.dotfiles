@@ -10,7 +10,7 @@
         type = "kitty";
         source = "~/.config/fastfetch/nixos.png";
         padding = {
-          top = 2;
+          top = 1;
           left = 4;
         };
         height = 18;

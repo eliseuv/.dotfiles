@@ -1,6 +1,10 @@
 { config, pkgs, ... }: {
 
-  imports = [ ./xmobar/flake.nix ./rofi/flake.nix ];
+  imports = [
+    ./xmobar/flake.nix
+    # Menu
+    ./rofi/flake.nix
+  ];
 
   home.packages = with pkgs; [
     # Status bar

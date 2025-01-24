@@ -530,7 +530,8 @@ myKeys c =
             , ("M-S-s", addName "Screenshot" $ spawn "scrot ~/Storage/Images/screenshots/%Y-%m-%d_%H-%M-%S.png -s")
             , ("M-S-q", addName "Kill focused window" kill1)
             , ("M-S-a", addName "Kill all windows on WS" killAll)
-            , ("M-S-<Return>", addName "Run prompt" $ spawn "rofi -show combi")
+            , ("M-S-<Return>", addName "Run prompt" $ spawn "~/.config/rofi/bin/launcher")
+            -- , ("M-S-<Return>", addName "Run prompt" $ spawn "rofi -show combi")
             -- , ("M-S-<Return>", addName "Run prompt" $ spawn "ulauncher")
             -- , ("M-/",                 addName "DTOS Help"                 $ spawn "dtos-help")
             ]
@@ -717,7 +718,7 @@ myKeys c =
                 , ("<XF86Mail>", addName "Email client" $ runOrRaise "thunderbird" (resource =? "thunderbird"))
                 , ("<XF86Calculator>", addName "Calculator" $ runOrRaise "qalculate-gtk" (resource =? "qalculate-gtk"))
                 , ("<XF86Eject>", addName "Eject /dev/cdrom" $ spawn "eject /dev/cdrom")
-                , ("<Print>", addName "Take screenshot (dmscripts)" $ spawn "dm-maim")
+                , ("<Print>", addName "Screenshot menu" $ spawn "~/.config/rofi/bin/screenshot")
                 , ("M--", addName "Lower vol" $ spawn "wpctl set-volume @DEFAULT_SINK@ 5%-")
                 , ("M-=", addName "Raise vol" $ spawn "wpctl set-volume @DEFAULT_SINK@ 5%+")
                 , ("M-\\", addName "Toggle audio mute" $ spawn "wpctl set-mute @DEFAULT_SINK@ toggle")
