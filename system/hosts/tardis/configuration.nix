@@ -2,6 +2,7 @@
   imports = [ # Include the results of the hardware scan.
     ./hardware.nix
     ../../extra/garbage-collection.nix
+    ../../extra/store-optimisation.nix
     ../../hardware/bootloader.nix
     ../../hardware/disks.nix
     ../../hardware/audio.nix
