@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
 
   services.displayManager.defaultSession = "none+xmonad";
   services.xserver = {
@@ -7,7 +7,13 @@
     enable = true;
 
     # LightDM
-    displayManager.lightdm.enable = true;
+    displayManager.lightdm = {
+      enable = true;
+      extraConfig = ''
+        [Seat:*]
+        greeter-setup-script=${pkgs.numlockx}/bin/numlockx on
+      '';
+    };
 
     # XMonad
     windowManager.xmonad = {
