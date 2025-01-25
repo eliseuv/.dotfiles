@@ -3,6 +3,7 @@
   imports = [
     ./hardware.nix
     ../../extra/garbage-collection.nix
+    ../../extra/store-optimisation.nix
     ../../extra/virtualization.nix
     ../../hardware/bootloader.nix
     ../../hardware/disks.nix
