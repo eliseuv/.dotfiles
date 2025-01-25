@@ -24,7 +24,7 @@
 
   # Wallpapers
   services.hyprpaper = { enable = true; };
-  home.file."wallpapers" = {
+  home.file.".wallpapers" = {
     source = ../wallpapers;
     recursive = true;
   };
@@ -33,7 +33,7 @@
   services.hypridle = { enable = true; };
   home.file.".config/hypr/hypridle.conf".source = ./hypr/hypridle.conf;
   programs.hyprlock = { enable = true; };
-  home.file.".config/hypr/hyprlock.conf".source = ./hypr/hyprlock.conf;
+  # home.file.".config/hypr/hyprlock.conf".source = ./hypr/hyprlock.conf;
 
   wayland.windowManager.hyprland = { enable = false; };
 
