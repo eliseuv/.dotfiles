@@ -8,8 +8,9 @@
       enable = true;
       enabledExtensions = with spicePkgs.extensions; [
         adblock
+        shuffle
+        beautifulLyrics
         hidePodcasts
-        shuffle # shuffle+ (special characters are sanitized out of extension names)
       ];
       theme = spicePkgs.themes.catppuccin;
       colorScheme = "mocha";
