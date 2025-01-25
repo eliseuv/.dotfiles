@@ -1,6 +1,6 @@
 { ... }: {
 
-  imports = [ ../sddm/flake.nix ];
+  imports = [ ./sddm.nix ];
 
   # Hyprland
   programs.hyprland = {

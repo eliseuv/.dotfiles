@@ -22,7 +22,7 @@
 
   # Copy Wallpapers
   home.file.".wallpapers" = {
-    source = ../wallpapers;
+    source = ../../../wallpapers;
     recursive = true;
   };
   home.file.".xmonad/.fehbg".source = ./config/.fehbg;

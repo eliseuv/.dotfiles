@@ -25,7 +25,7 @@
   # Wallpapers
   services.hyprpaper = { enable = true; };
   home.file.".wallpapers" = {
-    source = ../wallpapers;
+    source = ../../../wallpapers;
     recursive = true;
   };
 
