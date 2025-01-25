@@ -13,7 +13,7 @@
           top = 1;
           left = 4;
         };
-        height = 18;
+        height = 16;
       };
       display = {
         color = {
