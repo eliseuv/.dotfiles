@@ -35,37 +35,6 @@
         }
         "break"
         {
-          type = "os";
-          key = " ╭─  ";
-          keyColor = "blue";
-        }
-        {
-          type = "kernel";
-          key = " ├─  ";
-          keyColor = "blue";
-        }
-        {
-          type = "packages";
-          key = " ├─  ";
-          keyColor = "blue";
-        }
-        {
-          type = "wm";
-          key = " ├─  ";
-          keyColor = "blue";
-        }
-        {
-          type = "terminal";
-          key = " ├─  ";
-          keyColor = "blue";
-        }
-        {
-          type = "shell";
-          key = " ╰─  ";
-          keyColor = "blue";
-        }
-        "break"
-        {
           type = "host";
           key = " ╭─  ";
           keyColor = "magenta";
@@ -96,6 +65,37 @@
           key = " ╰─ 󰍹 ";
           keyColor = "magenta";
           compactType = "original-with-refresh-rate";
+        }
+        "break"
+        {
+          type = "os";
+          key = " ╭─  ";
+          keyColor = "blue";
+        }
+        {
+          type = "kernel";
+          key = " ├─  ";
+          keyColor = "blue";
+        }
+        {
+          type = "packages";
+          key = " ├─  ";
+          keyColor = "blue";
+        }
+        {
+          type = "wm";
+          key = " ├─  ";
+          keyColor = "blue";
+        }
+        {
+          type = "terminal";
+          key = " ├─  ";
+          keyColor = "blue";
+        }
+        {
+          type = "shell";
+          key = " ╰─  ";
+          keyColor = "blue";
         }
         "break"
       ];
