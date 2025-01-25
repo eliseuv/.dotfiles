@@ -14,11 +14,11 @@
       nixosConfigurations = {
         GLaDOS = lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/GLaDOS/configuration.nix ];
+          modules = [ ./system/hosts/GLaDOS/configuration.nix ];
         };
         tardis = lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/tardis/configuration.nix ];
+          modules = [ ./system/hosts/tardis/configuration.nix ];
         };
       };
       homeConfigurations = {

@@ -2,21 +2,21 @@
 
   imports = [
     ./hardware.nix
-    ../bootloader.nix
-    ../garbage-collection.nix
-    ../user.nix
-    ../keyboard.nix
-    ../audio.nix
-    ../automount.nix
-    ../network.nix
-    ../time.nix
-    ../locale.nix
-    ../virtualization.nix
-    ../printing.nix
-    ../zsh.nix
-    ../gpg.nix
-    ../packages.nix
-    ../xmonad.nix
+    ../../bootloader.nix
+    ../../garbage-collection.nix
+    ../../user.nix
+    ../../keyboard.nix
+    ../../audio.nix
+    ../../automount.nix
+    ../../network.nix
+    ../../time.nix
+    ../../locale.nix
+    ../../virtualization.nix
+    ../../printing.nix
+    ../../zsh.nix
+    ../../gpg.nix
+    ../../packages.nix
+    ../../xmonad.nix
   ];
 
   # Flakes support

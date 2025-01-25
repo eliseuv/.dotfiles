@@ -1,20 +1,20 @@
 { config, pkgs, lib, ... }: {
   imports = [ # Include the results of the hardware scan.
     ./hardware.nix
-    ../bootloader.nix
-    ../garbage-collection.nix
-    ../user.nix
-    ../keyboard.nix
-    ../audio.nix
-    ../automount.nix
-    ../network.nix
-    ../time.nix
-    ../locale.nix
-    ../printing.nix
-    ../zsh.nix
-    ../gpg.nix
-    ../packages.nix
-    ../hyprland.nix
+    ../../bootloader.nix
+    ../../garbage-collection.nix
+    ../../user.nix
+    ../../keyboard.nix
+    ../../audio.nix
+    ../../automount.nix
+    ../../network.nix
+    ../../time.nix
+    ../../locale.nix
+    ../../printing.nix
+    ../../zsh.nix
+    ../../gpg.nix
+    ../../packages.nix
+    ../../desktop/hyprland/flake.nix
   ];
 
   # Flakes support
