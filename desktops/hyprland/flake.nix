@@ -11,7 +11,7 @@
     ];
 
   # Catppuccin theme
-  home.file.".config/hypr/catpuccin" = {
+  home.file.".config/hypr/catppuccin" = {
     source = ./hypr/catppuccin;
     recursive = true;
   };
