@@ -5,9 +5,13 @@
     rustup
     # Compilation cache
     sccache
-    # OpenSSL needed by some crates
-    openssl
+    # https://nixos.wiki/wiki/Rust#Building_Rust_crates_that_require_external_system_libraries
+    openssl.dev
+    pkg-config
   ];
+
+  # Cargo will look for OpenSSL with pkg-config
+  home.sessionVariables.PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
 
   home.sessionVariables = {
     RUST_BACKTRACE = 1;
