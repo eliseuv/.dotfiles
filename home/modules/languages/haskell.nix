@@ -7,7 +7,10 @@
     haskell-language-server
     # Projects
     cabal-install
+    cabal2nix
     stack
+    # Prettifier
+    stylish-haskell
   ];
 
 }
