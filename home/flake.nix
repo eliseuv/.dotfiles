@@ -47,15 +47,10 @@
   nixpkgs.config.allowUnfree = true;
 
   programs.home-manager.enable = true;
-  services.home-manager.autoUpgrade = {
-    enable = true;
-    frequency = "weekly";
-  };
 
-  # Garbage collection  
   nix.gc = {
     automatic = true;
-    frequency = "weekly";
+    frequency = "daily";
     options = "--delete-older-than 7d";
   };
 
