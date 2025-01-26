@@ -2,6 +2,7 @@
 
   imports = [
     ./hardware.nix
+    ./nvidia.nix
     ../../extra/garbage-collection.nix
     ../../extra/store-optimisation.nix
     ../../extra/virtualization.nix
@@ -32,11 +33,13 @@
   # Setup monitors
   services.xserver.displayManager.sessionCommands = ''
     ${pkgs.xorg.xrandr}/bin/xrandr \
-      --output HDMI-1 --primary --mode 1920x1080 --rate 120 --pos 1080x1080 --rotate normal \
-      --output DP-2 --mode 2560x1080 --rate 75 --pos 440x0 --rotate normal \
-      --output DP-3 --mode 1920x1080 --pos 0x1080 --rotate left \
-      --output DP-1 --off \
-      --output DP-4 --off \
+          --output HDMI-0 --primary --mode 1920x1080 --rate 120 --pos 1080x1080 --rotate normal \
+          --output DP-4 --mode 2560x1080 --rate 75 --pos 440x0 --rotate normal \
+          --output DP-0 --mode 1920x1080 --pos 0x1080 --rotate left \
+          --output DP-1 --off \
+          --output DP-2 --off \
+          --output DP-3 --off \
+          --output DP-5 --off
   '';
 
   system.stateVersion = "24.11";
