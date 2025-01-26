@@ -24,9 +24,6 @@
       };
     };
 
-    # File syncronization
-    syncthing = { enable = true; };
-
   };
 
 }

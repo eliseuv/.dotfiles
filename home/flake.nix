@@ -6,6 +6,7 @@
     ./modules/git.nix
     ./modules/files.nix
     ./modules/tools.nix
+    ./modules/syncthing.nix
     ./modules/languages/nix.nix
     ./modules/languages/rust.nix
     ./modules/languages/haskell.nix
