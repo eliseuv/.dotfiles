@@ -2,9 +2,8 @@
 
   imports = [
     ./hardware.nix
-    ./nvidia.nix
-    ../../extra/garbage-collection.nix
-    ../../extra/store-optimisation.nix
+    ../../maintenance/store-optimisation.nix
+    ../../maintenance/garbage-collection.nix
     ../../extra/virtualization.nix
     ../../hardware/bootloader.nix
     ../../hardware/disks.nix
@@ -12,6 +11,7 @@
     ../../hardware/network.nix
     ../../hardware/keyboard.nix
     ../../hardware/printing.nix
+    ../../hardware/nvidia.nix
     ../../environment/zsh.nix
     ../../environment/user.nix
     ../../environment/time.nix
