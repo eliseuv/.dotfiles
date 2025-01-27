@@ -29,6 +29,7 @@
     ./programs/browsers/chromium/flake.nix
     ./programs/browsers/brave/flake.nix
     ./programs/documents/zathura/flake.nix
+    ./programs/documents/calibre/flake.nix
     ./programs/media/feh/flake.nix
     ./programs/media/sxiv/flake.nix
     ./programs/media/ncmpcpp/flake.nix
