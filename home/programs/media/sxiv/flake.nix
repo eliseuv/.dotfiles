@@ -2,6 +2,10 @@
 
   home.packages = with pkgs; [ sxiv ];
 
-  xdg.mimeApps.defaultApplications = { "image/*" = [ "sxiv.desktop" ]; };
+  xdg.mimeApps = {
+    enable = true;
+    associations.added = { "image/*" = [ "sxiv.desktop" ]; };
+    defaultApplications = { "image/*" = [ "sxiv.desktop" ]; };
+  };
 
 }

@@ -15,6 +15,10 @@
     scripts = [ pkgs.mpvScripts.thumbfast pkgs.mpvScripts.mpv-playlistmanager ];
   };
 
-  xdg.mimeApps.defaultApplications = { "video/*" = [ "mpv.desktop" ]; };
+  xdg.mimeApps = {
+    enable = true;
+    associations.added = { "video/*" = [ "mpv.desktop" ]; };
+    defaultApplications = { "video/*" = [ "mpv.desktop" ]; };
+  };
 
 }
