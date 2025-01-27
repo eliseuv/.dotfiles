@@ -18,8 +18,7 @@
     ../../environment/locale.nix
     ../../environment/gpg.nix
     ../../environment/packages.nix
-    ../../desktop/display-manager/lightdm.nix
-    ../../desktop/window-manager/xmonad.nix
+    ../../desktop/xmonad.nix
   ];
 
   # Flakes support
