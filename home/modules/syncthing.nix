@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ ... }: {
 
   services.syncthing = {
     enable = true;
@@ -10,7 +10,7 @@
       folders = {
         "music" = {
           enable = true;
-          path = "/run/media/evf/Storage/CompanionCube/music/";
+          path = "/run/media/evf/Storage/CompanionCube/music";
           devices = [ "galaxy-A53" ];
         };
       };

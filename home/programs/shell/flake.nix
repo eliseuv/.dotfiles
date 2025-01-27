@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ ... }: {
+
   imports = [
     ./tools/flake.nix
     ./tmux/flake.nix
