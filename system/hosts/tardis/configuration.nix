@@ -15,7 +15,8 @@
     ../../environment/locale.nix
     ../../environment/gpg.nix
     ../../environment/packages.nix
-    ../../desktop/hyprland.nix
+    ../../desktop/display-manager/gdm.nix
+    ../../desktop/window-manager/hyprland.nix
   ];
 
   # Flakes support
