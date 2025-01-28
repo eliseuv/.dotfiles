@@ -87,10 +87,12 @@ set searchurls.x https://twitter.com/search?q=%s
 set searchurls.arch https://wiki.archlinux.org/index.php?search=%s
 set searchurls.nix https://nixos.wiki/index.php?search=%s&go=Go
 set searchurls.gentoo https://wiki.gentoo.org/index.php?search=%s
-set searchurls.mynixos https://mynixos.com/search?q=%s
 set searchurls.np https://search.nixos.org/packages?channel=unstable&query=%s
 set searchurls.pac https://archlinux.org/packages/?sort=&q=%s&maintainer=&flagged=
 set searchurls.aur https://aur.archlinux.org/packages?O=0&K=%s
+set searchurls.mynixos https://mynixos.com/search?q=%s
+set searchurls.noogle https://noogle.dev/q?term=%s
+
 " Torrent
 set searchurls.bt https://btdig.com/search?q=%s
 set searchurls.tpb https://thepiratebay.org/search.php?q=%s&all=on&search=Pirate+Search&
