@@ -1,6 +1,7 @@
 { config, pkgs, ... }: {
 
   imports = [
+    ./modules/scripts.nix
     ./modules/ssh.nix
     ./modules/gpg.nix
     ./modules/git.nix
