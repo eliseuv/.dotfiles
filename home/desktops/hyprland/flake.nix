@@ -1,6 +1,12 @@
 { pkgs, ... }: {
 
-  imports = [ ../rofi/flake.nix ./hyprpaper.nix ./hypridle.nix ];
+  imports = [
+    ../rofi/flake.nix
+    ./hyprpaper.nix
+    ./hypridle.nix
+    ./hyprlock.nix
+    ./waybar.nix
+  ];
 
   home.packages = with pkgs;
     [
@@ -242,17 +248,8 @@
 
   # Catppuccin theme
   home.file.".config/hypr/catppuccin" = {
-    source = ./config/catppuccin;
+    source = ./themes/catppuccin;
     recursive = true;
   };
-
-  # Status bar
-  programs.waybar = {
-    enable = true;
-    systemd.enable = true;
-  };
-
-  programs.hyprlock = { enable = true; };
-  # home.file.".config/hypr/hyprlock.conf".source = ./hypr/hyprlock.conf;
 
 }
