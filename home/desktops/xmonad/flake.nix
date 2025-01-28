@@ -3,7 +3,7 @@
   imports = [
     ./xmobar/flake.nix
     # Menu
-    ./rofi/flake.nix
+    ../rofi/flake.nix
   ];
 
   home.packages = with pkgs; [
