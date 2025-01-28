@@ -38,11 +38,10 @@ bind z fillcmdline bmarks
 bind ;f hint -wp
 
 " YouTube
-alias umpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('umpv ' + url))
-alias mpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('mpv ' + url))
-alias ytdlpsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('yt-dlp ' + url))
-bindurl youtube.com ,p hint -c [id="video-title-link"],[id="video-title"] -W umpvsafe
 bindurl youtube.com ;p hint -c [id="video-title-link"],[id="video-title"] -W mpvsafe
+alias umpvsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('umpv --no-terminal ' + url))
+bindurl youtube.com ,p hint -c [id="video-title-link"],[id="video-title"] -W umpvsafe
+alias ytdlpsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('yt-dlp ' + url))
 bindurl youtube.com ,d hint -c [id="video-title-link"],[id="video-title"] -W ytdlpsafe
 bindurl twitch.com ,p hint -c [class="tw-image"] -W mpvsafe
 bindurl piped.video ,p hint -c [class="focus:underline hover:underline inline-block w-full"] -W umpvsafe
