@@ -3,9 +3,11 @@
   inputs = {
     # NixOS unstable
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    # Home manager
-    home-manager.url = "github:nix-community/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # Home Manager
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Nix Index Database
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
@@ -26,13 +28,7 @@
         GLaDOS = lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
-          modules = [
-            # Host configuration
-            ./system/hosts/GLaDOS/configuration.nix
-            # Nix index database
-            nix-index-database.nixosModules.nix-index
-            { programs.nix-index-database.comma.enable = true; }
-          ];
+          modules = [ ./system/hosts/GLaDOS/configuration.nix ];
         };
         tardis = lib.nixosSystem {
           inherit system;
@@ -44,7 +40,13 @@
         evf = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs; };
-          modules = [ ./home/flake.nix ];
+          modules = [
+            ./home/flake.nix
+            # Nix Index Database
+            nix-index-database.hmModules.nix-index
+            # optional to also wrap and install comma
+            { programs.nix-index-database.comma.enable = true; }
+          ];
         };
       };
     };
