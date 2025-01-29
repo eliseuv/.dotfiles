@@ -6,7 +6,7 @@
       # flavor = "mocha";
       # font = "Noto Sans";
       # fontSize = "9";
-      background = "${../../../../wallpapers/outrun_vaporwave.jpg}";
+      background = "${../../../../wallpapers/glowing-triangle-neon.jpg}";
       loginBackground = true;
     })
   ];
