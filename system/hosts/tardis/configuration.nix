@@ -15,7 +15,7 @@
     ../../environment/locale.nix
     ../../environment/gpg.nix
     ../../environment/packages.nix
-    ../../desktop/display-manager/gdm.nix
+    ../../desktop/display-manager/sddm/flake.nix
     ../../desktop/window-manager/hyprland.nix
   ];
 
