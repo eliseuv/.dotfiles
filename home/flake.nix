@@ -19,6 +19,7 @@
     ./modules/languages/ocaml.nix
     ./modules/languages/lean.nix
     ./modules/languages/web.nix
+    ./scripts/flake.nix
     ./programs/shell/flake.nix
     ./programs/terminal/ghostty/flake.nix
     ./programs/editors/neovim/flake.nix
