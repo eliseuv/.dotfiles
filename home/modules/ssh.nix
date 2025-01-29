@@ -10,7 +10,7 @@
       # Alpine Linux VM
       "alpine-vm" = {
         hostname = "alpine-vm.local";
-        user = "evf";
+        user = "root";
       };
       # Personal computer at IF-UFRGS
       "if-ufrgs" = {
