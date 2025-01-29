@@ -53,7 +53,8 @@
           type = "disk";
           key = " ├─ 󱛟 ";
           keyColor = "magenta";
-          format = "{name}: {size-total} ({size-percentage})";
+          format =
+            "{name}: {size-total} {size-percentage-bar} ({size-percentage})";
         }
         {
           type = "gpu";
