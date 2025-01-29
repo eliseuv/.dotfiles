@@ -9,8 +9,8 @@
   services.hyprpaper = {
     enable = true;
     settings = {
-      preload = [ "~/.wallpapers/outrun_vaporwave.jpg" ];
-      wallpaper = [ ", ~/.wallpapers/outrun_vaporwave.jpg" ];
+      preload = [ "~/.wallpapers/dunes.webp" ];
+      wallpaper = [ ", ~/.wallpapers/dunes.webp" ];
     };
   };
 
