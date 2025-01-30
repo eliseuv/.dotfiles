@@ -19,7 +19,6 @@
     theme = "catppuccin-mocha";
     wayland.enable = true;
     autoNumlock = true;
-    settings = { general.numlock = true; };
   };
 
 }
