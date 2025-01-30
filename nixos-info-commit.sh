@@ -6,7 +6,7 @@ pushd ~/.dotfiles
 
 git diff -U0 '*.nix'
 
-git commit -am "$(hostname) @ $(nixos-rebuild list-generations | grep current)"
+git commit --allow-empty -am "$(hostname) @ $(nixos-rebuild list-generations | grep current)"
 
 git push
 
