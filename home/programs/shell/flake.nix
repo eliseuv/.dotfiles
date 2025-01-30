@@ -70,13 +70,4 @@
     stow = "stow --no-folding";
   };
 
-  # # Shell scripts
-  # home.sessionPath = [ "$HOME/.local/bin" ];
-  # home.file = {
-  #   ".local/bin" = {
-  #     source = ./scripts;
-  #     recursive = true;
-  #   };
-  # };
-
 }
