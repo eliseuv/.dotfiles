@@ -1,6 +1,7 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
 
   imports = [
+    ./monitors.nix
     ../rofi/flake.nix
     ./hyprpaper.nix
     ./hypridle.nix
@@ -14,12 +15,27 @@
       kitty
     ];
 
+  monitors = [{
+    width = 1920;
+    height = 1080;
+    refreshRate = 60;
+  }];
+
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
 
       # Monitors
-      monitor = " , 1920x1080@60, auto, 1";
+      # monitor = " , 1920x1080@60, auto, 1";
+      monitor = map (m:
+        let
+          resolution = "${toString m.width}x${toString m.height}@${
+              toString m.refreshRate
+            }";
+          position = "${toString m.x}x${toString m.y}";
+        in "${m.name},${
+          if m.enable then "${resolution},${position},${m.scale}" else "disable"
+        }") (config.monitors);
 
       # Variables
       "$terminal" = "ghostty";
