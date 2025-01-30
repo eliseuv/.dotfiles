@@ -34,7 +34,10 @@
             }";
           position = "${toString m.x}x${toString m.y}";
         in "${m.name},${
-          if m.enable then "${resolution},${position},${m.scale}" else "disable"
+          if m.enable then
+            "${resolution},${position},${toString m.scale}"
+          else
+            "disable"
         }") (config.monitors);
 
       # Variables
