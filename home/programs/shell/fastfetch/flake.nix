@@ -57,7 +57,7 @@
           format = "{name}: {size-total} ({size-percentage})";
         }
         {
-          type = "localip";
+          type = "memory";
           key = " ├─  ";
           keyColor = "magenta";
         }
