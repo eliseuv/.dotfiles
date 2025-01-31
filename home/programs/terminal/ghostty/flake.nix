@@ -15,8 +15,8 @@
       title = "ghostty";
       mouse-hide-while-typing = true;
       gtk-single-instance = true;
-      adw-toolbar-style = "raised";
       window-decoration = false;
+      gtk-adwaita = false;
     };
   };
 
