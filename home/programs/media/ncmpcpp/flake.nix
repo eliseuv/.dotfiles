@@ -25,6 +25,15 @@
     enable = true;
     package = pkgs.ncmpcpp.override { visualizerSupport = true; };
     bindings = [
+      # Movement
+      {
+        key = "h";
+        command = "previous_column";
+      }
+      {
+        key = "h";
+        command = "jump_to_parent_directory";
+      }
       {
         key = "j";
         command = "scroll_down";
@@ -34,21 +43,14 @@
         command = "scroll_up";
       }
       {
-        key = "h";
-        command = "previous_column";
-      }
-      {
         key = "l";
         command = "next_column";
-      }
-      {
-        key = "h";
-        command = "jump_to_parent_directory";
       }
       {
         key = "l";
         command = "enter_directory";
       }
+      # Selection
       {
         key = "J";
         command = [ "select_item" "scroll_down" ];
@@ -57,6 +59,7 @@
         key = "K";
         command = [ "select_item" "scroll_up" ];
       }
+      # Moving items
       {
         key = "ctrl-j";
         command = "move_selected_items_up";
@@ -65,6 +68,21 @@
         key = "ctrl-k";
         command = "move_selected_items_down";
       }
+      # Volume
+      {
+        key = "-";
+        command = "volume_down";
+      }
+      {
+        key = "=";
+        command = "volume_up";
+      }
+      # Modes
+      {
+        key = ";";
+        command = "show_clock";
+      }
+      # Database
       {
         key = "U";
         command = "update_database";
