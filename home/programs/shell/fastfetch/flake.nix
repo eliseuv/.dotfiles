@@ -21,7 +21,8 @@
           title = "blue";
         };
         percent = { type = 9; };
-        separator = " 󰁔 ";
+        # separator = " 󰁔 ";
+        separator = " ";
       };
       modules = [
         "break"
@@ -36,7 +37,7 @@
         "break"
         {
           type = "host";
-          key = " ╭─  ";
+          key = "  ";
           keyColor = "magenta";
         }
         {
@@ -53,8 +54,12 @@
           type = "disk";
           key = " ├─ 󱛟 ";
           keyColor = "magenta";
-          format =
-            "{name}: {size-total} {size-percentage-bar} ({size-percentage})";
+          format = "{name}: {size-total} ({size-percentage})";
+        }
+        {
+          type = "localip";
+          key = " ├─  ";
+          keyColor = "magenta";
         }
         {
           type = "gpu";
@@ -63,14 +68,19 @@
         }
         {
           type = "display";
-          key = " ╰─ 󰍹 ";
+          key = " │  ╰─ 󰍹 ";
           keyColor = "magenta";
           compactType = "original-with-refresh-rate";
+        }
+        {
+          type = "localip";
+          key = " ╰─ 󰲝 ";
+          keyColor = "magenta";
         }
         "break"
         {
           type = "os";
-          key = " ╭─  ";
+          key = "  ";
           keyColor = "blue";
         }
         {
@@ -85,17 +95,17 @@
         }
         {
           type = "wm";
-          key = " ├─  ";
+          key = " ╰─  ";
           keyColor = "blue";
         }
         {
           type = "terminal";
-          key = " ├─  ";
+          key = "    ╰─  ";
           keyColor = "blue";
         }
         {
           type = "shell";
-          key = " ╰─  ";
+          key = "       ╰─  ";
           keyColor = "blue";
         }
         "break"
