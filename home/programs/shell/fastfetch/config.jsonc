@@ -11,7 +11,7 @@
   "display": {
     "color": { "keys": "magenta", "title": "cyan" },
     "percent": { "type": 11 },
-    "separator": ": ",
+    "separator": " ",
   },
 
   "modules": [
