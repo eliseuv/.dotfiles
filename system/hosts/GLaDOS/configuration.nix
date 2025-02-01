@@ -22,6 +22,15 @@
     ../../desktop/window-manager/xmonad.nix
   ];
 
+  home-manager.extraSpecialArgs = {
+    vars = {
+      hostname = "GLaDOS";
+      class = "desktop";
+      monitors = [ ];
+      desktop = "xmonad";
+    };
+  };
+
   # Flakes support
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
