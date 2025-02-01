@@ -16,6 +16,7 @@
       mouse-hide-while-typing = true;
       gtk-single-instance = true;
       window-decoration = false;
+      gtk-titlebar = false;
       gtk-adwaita = false;
     };
   };
