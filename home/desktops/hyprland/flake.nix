@@ -71,6 +71,7 @@
 
         # Programs
         "$mainMod SHIFT, B, exec, $browser"
+        "$mainMod SHIFT, E, exec, emacsclient -nc -a 'emacs'"
         "$mainMod SHIFT, F, exec, $fileManager"
 
         # Commnads
