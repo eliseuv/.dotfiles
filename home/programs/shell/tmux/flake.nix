@@ -66,6 +66,10 @@
       # bind h previous-window
       # bind l next-window
 
+      # The default width and height of the floating pane
+      set -g @floax-width '90%'
+      set -g @floax-height '90%'
+
       set -g @catppuccin_flavour 'mocha'
       set -g @catppuccin_window_status_style "rounded"
     '';
