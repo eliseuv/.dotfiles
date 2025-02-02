@@ -613,8 +613,6 @@ myKeys c =
                 "Shell commands"
                 [ ("M-M1-h", addName "Launch bottom" $ spawn (myTerminalCommand "btm"))
                 , ("M-M1-m", addName "Launch pulsemixer" $ spawn (myTerminalCommand "pulsemixer"))
-                , ("M-M1-n", addName "Launch neonmodem" $ spawn (myAlacrittyCommand "neonmodem"))
-                , ("M-M1-u", addName "Update system" $ spawn (myTerminalCommand " ~/.local/bin/update"))
                 ]
             ^++^ subKeys
                 "Monitors"

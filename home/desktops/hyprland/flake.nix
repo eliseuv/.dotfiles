@@ -42,6 +42,7 @@
 
       # Variables
       "$terminal" = "ghostty";
+      "$terminalCommand" = "ghostty -e ";
       "$menu" = "~/.config/rofi/bin/launcher";
       "$browser" = "firefox";
       "$fileManager" = "nautilus";
@@ -66,14 +67,18 @@
         "$mainMod, return, exec, $terminal"
 
         # Menu
-        "$mainMod Shift, return, exec, $menu"
+        "$mainMod SHIFT, return, exec, $menu"
 
         # Programs
-        "$mainMod Shift, B, exec, $browser"
-        "$mainMod Shift, F, exec, $fileManager"
+        "$mainMod SHIFT, B, exec, $browser"
+        "$mainMod SHIFT, F, exec, $fileManager"
+
+        # Commnads
+        "$mainMod ALT, H, exec, $terminalCommand btm"
+        "$mainMod ALT, M, exec, $terminalCommand pulsemixer"
 
         # Kill window
-        "$mainMod Shift, Q, killactive,"
+        "$mainMod SHIFT, Q, killactive,"
 
         # Move focus
         "$mainMod, H, movefocus, l"
@@ -262,6 +267,12 @@
         # Media
         "workspace 4, class:Spotify"
         "workspace 4, class:mpv"
+        # Documents
+        "workspace 5, class:org.pwmt.zathura"
+        # Chat
+        "workspace 6, class:org.telegram.desktop"
+        "workspace 6, class:discord"
+
       ];
 
       # Workspace rules
