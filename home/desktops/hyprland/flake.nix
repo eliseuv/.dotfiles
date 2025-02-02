@@ -253,12 +253,15 @@
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
         # Default workspaces for programs
         # Editors
-        "workspace 2, class:emacs"
-        "workspace 2, class:zed"
+        "workspace 2, class:Emacs"
+        "workspace 2, class:dev.zed.Zed"
         # Browsers
         "workspace 3, class:firefox"
-        "workspace 3, class:brave-browser"
-        "workspace 3, class:chromium-browser"
+        "workspace 3, class:Brave-browser"
+        "workspace 3, class:Chromium-browser"
+        # Media
+        "workspace 4, class:Spotify"
+        "workspace 4, class:mpv"
       ];
 
       # Workspace rules
