@@ -80,11 +80,17 @@
         # Kill window
         "$mainMod SHIFT, Q, killactive,"
 
-        # Move focus
+        # Select
         "$mainMod, H, movefocus, l"
         "$mainMod, L, movefocus, r"
         "$mainMod, K, movefocus, u"
         "$mainMod, J, movefocus, d"
+
+        # Move
+        "$mainMod SHIFT, H, movewindow, l"
+        "$mainMod SHIFT, L, movewindow, r"
+        "$mainMod SHIFT, K, movewindow, u"
+        "$mainMod SHIFT, J, movewindow, d"
 
         # Layouts
         "$mainMod, space,fullscreen"
