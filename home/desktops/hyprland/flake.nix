@@ -252,7 +252,13 @@
         # Fix some dragging issues with XWayland
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
         # Default workspaces for programs
+        # Editors
+        "workspace 2, class:emacs"
+        "workspace 2, class:zed"
+        # Browsers
         "workspace 3, class:firefox"
+        "workspace 3, class:brave-browser"
+        "workspace 3, class:chromium-browser"
       ];
 
       # Workspace rules
