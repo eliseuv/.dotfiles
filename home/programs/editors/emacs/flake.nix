@@ -1,14 +1,12 @@
 { pkgs, ... }: {
 
-  home.packages = with pkgs; [
-    cmakeMinimal
-    # Fonts
-    alegreya
-    ibm-plex
-    symbola
-  ];
-
-  home.sessionVariables = { CMAKE_C_COMPILER = "${pkgs.gcc}/bin/gcc"; };
+  home.packages = with pkgs;
+    [
+      # Fonts
+      alegreya
+      ibm-plex
+      symbola
+    ] ++ [ cmake gnumake libtool ];
 
   home.file = {
     ".config/doom" = {
@@ -19,6 +17,9 @@
 
   home.sessionPath = [ "$HOME/.config/emacs/bin" ];
 
-  programs.emacs.enable = true;
+  programs.emacs = {
+    enable = true;
+    extraPackages = epkgs: [ ];
+  };
 
 }
