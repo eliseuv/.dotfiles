@@ -48,7 +48,7 @@
       "$fileManager" = "nautilus";
 
       # Autostart
-      exec-once = [ "waybar &" ];
+      exec-once = [ ];
 
       # Environment variables
       env = [
