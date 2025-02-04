@@ -2,9 +2,9 @@
 
   imports = [
     ./hardware.nix
+    ../../environment/default.nix
     ../../maintenance/store-optimisation.nix
     ../../maintenance/garbage-collection.nix
-    ../../extra/virtualization.nix
     ../../hardware/bootloader.nix
     ../../hardware/disks.nix
     ../../hardware/audio.nix
@@ -12,24 +12,10 @@
     ../../hardware/keyboard.nix
     ../../hardware/printing.nix
     ../../hardware/nvidia.nix
-    ../../environment/zsh.nix
-    ../../environment/user.nix
-    ../../environment/time.nix
-    ../../environment/locale.nix
-    ../../environment/gpg.nix
-    ../../environment/packages.nix
+    ../../extra/virtualization.nix
     ../../desktop/display-manager/lightdm.nix
     ../../desktop/window-manager/xmonad.nix
   ];
-
-  home-manager.extraSpecialArgs = {
-    vars = {
-      hostname = "GLaDOS";
-      class = "desktop";
-      monitors = [ ];
-      desktop = "xmonad";
-    };
-  };
 
   # Flakes support
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
