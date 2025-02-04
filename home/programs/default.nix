@@ -1,0 +1,43 @@
+{ pkgs, ... }: {
+  imports = [
+
+    # Terminal emulators
+    ./terminal/ghostty.nix
+
+    # Text editors
+    ./editor/emacs.nix
+    ./editor/helix.nix
+    ./editor/neovim.nix
+    ./editor/zed.nix
+
+    # Web browsers
+    ./browser/brave.nix
+    ./browser/chromium.nix
+    ./browser/firefox.nix
+
+    # Documents
+    ./documents/calibre.nix
+    ./documents/zathura.nix
+
+    # Media
+    ./media/feh.nix
+    ./media/mpv.nix
+    ./media/ncmpcpp.nix
+    ./media/spotify.nix
+    ./media/sxiv.nix
+
+    # Social
+    ./social/discord.nix
+    ./social/telegram.nix
+  ];
+
+  home.packages = with pkgs; [
+
+    # File manager
+    nautilus
+
+    # Encryption
+    veracrypt
+  ];
+
+}
