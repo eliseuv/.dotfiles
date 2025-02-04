@@ -1,19 +1,19 @@
-{ ... }: {
+{ pkgs, ... }: {
 
-  imports = [
-    ./c.nix
-    ./fortran.nix
-    ./go.nix
-    ./haskell.nix
-    ./julia.nix
-    ./lean.nix
-    ./nix.nix
-    ./ocaml.nix
-    ./python.nix
-    ./rust.nix
-    ./tools.nix
-    ./web.nix
-    ./zig.nix
+  imports = [ ./nix.nix ./python.nix ./rust.nix ];
+
+  home.packages = with pkgs; [
+
+    # C compilers
+    (hiPrio clang)
+    gcc
+
+    # Command runner
+    just
+
+    # Benchmarking
+    hyperfine
+
   ];
 
 }
