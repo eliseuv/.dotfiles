@@ -1,6 +1,8 @@
 { config, pkgs, lib, ... }: {
-  imports = [ # Include the results of the hardware scan.
+
+  imports = [
     ./hardware.nix
+    ../../environment/default.nix
     ../../maintenance/garbage-collection.nix
     ../../maintenance/store-optimisation.nix
     ../../hardware/bootloader.nix
@@ -9,13 +11,7 @@
     ../../hardware/network.nix
     ../../hardware/keyboard.nix
     ../../hardware/printing.nix
-    ../../environment/zsh.nix
-    ../../environment/user.nix
-    ../../environment/time.nix
-    ../../environment/locale.nix
-    ../../environment/gpg.nix
-    ../../environment/packages.nix
-    ../../desktop/display-manager/sddm/flake.nix
+    ../../desktop/display-manager/sddm.nix
     ../../desktop/window-manager/hyprland.nix
   ];
 
@@ -23,7 +19,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Hostname
-  networking.hostName = "tardis"; # Define your hostname.
+  networking.hostName = "tardis";
 
   # Disk encryption
   boot.initrd.luks.devices."luks-2ac9cd27-6ff4-4407-9808-c63a5251c44c".device =

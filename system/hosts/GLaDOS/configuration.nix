@@ -3,8 +3,8 @@
   imports = [
     ./hardware.nix
     ../../environment/default.nix
-    ../../maintenance/store-optimisation.nix
     ../../maintenance/garbage-collection.nix
+    ../../maintenance/store-optimisation.nix
     ../../hardware/bootloader.nix
     ../../hardware/disks.nix
     ../../hardware/audio.nix

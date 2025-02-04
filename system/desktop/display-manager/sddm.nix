@@ -6,9 +6,8 @@
       # flavor = "mocha";
       # font = "Noto Sans";
       # fontSize = "9";
-      background =
-        "${../../../../resources/wallpapers/glowing-triangle-neon.jpg}";
       loginBackground = true;
+      background = "${../../../resources/wallpapers/glowing-triangle-neon.jpg}";
     })
   ];
 
