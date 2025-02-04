@@ -29,6 +29,8 @@
     ./ssh.nix
     # Fetch
     ./fastfetch.nix
+    # Development
+    ./dev/default.nix
     # Scripts
     ./scripts.nix
   ];
