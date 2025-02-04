@@ -91,6 +91,7 @@ set searchurls.np https://search.nixos.org/packages?channel=unstable&query=%s
 set searchurls.pac https://archlinux.org/packages/?sort=&q=%s&maintainer=&flagged=
 set searchurls.aur https://aur.archlinux.org/packages?O=0&K=%s
 set searchurls.mynixos https://mynixos.com/search?q=%s
+set searchurls.hm https://home-manager-options.extranix.com/?query=%s&release=master
 set searchurls.noogle https://noogle.dev/q?term=%s
 
 " Torrent
