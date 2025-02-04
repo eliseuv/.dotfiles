@@ -31,6 +31,8 @@
     ./fastfetch.nix
     # Development
     ./dev/default.nix
+    # Documents
+    ./typst.nix
     # Scripts
     ./scripts.nix
   ];
