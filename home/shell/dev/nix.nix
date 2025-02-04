@@ -1,5 +1,14 @@
 { config, pkgs, ... }: {
 
-  home.packages = with pkgs; [ nil nixd nixfmt-classic ];
+  home.packages = with pkgs; [
+
+    # LSP
+    nil
+    nixd
+
+    # Formatter
+    nixfmt-classic
+
+  ];
 
 }

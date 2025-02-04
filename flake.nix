@@ -56,13 +56,14 @@
         inherit pkgs;
         extraSpecialArgs = { inherit inputs; };
         modules = [
+
           ./home/home.nix
 
           # Nix Index Database
           nix-index-database.hmModules.nix-index
-
           # optional to also wrap and install comma
           { programs.nix-index-database.comma.enable = true; }
+
         ];
       };
 

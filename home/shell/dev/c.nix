@@ -1,5 +1,9 @@
 { pkgs, ... }: {
 
-  home.packages = with pkgs; [ (hiPrio gcc) clang ];
+  home.packages = with pkgs; [
+    # Give Clang compiler priority
+    (hiPrio clang)
+    gcc
+  ];
 
 }

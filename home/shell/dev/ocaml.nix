@@ -1,5 +1,9 @@
 { pkgs, ... }: {
 
-  home.packages = with pkgs; [ ocaml ];
+  home.packages = with pkgs;
+    [
+      # Package manager
+      opam
+    ];
 
 }
