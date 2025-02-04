@@ -13,6 +13,7 @@
     ../../hardware/printing.nix
     ../../hardware/nvidia.nix
     ../../extra/virtualization.nix
+    ../../extra/steam.nix
     ../../desktop/display-manager/lightdm.nix
     ../../desktop/window-manager/xmonad.nix
   ];

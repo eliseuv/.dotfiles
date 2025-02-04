@@ -2,13 +2,13 @@
 
   programs.zsh = {
     enable = true;
+    syntaxHighlighting.enable = true;
     enableCompletion = true;
-    enableVteIntegration = true;
     autosuggestion = {
       enable = true;
       strategy = [ "history" "completion" ];
     };
-    syntaxHighlighting.enable = true;
+    enableVteIntegration = true;
     defaultKeymap = "emacs";
     history = {
       append = true;
