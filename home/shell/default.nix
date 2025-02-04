@@ -46,6 +46,9 @@
     # Disk usage analyzer
     dua
 
+    # Command runner
+    just
+
   ];
 
   # Aliases
