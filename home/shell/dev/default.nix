@@ -1,6 +1,6 @@
 { pkgs, ... }: {
 
-  imports = [ ./nix.nix ./python.nix ./rust.nix ];
+  imports = [ ./nix.nix ./julia.nix ./rust.nix ];
 
   home.packages = with pkgs; [
 
@@ -15,6 +15,12 @@
     # Benchmarking
     hyperfine
 
+    # NodeJS
+    nodejs
+
+    # Development Environments
+    devenv
+
   ];
 
   # Use direnv
@@ -27,7 +33,6 @@
     enable = true;
     oh-my-zsh = {
       enable = true;
-    extra   
       plugins = [ "direnv" ];
     };
   };
