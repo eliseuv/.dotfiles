@@ -8,7 +8,7 @@
 
   programs.zed-editor = {
     enable = true;
-    extensions = [ "catppuccin" "zed-tokyo-night" "nix" "just" ];
+    extensions = [ "catppuccin" "zed-tokyo-night" "nix" "julia" "just" ];
     userSettings = {
       base_keymap = "VSCode";
       telemetry = {
