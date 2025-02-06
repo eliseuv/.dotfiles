@@ -6,7 +6,10 @@
       xclip
     ];
 
-  home.shellAliases = { v = "nvim"; };
+  home.shellAliases = {
+    v = "nvim";
+    vr = "nvim -R";
+  };
 
   programs.neovim = {
     enable = true;
