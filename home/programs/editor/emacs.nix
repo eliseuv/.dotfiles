@@ -5,18 +5,12 @@
     extraPackages = epkgs: [ ];
   };
 
-  home.packages = with pkgs;
-    [
-      # Fonts
-      alegreya
-      ibm-plex
-      symbola
-    ] ++ [
-      # vterm build dependencies
-      cmake
-      gnumake
-      libtool
-    ];
+  home.packages = with pkgs; [
+    # Fonts
+    alegreya
+    ibm-plex
+    symbola
+  ];
 
   home.file = {
     ".config/doom" = {

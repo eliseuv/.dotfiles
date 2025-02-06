@@ -4,12 +4,7 @@
 
   home.packages = with pkgs; [
 
-    # Standard compilers
-    (hiPrio clang)
-    gcc
-
     # Command runner
-    gnumake
     just
 
     # Benchmarking

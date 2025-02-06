@@ -1,6 +1,13 @@
 { pkgs, ... }: {
 
-  imports = [ ./user.nix ./zsh.nix ./locale.nix ./time.nix ./gpg.nix ];
+  imports = [
+    ./user.nix
+    ./zsh.nix
+    ./development.nix
+    ./locale.nix
+    ./time.nix
+    ./gnupg.nix
+  ];
 
   nixpkgs.config.allowUnfree = true;
 
