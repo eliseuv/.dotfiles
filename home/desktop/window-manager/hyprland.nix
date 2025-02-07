@@ -1,13 +1,6 @@
 { config, pkgs, ... }: {
 
-  imports = [
-    ../monitors.nix
-    ./hyprpaper.nix
-    ./hypridle.nix
-    ./hyprlock.nix
-    ../bar/waybar.nix
-    ../menu/rofi.nix
-  ];
+  imports = [ ../monitors.nix ];
 
   home.packages = with pkgs;
     [
