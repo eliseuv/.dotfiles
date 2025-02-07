@@ -1,20 +1,15 @@
 { pkgs, ... }: {
 
   imports = [
-    # Bar
-    ../bar/xmobar.nix
-    # Menu
-    ../menu/rofi.nix
     # Wallpapers
     ../wallpapers.nix
   ];
 
-  home.packages = with pkgs; [
-    # Status bar
-    xmobar
-    # Audio mixer
-    pulsemixer
-  ];
+  home.packages = with pkgs;
+    [
+      # Audio mixer
+      pulsemixer
+    ];
 
   xsession.windowManager.xmonad = {
     enable = true;

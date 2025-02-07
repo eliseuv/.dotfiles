@@ -1,9 +1,8 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
+
+  programs.xmobar.enable = true;
 
   home.packages = with pkgs; [
-    # xmobar
-    xmobar
-
     # Simple calculator
     bc
     # JSON parser
