@@ -35,6 +35,8 @@
     ./typst.nix
     # Scripts
     ./scripts.nix
+    # Nix Index Database
+    ./extras/nix-index-database.nix
   ];
 
   home.packages = with pkgs; [
@@ -47,9 +49,6 @@
 
     # Disk usage analyzer
     dua
-
-    # Command runner
-    just
 
   ];
 
