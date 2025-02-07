@@ -51,14 +51,20 @@
 
       };
 
-      homeConfigurations.evf = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = { inherit inputs; };
-        modules = [
+      homeConfigurations = {
 
-          ./home/home.nix
+        "evf@GLaDOS" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = { inherit inputs; };
+          modules = [ ./home/home.nix ./home/desktop/xmonad.nix ];
+        };
 
-        ];
+        "evf@tardis" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = { inherit inputs; };
+          modules = [ ./home/home.nix ./home/desktop/hyprland.nix ];
+        };
+
       };
 
     };
