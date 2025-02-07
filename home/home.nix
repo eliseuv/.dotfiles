@@ -1,12 +1,7 @@
 { ... }: {
 
-  imports = [
-    ./shell/default.nix
-    ./programs/default.nix
-    ./services/default.nix
-    ./desktop/window-manager/xmonad.nix
-    ./desktop/window-manager/hyprland.nix
-  ];
+  imports =
+    [ ./shell/default.nix ./programs/default.nix ./services/default.nix ];
 
   home = {
     username = "evf";
