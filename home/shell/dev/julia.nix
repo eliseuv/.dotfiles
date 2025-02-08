@@ -1,6 +1,6 @@
 { pkgs, ... }: {
 
-  home.packages = with pkgs; [ julia ];
+  home.packages = with pkgs; [ julia-bin ];
 
   home.file = {
     # REPL startup script
