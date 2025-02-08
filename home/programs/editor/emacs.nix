@@ -6,10 +6,15 @@
   };
 
   home.packages = with pkgs; [
+
+    # Spelling
+    hunspell
+
     # Fonts
     alegreya
     ibm-plex
     symbola
+
   ];
 
   home.file = {
