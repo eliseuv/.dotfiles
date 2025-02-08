@@ -1,6 +1,6 @@
 { pkgs, ... }: {
 
-  imports = [ ./nix.nix ./julia.nix ./rust.nix ];
+  imports = [ ./nix.nix ./rust.nix ./julia.nix ./python.nix ];
 
   home.packages = with pkgs; [
 
