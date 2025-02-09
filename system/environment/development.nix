@@ -7,9 +7,6 @@
     gcc
     gfortran
 
-    # Libraries
-    libtool
-
   ];
 
 }
