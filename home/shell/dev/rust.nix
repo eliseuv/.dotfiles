@@ -8,6 +8,8 @@
     # Cargo
     cargo-cache
     cargo-watch
+    cargo-info
+    cargo-generate
 
     # Compilation cache
     sccache
