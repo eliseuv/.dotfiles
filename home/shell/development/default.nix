@@ -1,40 +1,20 @@
 { pkgs, ... }: {
 
-  imports = [ ./nix.nix ./rust.nix ./julia.nix ./python.nix ];
+  imports = [
 
-  home.packages = with pkgs; [
+    # Tools
+    ./tools.nix
 
-    # Command runner
-    just
+    # Environments
+    ./direnv.nix
+    ./devenv.nix
 
-    # Run command on change
-    watchexec
-
-    # Benchmarking
-    hyperfine
-    # Profiler
-    flamegraph
-
-    # NodeJS
-    nodejs
-
-    # Development Environments
-    devenv
-
+    # Languages
+    ./languages/nix.nix
+    ./languages/rust.nix
+    ./languages/julia.nix
+    ./languages/python.nix
+    ./languages/web.nix
   ];
-
-  # Use direnv
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-    enableZshIntegration = true;
-  };
-  programs.zsh = {
-    enable = true;
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "direnv" ];
-    };
-  };
 
 }
