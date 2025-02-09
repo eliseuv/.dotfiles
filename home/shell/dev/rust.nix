@@ -5,6 +5,10 @@
     # Rust installer
     rustup
 
+    # Cargo
+    cargo-cache
+    cargo-watch
+
     # Compilation cache
     sccache
 
