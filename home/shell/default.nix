@@ -2,55 +2,38 @@
 
   imports = [
     # Shell
-    ./zsh.nix
+    ./shell/zsh.nix
     # Prompt
-    ./starship.nix
+    ./prompt/starship.nix
     # Multiplexer
-    ./tmux.nix
-    ./zellij.nix
+    ./multiplexer/tmux.nix
     # Tools
-    ./zoxide.nix
-    ./eza.nix
-    ./bat.nix
-    ./fd.nix
-    ./ripgrep.nix
-    ./fzf.nix
-    # File manager
-    ./broot.nix
-    ./yazi.nix
+    ./tools/default.nix
+    # Development
+    ./development/default.nix
     # Git
-    ./git.nix
-    ./github.nix
-    # System monitor
-    ./bottom.nix
+    ./git/default.nix
     # GnuPG
     ./gpg.nix
     # SSH
     ./ssh.nix
-    # Fetch
-    ./fastfetch.nix
-    # Development
-    ./dev/default.nix
     # Documents
-    ./typst.nix
+    ./documents/typst.nix
     # Scripts
     ./scripts.nix
+    # Fetch
+    ./extra/fastfetch.nix
     # Nix Index Database
-    ./extras/nix-index-database.nix
+    ./extra/nix-index-database.nix
   ];
 
-  home.packages = with pkgs; [
+  home.packages = with pkgs;
+    [
 
-    # LUKS
-    cryptsetup
+      # LUKS
+      cryptsetup
 
-    # Stream editor
-    sd
-
-    # Disk usage analyzer
-    dua
-
-  ];
+    ];
 
   # Aliases
   home.shellAliases = {
