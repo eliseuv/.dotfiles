@@ -1,5 +1,6 @@
 update:
     nix flake update
+    git reset
     git add flake.lock
     git commit --message "Flake update"
 
