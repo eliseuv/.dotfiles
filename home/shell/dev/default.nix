@@ -7,8 +7,13 @@
     # Command runner
     just
 
+    # Run command on change
+    watchexec
+
     # Benchmarking
     hyperfine
+    # Profiler
+    flamegraph
 
     # NodeJS
     nodejs
