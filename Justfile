@@ -1,5 +1,7 @@
 update:
     nix flake update
+    git add flake.lock
+    git commit --message "Flake update"
 
 home-switch:
     home-manager switch --flake .
@@ -10,7 +12,7 @@ system-test:
 system-switch:
     git diff -U0 '*.nix'
     nixos-rebuild switch --flake . --use-remote-sudo
-    git commit --allow-empty -am "$(hostname) @ $(nixos-rebuild list-generations | grep current)"
+    git commit --all --allow-empty --message "$(hostname) @ $(nixos-rebuild list-generations | grep current)"
     git push
 
 gc:
