@@ -39,6 +39,9 @@
     # Encryption
     veracrypt
 
+    # Calculator
+    speedcrunch
+
   ];
 
   home.sessionVariables = { TERMINAL = "ghostty"; };
