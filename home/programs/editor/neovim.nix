@@ -1,20 +1,17 @@
 { pkgs, ... }: {
 
-  home.packages = with pkgs;
-    [
-      # Clipboard integration
-      xclip
-    ];
+  programs.neovim.enable = true;
 
   home.shellAliases = {
     v = "nvim";
     vr = "nvim -R";
   };
 
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-  };
+  home.packages = with pkgs;
+    [
+      # Clipboard integration
+      xclip
+    ];
 
   # Copy LazyVim config
   home.file = {

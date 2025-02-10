@@ -8,6 +8,8 @@
     '';
   };
 
+  home.sessionVariables.READER = "zathura";
+
   xdg.mimeApps = {
     enable = true;
     associations.added = { "application/pdf" = [ "zathura.desktop" ]; };

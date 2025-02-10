@@ -6,10 +6,12 @@
     rustup
 
     # Cargo
-    cargo-cache
     cargo-watch
     cargo-info
     cargo-generate
+    cargo-cache
+    cargo-binstall
+    cargo-update
 
     # Compilation cache
     sccache
@@ -24,8 +26,8 @@
   home.sessionVariables.PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
 
   home.sessionVariables = {
-    RUST_BACKTRACE = 1;
     RUSTC_WRAPPER = "sccache";
+    RUST_BACKTRACE = 1;
     RUST_LOG = "debug";
   };
 

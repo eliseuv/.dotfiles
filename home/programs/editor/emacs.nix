@@ -1,8 +1,12 @@
 { pkgs, ... }: {
 
-  programs.emacs = {
-    enable = true;
-    extraPackages = epkgs: [ ];
+  programs.emacs.enable = true;
+
+  services.emacs.enable = true;
+
+  home.sessionVariables = {
+    EMACS_DIR = "$HOME/.config/emacs";
+    DOOM_DIR = "$HOME/.config/doom";
   };
 
   home.packages = with pkgs; [
@@ -23,6 +27,7 @@
       recursive = true;
     };
   };
+
   home.sessionPath = [ "$HOME/.config/emacs/bin" ];
 
 }

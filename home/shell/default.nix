@@ -21,10 +21,11 @@
     ./documents/typst.nix
     # Scripts
     ./scripts.nix
-    # Fetch
+    # Extras
     ./extra/fastfetch.nix
-    # Nix Index Database
     ./extra/nix-index-database.nix
+    ./extra/tldr.nix
+    ./extra/youtube.nix
   ];
 
   home.packages = with pkgs;
@@ -40,6 +41,14 @@
 
     # Clear
     c = "clear";
+
+    # Create parent directories as needed
+    mkdir = "mkdir -p";
+
+    # Confirm before overwriting or deleting
+    cp = "cp -i";
+    mv = "mv -i";
+    rm = "rm -i";
 
     # rsync
     rs = "rsync -Pazvhm";

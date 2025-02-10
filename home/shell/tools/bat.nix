@@ -4,6 +4,7 @@
     enable = true;
     config = { theme = "TwoDark"; };
   };
+
   home.shellAliases = { b = "bat"; };
 
 }

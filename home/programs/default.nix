@@ -38,6 +38,9 @@
 
     # Encryption
     veracrypt
+
   ];
+
+  home.sessionVariables = { TERMINAL = "ghostty"; };
 
 }
