@@ -11,7 +11,9 @@
       tmuxPlugins.vim-tmux-navigator
       tmuxPlugins.yank
       tmuxPlugins.tmux-floax
-      tmuxPlugins.catppuccin
+      tmuxPlugins.tmux-thumbs
+      tmuxPlugins.tokyo-night-tmux
+      # tmuxPlugins.catppuccin
     ];
     sensibleOnTop = true;
     extraConfig = ''
@@ -35,9 +37,13 @@
       set -g @floax-width '90%'
       set -g @floax-height '90%'
 
-      # Catppuccin
-      set -g @catppuccin_flavour 'mocha'
-      set -g @catppuccin_window_status_style "rounded"
+      # Tokyo night
+      set -g @tokyo-night-tmux_theme night    # storm | day | default to 'night'
+      set -g @tokyo-night-tmux_transparent 1  # 1 or 0
+      set -g @tokyo-night-tmux_show_datetime 0
+      set -g @tokyo-night-tmux_date_format YMD
+      set -g @tokyo-night-tmux_time_format 24H
+      set -g @tokyo-night-tmux_show_battery_widget 1
     '';
   };
 
