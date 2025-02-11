@@ -31,6 +31,7 @@
       set -g status-position top
 
       # Floax
+      set -g @floax-bind 'C-b'
       set -g @floax-width '90%'
       set -g @floax-height '90%'
 
