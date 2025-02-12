@@ -11,8 +11,6 @@
       font-size = 10;
       bold-is-bright = true;
       cursor-style = "block";
-      class = "ghostty";
-      title = "ghostty";
       mouse-hide-while-typing = true;
       gtk-titlebar = false;
       gtk-adwaita = false;
