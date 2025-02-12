@@ -36,6 +36,11 @@
 
     ];
 
+  home.sessionVariables = {
+    # Config files path
+    DOTFILES = "$HOME/.dotfiles";
+  };
+
   # Aliases
   home.shellAliases = {
 
@@ -53,6 +58,9 @@
     # rsync
     rs = "rsync -Pazvhm";
     rsmv = "rsync -Pazvhm --remove-source-files";
+
+    # Update flake
+    up = "pushd $DOTFILES && just update && popd";
 
   };
 
