@@ -14,6 +14,7 @@
     ./languages/rust.nix
     ./languages/julia.nix
     ./languages/python.nix
+    ./languages/go.nix
     ./languages/web.nix
   ];
 
