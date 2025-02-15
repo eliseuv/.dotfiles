@@ -24,6 +24,9 @@
   # Hostname
   networking.hostName = "GLaDOS";
 
+  # Kernel version
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_6;
+
   # Setup monitors
   services.xserver.displayManager.sessionCommands = ''
     ${pkgs.xorg.xrandr}/bin/xrandr \
