@@ -29,6 +29,9 @@
     # Social
     ./social/discord.nix
     ./social/telegram.nix
+
+    # GTK Config
+    ./gtk.nix
   ];
 
   home.packages = with pkgs; [
@@ -46,12 +49,5 @@
 
   # Default terminal
   home.sessionVariables = { TERMINAL = "ghostty"; };
-
-  # GTK config
-  gtk = {
-    enable = true;
-    gtk3.extraConfig = { gtk-application-prefer-dark-theme = 1; };
-    gtk4.extraConfig = { gtk-application-prefer-dark-theme = 1; };
-  };
 
 }
