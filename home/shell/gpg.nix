@@ -1,9 +1,12 @@
 { pkgs, ... }: {
 
+  home.packages = [ pkgs.gcr ];
+
   programs.gpg = {
     enable = true;
     settings = { };
   };
+
   services.gpg-agent = {
     enable = true;
     enableZshIntegration = true;
@@ -12,7 +15,7 @@
     maxCacheTtl = 3600;
     defaultCacheTtlSsh = 3600;
     maxCacheTtlSsh = 3600;
-    pinentryPackage = pkgs.pinentry-gtk2;
+    pinentryPackage = pkgs.pinentry-gnome3;
   };
 
 }
