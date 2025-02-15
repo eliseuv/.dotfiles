@@ -12,8 +12,12 @@
 
   xdg.mimeApps = {
     enable = true;
-    associations.added = { "application/pdf" = [ "zathura.desktop" ]; };
-    defaultApplications = { "application/pdf" = [ "zathura.desktop" ]; };
+    associations.added = {
+      "application/pdf" = [ "org.pwmt.zathura-pdf-mupdf.desktop" ];
+    };
+    defaultApplications = {
+      "application/pdf" = [ "org.pwmt.zathura-pdf-mupdf.desktop" ];
+    };
   };
 
 }
