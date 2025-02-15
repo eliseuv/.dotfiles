@@ -12,6 +12,7 @@
     defaultKeymap = "emacs";
     history = {
       append = true;
+      extended = true;
       expireDuplicatesFirst = true;
       ignoreAllDups = true;
       ignoreSpace = true;
