@@ -10,9 +10,8 @@
     newSession = true;
     sensibleOnTop = true;
     plugins = with pkgs; [
-      tmuxPlugins.yank
-      tmuxPlugins.tmux-thumbs
       tmuxPlugins.vim-tmux-navigator
+      tmuxPlugins.tmux-thumbs
       {
         plugin = tmuxPlugins.tmux-floax;
         extraConfig = ''
