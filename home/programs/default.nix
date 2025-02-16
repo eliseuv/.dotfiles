@@ -3,6 +3,7 @@
 
     # Terminal emulators
     ./terminal/ghostty.nix
+    ./terminal/kitty.nix
 
     # Text editors
     ./editor/emacs.nix
