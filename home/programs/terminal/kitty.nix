@@ -14,7 +14,6 @@
       scrollback_lines = 10000;
       scrollback_pager_history_size = 64;
       hide_window_decorations = "yes";
-      background_opacity = 0.98;
     };
 
     keybindings = {
