@@ -8,8 +8,8 @@
 
     #GUI
     ./emacs.nix
-    ./neovide.nix
     ./zed.nix
+    ./neovide.nix
 
   ];
 

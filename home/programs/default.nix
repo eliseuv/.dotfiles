@@ -6,10 +6,7 @@
     ./terminal/kitty.nix
 
     # Text editors
-    ./editor/emacs.nix
-    ./editor/helix.nix
-    ./editor/neovim.nix
-    ./editor/zed.nix
+    ./editor/default.nix
 
     # Web browsers
     ./browser/brave.nix
