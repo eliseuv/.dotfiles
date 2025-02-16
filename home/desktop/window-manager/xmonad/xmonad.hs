@@ -90,7 +90,7 @@ myGhostty = "ghostty"
 
 -- Sets default terminal
 myTerminal :: String
-myTerminal = myGhostty
+myTerminal = myKitty
 
 myKittyCommand :: String -> String
 myKittyCommand cmd = "kitty --single-instance -e " ++ cmd
@@ -102,7 +102,7 @@ myGhosttyCommand :: String -> String
 myGhosttyCommand cmd = "ghostty -e " ++ cmd
 
 myTerminalCommand :: String -> String
-myTerminalCommand = myGhosttyCommand
+myTerminalCommand = myKittyCommand
 
 myBrowser :: String
 myBrowser = "firefox" -- Sets default browser
