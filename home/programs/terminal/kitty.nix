@@ -28,7 +28,7 @@
       enableZshIntegration = true;
       mode = "enabled";
     };
-    themeFile = "Catppuccin-Mocha";
+    themeFile = "tokyo_night_night";
 
   };
 
