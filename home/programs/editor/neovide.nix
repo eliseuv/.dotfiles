@@ -1,5 +1,8 @@
 { ... }: {
 
-  programs.neovide = { enable = true; };
+  programs.neovide = {
+    enable = true;
+    settings = { };
+  };
 
 }
