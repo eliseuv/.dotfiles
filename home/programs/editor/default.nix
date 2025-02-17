@@ -6,10 +6,9 @@
     ./neovim.nix
     ./helix.nix
 
-    #GUI
+    # GUI
     ./emacs.nix
     ./zed.nix
-    ./neovide.nix
 
   ];
 
