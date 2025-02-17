@@ -28,13 +28,14 @@
     ./extra/youtube.nix
   ];
 
-  home.packages = with pkgs;
-    [
+  home.packages = with pkgs; [
 
-      # LUKS
-      cryptsetup
+    # LUKS
+    cryptsetup
 
-    ];
+    unzip
+
+  ];
 
   home.sessionVariables = {
     # Config files path
