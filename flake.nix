@@ -13,9 +13,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Ghostty
-    ghostty.url = "github:ghostty-org/ghostty";
-
     # Nix Index Database
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
