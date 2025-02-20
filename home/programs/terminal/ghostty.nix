@@ -1,9 +1,10 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
 
   home.packages = with pkgs; [ nerd-fonts.iosevka-term ];
 
   programs.ghostty = {
     enable = true;
+    package = inputs.ghostty.packages.x86_64-linux.default;
     enableZshIntegration = true;
     settings = {
       theme = "tokyonight";
