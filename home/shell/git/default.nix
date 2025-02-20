@@ -4,11 +4,12 @@
 
     ./git.nix
 
-    # gitui
-    ./gitui.nix
-
-    # GitHub CLI
+    # CLI
     ./github.nix
+
+    # TUI
+    ./gitui.nix
+    ./lazygit.nix
 
   ];
 
