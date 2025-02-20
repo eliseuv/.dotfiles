@@ -7,11 +7,15 @@
     vr = "nvim -R";
   };
 
-  home.packages = with pkgs;
-    [
-      # Clipboard integration
-      xclip
-    ];
+  home.packages = with pkgs; [
+
+    # Clipboard integration
+    xclip
+
+    # Tree-sitter required for :TSInstallFromGrammar
+    tree-sitter
+
+  ];
 
   # Copy LazyVim config
   home.file = {
