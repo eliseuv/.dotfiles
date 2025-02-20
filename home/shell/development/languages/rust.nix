@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
 
   home.packages = with pkgs; [
 
@@ -12,6 +12,7 @@
     cargo-cache
     cargo-binstall
     cargo-update
+    cargo-cross
 
     # Compilation cache
     sccache
