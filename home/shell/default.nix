@@ -33,7 +33,9 @@
     # LUKS
     cryptsetup
 
+    # Utilities
     unzip
+    wget
 
   ];
 
