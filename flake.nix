@@ -13,6 +13,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # NeoVim nightly
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
     # Nix Index Database
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
@@ -33,6 +36,7 @@
         inherit system;
         config = { allowUnfree = true; };
       };
+      overlays = [ inputs.neovim-nightly-overlay.overlays.default ];
     in {
 
       nixosConfigurations = {
@@ -55,13 +59,19 @@
 
         "evf@GLaDOS" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit inputs; };
+          extraSpecialArgs = {
+            inherit inputs;
+            inherit overlays;
+          };
           modules = [ ./home/home.nix ./home/desktop/xmonad.nix ];
         };
 
         "evf@tardis" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit inputs; };
+          extraSpecialArgs = {
+            inherit inputs;
+            inherit overlays;
+          };
           modules = [ ./home/home.nix ./home/desktop/hyprland.nix ];
         };
 

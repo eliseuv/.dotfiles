@@ -1,4 +1,4 @@
-{ ... }: {
+{ overlays, ... }: {
 
   imports =
     [ ./shell/default.nix ./programs/default.nix ./services/default.nix ];
@@ -7,6 +7,8 @@
     username = "evf";
     homeDirectory = "/home/evf";
   };
+
+  nixpkgs.overlays = overlays;
 
   nixpkgs.config.allowUnfree = true;
 
