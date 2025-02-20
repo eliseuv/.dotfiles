@@ -4,6 +4,8 @@
     enable = true;
     keyMode = "vi";
     terminal = "tmux-256color";
+    escapeTime = 10;
+    focusEvents = true;
     baseIndex = 1;
     clock24 = true;
     historyLimit = 10000;
