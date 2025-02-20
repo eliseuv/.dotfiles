@@ -3,7 +3,7 @@
   imports = [
 
     # Tools
-    ./tools.nix
+    ./tools/default.nix
 
     # Environments
     ./direnv.nix
