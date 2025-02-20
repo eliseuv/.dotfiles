@@ -15,6 +15,7 @@
     ./languages/julia.nix
     ./languages/haskell.nix
     ./languages/python.nix
+    ./languages/lua.nix
     ./languages/go.nix
     ./languages/web.nix
   ];
