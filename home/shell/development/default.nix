@@ -5,9 +5,8 @@
     # Tools
     ./tools/default.nix
 
-    # Environments
-    ./direnv.nix
-    ./devenv.nix
+    # Environments and containers
+    ./containers/default.nix
 
     # Languages
     ./languages/nix.nix
