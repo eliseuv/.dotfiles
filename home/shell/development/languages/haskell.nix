@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
 
   home.packages = with pkgs; [
 
@@ -12,6 +12,16 @@
     cabal-install
     cabal2nix
     stack
+
+    # Hoogle
+    haskellPackages.hoogle
+
+    # Tags generation
+    haskellPackages.fast-tags
+
+    # Debug
+    haskellPackages.haskell-debug-adapter
+    haskellPackages.ghci-dap
 
     # Prettifier
     stylish-haskell
