@@ -2,33 +2,24 @@
   imports = [
 
     # Terminal emulators
-    ./terminal/ghostty.nix
-    ./terminal/kitty.nix
+    ./terminal/default.nix
 
     # Text editors
     ./editor/default.nix
 
     # Web browsers
-    ./browser/brave.nix
-    ./browser/chromium.nix
-    ./browser/firefox.nix
+    ./browser/default.nix
 
     # Documents
-    ./documents/calibre.nix
-    ./documents/zathura.nix
+    ./documents/default.nix
 
     # Media
-    ./media/feh.nix
-    ./media/mpv.nix
-    ./media/ncmpcpp.nix
-    ./media/spotify.nix
-    ./media/sxiv.nix
+    ./media/default.nix
 
     # Social
-    ./social/discord.nix
-    ./social/telegram.nix
+    ./social/default.nix
 
-    # GTK Config
+    # GTK config
     ./gtk.nix
   ];
 
@@ -44,8 +35,5 @@
     speedcrunch
 
   ];
-
-  # Default terminal
-  home.sessionVariables = { TERMINAL = "ghostty"; };
 
 }
