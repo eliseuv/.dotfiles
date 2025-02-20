@@ -90,7 +90,7 @@ myGhostty = "ghostty"
 
 -- Sets default terminal
 myTerminal :: String
-myTerminal = myKitty
+myTerminal = myGhostty
 
 myKittyCommand :: String -> String
 myKittyCommand cmd = "kitty --single-instance -e " ++ cmd
@@ -102,7 +102,7 @@ myGhosttyCommand :: String -> String
 myGhosttyCommand cmd = "ghostty -e " ++ cmd
 
 myTerminalCommand :: String -> String
-myTerminalCommand = myKittyCommand
+myTerminalCommand = myGhosttyCommand
 
 myBrowser :: String
 myBrowser = "firefox" -- Sets default browser
@@ -111,7 +111,7 @@ myEmacs :: String
 myEmacs = "emacsclient -nc -a 'emacs' " -- Makes emacs keybindings easier to type
 
 myVim :: String
-myVim = "NVIM_APPNAME=LazyVim neovide"
+myVim = "neovide"
 
 myEditor :: String
 myEditor = myEmacs -- Sets emacs as editor

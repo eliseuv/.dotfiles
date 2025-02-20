@@ -34,8 +34,8 @@
         }") (config.monitors);
 
       # Variables
-      "$terminal" = "kitty --single-instance";
-      "$terminalCommand" = "kitty --single-instance -e ";
+      "$terminal" = "ghostty";
+      "$terminalCommand" = "ghostty -e ";
       "$menu" = "~/.config/rofi/bin/launcher";
       "$browser" = "firefox";
       "$fileManager" = "nautilus";
