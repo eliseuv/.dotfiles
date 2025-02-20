@@ -1,12 +1,9 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
 
   home.packages = with pkgs; [
 
     # Node
     nodejs
-
-    # bun
-    bun
 
     # Typescript
     typescript
@@ -15,5 +12,8 @@
     sass
 
   ];
+
+  # Bun JS runtime
+  programs.bun = { enable = true; };
 
 }
