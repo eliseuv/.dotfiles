@@ -8,10 +8,6 @@
     homeDirectory = "/home/evf";
   };
 
-  nixpkgs.overlays = overlays;
-
-  nixpkgs.config.allowUnfree = true;
-
   nix.gc = {
     automatic = true;
     frequency = "daily";
@@ -19,6 +15,5 @@
   };
 
   programs.home-manager.enable = true;
-
   home.stateVersion = "24.11";
 }

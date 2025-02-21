@@ -35,8 +35,8 @@
       pkgs = import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
+        overlays = [ inputs.neovim-nightly-overlay.overlays.default ];
       };
-      overlays = [ inputs.neovim-nightly-overlay.overlays.default ];
     in {
 
       nixosConfigurations = {
@@ -59,19 +59,13 @@
 
         "evf@GLaDOS" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = {
-            inherit inputs;
-            inherit overlays;
-          };
+          extraSpecialArgs = { inherit inputs; };
           modules = [ ./home/home.nix ./home/desktop/xmonad.nix ];
         };
 
         "evf@tardis" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = {
-            inherit inputs;
-            inherit overlays;
-          };
+          extraSpecialArgs = { inherit inputs; };
           modules = [ ./home/home.nix ./home/desktop/hyprland.nix ];
         };
 
