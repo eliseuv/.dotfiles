@@ -2,8 +2,10 @@
 
   home.packages = with pkgs; [
 
-    # Rust installer
-    rustup
+    (rust-bin.selectLatestNightlyWith (toolchain:
+      toolchain.default.override {
+        extensions = [ "rust-analyzer" "rust-src" ];
+      }))
 
     # Cargo
     cargo-watch

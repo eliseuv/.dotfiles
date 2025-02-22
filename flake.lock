@@ -259,7 +259,28 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_2",
+        "rust-overlay": "rust-overlay",
         "spicetify-nix": "spicetify-nix"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1740191166,
+        "narHash": "sha256-WqRxO1Afx8jPYG4CKwkvDFWFvDLCwCd4mxb97hFGYPg=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "74a3fb71b0cc67376ab9e7c31abcd68c813fc226",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
       }
     },
     "spicetify-nix": {

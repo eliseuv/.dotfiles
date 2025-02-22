@@ -16,6 +16,12 @@
     # NeoVim nightly
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
+    # Rust overlay
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Nix Index Database
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
@@ -35,7 +41,12 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = [ inputs.neovim-nightly-overlay.overlays.default ];
+        overlays = [
+          # neovim nightly
+          inputs.neovim-nightly-overlay.overlays.default
+          # Rust
+          inputs.rust-overlay.overlays.default
+        ];
       };
     in {
 
