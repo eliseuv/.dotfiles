@@ -5,7 +5,7 @@ update:
     git commit --message "Flake update"
 
 home-switch:
-    home-manager switch --flake .
+    home-manager switch --flake . --show-trace
 
 system-test:
     nixos-rebuild test --flake . --use-remote-sudo --show-trace --verbose
