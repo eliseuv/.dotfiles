@@ -1,6 +1,9 @@
 { pkgs, ... }: {
 
-  programs.neovim.enable = true;
+  programs.neovim = {
+    enable = true;
+    package = pkgs.neovim;
+  };
 
   home.shellAliases = {
     v = "nvim";
