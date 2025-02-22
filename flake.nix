@@ -34,7 +34,7 @@
       lib = nixpkgs.lib;
       pkgs = import nixpkgs {
         inherit system;
-        config = { allowUnfree = true; };
+        config.allowUnfree = true;
         overlays = [ inputs.neovim-nightly-overlay.overlays.default ];
       };
     in {
