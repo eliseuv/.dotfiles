@@ -29,6 +29,6 @@
   };
 
   # LazyVim update alias
-  home.shellAliases.lazy-update = ''nvim --headless "+Lazy! sync" +qa'';
+  home.shellAliases.lazy-sync = ''nvim --headless "+Lazy! sync" +qa'';
 
 }
