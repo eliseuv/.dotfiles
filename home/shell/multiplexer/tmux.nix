@@ -13,7 +13,12 @@
     sensibleOnTop = true;
     plugins = with pkgs; [
       tmuxPlugins.vim-tmux-navigator
-      tmuxPlugins.tmux-thumbs
+      {
+        plugin = tmuxPlugins.tmux-thumbs;
+        extraConfig = ''
+          set -g @thumbs-command 'echo -n {} | xclip -selection clipboard'
+        '';
+      }
       {
         plugin = tmuxPlugins.tmux-floax;
         extraConfig = ''
