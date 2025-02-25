@@ -1,17 +1,15 @@
-{ ... }: {
+{ pkgs, ... }: {
 
   imports = [
 
     # Images
-    ./feh.nix
-    ./sxiv.nix
+    ./image/default.nix
 
     # Music
-    ./ncmpcpp.nix
-    ./spotify.nix
+    ./music/default.nix
 
     # Videos
-    ./mpv.nix
+    ./video/default.nix
 
   ];
 
