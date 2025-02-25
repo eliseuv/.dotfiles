@@ -1,7 +1,5 @@
 { pkgs, ... }: {
 
-  imports = [ ./calibre.nix ./zathura.nix ];
-
-  home.packages = with pkgs; [ zotero ];
+  imports = [ ./zathura.nix ./sioyek.nix ./calibre.nix ./zotero.nix ];
 
 }
