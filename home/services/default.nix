@@ -8,6 +8,9 @@
     # Synchronize files
     ./syncthing.nix
 
+    # Systemd timers
+    ./timers.nix
+
   ];
 
 }
