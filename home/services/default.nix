@@ -1,1 +1,13 @@
-{ ... }: { imports = [ ./automount.nix ./syncthing.nix ]; }
+{ ... }: {
+
+  imports = [
+
+    # Automount
+    ./udiskie.nix
+
+    # Synchronize files
+    ./syncthing.nix
+
+  ];
+
+}
