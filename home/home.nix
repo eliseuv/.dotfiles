@@ -1,4 +1,4 @@
-{ overlays, ... }: {
+{ ... }: {
 
   imports =
     [ ./shell/default.nix ./programs/default.nix ./services/default.nix ];
@@ -10,8 +10,10 @@
 
   nix.gc = {
     automatic = true;
-    frequency = "daily";
     options = "--delete-older-than 7d";
+    frequency = "daily";
+    persistent = true;
+    randomizedDelaySec = "45min";
   };
 
   programs.home-manager.enable = true;
