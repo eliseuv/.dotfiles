@@ -1,9 +1,12 @@
 { ... }: {
 
   programs.git = {
+
     enable = true;
+
     userName = "evf";
     userEmail = "eliseuv816@gmail.com";
+
     delta = {
       enable = true;
       options = {
@@ -25,6 +28,7 @@
         };
       };
     };
+
   };
 
 }
