@@ -11,7 +11,9 @@ in {
   # Automatic garbage collection
   nix.gc = {
     automatic = true;
-    dates = "daily";
     delete_generations = "+8";
+    dates = "daily";
+    persistent = true;
+    randomizedDelaySec = "45min";
   };
 }
