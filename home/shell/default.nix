@@ -18,7 +18,7 @@
     # SSH
     ./ssh.nix
     # Documents
-    ./documents/typst.nix
+    ./documents/default.nix
     # Scripts
     ./scripts.nix
     # Extras
