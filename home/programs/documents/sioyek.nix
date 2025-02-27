@@ -8,11 +8,11 @@
     };
     bindings = {
       # Scroll screen
-      "screen_up" = "<S-k>";
-      "screen_down" = "<S-j>";
+      "screen_up" = "<C-p>";
+      "screen_down" = "<C-n>";
       # Scroll pages
-      "previous_page" = "<C-p>";
-      "next_page" = "<C-n>";
+      "previous_page" = "<C-u>";
+      "next_page" = "<C-d>";
     };
   };
 
