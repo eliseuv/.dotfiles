@@ -2,9 +2,9 @@
 
   systemd.user.timers = {
 
-    # Update lazy.nvim packages
-    lazynvim-update = {
-      Unit.Description = "Scheduled lazy.nvim update";
+    # lazy.nvim packages update
+    lazynvim-sync = {
+      Unit.Description = "Scheduled lazy.nvim sync";
       Timer = {
         # Run after boot
         OnBootSec = "1m";

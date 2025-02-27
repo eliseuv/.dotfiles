@@ -31,9 +31,9 @@
   # lazy.nvim update alias
   home.shellAliases.lazy-sync = ''nvim --headless "+Lazy! sync" +qa'';
 
-  # Update lazy.nvim
-  systemd.user.services.lazynvim-update = {
-    Unit.Description = "Update lazy.nvim packages";
+  # lazy.nvim sync
+  systemd.user.services.lazynvim-sync = {
+    Unit.Description = "Sync lazy.nvim packages";
     Service = {
       Type = "oneshot";
       ExecStart = ''${pkgs.neovim}/bin/nvim --headless "+Lazy! sync" +qa'';
