@@ -43,7 +43,10 @@ show_msg() {
 }
 
 # Variable passed to rofi
-options="$lock\n$logout\n$suspend\n$reboot\n$shutdown"
+options="$lock\n$suspend\n$logout\n$reboot\n$shutdown"
+
+lock_command="hyprlock"
+exit_command="hyprctl dispatch exit"
 
 chosen="$(echo -e "$options" | $rofi_command -p "UP - $uptime" -dmenu -selected-row 0)"
 case $chosen in
@@ -68,14 +71,14 @@ case $chosen in
     fi
     ;;
 "$lock")
-    sh "$HOME/.local/bin/lock"
+    $lock_command
     ;;
 "$suspend")
     ans=$(rdialog &)
     if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
         mpc -q pause
         amixer set Master mute
-        sh "$HOME/.local/bin/lock"
+        $lock_command
         systemctl suspend
     elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
         exit
@@ -86,7 +89,7 @@ case $chosen in
 "$logout")
     ans=$(rdialog &)
     if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
-        bspc quit
+        $exit_command
     elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
         exit
     else

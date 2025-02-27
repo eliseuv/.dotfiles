@@ -37,6 +37,7 @@
       "$terminal" = "ghostty";
       "$terminalCommand" = "ghostty -e ";
       "$menu" = "~/.config/rofi/bin/launcher";
+      "$powermenu" = "~/.config/rofi/bin/powermenu";
       "$browser" = "firefox";
       "$fileManager" = "nautilus";
 
@@ -54,7 +55,7 @@
       "$mainMod" = "SUPER";
       bind = [
         # Exit
-        "$mainMod SHIFT, backspace, exit"
+        "$mainMod SHIFT, backspace, exec, $powermenu"
 
         # Terminal
         "$mainMod, return, exec, $terminal"
