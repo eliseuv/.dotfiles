@@ -3,7 +3,10 @@
   nix.settings.auto-optimise-store = true;
   nix.optimise = {
     automatic = true;
-    dates = [ "weekly" ];
+    persistent = true;
+    dates = [ "daily" ];
+    randomizedDelaySec = "45min";
+
   };
 
 }
