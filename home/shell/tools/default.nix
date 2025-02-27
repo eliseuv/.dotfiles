@@ -18,6 +18,8 @@
     ./yazi.nix
     # System monitor
     ./bottom.nix
+    # Systemctl TUI
+    ./systemctl-tui.nix
   ];
 
   home.packages = with pkgs; [
