@@ -12,7 +12,8 @@
     ../../hardware/keyboard.nix
     ../../hardware/printing.nix
     ../../hardware/nvidia.nix
-    ../../extra/virtualization.nix
+    ../../extra/virtual-machines.nix
+    ../../extra/docker.nix
     ../../extra/steam.nix
     ../../desktop/display-manager/lightdm.nix
     ../../desktop/window-manager/xmonad.nix
