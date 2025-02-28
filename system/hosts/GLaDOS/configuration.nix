@@ -14,6 +14,7 @@
     ../../hardware/nvidia.nix
     ../../extra/virtual-machines.nix
     ../../extra/docker.nix
+    ../../extra/podman.nix
     ../../extra/steam.nix
     ../../desktop/display-manager/lightdm.nix
     ../../desktop/window-manager/xmonad.nix
