@@ -5,6 +5,7 @@
     ../../environment/default.nix
     ../../maintenance/garbage-collection.nix
     ../../maintenance/store-optimisation.nix
+    # ../../maintenance/updates.nix
     ../../hardware/bootloader.nix
     ../../hardware/disks.nix
     ../../hardware/audio.nix
