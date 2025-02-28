@@ -9,7 +9,7 @@
     ./syncthing.nix
 
     # Systemd timers
-    ./timers.nix
+    # ./timers.nix
 
   ];
 
