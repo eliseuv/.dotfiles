@@ -1,9 +1,8 @@
-{ pkgs, ... }: {
+{ ... }: {
 
-  home.packages = with pkgs;
-    [
-      # Package manager
-      opam
-    ];
+  programs.opam = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
 }
