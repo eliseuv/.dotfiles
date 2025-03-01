@@ -41,18 +41,6 @@
           set -ag status-right "#{E:@catppuccin_status_uptime}"
         '';
       }
-      {
-        plugin = tmuxPlugins.cpu;
-        extraConfig = ''
-          set -agF status-right "#{E:@catppuccin_status_cpu}"
-        '';
-      }
-      {
-        plugin = tmuxPlugins.battery;
-        extraConfig = ''
-          set -agF status-right "#{E:@catppuccin_status_battery}"
-        '';
-      }
     ];
     extraConfig = ''
       # Fix Neovim colors
