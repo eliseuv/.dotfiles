@@ -12,6 +12,9 @@
       extraPackages = hpkgs: [ hpkgs.xmobar ];
     };
 
+    # Update the DBus activation environment after launching the desktop manager
+    updateDbusEnvironment = true;
+
   };
 
   # Set XMonad as default
