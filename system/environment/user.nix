@@ -3,7 +3,7 @@
   users.users.evf = {
     isNormalUser = true;
     description = "evf";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "wheel" "networkmanager" "libvirtd" ];
     packages = with pkgs; [ ];
   };
 
