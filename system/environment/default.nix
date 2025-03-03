@@ -1,7 +1,7 @@
 { pkgs, ... }: {
 
   imports = [
-    ./user.nix
+    ./users.nix
     ./zsh.nix
     ./development.nix
     ./locale.nix
