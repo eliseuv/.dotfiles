@@ -1,14 +1,11 @@
 { pkgs, ... }: {
 
-  imports = [
-    ./users.nix
-    ./zsh.nix
-    ./development.nix
-    ./locale.nix
-    ./time.nix
-    ./gnupg.nix
-  ];
+  imports =
+    [ ./users.nix ./development.nix ./locale.nix ./time.nix ./gnupg.nix ];
 
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+  environment.shells = with pkgs; [ zsh ];
 
   programs = {
 
