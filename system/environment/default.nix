@@ -9,8 +9,16 @@
     ./gnupg.nix
   ];
 
-  environment.systemPackages = with pkgs; [ vim ];
 
-  programs.firefox.enable = true;
+  programs = {
+
+    vim = {
+      enable = true;
+      defaultEditor = true;
+    };
+
+    firefox.enable = true;
+
+  };
 
 }
