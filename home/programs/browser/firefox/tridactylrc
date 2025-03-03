@@ -76,7 +76,7 @@ set searchurls.gh https://github.com/search?q=%s
 set searchurls.cargo https://crates.io/search?q=%s
 set searchurls.rs https://docs.rs/releases/search?query=%s
 set searchurls.h https://hoogle.haskell.org/?hoogle=%s
-set searchurls.jl https://www.google.com/search?q=site:http://docs.julialang.org/en/v1
+set searchurls.jl https://www.google.com/search?q=site:http://docs.julialang.org/en/v1+%s
 set searchurls.so https://stackoverflow.com/search?q=%s,
 set searchurls.docker https://hub.docker.com/search?q=%s
 set searchurls.sc https://www.shellcheck.net/wiki/SC%s
