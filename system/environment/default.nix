@@ -23,4 +23,6 @@
 
   };
 
+  environment.systemPackages = with pkgs; [ xterm ];
+
 }
