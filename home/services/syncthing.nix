@@ -22,7 +22,7 @@
 
         "music" = {
           path = "/run/media/evf/Storage/CompanionCube/music";
-          devices = [ "A53" ];
+          devices = [ "GLaDOS" "A53" ];
         };
 
         "org" = {
