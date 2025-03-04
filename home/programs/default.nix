@@ -19,8 +19,9 @@
     # Social
     ./social/default.nix
 
-    # GTK config
     ./gtk.nix
+    ./qt.nix
+
   ];
 
   home.packages = with pkgs; [
