@@ -11,13 +11,6 @@
         TARDIS.id =
           "NR7XLUG-MNAFRJS-IKP3EGN-TBHXJMW-YGMDSES-MLPOKYD-I5PJ23K-J7AJZQE";
       };
-      folders = {
-        "music" = {
-          enable = true;
-          path = "/run/media/evf/Storage/CompanionCube/music";
-          devices = [ "galaxy-A53" ];
-        };
-      };
     };
   };
 
