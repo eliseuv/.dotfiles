@@ -2,6 +2,7 @@
 
   services.syncthing = {
     enable = true;
+    tray.enable = true;
     settings = {
       devices = {
         A53.id =
