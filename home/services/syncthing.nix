@@ -28,6 +28,10 @@
         "org" = {
           path = "~/Documents/org";
           devices = [ "GLaDOS" "TARDIS" ];
+          versioning = {
+            type = "simple";
+            params.keep = "8";
+          };
         };
 
       };
