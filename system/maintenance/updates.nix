@@ -1,8 +1,8 @@
-{ attrs, ... }: {
+{ inputs, ... }: {
 
   system.autoUpgrade = {
     enable = true;
-    flake = attrs.self.outPath;
+    flake = inputs.self.outPath;
     dates = "daily";
     randomizedDelaySec = "45min";
   };
