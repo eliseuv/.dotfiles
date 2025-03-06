@@ -1,12 +1,4 @@
-{ inputs, ... }:
-let
-  nix-gc-env = builtins.fetchGit {
-    url = "https://github.com/Julow/nix-gc-env";
-    rev = "4753f3c95891b711e29cb6a256807d22e16cf9cd";
-  };
-in {
-
-  imports = [ (import "${nix-gc-env}/nix_gc_env.nix") ];
+{ inputs, ... }: {
 
   programs.nh = {
     enable = true;
@@ -16,15 +8,6 @@ in {
       extraArgs = "--keep 8";
       dates = "daily";
     };
-  };
-
-  # Automatic garbage collection
-  nix.gc = {
-    automatic = true;
-    delete_generations = "+8";
-    dates = "daily";
-    persistent = true;
-    randomizedDelaySec = "45min";
   };
 
   nix.settings.auto-optimise-store = true;
