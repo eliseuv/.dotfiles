@@ -31,7 +31,7 @@
   home.sessionVariables = {
     RUSTC_WRAPPER = "sccache";
     RUST_BACKTRACE = 1;
-    RUST_LOG = "debug";
+    RUST_LOG = "warn";
   };
 
   programs.bacon = {
