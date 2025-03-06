@@ -1,19 +1,15 @@
 { pkgs, ... }: {
 
-  imports =
-    [ ./users.nix ./development.nix ./locale.nix ./time.nix ./gnupg.nix ];
+  imports = [
+    ./maintenance.nix
+    ./users.nix
+    ./development.nix
+    ./locale.nix
+    ./time.nix
+    ./gnupg.nix
+  ];
 
   nixpkgs.config.allowUnfree = true;
-
-  programs.nh = {
-    enable = true;
-    flake = ../..;
-    clean = {
-      enable = true;
-      extraArgs = "--keep 8";
-      dates = "daily";
-    };
-  };
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
