@@ -5,7 +5,7 @@
 
   programs.nh = {
     enable = true;
-    flake = ../..;
+    flake = /home/evf/.dotfiles;
     clean = {
       enable = true;
       extraArgs = "--keep 8";
