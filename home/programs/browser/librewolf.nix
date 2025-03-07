@@ -1,5 +1,5 @@
 { ... }: {
 
-  programs.librewolf = { enable = false; };
+  programs.librewolf = { enable = true; };
 
 }
