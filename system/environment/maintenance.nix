@@ -1,5 +1,8 @@
 { inputs, ... }: {
 
+  # FIXME: Find a way to get rid of this redundant expression 
+  nixpkgs.config.allowUnfree = true;
+
   programs.nh = {
     enable = true;
     flake = ../..;
