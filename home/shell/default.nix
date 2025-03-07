@@ -24,6 +24,7 @@
     # Extras
     ./extra/fastfetch.nix
     ./extra/nix-index-database.nix
+    ./extra/nvd.nix
     ./extra/tldr.nix
     ./extra/youtube.nix
   ];
