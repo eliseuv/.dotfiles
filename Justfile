@@ -16,5 +16,5 @@ update *inputs:
     git add flake.lock
     git commit --message "Flake update"
 
-gc:
-    nh clean all
+gc keep='8':
+    nh clean all --keep {{keep}}
