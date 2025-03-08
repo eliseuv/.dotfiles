@@ -52,12 +52,12 @@
     c = "clear";
 
     # Create parent directories as needed
-    mkdir = "mkdir -p";
+    mkdir = "mkdir -pv";
 
     # Confirm before overwriting or deleting
-    cp = "cp -i";
-    mv = "mv -i";
-    rm = "rm -i";
+    cp = "cp -iv";
+    mv = "mv -iv";
+    rm = "rm -iv";
 
     # rsync
     rs = "rsync -Pazvhm";
