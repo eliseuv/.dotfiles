@@ -63,6 +63,9 @@
     rs = "rsync -Pazvhm";
     rsmv = "rsync -Pazvhm --remove-source-files";
 
+    # Edit configs
+    dots = ''cd $DOTFILES && nvim "+lua Snacks.picker.files()"'';
+
     # Update flake
     up = "pushd $DOTFILES && just update && popd";
 
