@@ -2,6 +2,6 @@
 
   imports = [ ./feh.nix ./sxiv.nix ];
 
-  home.packages = with pkgs; [ imagemagick ];
+  home.packages = with pkgs; [ gimp imagemagick ];
 
 }
