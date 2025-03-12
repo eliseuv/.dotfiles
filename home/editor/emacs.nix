@@ -2,7 +2,7 @@
 
   programs.emacs.enable = true;
 
-  services.emacs.enable = true;
+  services.emacs.enable = false;
 
   home.sessionVariables = {
     EMACS_DIR = "$HOME/.config/emacs";
