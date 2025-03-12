@@ -2,11 +2,11 @@
 
   imports = [
 
+    # Git
+    ./git/default.nix
+
     # Tools
     ./tools/default.nix
-
-    # Environments and containers
-    ./containers/default.nix
 
     # Languages
     ./languages/nix.nix
@@ -20,6 +20,10 @@
     ./languages/lean.nix
     ./languages/zig.nix
     ./languages/web.nix
+
+    # Development environments
+    ./environment/default.nix
+
   ];
 
   # Nix Shell

@@ -2,9 +2,10 @@
 
   imports = [
 
+    # Git
     ./git.nix
 
-    # CLI
+    # GitHub
     ./github.nix
 
     # TUI

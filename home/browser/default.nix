@@ -1,6 +1,6 @@
 { ... }: {
 
-  imports = [ ./firefox.nix ./brave.nix ./chromium.nix ];
+  imports = [ ./firefox/default.nix ./brave.nix ./chromium.nix ];
 
   # Default browser
   xdg.mimeApps = {

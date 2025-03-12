@@ -1,19 +1,70 @@
-{ ... }: {
+{ pkgs, ... }: {
 
-  imports =
-    [ ./shell/default.nix ./programs/default.nix ./services/default.nix ];
+  imports = [
+
+    # Shell environment
+    ./shell/default.nix
+
+    # Authentication
+    ./authentication/default.nix
+
+    # Maintenance
+    ./maintenance/default.nix
+
+    # Development
+    ./development/default.nix
+
+    # Containers
+    ./containers/default.nix
+
+    # User services
+    ./services/default.nix
+
+    # Terminal emulators
+    ./terminal/default.nix
+
+    # Text editors
+    ./editor/default.nix
+
+    # Web browsers
+    ./browser/default.nix
+
+    # Documents
+    ./documents/default.nix
+
+    # Media
+    ./media/default.nix
+
+    # Social
+    ./social/default.nix
+
+    # Desktop
+    ./desktop/gtk.nix
+    ./desktop/qt.nix
+
+    # Extra
+    ./extra/youtube.nix
+    ./extra/ledger.nix
+
+  ];
+
+  home.packages = with pkgs; [
+
+    # Encryption
+    cryptsetup
+    veracrypt
+
+    # File manager
+    nautilus
+
+    # Calculator
+    speedcrunch
+
+  ];
 
   home = {
     username = "evf";
     homeDirectory = "/home/evf";
-  };
-
-  nix.gc = {
-    automatic = true;
-    options = "--delete-older-than 7d";
-    frequency = "daily";
-    persistent = true;
-    randomizedDelaySec = "45min";
   };
 
   programs.home-manager.enable = true;

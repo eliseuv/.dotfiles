@@ -3,7 +3,7 @@
   # Nix scripts
   home.packages = [
     # Test script
-    (import ./scripts/my-awesome-script.nix { inherit pkgs; })
+    (import ./my-awesome-script.nix { inherit pkgs; })
   ];
 
   # # Shell scripts

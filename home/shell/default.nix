@@ -1,44 +1,34 @@
 { pkgs, ... }: {
 
   imports = [
+
     # Shell
     ./shell/zsh.nix
+
     # Prompt
     ./prompt/starship.nix
-    # Multiplexer
-    ./multiplexer/tmux.nix
+
     # Tools
     ./tools/default.nix
-    # Development
-    ./development/default.nix
-    # Git
-    ./git/default.nix
-    # GnuPG
-    ./gpg.nix
-    # SSH
-    ./ssh.nix
-    # Documents
-    ./documents/default.nix
+
+    # Multiplexer
+    ./multiplexer/tmux.nix
+
     # Scripts
-    ./scripts.nix
-    # Extras
-    ./extra/fastfetch.nix
-    ./extra/nix-index-database.nix
-    ./extra/nvd.nix
+    ./scripts/default.nix
+
+    # Extra
+    ./extra/fastfetch/default.nix
     ./extra/tldr.nix
-    ./extra/youtube.nix
-  ];
-
-  home.packages = with pkgs; [
-
-    # LUKS
-    cryptsetup
-
-    # Utilities
-    unzip
-    wget
 
   ];
+
+  home.packages = with pkgs;
+    [
+
+      unzip
+
+    ];
 
   home.sessionVariables = {
     # Config files path
