@@ -11,6 +11,9 @@
 
   home.packages = with pkgs; [
 
+    # vterm dependencies
+    libtool
+
     # Spelling
     hunspell
 
