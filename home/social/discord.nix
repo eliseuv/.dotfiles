@@ -1,5 +1,13 @@
 { pkgs, ... }: {
 
-  home.packages = with pkgs; [ legcord ];
+  home.packages = with pkgs; [
+
+    # Electron client
+    legcord
+
+    # TUI client
+    discordo
+
+  ];
 
 }
