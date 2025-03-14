@@ -43,7 +43,6 @@
     ./desktop/qt.nix
 
     # Extra
-    ./extra/youtube.nix
     ./extra/ledger.nix
 
   ];
