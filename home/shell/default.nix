@@ -23,12 +23,13 @@
 
   ];
 
-  home.packages = with pkgs;
-    [
+  home.packages = with pkgs; [
 
-      unzip
+    unzip
 
-    ];
+    czkawka
+
+  ];
 
   home.sessionVariables = {
     # Config files path
