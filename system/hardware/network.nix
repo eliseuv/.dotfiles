@@ -12,6 +12,11 @@
 
     # mDNS NSS plug-in for IPv4 allows applications to resolve names in the .local domain by transparently querying the Avahi daemon
     nssmdns4 = true;
+
+    publish = {
+      enable = true;
+      addresses = true;
+    };
   };
 
   # Enable the OpenSSH daemon.
