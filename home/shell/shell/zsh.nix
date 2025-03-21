@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, lib, ... }: {
 
   programs.zsh = {
     enable = true;
@@ -24,9 +24,8 @@
       bindkey  "^[[H"   beginning-of-line
       bindkey  "^[[F"   end-of-line
       bindkey  "^[[3~"  delete-char
-
-      fastfetch
     '';
+    initContent = "${lib.getExe pkgs.fastfetch}";
 
     oh-my-zsh = {
       enable = true;
