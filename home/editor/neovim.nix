@@ -31,14 +31,14 @@
   # lazy.nvim update alias
   home.shellAliases.lazy-sync = ''nvim --headless "+Lazy! sync" +qa'';
 
-  # # lazy.nvim sync
-  # systemd.user.services.lazynvim-sync = {
-  #   Unit.Description = "Sync lazy.nvim packages";
-  #   Service = {
-  #     Type = "oneshot";
-  #     ExecStart = ''${pkgs.neovim}/bin/nvim --headless "+Lazy! sync" +qa'';
-  #   };
-  #   Install.WantedBy = [ "default.target" ];
-  # };
+  # lazy.nvim sync
+  systemd.user.services.lazynvim-sync = {
+    Unit.Description = "Sync lazy.nvim packages";
+    Service = {
+      Type = "oneshot";
+      ExecStart = ''${pkgs.neovim}/bin/nvim --headless "+Lazy! sync" +qa'';
+    };
+    Install.WantedBy = [ "default.target" ];
+  };
 
 }
