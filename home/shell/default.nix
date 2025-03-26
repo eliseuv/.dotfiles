@@ -53,6 +53,7 @@
     # rsync
     rs = "rsync -Pazvhm";
     rsmv = "rsync -Pazvhm --remove-source-files";
+    rsrepo = "rsync -Pazvhm --filter=':- .gitignore'";
 
     # Edit configs
     dots = ''cd $DOTFILES && nvim "+lua Snacks.picker.files()"'';
