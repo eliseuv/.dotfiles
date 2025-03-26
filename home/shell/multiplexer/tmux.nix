@@ -57,6 +57,9 @@
 
       # Status bar on top
       set -g status-position top
+
+      # Send prefix to nested session
+      bind-key -n C-a send-prefix
     '';
   };
 
