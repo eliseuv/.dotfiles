@@ -7,8 +7,8 @@
       editor = {
         mouse = false;
         line-number = "relative";
-        idle-timeout = 100;
-        completion-timeout = 100;
+        idle-timeout = 50;
+        completion-timeout = 50;
         completion-replace = true;
         true-color = true;
         bufferline = "multiple";
