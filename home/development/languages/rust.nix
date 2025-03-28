@@ -15,6 +15,7 @@
     cargo-binstall
     cargo-update
     cargo-cross
+    cargo-fuzz
 
     # Compilation cache
     sccache
