@@ -7,6 +7,11 @@
     userName = "evf";
     userEmail = "eliseuv816@gmail.com";
 
+    maintenance = {
+      enable = true;
+      repositories = [ "/home/evf/.dotfiles" ];
+    };
+
     delta = {
       enable = true;
       options = {
