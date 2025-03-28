@@ -16,6 +16,7 @@
     cargo-update
     cargo-cross
     cargo-fuzz
+    cargo-nextest
 
     # Compilation cache
     sccache
