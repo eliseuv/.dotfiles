@@ -10,7 +10,7 @@
     ../../hardware/printing.nix
     ../../hardware/nvidia.nix
     ../../environment/default.nix
-    ../../desktop/display-manager/lightdm.nix
+    ../../desktop/display-manager/gdm.nix
     ../../desktop/window-manager/xmonad.nix
     ../../extra/virtual-machines.nix
     ../../extra/docker.nix
