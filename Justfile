@@ -12,6 +12,14 @@ system-switch:
         --message "$(ls -dv1 /nix/var/nix/profiles/system-*-link | tail -2 | xargs -r nvd diff)"
     git push
 
+system-build:
+    git diff -U0 '*.nix'
+    nh os build .
+    git commit --all --allow-empty \
+        --message "$(hostname) @ $(nixos-rebuild list-generations | rg current | sd '^(\d+) current\W+\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\W+([\w\.]+)\W+([\w\.]+)\W+\*$' '$1 NixOS $2 Linux $3')" \
+        --message "$(ls -dv1 /nix/var/nix/profiles/system-*-link | tail -2 | xargs -r nvd diff)"
+    git push
+
 update *inputs:
     nix flake update {{inputs}} --verbose
     git restore --staged .
