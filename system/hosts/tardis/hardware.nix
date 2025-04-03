@@ -4,31 +4,41 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_usb_sdmmc" ];
+  boot.initrd.availableKernelModules =
+    [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_usb_sdmmc" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/9c2cbe1d-9a12-4784-b903-6822cbe6fd34";
-      fsType = "ext4";
-    };
+  # Enable num lock early on boot
+  boot.initrd.extraUtilsCommands = ''
+    copy_bin_and_libs ${pkgs.kbd}/bin/setleds
+  '';
+  boot.initrd.preDeviceCommands = ''
+    INITTY=/dev/tty[1-6]
+    for tty in $INITTY; do
+      /bin/setleds -D +num < $tty
+    done
+  '';
 
-  boot.initrd.luks.devices."luks-709367d0-93e0-4226-8099-07f7b4cadab4".device = "/dev/disk/by-uuid/709367d0-93e0-4226-8099-07f7b4cadab4";
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/9c2cbe1d-9a12-4784-b903-6822cbe6fd34";
+    fsType = "ext4";
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/07DB-D18C";
-      fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
-    };
+  boot.initrd.luks.devices."luks-709367d0-93e0-4226-8099-07f7b4cadab4".device =
+    "/dev/disk/by-uuid/709367d0-93e0-4226-8099-07f7b4cadab4";
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/07DB-D18C";
+    fsType = "vfat";
+    options = [ "fmask=0077" "dmask=0077" ];
+  };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/65053889-18fa-465e-82a7-38dae7a5757a"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/65053889-18fa-465e-82a7-38dae7a5757a"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -39,5 +49,6 @@
   # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
