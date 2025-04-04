@@ -7,6 +7,8 @@
     # Package and project manager
     uv
 
+    basedpyright
+
   ];
 
   programs.ruff = {
