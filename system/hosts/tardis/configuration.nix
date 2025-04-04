@@ -9,7 +9,7 @@
     ../../hardware/keyboard.nix
     ../../hardware/printing.nix
     ../../environment/default.nix
-    ../../desktop/display-manager/gdm.nix
+    ../../desktop/display-manager/sddm.nix
     ../../desktop/window-manager/hyprland.nix
   ];
 
