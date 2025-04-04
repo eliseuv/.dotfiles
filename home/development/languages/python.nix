@@ -16,4 +16,7 @@
     settings = { };
   };
 
+  # uv installed tools path
+  home.sessionPath = [ "$HOME/.local/bin" ];
+
 }
