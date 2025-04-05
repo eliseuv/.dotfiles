@@ -2,8 +2,6 @@
 
   programs.fzf = {
     enable = true;
-    defaultCommand =
-      ''rg --files --no-ignore --hidden --follow --glob "!.git/*"'';
     colors = {
       fg = "#f8f8f2";
       bg = "#282a36";
@@ -18,6 +16,7 @@
       spinner = "#ffb86c";
       header = "#6272a4";
     };
+    enableZshIntegration = true;
     tmux.enableShellIntegration = true;
   };
 
