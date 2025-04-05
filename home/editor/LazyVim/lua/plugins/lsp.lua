@@ -1,12 +1,11 @@
 return {
 
-    {
-        "williamboman/mason.nvim",
-        opts = {
-            -- Prefer local binaries over mason binaries
-            PATH = "append"
-        }
-    }
-
+  {
+    "williamboman/mason.nvim",
+    enabled = false,
+    opts = {
+      -- Prefer local binaries over mason binaries
+      PATH = "append",
+    },
+  },
 }
-
