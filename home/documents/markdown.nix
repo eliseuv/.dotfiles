@@ -1,11 +1,15 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
-  home.packages = with pkgs;
-    [
+  home.packages = with pkgs; [
 
-      # Render
-      glow
+    # LSP
+    marksman
+    # Linter
+    markdownlint-cli2
+    # Render
+    glow
 
-    ];
+  ];
 
 }
