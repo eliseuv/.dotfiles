@@ -7,7 +7,8 @@
     nixd
 
     # Formatter
-    nixfmt-classic
+    nixfmt-rfc-style
+    nixpkgs-fmt
 
   ];
 
