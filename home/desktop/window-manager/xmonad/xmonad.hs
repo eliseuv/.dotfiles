@@ -482,6 +482,7 @@ myManageHook =
         , -- Chats
           className =? "TelegramDesktop" --> doShift (myWorkspaces !! 7)
         , className =? "discord" --> doShift (myWorkspaces !! 7)
+        , className =? "legcord" --> doShift (myWorkspaces !! 7)
         , -- Board
           className =? "com.github.xournalpp.xournalpp" --> doShift (myWorkspaces !! 8)
         , className =? "rnote" --> doShift (myWorkspaces !! 8)
