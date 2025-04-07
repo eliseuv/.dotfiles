@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   imports = [ ./pueue.nix ];
 
@@ -17,6 +18,9 @@
 
     # Profiler
     cargo-flamegraph
+
+    # Formatter
+    prettierd
 
   ];
 
