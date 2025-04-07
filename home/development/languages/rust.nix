@@ -1,11 +1,9 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   home.packages = with pkgs; [
 
-    (rust-bin.selectLatestNightlyWith (toolchain:
-      toolchain.default.override {
-        extensions = [ "rust-analyzer" "rust-src" ];
-      }))
+    rustup
 
     # Cargo
     cargo-watch
@@ -38,7 +36,9 @@
 
   programs.bacon = {
     enable = true;
-    settings = { default_job = "clippy-all"; };
+    settings = {
+      default_job = "clippy-all";
+    };
   };
 
 }

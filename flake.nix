@@ -34,7 +34,13 @@
 
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
@@ -44,11 +50,10 @@
         overlays = [
           # neovim nightly
           inputs.neovim-nightly-overlay.overlays.default
-          # Rust
-          inputs.rust-overlay.overlays.default
         ];
       };
-    in {
+    in
+    {
 
       nixosConfigurations = {
 
@@ -71,13 +76,19 @@
         "evf@GLaDOS" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs; };
-          modules = [ ./home/home.nix ./home/desktop/xmonad.nix ];
+          modules = [
+            ./home/home.nix
+            ./home/desktop/xmonad.nix
+          ];
         };
 
         "evf@tardis" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs; };
-          modules = [ ./home/home.nix ./home/desktop/hyprland.nix ];
+          modules = [
+            ./home/home.nix
+            ./home/desktop/hyprland.nix
+          ];
         };
 
       };
@@ -85,4 +96,3 @@
     };
 
 }
-
