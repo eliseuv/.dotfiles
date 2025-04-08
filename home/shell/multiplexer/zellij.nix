@@ -1,8 +1,12 @@
-{ ... }: {
+{ ... }:
+{
 
   programs.zellij = {
     enable = true;
-    settings = { theme = "Catppuccin Mocha"; };
+    enableZshIntegration = true;
+    settings = {
+      theme = "Catppuccin Mocha";
+    };
   };
 
 }
