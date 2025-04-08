@@ -1,13 +1,23 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
-  imports = [ ./garbage-collection.nix ./nix-index-database.nix ];
+  imports = [
 
-  home.packages = with pkgs;
-    [
+    # Periodic garbage collection
+    ./garbage-collection.nix
 
-      # Nix version diff
-      nvd
+    # Nix Index database
+    ./nix-index-database.nix
 
-    ];
+    # Automatically expire old generations
+    ./auto-expire.nix
+  ];
+
+  home.packages = with pkgs; [
+
+    # Nix version diff
+    nvd
+
+  ];
 
 }
