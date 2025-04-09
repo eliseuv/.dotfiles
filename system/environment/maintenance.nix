@@ -1,8 +1,10 @@
-{ inputs, ... }: {
+{ inputs, ... }:
+{
 
-  # FIXME: Find a way to get rid of this redundant expression 
+  # FIXME: Find a way to get rid of this redundant expression
   nixpkgs.config.allowUnfree = true;
 
+  # Nix Helper
   programs.nh = {
     enable = true;
     flake = "/home/evf/.dotfiles";
@@ -13,6 +15,7 @@
     };
   };
 
+  # Automatic store optimisation
   nix.settings.auto-optimise-store = true;
   nix.optimise = {
     automatic = true;
@@ -30,4 +33,3 @@
   };
 
 }
-
