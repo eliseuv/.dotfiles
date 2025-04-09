@@ -3,14 +3,8 @@
 
   imports = [
 
-    # Periodic garbage collection
-    ./garbage-collection.nix
-
     # Nix Index database
     ./nix-index-database.nix
-
-    # Automatically expire old generations
-    ./auto-expire.nix
   ];
 
   home.packages = with pkgs; [
@@ -19,5 +13,25 @@
     nvd
 
   ];
+
+  # Periodic garbage collection
+  nix.gc = {
+    automatic = true;
+    options = "--delete-older-than 7d";
+    frequency = "daily";
+    persistent = true;
+    randomizedDelaySec = "45min";
+  };
+
+  # Automatically expire old generations
+  services.home-manager.autoExpire = {
+    enable = true;
+    frequency = "monthly";
+    timestamp = "-30 days";
+    store = {
+      cleanup = true;
+      options = "--delete-older-than 30d";
+    };
+  };
 
 }
