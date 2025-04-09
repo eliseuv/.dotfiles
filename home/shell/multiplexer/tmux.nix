@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   programs.tmux = {
     enable = true;
@@ -69,4 +70,11 @@
     tn = "tmux new-session";
     tl = "tmux list-sessions";
   };
+
+  # Session mamanger
+  programs.smug = {
+    enable = true;
+
+  };
+
 }
