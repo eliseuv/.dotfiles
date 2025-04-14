@@ -1,8 +1,8 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim;
   };
 
   home.shellAliases = {
@@ -36,7 +36,7 @@
     Unit.Description = "Sync lazy.nvim packages";
     Service = {
       Type = "oneshot";
-      ExecStart = ''${pkgs.neovim}/bin/nvim --headless "+Lazy! sync" +qa'';
+      ExecStart = ''${pkgs.neovim-unwrapped}/bin/nvim --headless "+Lazy! sync" +qa'';
     };
     Install.WantedBy = [ "default.target" ];
   };
