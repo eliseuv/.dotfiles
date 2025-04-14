@@ -20,12 +20,6 @@
     # NeoVim nightly
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
-    # Rust overlay
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Spicetify
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
