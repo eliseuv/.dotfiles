@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
 
   imports = [
 
@@ -11,6 +12,7 @@
     # Languages
     ./languages/nix.nix
     ./languages/rust.nix
+    ./languages/c.nix
     ./languages/julia.nix
     ./languages/haskell.nix
     ./languages/python.nix
@@ -27,6 +29,8 @@
   ];
 
   # Nix Shell
-  home.shellAliases = { ns = "nix-shell --command zsh --packages"; };
+  home.shellAliases = {
+    ns = "nix-shell --command zsh --packages";
+  };
 
 }
