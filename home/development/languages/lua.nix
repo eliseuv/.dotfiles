@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   home.packages = with pkgs; [
     # Lua version pinned because of neovim
@@ -7,8 +8,6 @@
     lua-language-server
     # Formatter
     stylua
-    # Linter
-    ast-grep
     # Lua Rocks
     lua51Packages.luarocks
   ];

@@ -13,6 +13,9 @@
     # Run command on change
     watchexec
 
+    # Linter
+    ast-grep
+
     # Benchmarking
     hyperfine
 
