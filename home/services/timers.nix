@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
 
   systemd.user.timers = {
 

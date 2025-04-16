@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
 
   home.packages = with pkgs; [
@@ -41,6 +41,26 @@
     settings = {
       default_job = "clippy-all";
     };
+  };
+
+  # rustup update
+  systemd.user.services.rustup-update = {
+    Unit.Description = "Update rustup toolchains";
+    Service = {
+      Type = "oneshot";
+      ExecStart = "${lib.getExe pkgs.rustup} update";
+    };
+    Install.WantedBy = [ "default.target" ];
+  };
+
+  # rustup update timer
+  systemd.user.timers.rustup-update = {
+    Unit.Description = "Scheduled rustup update";
+    Timer = {
+      OnCalendar = "daily";
+      Persistent = true;
+    };
+    Install.WantedBy = [ "timers.target" ];
   };
 
 }
