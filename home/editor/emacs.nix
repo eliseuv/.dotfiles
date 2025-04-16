@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   programs.emacs.enable = true;
 
@@ -55,6 +56,20 @@
   #       "PATH=/run/current-system/sw/bin::/home/evf/.nix-profile/bin";
   #   };
   #   Install.WantedBy = [ "default.target" ];
+  # };
+
+  # # Doom Emacs update
+  # systemd.user.timers.doom-update = {
+  #   Unit.Description = "Scheduled Doom Emacs update";
+  #   Timer = { OnCalendar = "daily"; };
+  #   Install.WantedBy = [ "timers.target" ];
+  # };
+
+  # # Doom Emacs garbage collection
+  # systemd.user.timers.doom-gc = {
+  #   Unit.Description = "Scheduled Doom Emacs garbage collection";
+  #   Timer = { OnCalendar = "weekly"; };
+  #   Install.WantedBy = [ "timers.target" ];
   # };
 
 }
