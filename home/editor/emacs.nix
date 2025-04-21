@@ -60,8 +60,13 @@
 
   # # Doom Emacs update
   # systemd.user.timers.doom-update = {
-  #   Unit.Description = "Scheduled Doom Emacs update";
-  #   Timer = { OnCalendar = "daily"; };
+  #   Unit = {
+  #     Description = "Scheduled Doom Emacs update";
+  #     After = "network-online.target";
+  #   };
+  #   Timer = {
+  #     OnCalendar = "daily";
+  #   };
   #   Install.WantedBy = [ "timers.target" ];
   # };
 

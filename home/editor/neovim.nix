@@ -33,7 +33,11 @@
 
   # lazy.nvim sync
   systemd.user.services.lazynvim-sync = {
-    Unit.Description = "Sync lazy.nvim packages";
+    Unit = {
+      Description = "Sync lazy.nvim packages";
+      Wants = [ "network-online.target" ];
+      After = [ "network-online.target" ];
+    };
     Service = {
       Type = "oneshot";
       ExecStart = ''${pkgs.neovim-unwrapped}/bin/nvim --headless "+Lazy! sync" +qa'';

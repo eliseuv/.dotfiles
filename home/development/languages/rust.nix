@@ -45,7 +45,11 @@
 
   # rustup update
   systemd.user.services.rustup-update = {
-    Unit.Description = "Update rustup toolchains";
+    Unit = {
+      Description = "Update rustup toolchains";
+      Wants = [ "network-online.target" ];
+      After = [ "network-online.target" ];
+    };
     Service = {
       Type = "oneshot";
       ExecStart = "${lib.getExe pkgs.rustup} update";
