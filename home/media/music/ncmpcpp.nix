@@ -1,26 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
-  # Music player daemon
-  services.mpd = {
-    enable = true;
-    musicDirectory = "/run/media/evf/Storage/CompanionCube/music";
-    playlistDirectory = "/run/media/evf/Storage/CompanionCube/music/playlists";
-    extraConfig = ''
-      audio_output {
-          type    "pulse"
-          name    "pulse"
-      }
-
-      audio_output {
-          type    "fifo"
-          name    "Visualizer feed"
-          path    "/tmp/mpd.fifo"
-          format  "44100:16:2"
-      }
-    '';
-  };
-
-  # Music player
   programs.ncmpcpp = {
     enable = true;
     package = pkgs.ncmpcpp.override { visualizerSupport = true; };
@@ -53,11 +33,17 @@
       # Selection
       {
         key = "J";
-        command = [ "select_item" "scroll_down" ];
+        command = [
+          "select_item"
+          "scroll_down"
+        ];
       }
       {
         key = "K";
-        command = [ "select_item" "scroll_up" ];
+        command = [
+          "select_item"
+          "scroll_up"
+        ];
       }
       # Moving items
       {
@@ -92,13 +78,10 @@
       visualizer_type = "spectrum";
       message_delay_time = 1;
       song_list_format = "{$4%a - }{%t}|{$8%f$9}$R{$3(%l)$9}";
-      song_status_format =
-        ''$b{{$8"%t"}} $3by {$4%a{ $3in $7%b{ (%y)}} $3}|{$8%f}'';
+      song_status_format = ''$b{{$8"%t"}} $3by {$4%a{ $3in $7%b{ (%y)}} $3}|{$8%f}'';
       song_library_format = "{%n - }{%t}|{%f}";
-      alternative_header_first_line_format =
-        "$b$1$aqqu$/a$9 {%t}|{%f} $1$atqq$/a$9$/b";
-      alternative_header_second_line_format =
-        "{{$4$b%a$/b$9}{ - $7%b$9}{ ($4%y$9)}}|{%D}";
+      alternative_header_first_line_format = "$b$1$aqqu$/a$9 {%t}|{%f} $1$atqq$/a$9$/b";
+      alternative_header_second_line_format = "{{$4$b%a$/b$9}{ - $7%b$9}{ ($4%y$9)}}|{%D}";
       current_item_prefix = "$(cyan)$r$b";
       current_item_suffix = "$/r$(end)$/b";
       current_item_inactive_column_prefix = "$(magenta)$r";
