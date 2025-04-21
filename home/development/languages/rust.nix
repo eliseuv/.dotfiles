@@ -52,7 +52,7 @@
     };
     Service = {
       Type = "oneshot";
-      ExecStart = "${lib.getExe pkgs.rustup} update";
+      ExecStart = "${pkgs.rustup}/bin/rustup update";
     };
     Install.WantedBy = [ "default.target" ];
   };
