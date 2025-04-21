@@ -8,6 +8,7 @@
 
     # TUI
     ./ncmpcpp.nix
+    ./inori.nix
 
     # GUI
     ./spotify.nix
