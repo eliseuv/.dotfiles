@@ -61,7 +61,7 @@
   systemd.user.timers.rustup-update = {
     Unit.Description = "Scheduled rustup update";
     Timer = {
-      OnCalendar = "daily";
+      OnCalendar = "*-*-* 01:00:00 UTC";
       Persistent = true;
     };
     Install.WantedBy = [ "timers.target" ];
