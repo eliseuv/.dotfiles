@@ -93,7 +93,6 @@ set searchurls.aur https://aur.archlinux.org/packages?O=0&K=%s
 set searchurls.mynixos https://mynixos.com/search?q=%s
 set searchurls.hm https://home-manager-options.extranix.com/?query=%s&release=master
 set searchurls.noogle https://noogle.dev/q?term=%s
-
 " Torrent
 set searchurls.bt https://btdig.com/search?q=%s
 set searchurls.tpb https://thepiratebay.org/search.php?q=%s&all=on&search=Pirate+Search&
@@ -114,6 +113,7 @@ set searchurls.th https://www.thesaurus.com/browse/%s
 set searchurls.amz https://www.amazon.com.br/s?k=%s
 set searchurls.keepa https://keepa.com/#!search/12-%s
 " Other
+set searchurls.archive https://archive.org/search?query=%s
 set searchurls.maps https://www.google.com/maps/search/%s
 set searchurls.wa https://www.wolframalpha.com/input/?i=%s
 set searchurls.color https://www.color-hex.com/color/%s
