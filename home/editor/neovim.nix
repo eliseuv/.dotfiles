@@ -59,6 +59,7 @@
       OnBootSec = "1m";
       # And periodically while system is running
       OnUnitActiveSec = "6h";
+      RandomizedDelaySec = "1m";
     };
     Install.WantedBy = [ "timers.target" ];
   };

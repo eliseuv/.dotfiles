@@ -71,6 +71,7 @@
       Persistent = true;
       # Run after boot
       OnBootSec = "1m";
+      RandomizedDelaySec = "1m";
     };
     Install.WantedBy = [ "timers.target" ];
   };
