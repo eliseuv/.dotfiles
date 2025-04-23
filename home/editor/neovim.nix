@@ -35,8 +35,14 @@
   systemd.user.services.lazynvim-sync = {
     Unit = {
       Description = "Sync lazy.nvim packages";
-      Wants = [ "network-online.target" ];
-      After = [ "network-online.target" ];
+      Wants = [
+        "network.target"
+        "nss-lookup.target"
+      ];
+      After = [
+        "network.target"
+        "nss-lookup.target"
+      ];
     };
     Service = {
       Type = "oneshot";
