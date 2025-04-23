@@ -69,6 +69,8 @@
     Timer = {
       OnCalendar = "*-*-* 01:00:00 UTC";
       Persistent = true;
+      # Run after boot
+      OnBootSec = "1m";
     };
     Install.WantedBy = [ "timers.target" ];
   };
