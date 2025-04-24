@@ -23,6 +23,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # YT-X
+    yt-x.url = "github:Benexl/yt-x";
+
   };
 
   outputs =

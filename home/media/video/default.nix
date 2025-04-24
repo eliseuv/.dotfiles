@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }:
+{
 
   imports = [ ./mpv.nix ];
 
@@ -6,8 +7,12 @@
 
     ffmpeg
 
+    inputs.yt-x.packages."${system}".default
+
   ];
 
-  programs.yt-dlp = { enable = true; };
+  programs.yt-dlp = {
+    enable = true;
+  };
 
 }
