@@ -1,15 +1,18 @@
 { pkgs, ... }:
+let
+  theme = "rings";
+in
 {
 
   boot = {
 
     plymouth = {
       enable = true;
-      theme = "rings";
+      inherit theme;
       themePackages = with pkgs; [
         # By default we would install all themes
         (adi1090x-plymouth-themes.override {
-          selected_themes = [ "rings" ];
+          selected_themes = [ theme ];
         })
       ];
     };
