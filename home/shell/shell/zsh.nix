@@ -1,4 +1,5 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }:
+{
 
   programs.zsh = {
     enable = true;
@@ -6,7 +7,10 @@
     enableCompletion = true;
     autosuggestion = {
       enable = true;
-      strategy = [ "history" "completion" ];
+      strategy = [
+        "history"
+        "completion"
+      ];
     };
     enableVteIntegration = true;
     defaultKeymap = "emacs";
@@ -19,17 +23,19 @@
       save = 1000000;
       size = 1000000;
     };
-    initExtra = ''
+    initContent = ''
       bindkey '^ ' autosuggest-accept
       bindkey  "^[[H"   beginning-of-line
       bindkey  "^[[F"   end-of-line
       bindkey  "^[[3~"  delete-char
+      ${lib.getExe pkgs.fastfetch}
     '';
-    initContent = "${lib.getExe pkgs.fastfetch}";
-
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "git-auto-fetch" ];
+      plugins = [
+        "git"
+        "git-auto-fetch"
+      ];
     };
   };
 
