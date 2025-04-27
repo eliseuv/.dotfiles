@@ -287,25 +287,6 @@ mySpacing' i = spacingRaw True (Border i i i i) True (Border i i i i) True
 -- Defining a bunch of layouts, many that I don't use.
 -- limitWindows n sets maximum number of windows displayed for layout.
 -- mySpacing n sets the gap size around the windows.
-tall =
-    renamed [Replace "tall"] $
-        limitWindows 5 $
-            smartBorders $
-                windowNavigation $
-                    addTabs shrinkText myTabTheme $
-                        subLayout [] (smartBorders Simplest) $
-                            mySpacing 4 $
-                                ResizableTall 1 (3 / 100) (1 / 2) []
-
-monocle =
-    renamed [Replace "monocle"] $
-        smartBorders $
-            windowNavigation $
-                addTabs shrinkText myTabTheme $
-                    subLayout
-                        []
-                        (smartBorders Simplest)
-                        Full
 
 floats =
     renamed [Replace "floats"] $
@@ -323,53 +304,12 @@ grid =
                                 mkToggle (single MIRROR) $
                                     Grid (16 / 10)
 
-spirals =
-    renamed [Replace "spirals"] $
-        limitWindows 9 $
-            smartBorders $
-                windowNavigation $
-                    addTabs shrinkText myTabTheme $
-                        subLayout [] (smartBorders Simplest) $
-                            mySpacing' 4 $
-                                spiral (6 / 7)
-
-threeCol =
-    renamed [Replace "threeCol"] $
-        limitWindows 7 $
-            smartBorders $
-                windowNavigation $
-                    addTabs shrinkText myTabTheme $
-                        subLayout [] (smartBorders Simplest) $
-                            ThreeCol 1 (3 / 100) (1 / 2)
-
-threeRow =
-    renamed [Replace "threeRow"] $
-        limitWindows 7 $
-            smartBorders $
-                windowNavigation $
-                    addTabs shrinkText myTabTheme $
-                        subLayout [] (smartBorders Simplest)
-                        -- Mirror takes a layout and rotates it by 90 degrees.
-                        -- So we are applying Mirror to the ThreeCol layout.
-                        $
-                            Mirror $
-                                ThreeCol 1 (3 / 100) (1 / 2)
-
 tabs =
     renamed [Replace "tabs"]
     -- I cannot add spacing to this layout because it will
     -- add spacing between window and tabs which looks bad.
     $
         tabbed shrinkText myTabTheme
-
-tallAccordion =
-    renamed
-        [Replace "tallAccordion"]
-        Accordion
-
-wideAccordion =
-    renamed [Replace "wideAccordion"] $
-        Mirror Accordion
 
 -- setting colors for tabs layout and tabs sublayout.
 myTabTheme =
@@ -404,12 +344,12 @@ myLayoutHook =
     myDefaultLayout =
         noBorders tabs
             ||| withBorder myBorderWidth grid
-            ||| threeCol
-            ||| threeRow
-            ||| tall
-            ||| noBorders monocle
-            ||| spirals
 
+-- \||| threeCol
+-- \||| threeRow
+-- \||| tall
+-- \||| noBorders monocle
+-- \||| spirals
 -- \||| floats
 -- \||| tallAccordion
 -- \||| wideAccordion
