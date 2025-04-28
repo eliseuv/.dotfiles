@@ -6,6 +6,8 @@ in
 
   boot = {
 
+    initrd.systemd.enable = true;
+
     plymouth = {
       enable = true;
       inherit theme;
