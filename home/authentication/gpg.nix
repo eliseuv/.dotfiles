@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   home.packages = [ pkgs.gcr ];
 
@@ -15,7 +16,7 @@
     maxCacheTtl = 43200;
     defaultCacheTtlSsh = 43200;
     maxCacheTtlSsh = 43200;
-    pinentryPackage = pkgs.pinentry-gnome3;
+    pinentry.package = pkgs.pinentry-gnome3;
   };
 
 }
