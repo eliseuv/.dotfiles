@@ -3,11 +3,11 @@
 
   programs.zathura = {
     enable = true;
-    extraConfig = ''
-      set recolor true
-    '';
     mappings = {
       "<C-i>" = "recolor";
+    };
+    options = {
+      recolor = true;
     };
   };
 
