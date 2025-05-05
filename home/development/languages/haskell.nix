@@ -12,6 +12,9 @@
     # Linter
     hlint
 
+    # Formatter
+    fourmolu
+
     # Projects
     cabal-install
     cabal2nix
