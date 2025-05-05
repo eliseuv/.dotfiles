@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   home.packages = with pkgs; [
 
@@ -7,6 +8,9 @@
 
     # LSP
     haskell-language-server
+
+    # Linter
+    hlint
 
     # Projects
     cabal-install
