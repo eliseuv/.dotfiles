@@ -16,13 +16,6 @@
 
   ];
 
-  home.file = {
-    ".config/doom" = {
-      source = ./doom;
-      recursive = true;
-    };
-  };
-
   # # Doom Emacs update
   # systemd.user.services.doom-update = {
   #   Unit.Description = "Update Doom Emacs";
