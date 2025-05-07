@@ -1,9 +1,10 @@
-{ ... }: {
+{ ... }:
+{
 
   imports = [
 
     # TUI
-    ./neovim.nix
+    ./neovim/default.nix
     ./helix.nix
 
     # GUI
