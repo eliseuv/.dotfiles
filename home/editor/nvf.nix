@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   programs.nvf = {
     enable = true;
     settings = {
@@ -9,13 +8,14 @@
         theme = {
           enable = true;
           name = "tokyonight";
-          style = "dark";
+          style = "night";
         };
 
         lsp = {
           enable = true;
         };
 
+        dashboard.alpha.enable = true;
         statusline.lualine.enable = true;
         telescope.enable = true;
         autocomplete.nvim-cmp.enable = true;
