@@ -1,15 +1,6 @@
 { pkgs, ... }:
 {
 
-  programs.emacs.enable = true;
-
-  services.emacs.enable = false;
-
-  home.sessionVariables = {
-    EMACS_DIR = "$HOME/.config/emacs";
-    DOOM_DIR = "$HOME/.config/doom";
-  };
-
   home.packages = with pkgs; [
 
     # vterm dependencies
@@ -27,12 +18,10 @@
 
   home.file = {
     ".config/doom" = {
-      source = ./doom-emacs;
+      source = ./doom;
       recursive = true;
     };
   };
-
-  home.sessionPath = [ "$HOME/.config/emacs/bin" ];
 
   # # Doom Emacs update
   # systemd.user.services.doom-update = {
