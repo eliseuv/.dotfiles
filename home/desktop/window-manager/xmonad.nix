@@ -1,21 +1,23 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   imports = [
     # Wallpapers
     ../wallpapers.nix
   ];
 
-  home.packages = with pkgs;
-    [
-      # Audio mixer
-      pulsemixer
-    ];
+  home.packages = with pkgs; [
+    # Audio mixer
+    pulsemixer
+  ];
 
   xsession.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;
     config = ./xmonad/xmonad.hs;
-    libFiles = { "Colors/DoomOne.hs" = ./xmonad/lib/Colors/DoomOne.hs; };
+    libFiles = {
+      "Colors/DoomOne.hs" = ./xmonad/lib/Colors/DoomOne.hs;
+    };
   };
 
   # feh wallpaper

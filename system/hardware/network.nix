@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
 
   networking.networkmanager.enable = true;
 
@@ -22,7 +23,9 @@
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
-    settings = { PasswordAuthentication = false; };
+    settings = {
+      PasswordAuthentication = false;
+    };
   };
 
   # Open ports in the firewall.

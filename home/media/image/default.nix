@@ -1,7 +1,14 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
-  imports = [ ./feh.nix ./sxiv.nix ];
+  imports = [
+    ./feh.nix
+    ./sxiv.nix
+  ];
 
-  home.packages = with pkgs; [ gimp imagemagick ];
+  home.packages = with pkgs; [
+    gimp
+    imagemagick
+  ];
 
 }

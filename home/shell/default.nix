@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   imports = [
 
@@ -53,8 +54,7 @@
     # rsync
     rs = "rsync -Pazvhm";
     rsmv = "rsync -Pazvhm --remove-source-files";
-    rsrepo =
-      "rsync -Pazvhm --include='**.gitignore' --filter=':- .gitignore' --delete-after";
+    rsrepo = "rsync -Pazvhm --include='**.gitignore' --filter=':- .gitignore' --delete-after";
 
     # Edit configs
     dots = ''cd $DOTFILES && nvim "+lua Snacks.picker.files()"'';

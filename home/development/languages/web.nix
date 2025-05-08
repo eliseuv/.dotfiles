@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   home.packages = with pkgs; [
 
@@ -14,6 +15,8 @@
   ];
 
   # Bun JS runtime
-  programs.bun = { enable = true; };
+  programs.bun = {
+    enable = true;
+  };
 
 }

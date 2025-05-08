@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
 
   programs.git = {
 
@@ -17,11 +18,12 @@
       options = {
         features = "decorations";
         navigate = true; # use n and N to move between diff sections
-        light =
-          false; # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+        light = false; # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
         line-numbers = true;
         side-by-side = false;
-        interactive = { keep-plus-minus-markers = false; };
+        interactive = {
+          keep-plus-minus-markers = false;
+        };
         decorations = {
           commit-decoration-style = "blue ol";
           commit-style = "raw";

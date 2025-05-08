@@ -1,5 +1,9 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
-  home.packages = with pkgs; [ zig zig-shell-completions ];
+  home.packages = with pkgs; [
+    zig
+    zig-shell-completions
+  ];
 
 }

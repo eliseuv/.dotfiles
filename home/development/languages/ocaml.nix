@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
 
   programs.opam = {
     enable = true;

@@ -1,10 +1,15 @@
-{ ... }: {
+{ ... }:
+{
 
   programs.yazi = {
     enable = true;
     enableZshIntegration = true;
     shellWrapperName = "y";
-    settings = { manager = { show_hidden = true; }; };
+    settings = {
+      manager = {
+        show_hidden = true;
+      };
+    };
   };
 
 }

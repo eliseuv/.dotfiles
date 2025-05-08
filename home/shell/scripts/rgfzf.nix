@@ -3,9 +3,7 @@
 { pkgs, lib }:
 pkgs.writeShellScriptBin "rgfzf" ''
   rm -f /tmp/rg-fzf-{r,f}
-  RG_PREFIX="${
-    lib.getExe pkgs.ripgrep
-  } --column --line-number --no-heading --color=always --smart-case "
+  RG_PREFIX="${lib.getExe pkgs.ripgrep} --column --line-number --no-heading --color=always --smart-case "
   INITIAL_QUERY="''${*:-}"
   ${lib.getExe pkgs.fzf} --ansi --disabled --query "$INITIAL_QUERY" \
       --bind "start:reload:$RG_PREFIX {q}" \

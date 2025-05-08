@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
 
   # Copy wallpapers
   home.file.".wallpapers" = {

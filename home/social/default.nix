@@ -1,5 +1,9 @@
-{ ... }: {
+{ ... }:
+{
 
-  imports = [ ./telegram.nix ./discord.nix ];
+  imports = [
+    ./telegram.nix
+    ./discord.nix
+  ];
 
 }

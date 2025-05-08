@@ -1,14 +1,20 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
-  home.packages = with pkgs;
-    [
-      # Fonts
-      nerd-fonts.zed-mono
-    ];
+  home.packages = with pkgs; [
+    # Fonts
+    nerd-fonts.zed-mono
+  ];
 
   programs.zed-editor = {
     enable = true;
-    extensions = [ "catppuccin" "zed-tokyo-night" "nix" "julia" "just" ];
+    extensions = [
+      "catppuccin"
+      "zed-tokyo-night"
+      "nix"
+      "julia"
+      "just"
+    ];
     userSettings = {
       base_keymap = "VSCode";
       telemetry = {
@@ -46,13 +52,20 @@
           useParameterNames = true;
           enable = "skip_trivial";
         };
-        closureReturnTypeHints = { "enable" = "always"; };
+        closureReturnTypeHints = {
+          "enable" = "always";
+        };
       };
       # Languages
       languages = {
         Nix = {
-          language_servers = [ "!nil" "nixd" ];
-          formatter.external = { command = "nixfmt"; };
+          language_servers = [
+            "!nil"
+            "nixd"
+          ];
+          formatter.external = {
+            command = "nixfmt";
+          };
         };
       };
     };

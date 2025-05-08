@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
 
   programs.bottom = {
     enable = true;
@@ -43,7 +44,9 @@
           };
         };
 
-        graphs = { graph_color = "dark gray"; };
+        graphs = {
+          graph_color = "dark gray";
+        };
 
         widgets = {
           border_color = "dark gray";
@@ -58,6 +61,8 @@
 
     };
   };
-  home.shellAliases = { bt = "btm"; };
+  home.shellAliases = {
+    bt = "btm";
+  };
 
 }

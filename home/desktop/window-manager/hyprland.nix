@@ -1,18 +1,20 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
 
   imports = [ ../monitors.nix ];
 
-  home.packages = with pkgs;
-    [
-      # Default terminal
-      kitty
-    ];
+  home.packages = with pkgs; [
+    # Default terminal
+    kitty
+  ];
 
-  monitors = [{
-    width = 1920;
-    height = 1080;
-    refreshRate = 60;
-  }];
+  monitors = [
+    {
+      width = 1920;
+      height = 1080;
+      refreshRate = 60;
+    }
+  ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -20,18 +22,14 @@
 
       # Monitors
       # monitor = " , 1920x1080@60, auto, 1";
-      monitor = map (m:
+      monitor = map (
+        m:
         let
-          resolution = "${toString m.width}x${toString m.height}@${
-              toString m.refreshRate
-            }";
+          resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
           position = "${toString m.x}x${toString m.y}";
-        in "${m.name},${
-          if m.enable then
-            "${resolution},${position},${toString m.scale}"
-          else
-            "disable"
-        }") (config.monitors);
+        in
+        "${m.name},${if m.enable then "${resolution},${position},${toString m.scale}" else "disable"}"
+      ) (config.monitors);
 
       # Variables
       "$terminal" = "ghostty";
@@ -223,7 +221,9 @@
         preserve_split = true;
       };
 
-      master = { new_status = "master"; };
+      master = {
+        new_status = "master";
+      };
 
       misc = {
         force_default_wallpaper = 0;
@@ -241,10 +241,14 @@
 
         follow_mouse = 1;
         sensitivity = 0;
-        touchpad = { natural_scroll = true; };
+        touchpad = {
+          natural_scroll = true;
+        };
       };
 
-      gestures = { workspace_swipe = true; };
+      gestures = {
+        workspace_swipe = true;
+      };
 
       # Windows rules
       windowrulev2 = [

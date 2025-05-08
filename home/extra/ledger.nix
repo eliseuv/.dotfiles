@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
 
   programs.ledger = {
     enable = true;

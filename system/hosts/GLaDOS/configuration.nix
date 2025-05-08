@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
 
   imports = [
     ./hardware.nix
@@ -19,7 +20,10 @@
   ];
 
   # Flakes support
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Hostname
   networking.hostName = "GLaDOS";

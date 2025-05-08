@@ -1,5 +1,8 @@
-{ ... }: {
+{ ... }:
+{
 
-  services.podman = { enable = false; };
+  services.podman = {
+    enable = false;
+  };
 
 }

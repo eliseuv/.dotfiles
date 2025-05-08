@@ -1,10 +1,15 @@
-{ ... }: {
+{ ... }:
+{
 
   programs.bat = {
     enable = true;
-    config = { theme = "TwoDark"; };
+    config = {
+      theme = "TwoDark";
+    };
   };
 
-  home.shellAliases = { b = "bat"; };
+  home.shellAliases = {
+    b = "bat";
+  };
 
 }

@@ -1,8 +1,14 @@
-{ ... }: {
+{ ... }:
+{
 
-  imports = [ ./ghostty.nix ./kitty.nix ];
+  imports = [
+    ./ghostty.nix
+    ./kitty.nix
+  ];
 
   # Default terminal
-  home.sessionVariables = { TERMINAL = "kitty"; };
+  home.sessionVariables = {
+    TERMINAL = "kitty";
+  };
 
 }
