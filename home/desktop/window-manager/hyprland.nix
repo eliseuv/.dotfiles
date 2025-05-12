@@ -4,8 +4,13 @@
   imports = [ ../monitors.nix ];
 
   home.packages = with pkgs; [
+
     # Default terminal
     kitty
+
+    # Clipboard manager
+    copyq
+
   ];
 
   monitors = [
@@ -40,7 +45,7 @@
       "$fileManager" = "nautilus";
 
       # Autostart
-      exec-once = [ ];
+      exec-once = [ "copyq --start-server" ];
 
       # Environment variables
       env = [
