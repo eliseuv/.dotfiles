@@ -20,6 +20,7 @@
     ./languages/go.nix
     ./languages/ocaml.nix
     ./languages/lean.nix
+    ./languages/uiua.nix
     ./languages/zig.nix
     ./languages/web.nix
 
