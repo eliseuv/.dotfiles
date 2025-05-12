@@ -18,6 +18,9 @@
     ./typst.nix
     ./markdown.nix
 
+    # Notes
+    ./obsidian.nix
+
   ];
 
 }
