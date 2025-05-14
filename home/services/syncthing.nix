@@ -41,6 +41,15 @@
           };
         };
 
+        "obsidian" = {
+          path = "~/Documents/obsidian";
+          devices = [
+            "GLaDOS"
+            "TARDIS"
+            "A53"
+          ];
+        };
+
       };
     };
   };
