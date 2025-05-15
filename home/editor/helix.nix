@@ -20,6 +20,7 @@
         file-picker = {
           hidden = false;
         };
+        auto-format = true;
         lsp = {
           display-messages = true;
           display-inlay-hints = true;
@@ -39,6 +40,12 @@
       language-server.basedpyright = {
         command = "${pkgs.basedpyright}/bin/basedpyright-langserver";
       };
+      # Haskell
+      language-server.hls = {
+        command = "${pkgs.haskell-language-server}/bin/haskell-language-server-wrapper";
+        args = [ "--lsp" ];
+      };
+      # Language config
       language = [
         {
           name = "python";
@@ -46,8 +53,14 @@
             "ruff"
             "basedpyright"
           ];
-          auto-format = true;
         }
+        {
+          name = "haskell";
+          language-servers = [
+            "hls"
+          ];
+        }
+
       ];
     };
   };
