@@ -417,6 +417,7 @@ myManageHook =
           className =? "Zathura" --> doShift (myWorkspaces !! 5)
         , className =? "calibre" --> doShift (myWorkspaces !! 5)
         , className =? "Zotero" --> doShift (myWorkspaces !! 5)
+        , className =? "obsidian" --> doShift (myWorkspaces !! 5)
         , -- Notebooks
           title =? "Chromium" --> doShift (myWorkspaces !! 6)
         , -- Chats
