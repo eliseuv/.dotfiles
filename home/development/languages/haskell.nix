@@ -15,6 +15,9 @@
     # Formatter
     fourmolu
 
+    # Prettifier
+    stylish-haskell
+
     # Projects
     cabal-install
     cabal2nix
@@ -30,8 +33,9 @@
     haskellPackages.haskell-debug-adapter
     haskellPackages.ghci-dap
 
-    # Prettifier
-    stylish-haskell
+    # Tools
+    ghcid
+    ghciwatch
 
   ];
 
