@@ -20,6 +20,9 @@
     # Compilation cache
     sccache
 
+    # Debugging
+    lldb
+
     # https://nixos.wiki/wiki/Rust#Building_Rust_crates_that_require_external_system_libraries
     openssl.dev
     pkg-config
