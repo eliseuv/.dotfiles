@@ -11,18 +11,10 @@
 
     # Languages
     ./languages/nix.nix
-    ./languages/rust.nix
     ./languages/c.nix
+    ./languages/rust.nix
     ./languages/julia.nix
     ./languages/haskell.nix
-    ./languages/python.nix
-    ./languages/lua.nix
-    ./languages/go.nix
-    ./languages/ocaml.nix
-    ./languages/lean.nix
-    ./languages/uiua.nix
-    ./languages/zig.nix
-    ./languages/web.nix
 
     # Development environments
     ./environment/default.nix
