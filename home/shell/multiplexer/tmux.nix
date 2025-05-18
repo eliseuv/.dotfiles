@@ -62,6 +62,8 @@
       # Send prefix to nested session
       bind-key -n C-a send-prefix
     '';
+
+    tmuxinator.enable = true;
   };
 
   home.shellAliases = {
