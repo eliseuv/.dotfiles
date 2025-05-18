@@ -1,6 +1,13 @@
 { pkgs, ... }:
 {
 
+  home.packages = with pkgs; [
+
+    # NodeJS required for Copilot
+    nodejs
+
+  ];
+
   # lazy.nvim update alias
   home.shellAliases.lazy-sync = ''nvim --headless "+Lazy! sync" +qa'';
 
