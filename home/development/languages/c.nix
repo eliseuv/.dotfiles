@@ -9,6 +9,9 @@
     clang-manpages
     clang-analyzer
 
+    # Compilation database
+    bear
+
     # Debuggers
     gdb
     lldb
