@@ -8,6 +8,10 @@
     userName = "evf";
     userEmail = "eliseuv816@gmail.com";
 
+    extraConfig = {
+      core.editor = "nvim";
+    };
+
     maintenance = {
       enable = true;
       repositories = [ "/home/evf/.dotfiles" ];
