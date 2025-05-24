@@ -17,6 +17,9 @@
     cargo-fuzz
     cargo-nextest
 
+    # CLI Crate Docs
+    rusty-man
+
     # Compilation cache
     sccache
 
