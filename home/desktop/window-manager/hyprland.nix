@@ -279,9 +279,11 @@
         "workspace 4, class:mpv"
         # Documents
         "workspace 5, class:org.pwmt.zathura"
+        "workspace 5, class:obsidian"
         # Chat
         "workspace 6, class:org.telegram.desktop"
         "workspace 6, class:discord"
+        "workspace 6, class:legcord"
 
       ];
 
