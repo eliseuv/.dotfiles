@@ -31,6 +31,9 @@
     # Disk usage analyzer
     dua
 
+    # TUI process runner
+    mprocs
+
   ];
 
 }
