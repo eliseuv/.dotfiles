@@ -31,6 +31,9 @@
     # Disk usage analyzer
     dua
 
+    # Dependency cleaner
+    kondo
+
     # TUI process runner
     mprocs
 
