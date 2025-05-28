@@ -8,6 +8,14 @@
 
   programs.virt-manager.enable = true;
 
-  environment.systemPackages = with pkgs; [ quickemu ];
+  environment.systemPackages = with pkgs; [
+
+    # TPM Emulation
+    swtpm
+
+    # Templates
+    quickemu
+
+  ];
 
 }
