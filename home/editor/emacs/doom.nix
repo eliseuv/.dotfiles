@@ -9,9 +9,13 @@
     # Spelling
     hunspell
 
-    # Fonts
+    # Main font
+    nerd-fonts.iosevka-term
+    # Variable pitch font
     alegreya
+    # Serif font
     ibm-plex
+    # Unicode symbols
     symbola
 
   ];
