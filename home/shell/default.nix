@@ -14,6 +14,7 @@
 
     # Multiplexer
     ./multiplexer/tmux.nix
+    ./multiplexer/zellij.nix
 
     # Scripts
     ./scripts/default.nix
