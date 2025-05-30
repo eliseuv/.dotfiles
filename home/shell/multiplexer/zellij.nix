@@ -3,10 +3,7 @@
 
   programs.zellij = {
     enable = true;
-    enableZshIntegration = true;
-    settings = {
-      theme = "Catppuccin Mocha";
-    };
+    enableZshIntegration = false;
   };
 
 }
