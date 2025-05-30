@@ -6,6 +6,7 @@
     enable = true;
 
     font = {
+      # TODO: Enable all ligatures
       name = "Iosevka Term Nerd Font";
       package = pkgs.nerd-fonts.iosevka-term;
       size = 9.5;
