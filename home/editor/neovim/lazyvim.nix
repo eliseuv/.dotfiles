@@ -26,7 +26,7 @@
     };
     Service = {
       Type = "oneshot";
-      ExecStart = ''${pkgs.neovim-unwrapped}/bin/nvim --headless "+Lazy! sync" +qa'';
+      ExecStart = ''${pkgs.neovim}/bin/nvim --headless "+Lazy! sync" +qa'';
     };
     Install.WantedBy = [ "default.target" ];
   };

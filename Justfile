@@ -26,7 +26,7 @@ update *inputs:
     git add flake.lock
     git commit --message "Flake update"
 
-update-home: (update "home-manager" "spicetify-nix") home-switch
+update-home: (update "home-manager" "neovim-nightly-overlay" "spicetify-nix") home-switch
 
 gc keep='8':
     nh clean all --keep {{keep}}
