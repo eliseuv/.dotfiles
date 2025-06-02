@@ -3,6 +3,9 @@
 
   imports = [
 
+    # Lua
+    ./lua.nix
+
     # LazyVim
     ./lazyvim.nix
 
