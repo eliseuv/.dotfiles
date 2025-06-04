@@ -48,6 +48,9 @@
       # Fix Neovim colors
       set -sg terminal-overrides ",*:RGB"
 
+      # Cleaner panes separator
+      set -g pane-border-lines simple
+
       # Open new windows and panes in cwd
       bind c new-window -c "#{pane_current_path}"
       bind % split-window -h -c "#{pane_current_path}"
