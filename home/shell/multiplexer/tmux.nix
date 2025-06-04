@@ -24,7 +24,7 @@
       {
         plugin = tmuxPlugins.tmux-floax;
         extraConfig = ''
-          set -g @floax-bind 'C-b'
+          set -g @floax-bind 'k'
           set -g @floax-width '90%'
           set -g @floax-height '90%'
         '';
@@ -58,8 +58,7 @@
       bind j split-window -v
       bind l split-window -h
 
-      # Last pane and window
-      bind k last-pane
+      # Last window
       bind h last-window
 
       # Open new windows and panes in cwd
