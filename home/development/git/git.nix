@@ -14,6 +14,7 @@
         editor = "nvim";
         compression = 9;
         whitespace = "error";
+        preloadindex = true;
       };
     };
 
