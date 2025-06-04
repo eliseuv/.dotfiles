@@ -54,6 +54,10 @@
       # Increase repeat time to send multple commands a time
       set -sg repeat-time 1000
 
+      # Split window
+      bind j split-window -v
+      bind l split-window -h
+
       # Open new windows and panes in cwd
       bind c new-window -c "#{pane_current_path}"
       bind % split-window -h -c "#{pane_current_path}"
