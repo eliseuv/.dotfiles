@@ -58,6 +58,10 @@
       bind j split-window -v
       bind l split-window -h
 
+      # Last pane and window
+      bind k last-pane
+      bind h last-window
+
       # Open new windows and panes in cwd
       bind c new-window -c "#{pane_current_path}"
       bind % split-window -h -c "#{pane_current_path}"
