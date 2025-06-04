@@ -46,7 +46,7 @@
     ];
     extraConfig = ''
       # Fix Neovim colors
-      set-option -sa terminal-overrides ",xterm*:Tc"
+      set -sg terminal-overrides ",*:RGB"
 
       # Open new windows and panes in cwd
       bind c new-window -c "#{pane_current_path}"
