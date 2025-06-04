@@ -9,7 +9,11 @@
     userEmail = "eliseuv816@gmail.com";
 
     extraConfig = {
-      core.editor = "nvim";
+
+      core = {
+        editor = "nvim";
+        compression = 9;
+      };
     };
 
     maintenance = {
