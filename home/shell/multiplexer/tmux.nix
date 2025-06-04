@@ -12,7 +12,6 @@
     clock24 = true;
     historyLimit = 10000;
     newSession = true;
-    sensibleOnTop = true;
     plugins = with pkgs; [
       tmuxPlugins.vim-tmux-navigator
       {
