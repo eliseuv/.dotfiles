@@ -13,6 +13,7 @@
       core = {
         editor = "nvim";
         compression = 9;
+        whitespace = "error";
       };
     };
 
