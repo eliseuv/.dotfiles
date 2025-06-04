@@ -51,6 +51,9 @@
       # Cleaner panes separator
       set -g pane-border-lines simple
 
+      # Increase repeat time to send multple commands a time
+      set -sg repeat-time 1000
+
       # Open new windows and panes in cwd
       bind c new-window -c "#{pane_current_path}"
       bind % split-window -h -c "#{pane_current_path}"
@@ -80,7 +83,6 @@
   # Session mamanger
   programs.smug = {
     enable = true;
-
   };
 
 }
