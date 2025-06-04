@@ -29,6 +29,7 @@ update *inputs:
 update-home: (update "home-manager" "neovim-nightly-overlay" "spicetify-nix") home-switch
 
 update-neovim: (update "neovim-nightly-overlay") home-switch
+    nvim --headless "+Lazy! sync" +qa
 
 gc keep='8':
     nh clean all --keep {{keep}}
