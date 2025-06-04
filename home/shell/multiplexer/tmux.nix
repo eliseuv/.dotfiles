@@ -13,6 +13,7 @@
     historyLimit = 10000;
     newSession = true;
     plugins = with pkgs; [
+      tmuxPlugins.sensible
       tmuxPlugins.vim-tmux-navigator
       {
         plugin = tmuxPlugins.tmux-thumbs;
