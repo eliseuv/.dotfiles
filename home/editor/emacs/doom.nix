@@ -20,6 +20,8 @@
 
   ];
 
+  home.shellAliases.doom-sync = "doom sync -u && doom sync && doom gc -! -v";
+
   # # Doom Emacs update
   # systemd.user.services.doom-update = {
   #   Unit.Description = "Update Doom Emacs";
