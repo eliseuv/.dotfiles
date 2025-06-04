@@ -3,6 +3,7 @@
 
   programs.tmux = {
     enable = true;
+    prefix = "`";
     keyMode = "vi";
     terminal = "tmux-256color";
     escapeTime = 10;
