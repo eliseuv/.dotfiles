@@ -11,8 +11,8 @@
     ../../hardware/printing.nix
     ../../hardware/nvidia.nix
     ../../environment/default.nix
-    ../../desktop/display-manager/lightdm.nix
     ../../desktop/window-manager/xmonad.nix
+    ../../desktop/display-manager/gdm.nix
     ../../extra/virtual-machines.nix
     ../../extra/docker.nix
     ../../extra/podman.nix
