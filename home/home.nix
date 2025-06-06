@@ -40,6 +40,7 @@
     ./social/default.nix
 
     # Desktop
+    ./desktop/hyprland.nix
     ./desktop/gtk.nix
     ./desktop/qt.nix
 
