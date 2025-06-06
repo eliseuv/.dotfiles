@@ -9,7 +9,7 @@
     settings = {
       theme = "tokyonight";
       font-family = "IosevkaTerm Nerd Font";
-      font-size = 10;
+      font-size = 9.5;
       bold-is-bright = true;
       cursor-style = "block";
       mouse-hide-while-typing = true;
