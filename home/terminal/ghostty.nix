@@ -10,6 +10,7 @@
       theme = "tokyonight";
       font-family = "IosevkaTerm Nerd Font";
       font-size = 9.5;
+      font-feature = "+calt, +liga, +dlig";
       bold-is-bright = true;
       cursor-style = "block";
       mouse-hide-while-typing = true;
