@@ -10,9 +10,6 @@
 
   home.packages = with pkgs; [
 
-    # Clipboard manager
-    copyq
-
     # Screenshot
     grim
     slurp
@@ -21,6 +18,9 @@
 
   # Default terminal
   programs.kitty.enable = true;
+
+  # Clipboard manager
+  programs.copyq.enable = true;
 
   # Hyprland config
   home.file.".config/hypr/hyprland.conf".source = ./hyprland/hyprland.conf;
