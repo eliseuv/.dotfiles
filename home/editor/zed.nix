@@ -1,11 +1,6 @@
 { pkgs, ... }:
 {
 
-  home.packages = with pkgs; [
-    # Fonts
-    nerd-fonts.zed-mono
-  ];
-
   programs.zed-editor = {
     enable = true;
     extensions = [
@@ -70,6 +65,12 @@
         };
       };
     };
+    extraPackages = with pkgs; [
+      # Font
+      nerd-fonts.zed-mono
+      # Language servers
+      nixd
+    ];
   };
 
 }
