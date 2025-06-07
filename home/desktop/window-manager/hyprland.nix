@@ -13,6 +13,10 @@
     # Clipboard manager
     copyq
 
+    # Screenshot
+    grim
+    slurp
+
   ];
 
   # Default terminal
