@@ -20,7 +20,7 @@
   programs.kitty.enable = true;
 
   # Clipboard manager
-  programs.copyq.enable = true;
+  services.copyq.enable = true;
 
   # Hyprland config
   home.file.".config/hypr/hyprland.conf".source = ./hyprland/hyprland.conf;
