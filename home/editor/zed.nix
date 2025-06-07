@@ -15,6 +15,7 @@
       "julia"
       "just"
     ];
+    userKeymaps = [ ];
     userSettings = {
       base_keymap = "VSCode";
       telemetry = {
