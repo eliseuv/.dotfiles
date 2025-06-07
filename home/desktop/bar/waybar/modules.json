@@ -143,6 +143,9 @@
             "spacing": 10
         }
     },
+    "tray": {
+        "spacing": 10,
+    },
     "network": {
         "interface": "enp4s0",
         "format-ethernet": "󰈀   {bandwidthDownBytes}  {bandwidthUpBytes}",
