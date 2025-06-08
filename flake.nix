@@ -79,7 +79,6 @@
           extraSpecialArgs = { inherit inputs; };
           modules = [
             ./home/home.nix
-            ./home/desktop/xmonad.nix
           ];
         };
 
@@ -88,7 +87,6 @@
           extraSpecialArgs = { inherit inputs; };
           modules = [
             ./home/home.nix
-            ./home/desktop/hyprland.nix
           ];
         };
 
