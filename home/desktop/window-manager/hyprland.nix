@@ -14,6 +14,9 @@
     grim
     slurp
 
+    # Audio mixer
+    pulsemixer
+
   ];
 
   # Default terminal
