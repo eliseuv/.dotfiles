@@ -123,6 +123,7 @@
     },
     "hyprland/workspaces": {
         "all-outputs": true,
+        "move-to-monitor": true,
         "format": "{icon}",
         "tooltip": false,
         "format-icons": {
