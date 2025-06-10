@@ -137,7 +137,6 @@
             "urgent": " ",
             "default": " "
         },
-        "active-only": true,
     },
     "tray": {
         "spacing": 10,
