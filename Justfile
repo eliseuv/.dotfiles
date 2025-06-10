@@ -24,7 +24,7 @@ update *inputs:
     nix flake update {{inputs}} --verbose
     git restore --staged .
     git add flake.lock
-    git commit --message "Flake update"
+    git commit --message "[flake update] {{inputs}}"
 
 update-home: (update "home-manager" "neovim-nightly-overlay" "spicetify-nix") home-switch
 
