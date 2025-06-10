@@ -367,18 +367,26 @@ window#waybar {
 }
 
 #workspaces button {
+    background: #1E1D2F;
     color: #bd93f9;
     transition: 0.3s;
 }
 
-#workspaces button:hover {
-    background: transparent;
-    color: transparent;
+#workspaces button.visible {
+    background: #5e497c;
+    color: #1E1D2F;
 }
 
 #workspaces button.active {
-    background: #32304f;
+    background: #bd93f9;
+    color: #1E1D2F;
 }
+
+#workspaces button:hover {
+    background: #bd93f9;
+    color: #1E1D2F;
+}
+
 
 #tray {
     margin-top: 5px;
