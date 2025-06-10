@@ -88,7 +88,7 @@
     "custom/power": {
         "format": "⏻ ",
         "tooltip": false,
-        "on-click": "bash ~/.config/rofi/powermenu.sh",
+        "on-click": "bash ~/.config/rofi/bin/powermenu",
         "on-click-right": "killall rofi",
     },
     "custom/weather": {
