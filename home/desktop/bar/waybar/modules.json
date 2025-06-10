@@ -122,6 +122,7 @@
         }
     },
     "hyprland/workspaces": {
+        "all-outputs": true,
         "format": "{icon}",
         "tooltip": false,
         "format-icons": {
@@ -137,11 +138,6 @@
             "default": " "
         },
         "active-only": true,
-        "all-outputs": true,
-        "tray": {
-            "icon-size": 21,
-            "spacing": 10
-        }
     },
     "tray": {
         "spacing": 10,
