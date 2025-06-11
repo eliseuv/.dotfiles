@@ -26,7 +26,7 @@
   home.packages = with pkgs; [
 
     # Clipboard integration
-    xclip
+    wl-clipboard
 
     # Tree-sitter required for :TSInstallFromGrammar
     tree-sitter
