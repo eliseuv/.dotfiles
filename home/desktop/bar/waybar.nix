@@ -11,6 +11,9 @@
     # Weather info
     wttrbar
 
+    # Font
+    nerd-fonts.jetbrains-mono
+
   ];
 
   # Modules
