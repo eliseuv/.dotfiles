@@ -6,6 +6,7 @@
   programs.ghostty = {
     enable = true;
     enableZshIntegration = true;
+    installBatSyntax = true;
     settings = {
       theme = "tokyonight";
       font-family = "IosevkaTerm Nerd Font";
@@ -18,6 +19,10 @@
       gtk-adwaita = false;
       gtk-single-instance = true;
       window-decoration = false;
+      keybind = [
+        # Remove default fullscreen bind
+        "ctrl+enter=unbind"
+      ];
     };
   };
 
