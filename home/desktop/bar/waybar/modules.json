@@ -95,7 +95,7 @@
         "format": "{}°",
         "tooltip": true,
         "interval": 600,
-        "exec": "~/.config/waybar/scripts/wttrbar/target/release/wttrbar --nerd --custom-indicator \"{ICON}  {temp_C}\" --location \"Porto Alegre\" --lang pt",
+        "exec": "wttrbar --nerd --custom-indicator \"{ICON}  {temp_C}\" --lang pt",
         "return-type": "json"
     },
     "clock": {
