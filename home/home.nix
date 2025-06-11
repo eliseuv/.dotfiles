@@ -46,6 +46,7 @@
 
     # Extra
     ./extra/ledger.nix
+    ./extra/inkscape.nix
 
   ];
 
