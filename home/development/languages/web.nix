@@ -8,6 +8,10 @@
 
     # Typescript
     typescript
+    typescript-language-server
+
+    # html/css/json/eslint language servers
+    vscode-langservers-extracted
 
     # Sass
     sass
