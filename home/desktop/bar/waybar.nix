@@ -12,7 +12,7 @@
     wttrbar
 
     # Font
-    nerd-fonts.jetbrains-mono
+    nerd-fonts.ubuntu
 
   ];
 
