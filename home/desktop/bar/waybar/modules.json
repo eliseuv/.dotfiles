@@ -16,8 +16,8 @@
     "pulseaudio": {
         "tooltip": false,
         "scroll-step": 5,
-        "format": "{icon} {volume}%",
-        "format-muted": " ",
+        "format": "{icon}  {volume}%",
+        "format-muted": "   ",
         "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
         "format-icons": {
             "default": [
@@ -70,7 +70,7 @@
         "tooltip": false,
     },
     "cpu": {
-        "format": "  {load:.1f}%",
+        "format": "   {load:.1f}%",
         "max-length": 10,
         "interval": 5,
     },
@@ -99,8 +99,8 @@
         "return-type": "json"
     },
     "clock": {
-        "format": "  {:%R}",
-        "format-alt": "  {:%A, %Y-%m-%d (%R)}",
+        "format": "   {:%R}",
+        "format-alt": "   {:%A, %Y-%m-%d (%R)}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
             "mode": "month",
@@ -144,8 +144,8 @@
         "spacing": 10,
     },
     "network": {
-        "format-ethernet": "󰈀   {bandwidthDownBytes}  {bandwidthUpBytes}",
-        "format-wifi": "󰖩  {essid}  {bandwidthDownBytes}  {bandwidthUpBytes}",
+        "format-ethernet": "󰈀    {bandwidthDownBytes}     {bandwidthUpBytes}",
+        "format-wifi": "󰖩  {essid}   {bandwidthDownBytes}     {bandwidthUpBytes}",
         "format-disconnected": " ",
         "tooltip": true,
         "tooltip-format-ethernet": "{ipaddr}/{cidr}",
