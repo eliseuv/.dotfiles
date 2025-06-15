@@ -17,7 +17,6 @@
     ../../extra/docker.nix
     ../../extra/podman.nix
     ../../extra/steam.nix
-    ../../extra/early-numlock.nix
   ];
 
   # Flakes support
