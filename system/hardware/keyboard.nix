@@ -17,24 +17,10 @@
           process-unmapped-keys yes
         '';
         config = ''
-          (defsrc
-              grv
-              caps    h   j   k   l
-          )
-
-          (deflayer default
-              @grv
-               esc    _   _   _   _
-          )
-
-          (deflayer arrows
-              _
-              _     left down up rght
-          )
-
-          (defalias
-              grv (tap-hold-press 200 200 grv (layer-toggle arrows))
-          )
+          ;; defsrc is still necessary
+          (defsrc)
+          (deflayermap (base-layer)
+            caps esc)
         '';
       };
     };
