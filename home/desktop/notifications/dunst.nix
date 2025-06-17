@@ -10,7 +10,7 @@
     nerd-fonts.ubuntu
 
     # Notification sound script
-    (import ./notification-sound.nix { inherit pkgs; })
+    (import ./play-notification-sound.nix { inherit pkgs; })
 
   ];
 
@@ -34,7 +34,7 @@
       };
       play_sound = {
         summary = "*";
-        script = "notification-sound.sh";
+        script = "play-notification-sound";
       };
     };
   };
