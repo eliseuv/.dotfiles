@@ -1,15 +1,21 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+let
+  # lazy.nvim sync script
+  lazy_sync = pkgs.writeShellScriptBin "lazy-sync" ''
+    ${lib.getExe pkgs.neovim-unwrapped} --headless "+Lazy! sync" +qa && ${pkgs.libnotify}/bin/notify-send "lazy.nvim" "Sync completed" || ${pkgs.libnotify}/bin/notify-send "lazy.nvim" "Sync failed" -u critical
+  '';
+in
 {
 
   home.packages = with pkgs; [
+
+    # lazy.nvim sync script
+    lazy_sync
 
     # NodeJS required for Copilot
     nodejs
 
   ];
-
-  # lazy.nvim update alias
-  home.shellAliases.lazy-sync = ''nvim --headless "+Lazy! sync" +qa'';
 
   # lazy.nvim sync
   systemd.user.services.lazynvim-sync = {
@@ -26,7 +32,7 @@
     };
     Service = {
       Type = "oneshot";
-      ExecStart = ''${pkgs.neovim-unwrapped}/bin/nvim --headless "+Lazy! sync" +qa'';
+      ExecStart = lib.getExe lazy_sync;
     };
     Install.WantedBy = [ "default.target" ];
   };
