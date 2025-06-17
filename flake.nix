@@ -19,12 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Neovim Nightly
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Spicetify
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
@@ -50,7 +44,6 @@
         inherit system;
         config.allowUnfree = true;
         overlays = [
-          inputs.neovim-nightly-overlay.overlays.default
         ];
       };
     in
