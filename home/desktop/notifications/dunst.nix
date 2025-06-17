@@ -9,6 +9,9 @@
     # Font
     nerd-fonts.ubuntu
 
+    # Notification sound script
+    (import ./notification-sound.nix { inherit pkgs; })
+
   ];
 
   services.dunst = {
@@ -29,7 +32,14 @@
         frame_color = "#5e497c";
         timeout = 10;
       };
+      play_sound = {
+        summary = "*";
+        script = "notification-sound.sh";
+      };
     };
   };
+
+  # Notification sound
+  home.file.".config/dunst/notification.ogg".source = ../../../resources/sounds/notification.ogg;
 
 }
