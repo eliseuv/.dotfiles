@@ -40,6 +40,7 @@
   };
 
   # Notification sound
-  home.file.".config/dunst/notification.ogg".source = ../../../resources/sounds/notification.ogg;
+  home.file.".local/share/sounds/notification.ogg".source =
+    ../../../resources/sounds/notification.ogg;
 
 }
