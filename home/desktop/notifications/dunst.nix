@@ -1,4 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+let
+  # Notification sound script
+  play-notification-sound = pkgs.writeShellScriptBin "play-notification-sound" ''
+    ${pkgs.pipewire}/bin/pw-play ~/.local/share/sounds/notification.ogg
+  '';
+in
 {
 
   home.packages = with pkgs; [
@@ -8,9 +14,6 @@
 
     # Font
     nerd-fonts.ubuntu
-
-    # Notification sound script
-    (import ./play-notification-sound.nix { inherit pkgs; })
 
   ];
 
@@ -34,7 +37,7 @@
       };
       play_sound = {
         summary = "*";
-        script = "play-notification-sound";
+        script = "${lib.getExe play-notification-sound}";
       };
     };
   };
