@@ -2,7 +2,10 @@
 let
   # Notification sound script
   play-notification-sound = pkgs.writeShellScriptBin "play-notification-sound" ''
-    ${pkgs.pipewire}/bin/pw-play ~/.local/share/sounds/notification.ogg
+    APPNAME="$1"
+    if [ "$APPNAME" != "Spotify" ]; then
+        ${pkgs.pipewire}/bin/pw-play ~/.local/share/sounds/notification.ogg
+    fi
   '';
 in
 {
