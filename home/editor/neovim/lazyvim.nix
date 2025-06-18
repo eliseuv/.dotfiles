@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 let
   # lazy.nvim sync script
-  lazy_sync = pkgs.writeShellScriptBin "lazy-sync" ''
+  lazy-sync = pkgs.writeShellScriptBin "lazy-sync" ''
     ${lib.getExe pkgs.neovim-unwrapped} --headless "+Lazy! sync" +qa && ${pkgs.libnotify}/bin/notify-send "lazy.nvim" "Sync completed" || ${pkgs.libnotify}/bin/notify-send "lazy.nvim" "Sync failed" -u critical
   '';
 in
@@ -10,7 +10,7 @@ in
   home.packages = with pkgs; [
 
     # lazy.nvim sync script
-    lazy_sync
+    lazy-sync
 
     # NodeJS required for Copilot
     nodejs
@@ -32,7 +32,7 @@ in
     };
     Service = {
       Type = "oneshot";
-      ExecStart = lib.getExe lazy_sync;
+      ExecStart = lib.getExe lazy-sync;
     };
     Install.WantedBy = [ "default.target" ];
   };
