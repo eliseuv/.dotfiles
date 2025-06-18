@@ -1,9 +1,18 @@
 { pkgs, lib, ... }:
+let
+  # Rustup update script
+  rustup-update = pkgs.writeShellScriptBin "rustup-update" ''
+    ${pkgs.rustup}/bin/rustup update && ${pkgs.libnotify}/bin/notify-send "Rustup" "Update completed" || ${pkgs.libnotify}/bin/notify-send "Rustup" "Update failed" -u critical
+  '';
+in
 {
 
   home.packages = with pkgs; [
 
     rustup
+
+    # Rustup update script
+    rustup-update
 
     # Cargo
     cargo-watch
@@ -65,7 +74,7 @@
     };
     Service = {
       Type = "oneshot";
-      ExecStart = "${pkgs.rustup}/bin/rustup update";
+      ExecStart = lib.getExe rustup-update;
     };
     Install.WantedBy = [ "default.target" ];
   };
