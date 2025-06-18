@@ -21,6 +21,7 @@ in
     enable = true;
     settings = {
       global = {
+        monitor = 1;
         origin = "top-center";
         offset = "(0, 5)";
         follow = "keyboard";
