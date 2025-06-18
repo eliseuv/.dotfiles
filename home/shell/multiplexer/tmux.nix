@@ -63,8 +63,6 @@
 
       # Open new windows and panes in cwd
       bind c new-window -c "#{pane_current_path}"
-      bind % split-window -h -c "#{pane_current_path}"
-      bind '"' split-window -v -c "#{pane_current_path}"
 
       # Ctrl-Shift vim keys to switch windows
       bind -n C-S-h previous-window
