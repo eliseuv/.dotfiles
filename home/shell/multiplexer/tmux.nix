@@ -54,15 +54,13 @@
       # Increase repeat time to send multple commands a time
       set -sg repeat-time 1000
 
-      # Split window
-      bind j split-window -v
-      bind l split-window -h
-
       # Last window
       bind h last-window
 
       # Open new windows and panes in cwd
       bind c new-window -c "#{pane_current_path}"
+      bind l split-window -h -c "#{pane_current_path}"
+      bind j split-window -v -c "#{pane_current_path}"
 
       # Ctrl-Shift vim keys to switch windows
       bind -n C-S-h previous-window
