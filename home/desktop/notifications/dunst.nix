@@ -39,10 +39,6 @@ in
         frame_color = "#5e497c";
         timeout = 10;
       };
-      play_sound = {
-        summary = "*";
-        script = "${lib.getExe play-notification-sound}";
-      };
     };
   };
 
