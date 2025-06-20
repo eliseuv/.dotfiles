@@ -24,6 +24,7 @@
   # Bun JS runtime
   programs.bun = {
     enable = true;
+    enableGitIntegration = true;
   };
 
 }
