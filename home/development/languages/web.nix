@@ -6,6 +6,9 @@
     # Node
     nodejs
 
+    # yarn
+    yarn
+
     # Typescript
     typescript
     typescript-language-server
