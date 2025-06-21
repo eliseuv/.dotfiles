@@ -102,6 +102,7 @@
       progressbar_elapsed_color = "blue:b";
       statusbar_color = "red";
       statusbar_time_color = "cyan:b";
+      execute_on_song_change = ''${pkgs.libnotify}/bin/notify-send "Now Playing" "$(mpc --format '%title% \n%artist% - %album%' current)"'';
     };
   };
 
