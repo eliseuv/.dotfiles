@@ -25,8 +25,9 @@
 
   };
 
+  # FIXME: Configure automatic upgrade to work properly with flakes
   system.autoUpgrade = {
-    enable = true;
+    enable = false;
     flake = inputs.self.outPath;
     flags = [
       "--update-input"
