@@ -25,6 +25,9 @@
     # Formatter
     prettierd
 
+    # Reverse engineering
+    ghidra
+
   ];
 
 }
