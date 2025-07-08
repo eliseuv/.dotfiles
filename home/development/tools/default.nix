@@ -1,8 +1,6 @@
 { pkgs, ... }:
 {
 
-  imports = [ ./pueue.nix ];
-
   home.packages = with pkgs; [
 
     # Command runner
