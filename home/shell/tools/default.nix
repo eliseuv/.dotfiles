@@ -13,6 +13,7 @@
     # grep
     ./ripgrep.nix
     # Fuzzy finder
+    ./television.nix
     ./fzf.nix
     # File manager
     ./broot.nix
