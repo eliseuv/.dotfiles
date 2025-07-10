@@ -12,6 +12,7 @@
     # Typescript
     typescript
     typescript-language-server
+    vtsls
 
     # html/css/json/eslint language servers
     vscode-langservers-extracted
