@@ -20,6 +20,9 @@
     # Sass
     sass
 
+    # Tools
+    biome
+
   ];
 
   # Bun JS runtime
