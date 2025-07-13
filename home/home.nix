@@ -47,6 +47,7 @@
     # Extra
     ./extra/ledger.nix
     ./extra/inkscape.nix
+    ./extra/qbittorrent.nix
     ./extra/sniffnet.nix
 
   ];
