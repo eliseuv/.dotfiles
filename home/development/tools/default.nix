@@ -2,7 +2,13 @@
 {
 
   imports = [
+
+    # Command runner
     ./just.nix
+
+    # JSON processor
+    ./jq.nix
+
   ];
 
   home.packages = with pkgs; [
