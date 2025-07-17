@@ -15,8 +15,6 @@
     alegreya
     # Serif font
     ibm-plex
-    # Unicode symbols
-    symbola
 
   ];
 
