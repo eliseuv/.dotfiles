@@ -15,8 +15,6 @@
         # TPM Emulation
         swtpm.enable = true;
       };
-      # NSS
-      nss.enable = true;
     };
     spiceUSBRedirection.enable = true;
   };
