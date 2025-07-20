@@ -3,6 +3,12 @@
 
   networking.networkmanager.enable = true;
 
+  # networking.nameservers = [ "130.161.158.4" "130.161.33.17" ];
+  networking.nameservers = [
+    "8.8.8.8"
+    "1.1.1.1"
+  ];
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
