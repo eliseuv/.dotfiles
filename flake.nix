@@ -5,7 +5,7 @@
   inputs = {
 
     # NixOS unstable
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-25.05";
 
     # Home Manager
     home-manager = {
