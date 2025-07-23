@@ -5,12 +5,14 @@
 
     python3
 
-    # Package and project manager
-    uv
-
     basedpyright
 
   ];
+
+  programs.uv = {
+    enable = true;
+    settings = { };
+  };
 
   programs.ruff = {
     enable = true;
