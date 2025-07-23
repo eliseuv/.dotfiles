@@ -1,0 +1,8 @@
+{ ... }:
+{
+
+  programs.visidata = {
+    enable = true;
+  };
+
+}

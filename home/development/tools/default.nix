@@ -9,6 +9,9 @@
     # JSON processor
     ./jq.nix
 
+    # Visidata
+    ./visidata.nix
+
   ];
 
   home.packages = with pkgs; [
