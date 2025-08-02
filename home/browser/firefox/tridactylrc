@@ -84,10 +84,10 @@ set searchurls.sc https://www.shellcheck.net/wiki/SC%s
 set searchurls.r https://old.reddit.com/search?q=%s
 set searchurls.x https://twitter.com/search?q=%s
 " Linux
-set searchurls.arch https://wiki.archlinux.org/index.php?search=%s
 set searchurls.nix https://nixos.wiki/index.php?search=%s&go=Go
+set searchurls.arch https://wiki.archlinux.org/index.php?search=%s
 set searchurls.gentoo https://wiki.gentoo.org/index.php?search=%s
-set searchurls.np https://search.nixos.org/packages?channel=unstable&query=%s
+set searchurls.pkg https://search.nixos.org/packages?channel=unstable&query=%s
 set searchurls.pac https://archlinux.org/packages/?sort=&q=%s&maintainer=&flagged=
 set searchurls.aur https://aur.archlinux.org/packages?O=0&K=%s
 set searchurls.mynixos https://mynixos.com/search?q=%s
@@ -101,25 +101,24 @@ set searchurls.ny https://nyaa.si/?f=0&c=0_0&q=%s
 set searchurls.sdb https://steamdb.info/search/?a=all&q=%s
 set searchurls.hltv https://www.hltv.org/search?query=%s
 set searchurls.mine https://minecraft.wiki/w/Special:Search?search=%s
-" Books/papers
+" Research
 set searchurls.anna https://annas-archive.org/search?q=%s
 set searchurls.sci https://annas-archive.org/scidb/%s
 set searchurls.gs https://scholar.google.com/scholar?hl=en&q=%s
 set searchurls.gd https://datasetsearch.research.google.com/search?query=%s
+set searchurls.wa https://www.wolframalpha.com/input/?i=%s
 " Language
 set searchurls.mw https://www.merriam-webster.com/dictionary/%s
 set searchurls.th https://www.thesaurus.com/browse/%s
-" Shopping"
+" Shopping
 set searchurls.amz https://www.amazon.com.br/s?k=%s
 set searchurls.keepa https://keepa.com/#!search/12-%s
+set searchurls.ml https://lista.mercadolivre.com.br/%s
 " Other
 set searchurls.archive https://archive.org/search?query=%s
 set searchurls.maps https://www.google.com/maps/search/%s
-set searchurls.wa https://www.wolframalpha.com/input/?i=%s
 set searchurls.color https://www.color-hex.com/color/%s
 set searchurls.kym https://knowyourmeme.com/search?q=%s
-
-" Misc
 
 " Colorscheme
 colorscheme shydactyl
