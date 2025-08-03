@@ -62,6 +62,7 @@ in
     Timer = {
       OnCalendar = "daily";
       Persistent = true;
+      RandomizedDelaySec = "1h";
     };
     Install.WantedBy = [ "timers.target" ];
   };
@@ -83,6 +84,7 @@ in
     Timer = {
       OnCalendar = "daily";
       Persistent = true;
+      RandomizedDelaySec = "1h";
     };
     Install.WantedBy = [ "timers.target" ];
   };
