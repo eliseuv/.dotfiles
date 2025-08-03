@@ -5,6 +5,9 @@
 
     # Nix Index database
     ./nix-index-database.nix
+
+    # Clean projects to save space
+    ./kondo.nix
   ];
 
   home.packages = with pkgs; [
