@@ -45,6 +45,9 @@
       }
     ];
     extraConfig = ''
+      # Clipboard integration
+      set -s set-clipboard external
+
       # Fix Neovim colors
       set -sg terminal-overrides ",*:RGB"
 
