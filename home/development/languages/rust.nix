@@ -21,7 +21,6 @@ in
     cargo-cache
     cargo-binstall
     cargo-update
-    cargo-clean-recursive
     cargo-cross
     cargo-fuzz
     cargo-nextest
