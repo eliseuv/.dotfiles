@@ -9,6 +9,9 @@
     # SSH
     ./ssh.nix
 
+    # Standard Unix Password Manager
+    ./password-store.nix
+
   ];
 
 }

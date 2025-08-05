@@ -7,7 +7,7 @@
     ./shell/default.nix
 
     # Authentication
-    ./authentication/default.nix
+    ./auth/default.nix
 
     # Maintenance
     ./maintenance/default.nix
