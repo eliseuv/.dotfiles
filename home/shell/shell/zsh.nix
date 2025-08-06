@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
 
   programs.zsh = {
@@ -29,6 +34,12 @@
       bindkey  "^[[F"   end-of-line
       bindkey  "^[[3~"  delete-char
       ${lib.getExe pkgs.fastfetch}
+
+      export ALPHAVANTAGE_API_KEY=$(<${config.sops.secrets."api-key/alphavantage".path})
+      export DEEPSEEK_API_KEY=$(<${config.sops.secrets."api-key/deepseek".path})
+      export GEMINI_API_KEY=$(<${config.sops.secrets."api-key/gemini".path})
+      export OPENWEATHER_API_KEY=$(<${config.sops.secrets."api-key/openweather".path})
+      export QUANDL_API_KEY=$(<${config.sops.secrets."api-key/quandl".path})
     '';
     oh-my-zsh = {
       enable = true;

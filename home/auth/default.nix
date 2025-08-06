@@ -12,6 +12,9 @@
     # Standard Unix Password Manager
     ./password-store.nix
 
+    # SOPS
+    ./sops.nix
+
   ];
 
 }
