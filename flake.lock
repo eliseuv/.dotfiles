@@ -156,11 +156,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1753976832,
-        "narHash": "sha256-efMn3Eq+D0E9oNkNE3gMILewkP07H+/aIAv7i1nLQpk=",
+        "lastModified": 1754460987,
+        "narHash": "sha256-jb5x56G65YUN10L7O9IAteyf7LQN9Xu+JXH/BuJ8t2Q=",
         "owner": "Benexl",
         "repo": "yt-x",
-        "rev": "5e7d1bab53dfec99c7e04f2f25fcd11188057d20",
+        "rev": "c247754e8718f1fc0ffce8bf76053d28b1c77a4d",
         "type": "github"
       },
       "original": {
