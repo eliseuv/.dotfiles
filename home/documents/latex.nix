@@ -1,9 +1,11 @@
-{ ... }:
+{ pkgs, ... }:
 {
 
-  programs.texlive = {
-    enable = true;
-  };
+  home.packages = with pkgs; [
+
+    texliveFull
+
+  ];
 
   programs.tex-fmt = {
     enable = true;
