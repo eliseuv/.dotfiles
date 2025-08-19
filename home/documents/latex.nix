@@ -5,6 +5,8 @@
 
     texliveFull
 
+    texlab
+
   ];
 
   programs.tex-fmt = {
