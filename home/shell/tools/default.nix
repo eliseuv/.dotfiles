@@ -35,6 +35,9 @@
     # TUI process runner
     mprocs
 
+    # wget
+    wget
+
   ];
 
 }
