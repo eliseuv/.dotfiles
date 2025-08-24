@@ -25,8 +25,6 @@
     "flakes"
   ];
 
-  nix.settings.trusted-users = [ "evf" ];
-
   # Hostname
   networking.hostName = "GLaDOS";
 
