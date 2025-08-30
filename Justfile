@@ -1,12 +1,12 @@
 home-switch:
-    nh home switch .
+    nh home switch . -- --accept-flake-config
 
 system-test:
-    nh os test .
+    nh os test . -- --accept-flake-config
 
 system-switch:
     git diff -U0 '*.nix'
-    nh os switch .
+    nh os switch . -- --accept-flake-config
     git commit --all --allow-empty \
         --message "$(hostname) @ $(nixos-rebuild list-generations | rg current | sd '^(\d+)\W+current\W+\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\W+([\w\.]+)\W+([\w\.]+).+$' '$1 NixOS $2 Linux $3')" \
         --message "$(ls -dv1 /nix/var/nix/profiles/system-*-link | tail -2 | xargs -r nvd diff)"
@@ -14,7 +14,7 @@ system-switch:
 
 system-boot:
     git diff -U0 '*.nix'
-    nh os boot .
+    nh os boot . -- --accept-flake-config
     git commit --all --allow-empty \
         --message "$(hostname) @ $(nixos-rebuild list-generations | rg current | sd '^(\d+)\W+current\W+\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\W+([\w\.]+)\W+([\w\.]+).+$' '$1 NixOS $2 Linux $3')" \
         --message "$(ls -dv1 /nix/var/nix/profiles/system-*-link | tail -2 | xargs -r nvd diff)"
