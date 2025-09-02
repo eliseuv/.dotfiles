@@ -7,34 +7,29 @@
 
       general = {
         lock_cmd = "pidof hyprlock || hyprlock";
-        before_sleep_cmd = "loginctl lock-session";
         after_sleep_cmd = "hyprctl dispatch dpms on";
         ignore_dbus_inhibit = false;
       };
 
       listener = [
+        # Dim screen
         {
-          timeout = 90;
+          timeout = 300; # 5 minutes
           on-timeout = "brightnessctl -s set 10";
           on-resume = "brightnessctl -r";
         }
+
+        # Turn off screen
         {
-          timeout = 60;
-          on-timeout = "brightnessctl -sd rgb:kbd_backlight set 0";
-          on-resume = "brightnessctl -rd rgb:kbd_backlight";
-        }
-        {
-          timeout = 60;
-          on-timeout = "loginctl lock-session";
-        }
-        {
-          timeout = 120;
+          timeout = 600; # 10 minutes
           on-timeout = "hyprctl dispatch dpms off";
           on-resume = "hyprctl dispatch dpms on";
         }
+
+        # Lock screen
         {
-          timeout = 300;
-          on-timeout = "systemctl suspend";
+          timeout = 900; # 15 minutes
+          on-timeout = "hyprlock";
         }
       ];
 
