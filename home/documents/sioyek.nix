@@ -14,6 +14,8 @@
       # Scroll pages
       "previous_page" = "<C-u>";
       "next_page" = "<C-d>";
+      # Zoom
+      "fit_to_page_width" = "a";
     };
     package = pkgs.symlinkJoin {
       name = "sioyek";
