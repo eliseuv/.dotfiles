@@ -49,6 +49,7 @@
     ./extra/inkscape.nix
     ./extra/qbittorrent.nix
     ./extra/sniffnet.nix
+    ./extra/minecraft.nix
 
   ];
 
