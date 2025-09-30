@@ -16,6 +16,7 @@
     ../../hardware/printing.nix
     ../../environment/default.nix
     ../../desktop/display-manager/gdm.nix
+    ../../desktop/window-manager/gnome.nix
     ../../desktop/window-manager/hyprland.nix
     ../../extra/plymouth.nix
   ];
