@@ -19,6 +19,9 @@
     # Scripts
     ./scripts/default.nix
 
+    # AI Assistants
+    ./assistant/gemini.nix
+
     # Extra
     ./extra/fastfetch/default.nix
     ./extra/tldr.nix
