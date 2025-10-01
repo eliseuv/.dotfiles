@@ -21,6 +21,7 @@
 
     # AI Assistants
     ./assistant/gemini.nix
+    ./assistant/copilot.nix
 
     # Extra
     ./extra/fastfetch/default.nix
