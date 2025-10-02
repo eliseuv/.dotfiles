@@ -66,8 +66,9 @@
         "icon-size": 18,
     },
     "hyprland/language": {
-        "format": "  {1}",
-        "tooltip": false,
+        "format": "  {short}",
+        "on-click": "hyprctl switchxkblayout evision-rgb-keyboard next",
+        "tooltip-format": "{long}",
     },
     "cpu": {
         "format": "   {load:.1f}%",
