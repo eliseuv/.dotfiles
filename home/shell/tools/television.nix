@@ -25,6 +25,7 @@
       ui = {
         use_nerd_font_icons = true;
         theme = "tokyonight";
+        input_bar_position = "bottom";
       };
       keybindings = {
         quit = [
