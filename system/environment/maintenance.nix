@@ -11,7 +11,7 @@
     clean = {
       enable = true;
       extraArgs = "--keep 8";
-      dates = "daily";
+      dates = "weekly";
     };
   };
 
