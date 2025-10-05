@@ -20,7 +20,7 @@
   nix.optimise = {
     automatic = true;
     persistent = true;
-    dates = [ "daily" ];
+    dates = [ "weekly" ];
     randomizedDelaySec = "45min";
 
   };
