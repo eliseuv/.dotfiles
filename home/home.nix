@@ -72,6 +72,10 @@
     homeDirectory = "/home/evf";
   };
 
+  fonts.fontconfig = {
+    enable = true;
+  };
+
   programs.home-manager.enable = true;
   home.stateVersion = "24.11";
 }
