@@ -41,7 +41,7 @@
       fsType = "ext4";
     };
     "/run/media/evf/Games" = {
-      device = "/dev/disk/by-uuid/07bb429a-3366-448e-8c85-889cea15d1a2";
+      device = "/dev/disk/by-uuid/de74a6f2-e91e-48b3-abd7-17fb39dc351a";
       fsType = "ext4";
     };
   };
