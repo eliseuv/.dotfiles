@@ -15,6 +15,9 @@
     # Packager manager
     utpm
 
+    # Fonts
+    font-awesome
+
   ];
 
 }
