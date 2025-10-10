@@ -40,10 +40,6 @@
       device = "/dev/disk/by-uuid/e29cc859-5e69-4dbc-aefa-445ee3da919f";
       fsType = "ext4";
     };
-    "/run/media/evf/Games" = {
-      device = "/dev/disk/by-uuid/de74a6f2-e91e-48b3-abd7-17fb39dc351a";
-      fsType = "ext4";
-    };
   };
 
   system.stateVersion = "24.11";
