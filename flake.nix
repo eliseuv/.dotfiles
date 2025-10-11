@@ -94,7 +94,12 @@
           inherit pkgs;
           extraSpecialArgs = { inherit inputs; };
           modules = [
+
             ./home/home.nix
+
+            # Games
+            ./home/games/default.nix
+
           ];
         };
 
