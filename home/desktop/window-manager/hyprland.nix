@@ -1,13 +1,6 @@
 { config, pkgs, ... }:
 {
 
-  imports = [
-
-    # Default terminal
-    ../../terminal/kitty.nix
-
-  ];
-
   home.packages = with pkgs; [
 
     # Screenshot
