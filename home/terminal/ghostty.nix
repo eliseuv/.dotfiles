@@ -19,6 +19,7 @@
       gtk-adwaita = false;
       gtk-single-instance = true;
       window-decoration = false;
+      scrollback-limit = 100000000; # ~100mb per terminal
       keybind = [
         # Remove default fullscreen bind
         "ctrl+enter=unbind"
