@@ -7,7 +7,7 @@
     ./image/default.nix
 
     # Music
-    ./music/default.nix
+    ./music/players.nix
     ./music/spotify.nix
 
     # Videos

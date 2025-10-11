@@ -97,6 +97,9 @@
 
             ./home/home.nix
 
+            # Music Player Daemon
+            ./home/media/music/mpd.nix
+
             # Games
             ./home/games/default.nix
 
