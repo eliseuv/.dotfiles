@@ -26,6 +26,7 @@
     # Extra
     ./extra/fastfetch/default.nix
     ./extra/tldr.nix
+    ./extra/aria2.nix
 
   ];
 
