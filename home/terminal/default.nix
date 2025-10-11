@@ -9,6 +9,7 @@
   # Default terminal
   home.sessionVariables = {
     TERMINAL = "kitty";
+    TERM = "xterm-kitty";
   };
 
 }
