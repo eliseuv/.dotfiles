@@ -34,7 +34,10 @@
     ./documents/default.nix
 
     # Media
-    ./media/default.nix
+    ./media/image/default.nix
+    ./media/music/spotify.nix
+    ./media/video/mpv.nix
+    ./media/video/youtube.nix
 
     # Social
     ./social/default.nix

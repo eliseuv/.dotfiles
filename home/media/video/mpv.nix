@@ -1,6 +1,14 @@
 { pkgs, ... }:
 {
 
+  home.packages = with pkgs; [
+
+    # ffmpeg - multimedia framework to decode, encode, transcode, mux, demux, stream, filter and play
+    ffmpeg
+
+  ];
+
+  # mpv - versatile media player
   programs.mpv = {
     enable = true;
     bindings = {

@@ -1,6 +1,14 @@
 { ... }:
 {
 
+  imports = [
+
+    # Player clients for MPD
+    ./ncmpcpp.nix
+    ./inori.nix
+
+  ];
+
   services.mpd = {
     enable = true;
     musicDirectory = "/run/media/evf/Storage/CompanionCube/music";
