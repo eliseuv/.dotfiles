@@ -7,11 +7,6 @@
       qemu = {
         # QEMU KVM emulates only host arch
         package = pkgs.qemu_kvm;
-        # OVMF
-        ovmf = {
-          enable = true;
-          packages = [ pkgs.OVMFFull.fd ];
-        };
         # TPM Emulation
         swtpm.enable = true;
       };
