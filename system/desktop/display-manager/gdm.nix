@@ -1,7 +1,10 @@
 { pkgs, ... }:
 {
 
-  services.xserver.displayManager.gdm.enable = true;
+  # GNOME Display Manager (GDM)
+  services.displayManager.gdm = {
+    enable = true;
+  };
 
   # Copy monitor positions from GNOME desktop to GDM config
   systemd.services.copyGdmMonitorsXml = {
