@@ -9,7 +9,7 @@
 
   programs.rofi = {
     enable = true;
-    package = pkgs.rofi-wayland-unwrapped;
+    package = pkgs.rofi-unwrapped;
     # theme = "tokyonight";
     # font = "Hack Nerd Font 12";
     # cycle = true;
