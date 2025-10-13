@@ -31,7 +31,6 @@
 
     # Debug
     haskellPackages.haskell-debug-adapter
-    haskellPackages.ghci-dap
 
     # Tools
     ghcid
