@@ -6,8 +6,12 @@
     # Nix Index database
     ./nix-index-database.nix
 
+    # Fuzzy search for NixOS packages
+    ./nix-search-tv.nix
+
     # Clean projects to save space
     ./kondo.nix
+
   ];
 
   home.packages = with pkgs; [
