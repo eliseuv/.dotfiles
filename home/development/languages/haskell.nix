@@ -29,9 +29,6 @@
     # Tags generation
     haskellPackages.fast-tags
 
-    # Debug
-    haskellPackages.haskell-debug-adapter
-
     # Tools
     ghcid
     ghciwatch
