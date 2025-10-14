@@ -7,7 +7,7 @@
     ./udiskie.nix
 
     # Synchronize files
-    ./syncthing.nix
+    ./syncthing/default.nix
 
     # pueue
     ./pueue.nix

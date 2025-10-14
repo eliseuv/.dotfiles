@@ -97,6 +97,9 @@
 
             ./home/home.nix
 
+            # Syncthing folders
+            ./home/services/syncthing/folders/GLaDOS.nix
+
             # Music Player Daemon
             ./home/media/music/mpd.nix
 
@@ -110,7 +113,12 @@
           inherit pkgs;
           extraSpecialArgs = { inherit inputs; };
           modules = [
+
             ./home/home.nix
+
+            # Syncthing folders
+            ./home/services/syncthing/folders/tardis.nix
+
           ];
         };
 
