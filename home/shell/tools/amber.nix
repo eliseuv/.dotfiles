@@ -1,0 +1,8 @@
+{ ... }:
+{
+
+  programs.amber = {
+    enable = true;
+  };
+
+}
