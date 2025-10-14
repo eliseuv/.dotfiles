@@ -16,7 +16,6 @@
       cursor-style = "block";
       mouse-hide-while-typing = true;
       gtk-titlebar = false;
-      gtk-adwaita = false;
       gtk-single-instance = true;
       window-decoration = false;
       scrollback-limit = 100000000; # ~100mb per terminal
