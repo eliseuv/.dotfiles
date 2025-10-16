@@ -61,6 +61,9 @@
   # Allow user to install system-wide packages
   nix.settings.trusted-users = [ "evf" ];
 
+  # Select default session for Display Manager
+  services.displayManager.defaultSession = "hyprland-uwsm";
+
   # Mount disks
   fileSystems = {
 
