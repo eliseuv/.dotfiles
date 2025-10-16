@@ -32,6 +32,7 @@
 
     # Window manager
     ../../desktop/window-manager/hyprland.nix
+    ../../desktop/window-manager/gnome.nix
 
     # NVidia graphics
     ../../hardware/nvidia.nix
