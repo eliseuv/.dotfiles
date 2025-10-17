@@ -8,7 +8,7 @@
     enableZshIntegration = true;
     installBatSyntax = true;
     settings = {
-      theme = "TokyoNight";
+      theme = "tokyonight";
       font-family = "IosevkaTerm Nerd Font";
       font-size = 9;
       font-feature = "+calt, +liga, +dlig";
