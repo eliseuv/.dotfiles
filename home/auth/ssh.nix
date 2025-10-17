@@ -3,14 +3,11 @@
 
   programs.ssh = {
     enable = true;
+    compression = true;
+    addKeysToAgent = "yes";
+    forwardAgent = true;
+    serverAliveInterval = 240;
     matchBlocks = {
-      # Default settings for all hosts
-      "*" = {
-        compression = true;
-        addKeysToAgent = "yes";
-        forwardAgent = true;
-        serverAliveInterval = 240;
-      };
       # Alpine Linux VM
       "alpine-vm" = {
         hostname = "alpine-vm.local";
