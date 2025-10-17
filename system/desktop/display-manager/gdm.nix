@@ -1,8 +1,8 @@
 { pkgs, ... }:
 {
 
-  # GNOME Display Manager (GDM)
-  services.displayManager.gdm = {
+  # GNOME Display Manager
+  services.xserver.displayManager.gdm = {
     enable = true;
   };
 
