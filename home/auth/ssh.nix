@@ -11,12 +11,6 @@
         addKeysToAgent = "yes";
         forwardAgent = true;
         serverAliveInterval = 240;
-        serverAliveCountMax = 3;
-        hashKnownHosts = false;
-        userKnownHostsFile = "~/.ssh/known_hosts";
-        controlMaster = "no";
-        controlPath = "~/.ssh/master-%r@%n:%p";
-        controlPersist = "no";
       };
       # Alpine Linux VM
       "alpine-vm" = {
