@@ -24,9 +24,7 @@
 
   programs.go = {
     enable = true;
-    env = {
-      GOPATH = ".go";
-    };
+    goPath = ".go";
     telemetry.mode = "off";
   };
 
