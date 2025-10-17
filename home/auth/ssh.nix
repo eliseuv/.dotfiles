@@ -3,7 +3,6 @@
 
   programs.ssh = {
     enable = true;
-    enableDefaultConfig = false;
     matchBlocks = {
       # Default settings for all hosts
       "*" = {
