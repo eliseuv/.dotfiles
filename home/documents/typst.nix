@@ -1,23 +1,29 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 {
 
-  home.packages = with pkgs; [
+  home.packages =
+    with pkgs;
+    [
 
-    typst
+      typst
 
-    # LSP
-    tinymist
+      # LSP
+      tinymist
 
-    # Formatter
-    typstyle
-    prettypst
+      # Formatter
+      typstyle
+      prettypst
 
-    # Packager manager
-    utpm
+      # Packager manager
+      utpm
 
-    # Fonts
-    font-awesome
+    ]
+    # Latest versions
+    ++ (with pkgs-unstable; [
 
-  ];
+      # Font Awesome for icons in documents
+      font-awesome
+
+    ]);
 
 }
