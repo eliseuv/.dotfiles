@@ -121,7 +121,10 @@
 
         "evf@tardis" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit inputs; };
+          extraSpecialArgs = {
+            inherit inputs;
+            inherit pkgs-unstable;
+          };
           modules = [
 
             ./home/home.nix
