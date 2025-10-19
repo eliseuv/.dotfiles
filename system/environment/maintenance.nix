@@ -10,8 +10,8 @@
     flake = "/home/evf/.dotfiles";
     clean = {
       enable = true;
-      extraArgs = "--keep 8";
       dates = "weekly";
+      extraArgs = "--keep 8";
     };
   };
 
