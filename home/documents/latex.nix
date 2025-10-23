@@ -14,4 +14,8 @@
     settings = { };
   };
 
+  home.file.".latexmkrc".text = ''
+    $pdf_previewer = 'start zathura';
+  '';
+
 }
