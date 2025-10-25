@@ -26,7 +26,7 @@ update *inputs:
     git add flake.lock
     git commit --message "[flake] update {{inputs}}"
 
-update-home: (update "home-manager" "spicetify-nix") home-switch
+update-home: (update "home-manager" "sops-nix" "spicetify-nix" "yt-x") home-switch
 
 gc keep='8':
     nh clean all --keep {{keep}}
