@@ -1,0 +1,9 @@
+{ pkgs, ... }:
+{
+
+  programs.alacritty = {
+    enable = true;
+    theme = "tokyo_night";
+  };
+
+}
