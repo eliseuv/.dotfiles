@@ -117,7 +117,7 @@
             ./home/games/default.nix
 
             # Extra stuff
-            ./home/extra/rclone.nix
+            ./home/extra/rclone/default.nix
             ./home/extra/synology.nix
 
           ];
