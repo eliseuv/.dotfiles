@@ -116,6 +116,9 @@
             # Games
             ./home/games/default.nix
 
+            # Extra stuff
+            ./home/extra/rclone.nix
+
           ];
         };
 
