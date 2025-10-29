@@ -20,6 +20,8 @@
     ./yazi.nix
     # System monitor
     ./bottom.nix
+    # Monitor file changes
+    ./hwatch.nix
     # Systemctl TUI
     ./systemctl-tui.nix
   ];
