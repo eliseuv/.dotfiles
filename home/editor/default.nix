@@ -10,7 +10,6 @@
     # GUI
     ./emacs/default.nix
     ./zed.nix
-    ./vscode.nix
 
   ];
 
