@@ -6,6 +6,7 @@
     # Player clients for MPD
     ./ncmpcpp.nix
     ./inori.nix
+    ./rmpc.nix
 
   ];
 
