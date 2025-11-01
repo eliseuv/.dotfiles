@@ -1,0 +1,8 @@
+{ ... }:
+{
+
+  programs.rmpc = {
+    enable = true;
+  };
+
+}
