@@ -5,10 +5,6 @@
 
     enable = true;
 
-    tray = {
-      enable = true;
-    };
-
     extraOptions = [ "--allow-newer-config" ];
 
     settings = {
