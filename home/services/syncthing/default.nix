@@ -7,7 +7,6 @@
 
     tray = {
       enable = true;
-      command = "syncthingtray --wait";
     };
 
     extraOptions = [ "--allow-newer-config" ];
