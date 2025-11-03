@@ -22,6 +22,7 @@
       "api-key/quandl" = { };
       "api-key/spotify/client-id" = { };
       "api-key/spotify/client-secret" = { };
+      "ntfy-topic" = { };
     };
   };
 
