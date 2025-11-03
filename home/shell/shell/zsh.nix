@@ -40,6 +40,7 @@
       export GEMINI_API_KEY=$(<${config.sops.secrets."api-key/gemini".path})
       export OPENWEATHER_API_KEY=$(<${config.sops.secrets."api-key/openweather".path})
       export QUANDL_API_KEY=$(<${config.sops.secrets."api-key/quandl".path})
+      export NTFY_TOPIC=$(<${config.sops.secrets."ntfy-topic".path})
     '';
     oh-my-zsh = {
       enable = true;
