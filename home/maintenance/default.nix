@@ -8,12 +8,16 @@
 
     # Clean projects to save space
     ./kondo.nix
+
   ];
 
   home.packages = with pkgs; [
 
     # Nix version diff
     nvd
+
+    # Disk recovery tool
+    testdisk
 
   ];
 
