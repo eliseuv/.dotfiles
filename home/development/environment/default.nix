@@ -4,7 +4,7 @@
   imports = [
 
     ./direnv.nix
-    ./devenv.nix
+    # ./devenv.nix
 
   ];
 
