@@ -11,6 +11,4 @@
     };
   };
 
-  home.sessionVariables.READER = "zathura";
-
 }
