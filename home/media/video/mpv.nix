@@ -28,14 +28,4 @@
     ];
   };
 
-  xdg.mimeApps = {
-    enable = true;
-    associations.added = {
-      "video/*" = [ "mpv.desktop" ];
-    };
-    defaultApplications = {
-      "video/*" = [ "mpv.desktop" ];
-    };
-  };
-
 }

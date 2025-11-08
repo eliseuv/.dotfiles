@@ -21,4 +21,20 @@
 
   ];
 
+  xdg.mimeApps = {
+    enable = true;
+    associations.added = {
+      "image/jpeg" = [ "feh.desktop" ];
+      "image/png" = [ "feh.desktop" ];
+      "image/*" = [ "sxiv.desktop" ];
+      "video/*" = [ "mpv.desktop" ];
+    };
+    defaultApplications = {
+      "image/jpeg" = [ "feh.desktop" ];
+      "image/png" = [ "feh.desktop" ];
+      "image/*" = [ "sxiv.desktop" ];
+      "video/*" = [ "mpv.desktop" ];
+    };
+  };
+
 }
