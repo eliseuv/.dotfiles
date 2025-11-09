@@ -7,4 +7,8 @@
 
   ];
 
+  home.shellAliases = {
+    w = "viddy ";
+  };
+
 }
