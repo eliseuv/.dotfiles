@@ -22,6 +22,7 @@
     ./bottom.nix
     # Monitor file changes
     ./hwatch.nix
+    ./viddy.nix
     # Systemctl TUI
     ./systemctl-tui.nix
   ];
