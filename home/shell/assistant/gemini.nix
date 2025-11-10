@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs-unstable, ... }:
 {
 
-  home.packages = with pkgs; [ gemini-cli ];
+  home.packages = with pkgs-unstable; [ gemini-cli ];
 
 }
