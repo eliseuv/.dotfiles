@@ -21,7 +21,6 @@
     # System monitor
     ./bottom.nix
     # Monitor file changes
-    ./hwatch.nix
     ./viddy.nix
     # Systemctl TUI
     ./systemctl-tui.nix
@@ -34,6 +33,9 @@
 
     # Disk usage analyzer
     dua
+
+    # File change monitor
+    hwatch
 
     # TUI process runner
     mprocs
