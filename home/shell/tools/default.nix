@@ -37,6 +37,9 @@
     # File change monitor
     hwatch
 
+    # Duplicate file finder
+    fdupes
+
     # TUI process runner
     mprocs
 
