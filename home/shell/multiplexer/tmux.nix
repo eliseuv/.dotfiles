@@ -16,9 +16,21 @@
       tmuxPlugins.sensible
       tmuxPlugins.vim-tmux-navigator
       {
-        plugin = tmuxPlugins.tmux-thumbs;
+        plugin = tmuxPlugins.fingers;
         extraConfig = ''
-          set -g @thumbs-command 'echo -n {} | xclip -selection clipboard'
+          # Match URLs
+          bind U run -b "#{@fingers-cli} start #{pane_id} --patterns url"
+          # Match SHA256 hashes
+          set -g @fingers-pattern-sha256 "sha256-[a-zA-Z0-9+/]{43}="
+          bind H run -b "#{@fingers-cli} start #{pane_id} --patterns sha256"
+          # Edit file using nvim in a new tmux window
+          bind E run -b "#{@fingers-cli} start #{pane_id} --patterns path --main-action 'xargs tmux new-window nvim'"
+          # Target adjacent panes
+          bind -n M-h run -b "#{@fingers-cli} start {left-of}"
+          bind -n M-j run -b "#{@fingers-cli} start {down-of}"
+          bind -n M-k run -b "#{@fingers-cli} start {up-of}"
+          bind -n M-l run -b "#{@fingers-cli} start {right-of}"
+          bind -n M-o run -b "#{@fingers-cli} start {last}"
         '';
       }
       {
