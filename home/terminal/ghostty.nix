@@ -7,6 +7,7 @@
     enable = true;
     enableZshIntegration = true;
     installBatSyntax = true;
+    installVimSyntax = true;
     settings = {
       theme = "tokyonight";
       font-family = "IosevkaTerm Nerd Font";
