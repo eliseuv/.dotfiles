@@ -8,8 +8,8 @@
 
   # Default terminal
   home.sessionVariables = {
-    TERMINAL = "kitty";
-    TERM = "xterm-kitty";
+    TERMINAL = "ghostty";
+    TERM = "xterm-ghostty";
   };
 
 }
