@@ -4,6 +4,7 @@
   # GNOME Display Manager
   services.xserver.displayManager.gdm = {
     enable = true;
+    autoSuspend = false;
   };
 
   # Copy monitor positions from GNOME desktop to GDM config
