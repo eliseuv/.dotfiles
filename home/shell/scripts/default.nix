@@ -10,6 +10,11 @@
       inherit pkgs;
       inherit lib;
     })
+    # ntfy
+    (import ./ntfy.nix {
+      inherit pkgs;
+      inherit lib;
+    })
     # ntfy-done
     (import ./ntfy-done.nix {
       inherit pkgs;
