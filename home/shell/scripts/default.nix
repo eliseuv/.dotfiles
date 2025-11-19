@@ -10,6 +10,11 @@
       inherit pkgs;
       inherit lib;
     })
+    # ntfy-done
+    (import ./ntfy-done.nix {
+      inherit pkgs;
+      inherit lib;
+    })
   ];
 
   home.shellAliases = {
