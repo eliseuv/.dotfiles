@@ -15,6 +15,9 @@ in
     # NodeJS required for Copilot
     nodejs
 
+    # LiSt Open Files
+    lsof
+
   ];
 
   # lazy.nvim sync
